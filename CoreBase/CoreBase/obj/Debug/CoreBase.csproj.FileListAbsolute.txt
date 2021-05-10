@@ -15,3 +15,11 @@ D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.Dictiona
 D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
 D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.dll
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.Properties.Resources.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.DicBase.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.Dictionary.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb

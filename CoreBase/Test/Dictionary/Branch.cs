@@ -13,9 +13,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmBranch : CoreBase.WinForm.Dictionary.Dictionary
     {
-        DataRow _dr;
+        string _Mode = "";
         DataTable _Service;
+        string _idName = "branchId";
         string _tableName = "zBranch";
+        int _postion = 0;
         public frmBranch()
         {
             InitializeComponent();
@@ -23,7 +25,6 @@ namespace AusNail.Dictionary
         protected override void BeforeFillData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                //Bds.DataSource = _Service = dal.GetData(string.Format("{0}=0", ZenDatabase.INACTIVE_COLUMN_NAME));
                 Bds.DataSource = _Service = dal.GetData();
             LoadGrid();
             base.BeforeFillData();
@@ -45,9 +46,28 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
-            DataRowView DRV = (DataRowView)Bds.Current;
-            this.zEditRow = (DataRow)DRV.Row;
-            return base.InsertData();
+            LoadEditRow();
+            if (_Mode == "Add")
+            {
+                return base.InsertData();
+            }
+            else
+            {
+                return base.UpdateData();
+            }
+        }
+
+        protected override bool UpdateData()
+        {
+            LoadEditRow();
+            if (_Mode == "Update")
+            {
+                return base.UpdateData();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         protected override void InitForm()
@@ -58,14 +78,9 @@ namespace AusNail.Dictionary
             base.InitForm();
         }
 
-        private void GridDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void LoadGrid()
         {
-            GridDetail.DataSource = Bds.DataSource;
+            GridDetail.DataSource = _Service;
             GridDetail.Columns["branchId"].Visible = false;
             GridDetail.Columns["BranchCode"].HeaderText = "Branch code";
             GridDetail.Columns["BranchName"].HeaderText = "Branch name";
@@ -80,18 +95,23 @@ namespace AusNail.Dictionary
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["created_by"].HeaderText = "Create by";
+            GridDetail.Columns["created_by"].ReadOnly = true;
             GridDetail.Columns["created_at"].HeaderText = "Create at";
+            GridDetail.Columns["created_at"].ReadOnly = true;
             GridDetail.Columns["modified_by"].HeaderText = "Modified by";
+            GridDetail.Columns["modified_by"].ReadOnly = true;
             GridDetail.Columns["modified_at"].HeaderText = "Modified at";
+            GridDetail.Columns["modified_at"].ReadOnly = true;
 
         }
 
-        private void GridDetail_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void GridDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.RowIndex >= 0)
                 {
+                    _postion = e.RowIndex;
                     DataGridViewRow row = this.GridDetail.Rows[e.RowIndex];
                     txtBranchCode.Text = row.Cells["BranchCode"].Value.ToString();
                     txtBranchName.Text = row.Cells["BranchName"].Value.ToString();
@@ -108,8 +128,22 @@ namespace AusNail.Dictionary
             }
             catch (Exception)
             {
-                
+
                 throw;
+            }
+        }
+
+        private void LoadEditRow()
+        {
+            if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
+            {
+                this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
+                _Mode = "Add";
+            }
+            else
+            {
+                this.zEditRow = ((DataTable)Bds.DataSource).Rows[_postion];
+                _Mode = "Update";
             }
         }
     }

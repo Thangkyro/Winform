@@ -116,7 +116,6 @@ namespace CoreBase.DataAccessLayer
 
                 var id = MsSqlHelper.ExecuteScalar(ZenDatabase.ConnectionString, CommandType.Text, sql, outPars);
 
-                row["id"] = id;
                 return true;
             }
             catch (SqlException sex)
@@ -147,7 +146,6 @@ namespace CoreBase.DataAccessLayer
                     return true;
 
                 var id = MsSqlHelper.ExecuteScalar(trans, CommandType.Text, sql, outPars);
-                row["id"] = id;
 
                 sql = base.buildSelectCommand("Select", zViewTableName, null, string.Format("id={0}", id));
                 DataTable tbl = MsSqlHelper.ExecuteDataTable(trans, CommandType.Text, sql);
@@ -168,7 +166,6 @@ namespace CoreBase.DataAccessLayer
 
                     sql = base.buildInsertCommand("Insert", child1.TableName, cTable, cRow, out outPars, true);
                     id = MsSqlHelper.ExecuteScalar(trans, CommandType.Text, sql, outPars);
-                    cRow["id"] = id;
                 }
 
                 trans.Commit();
