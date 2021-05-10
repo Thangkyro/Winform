@@ -1,0 +1,17 @@
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\bin\Debug\CoreBase.dll
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\bin\Debug\CoreBase.pdb
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.DMBase.resources
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.Properties.Resources.resources
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.cache
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CoreCompileInputs.cache
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.dll
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\THANGNGUYEN\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.csprojAssemblyReference.cache
+D:\MMO\CoreBase\CoreBase\CoreBase\bin\Debug\CoreBase.dll
+D:\MMO\CoreBase\CoreBase\CoreBase\bin\Debug\CoreBase.pdb
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.Properties.Resources.resources
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.DicBase.resources
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.Dictionary.resources
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.dll
+D:\MMO\CoreBase\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
