@@ -14,6 +14,8 @@ namespace CoreBase.WinForm.Dictionary
     public partial class Dictionary : DicBase
     {
 
+        string strMessInfor = "";
+        Timer t = new Timer();
         public enum FormMode
         {
             New,
@@ -48,6 +50,7 @@ namespace CoreBase.WinForm.Dictionary
 
         public FormMode zMode { get;  set; }
         public DataRow zEditRow { get;  set; }
+        public DataRow zDeleteRow { get; set; }
         #region Ctors
         public Dictionary() : this(null) { }
         public Dictionary(string tableName) : this(tableName, tableName) { }
@@ -96,7 +99,13 @@ namespace CoreBase.WinForm.Dictionary
         {
         }
         protected virtual void BeforeFillData()
-        { }
+        {
+            t.Interval = 1000;  //in milliseconds
+
+            t.Tick += new EventHandler(this.t_Tick);
+
+            t.Start();  //this will use t_Tick() method
+        }
         protected virtual void FillData()
         {
         }
@@ -150,6 +159,12 @@ namespace CoreBase.WinForm.Dictionary
         protected virtual void InitForm()
         {         
         }
+
+        protected virtual bool DeleteData()
+        {
+            return zDAL.DeleteData(zDeleteRow);
+        }
+
         #region Bindings 
         protected void CreateBinding(Control ctrl)
         {
@@ -190,7 +205,56 @@ namespace CoreBase.WinForm.Dictionary
                 return;
 
             if (SaveData())
-                DialogResult = DialogResult.OK;
+                MessageBox.Show("Successfully","Information");
+        }
+
+        private void t_Tick(object sender, EventArgs e)
+        {
+            //get current time
+            int hh = DateTime.Now.Hour;
+            int mm = DateTime.Now.Minute;
+            int ss = DateTime.Now.Second;
+
+            //time
+            string time = "";
+
+            //padding leading zero
+            if (hh < 10)
+            {
+                time += "0" + hh;
+            }
+            else
+            {
+                time += hh;
+            }
+            time += ":";
+
+            if (mm < 10)
+            {
+                time += "0" + mm;
+            }
+            else
+            {
+                time += mm;
+            }
+            time += ":";
+
+            if (ss < 10)
+            {
+                time += "0" + ss;
+            }
+            else
+            {
+                time += ss;
+            }
+
+            //update label
+            lblTime.Text = time;
+        }
+
+        public void LoadMess()
+        {
+            lblMessInfomation.Text = strMessInfor;
         }
 
         #region Action

@@ -110,6 +110,7 @@ namespace CoreBase.DataAccessLayer
             try
             {
                 SqlParameter[] outPars;
+                row["modified_at"] = DateTime.Now;
                 string sql = base.buildInsertCommand("Insert", zEditTableName, zSchemaTable, row, out outPars, true);
                 if (string.IsNullOrEmpty(sql))
                     return true;

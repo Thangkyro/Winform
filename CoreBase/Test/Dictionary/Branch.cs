@@ -24,9 +24,7 @@ namespace AusNail.Dictionary
         }
         protected override void BeforeFillData()
         {
-            using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                Bds.DataSource = _Service = dal.GetData();
-            LoadGrid();
+            LoadData();
             base.BeforeFillData();
         }
         protected override void FillData()
@@ -46,29 +44,56 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
-            LoadEditRow();
-            if (_Mode == "Add")
+            try
             {
-                return base.InsertData();
+                LoadEditRow();
+                if (_Mode == "Add")
+                {
+                    return base.InsertData();
+                }
+                else
+                {
+                    return base.UpdateData();
+                }             
+
+                #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
+                //DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
+
+                //foreach (DataRow dr in changedRows.Rows)
+                //{
+                //    if (dr[_idName].ToString() == "0")
+                //    {
+                //        this.zEditRow = dr;
+                //        return base.InsertData();
+                //    }
+                //    else
+                //    {
+                //        this.zEditRow = dr;
+                //        return base.UpdateData();
+                //    }
+                //}
+                //return true;
+                #endregion
             }
-            else
+            catch 
             {
-                return base.UpdateData();
+                
             }
+            return true;
         }
 
-        protected override bool UpdateData()
-        {
-            LoadEditRow();
-            if (_Mode == "Update")
-            {
-                return base.UpdateData();
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //protected override bool UpdateData()
+        //{
+        //    LoadEditRow();
+        //    if (_Mode == "Update")
+        //    {
+        //        return base.UpdateData();
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         protected override void InitForm()
         {
@@ -78,6 +103,13 @@ namespace AusNail.Dictionary
             base.InitForm();
         }
 
+        private void LoadData()
+        {
+            using (DictionaryDAL dal = new DictionaryDAL(_tableName))
+                Bds.DataSource = _Service = dal.GetData();
+            LoadGrid();
+            _postion = 0;
+        }
         private void LoadGrid()
         {
             GridDetail.DataSource = _Service;
@@ -135,6 +167,7 @@ namespace AusNail.Dictionary
 
         private void LoadEditRow()
         {
+
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
@@ -145,6 +178,33 @@ namespace AusNail.Dictionary
                 this.zEditRow = ((DataTable)Bds.DataSource).Rows[_postion];
                 _Mode = "Update";
             }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
+            if (result == DialogResult.Yes)
+            {
+                this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
+                bool flag = base.DeleteData();
+                LoadData();
+            }
+            else
+            {
+                
+            }
+        }
+
+        private void refeshListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private DialogResult MessNotifications(string title, string message)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            return result;
         }
     }
 }

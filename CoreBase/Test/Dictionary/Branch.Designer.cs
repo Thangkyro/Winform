@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranch));
             this.txtBranchName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,6 +41,9 @@
             this.txtBranchCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.GridDetail = new System.Windows.Forms.DataGridView();
+            this.ctmGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refeshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtWebsite = new System.Windows.Forms.TextBox();
@@ -53,6 +57,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).BeginInit();
+            this.ctmGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkis_inactive
@@ -64,15 +69,17 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 367);
-            this.panel1.Size = new System.Drawing.Size(897, 44);
+            this.panel1.Location = new System.Drawing.Point(0, 368);
+            this.panel1.Size = new System.Drawing.Size(897, 43);
             // 
             // btnCancel
             // 
+            this.btnCancel.Location = new System.Drawing.Point(93, 10);
             this.btnCancel.TabIndex = 1;
             // 
             // btnSave
             // 
+            this.btnSave.Location = new System.Drawing.Point(12, 10);
             this.btnSave.TabIndex = 0;
             // 
             // imageList
@@ -83,6 +90,19 @@
             this.imageList.Images.SetKeyName(2, "disk_edit.png");
             this.imageList.Images.SetKeyName(3, "Edit.png");
             this.imageList.Images.SetKeyName(4, "cancel.png");
+            // 
+            // lblMessInfomation
+            // 
+            this.lblMessInfomation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblMessInfomation.Location = new System.Drawing.Point(384, 12);
+            this.lblMessInfomation.Size = new System.Drawing.Size(417, 20);
+            // 
+            // lblTime
+            // 
+            this.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTime.Location = new System.Drawing.Point(805, 12);
+            this.lblTime.Size = new System.Drawing.Size(86, 20);
+            this.lblTime.Text = "17:54:22";
             // 
             // txtBranchName
             // 
@@ -185,11 +205,36 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Location = new System.Drawing.Point(12, 6);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.Size = new System.Drawing.Size(598, 356);
             this.GridDetail.TabIndex = 13;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
+            // 
+            // ctmGridView
+            // 
+            this.ctmGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.refeshListToolStripMenuItem});
+            this.ctmGridView.Name = "ctmGridView";
+            this.ctmGridView.Size = new System.Drawing.Size(131, 48);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // refeshListToolStripMenuItem
+            // 
+            this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
+            this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
+            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.refeshListToolStripMenuItem.Text = "Refesh List";
+            this.refeshListToolStripMenuItem.Click += new System.EventHandler(this.refeshListToolStripMenuItem_Click);
             // 
             // txtEmail
             // 
@@ -342,6 +387,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).EndInit();
+            this.ctmGridView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,6 +416,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNoontime;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ContextMenuStrip ctmGridView;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refeshListToolStripMenuItem;
 
     }
 }

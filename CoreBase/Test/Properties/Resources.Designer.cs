@@ -73,6 +73,16 @@ namespace AusNail.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DeleteRow1 {
+            get {
+                object obj = ResourceManager.GetObject("DeleteRow1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap general {
             get {
                 object obj = ResourceManager.GetObject("general", resourceCulture);
@@ -106,6 +116,16 @@ namespace AusNail.Properties {
         internal static System.Drawing.Bitmap package_green {
             get {
                 object obj = ResourceManager.GetObject("package_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Refresh {
+            get {
+                object obj = ResourceManager.GetObject("Refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dictionary));
             this.chkis_inactive = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMessInfomation = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -54,14 +56,35 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lblTime);
+            this.panel1.Controls.Add(this.lblMessInfomation);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 252);
+            this.panel1.Location = new System.Drawing.Point(0, 255);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(509, 44);
             this.panel1.TabIndex = 4;
+            // 
+            // lblMessInfomation
+            // 
+            this.lblMessInfomation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMessInfomation.Location = new System.Drawing.Point(240, 18);
+            this.lblMessInfomation.Name = "lblMessInfomation";
+            this.lblMessInfomation.Size = new System.Drawing.Size(151, 14);
+            this.lblMessInfomation.TabIndex = 1;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTime.Location = new System.Drawing.Point(420, 17);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(86, 14);
+            this.lblTime.TabIndex = 0;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -74,6 +97,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.ImageKey = "cancel.png";
             this.btnCancel.ImageList = this.imageList;
             this.btnCancel.Location = new System.Drawing.Point(93, 11);
@@ -97,6 +121,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.ImageKey = "Save.png";
             this.btnSave.ImageList = this.imageList;
             this.btnSave.Location = new System.Drawing.Point(12, 11);
@@ -112,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 296);
+            this.ClientSize = new System.Drawing.Size(509, 302);
             this.Controls.Add(this.chkis_inactive);
             this.Controls.Add(this.panel1);
             this.Name = "Dictionary";
@@ -133,5 +158,7 @@
         protected System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.BindingSource Bds;
         public System.Windows.Forms.ImageList imageList;
+        public System.Windows.Forms.Label lblMessInfomation;
+        public System.Windows.Forms.Label lblTime;
     }
 }
