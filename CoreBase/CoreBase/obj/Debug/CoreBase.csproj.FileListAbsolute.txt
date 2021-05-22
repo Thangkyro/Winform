@@ -23,3 +23,4 @@ D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictiona
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.HashKey.resources

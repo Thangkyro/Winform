@@ -56,13 +56,13 @@ namespace AusNail
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dictionary.frmBranch frm = new Dictionary.frmBranch();
+            CoreBase.WinForm.Dictionary.HashKey frm = new CoreBase.WinForm.Dictionary.HashKey();
             ShowForm(frm);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dictionary.frmService frm = new Dictionary.frmService();
+            Process.frmCheckin frm = new Process.frmCheckin();
             ShowForm(frm);
         }
 

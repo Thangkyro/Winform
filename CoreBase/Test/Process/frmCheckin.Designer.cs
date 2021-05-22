@@ -54,6 +54,7 @@
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.numSL = new System.Windows.Forms.NumericUpDown();
             this.btnRegister = new System.Windows.Forms.Button();
             this.lbl_R_Total = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -79,20 +80,26 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.numSL = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cboGender = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridService)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegister)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSL)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.93395F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.06605F));
@@ -102,7 +109,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(863, 469);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(863, 508);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
@@ -117,23 +124,26 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(329, 463);
+            this.groupBox1.Size = new System.Drawing.Size(329, 502);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Checking";
             // 
             // cbPaymentMethod
             // 
+            this.cbPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbPaymentMethod.FormattingEnabled = true;
-            this.cbPaymentMethod.Location = new System.Drawing.Point(91, 428);
+            this.cbPaymentMethod.Location = new System.Drawing.Point(85, 445);
             this.cbPaymentMethod.Name = "cbPaymentMethod";
             this.cbPaymentMethod.Size = new System.Drawing.Size(152, 21);
-            this.cbPaymentMethod.TabIndex = 0;
+            this.cbPaymentMethod.TabIndex = 2;
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 432);
+            this.label6.Location = new System.Drawing.Point(-3, 449);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 0;
@@ -141,6 +151,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.lblTotal);
             this.groupBox3.Controls.Add(this.lblDistributor);
@@ -153,7 +166,7 @@
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Location = new System.Drawing.Point(6, 93);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 323);
+            this.groupBox3.Size = new System.Drawing.Size(318, 337);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detail";
@@ -161,7 +174,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(22, 100);
+            this.label10.Location = new System.Drawing.Point(22, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 4;
@@ -169,22 +182,28 @@
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotal.Location = new System.Drawing.Point(85, 273);
+            this.lblTotal.Location = new System.Drawing.Point(85, 289);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(227, 43);
             this.lblTotal.TabIndex = 4;
             // 
             // lblDistributor
             // 
+            this.lblDistributor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDistributor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDistributor.Location = new System.Drawing.Point(85, 77);
+            this.lblDistributor.Location = new System.Drawing.Point(85, 73);
             this.lblDistributor.Name = "lblDistributor";
             this.lblDistributor.Size = new System.Drawing.Size(227, 23);
             this.lblDistributor.TabIndex = 4;
             // 
             // lblDatetime
             // 
+            this.lblDatetime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDatetime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblDatetime.Location = new System.Drawing.Point(85, 46);
             this.lblDatetime.Name = "lblDatetime";
@@ -193,6 +212,8 @@
             // 
             // lblStaff
             // 
+            this.lblStaff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStaff.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblStaff.Location = new System.Drawing.Point(85, 19);
             this.lblStaff.Name = "lblStaff";
@@ -201,6 +222,9 @@
             // 
             // gridService
             // 
+            this.gridService.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSTT,
@@ -208,9 +232,9 @@
             this.colPrice,
             this.colAmount,
             this.colServiceCode});
-            this.gridService.Location = new System.Drawing.Point(25, 118);
+            this.gridService.Location = new System.Drawing.Point(25, 117);
             this.gridService.Name = "gridService";
-            this.gridService.Size = new System.Drawing.Size(287, 150);
+            this.gridService.Size = new System.Drawing.Size(287, 168);
             this.gridService.TabIndex = 3;
             // 
             // colSTT
@@ -245,8 +269,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 290);
+            this.label5.Location = new System.Drawing.Point(22, 306);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 2;
@@ -255,11 +280,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 77);
+            this.label4.Location = new System.Drawing.Point(22, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Distribubor:";
+            this.label4.Text = "Branch:";
             // 
             // label3
             // 
@@ -281,21 +306,24 @@
             // 
             // btnPay
             // 
-            this.btnPay.Location = new System.Drawing.Point(249, 418);
+            this.btnPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPay.Location = new System.Drawing.Point(243, 435);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(75, 40);
-            this.btnPay.TabIndex = 2;
+            this.btnPay.Size = new System.Drawing.Size(81, 40);
+            this.btnPay.TabIndex = 3;
             this.btnPay.Text = "Pay";
             this.btnPay.UseVisualStyleBackColor = true;
             // 
             // btnCheck
             // 
+            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCheck.Location = new System.Drawing.Point(249, 41);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(75, 40);
-            this.btnCheck.TabIndex = 2;
+            this.btnCheck.TabIndex = 1;
             this.btnCheck.Text = "Check";
             this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // label1
             // 
@@ -308,11 +336,16 @@
             // 
             // txtPhoneNumber
             // 
+            this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhoneNumber.Location = new System.Drawing.Point(31, 41);
             this.txtPhoneNumber.Multiline = true;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(212, 40);
             this.txtPhoneNumber.TabIndex = 0;
+            this.txtPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhoneNumber_KeyPress);
             // 
             // groupBox2
             // 
@@ -321,13 +354,18 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(338, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(522, 463);
+            this.groupBox2.Size = new System.Drawing.Size(522, 502);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registration";
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.numSL);
             this.groupBox5.Controls.Add(this.btnRegister);
             this.groupBox5.Controls.Add(this.lbl_R_Total);
@@ -338,34 +376,46 @@
             this.groupBox5.Controls.Add(this.cb_S_StaftName);
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Location = new System.Drawing.Point(27, 168);
+            this.groupBox5.Location = new System.Drawing.Point(27, 170);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(474, 289);
+            this.groupBox5.Size = new System.Drawing.Size(474, 315);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Booking information";
             // 
+            // numSL
+            // 
+            this.numSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numSL.Location = new System.Drawing.Point(340, 69);
+            this.numSL.Name = "numSL";
+            this.numSL.Size = new System.Drawing.Size(69, 20);
+            this.numSL.TabIndex = 3;
+            // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(342, 243);
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.Location = new System.Drawing.Point(342, 262);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(121, 43);
-            this.btnRegister.TabIndex = 7;
+            this.btnRegister.TabIndex = 5;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             // 
             // lbl_R_Total
             // 
+            this.lbl_R_Total.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_R_Total.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_R_Total.Location = new System.Drawing.Point(59, 243);
+            this.lbl_R_Total.Location = new System.Drawing.Point(59, 262);
             this.lbl_R_Total.Name = "lbl_R_Total";
             this.lbl_R_Total.Size = new System.Drawing.Size(277, 43);
             this.lbl_R_Total.TabIndex = 6;
             // 
             // label15
             // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 260);
+            this.label15.Location = new System.Drawing.Point(19, 279);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(34, 13);
             this.label15.TabIndex = 5;
@@ -373,6 +423,9 @@
             // 
             // gridRegister
             // 
+            this.gridRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridRegister.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_R_Num,
@@ -380,9 +433,9 @@
             this.col_R_Price,
             this.col_R_Amount,
             this.col_R_ServiceCode});
-            this.gridRegister.Location = new System.Drawing.Point(22, 78);
+            this.gridRegister.Location = new System.Drawing.Point(22, 96);
             this.gridRegister.Name = "gridRegister";
-            this.gridRegister.Size = new System.Drawing.Size(441, 163);
+            this.gridRegister.Size = new System.Drawing.Size(441, 161);
             this.gridRegister.TabIndex = 4;
             // 
             // col_R_Num
@@ -418,33 +471,38 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(412, 44);
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(412, 68);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(52, 23);
-            this.btnAdd.TabIndex = 3;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // cb_S_ServiceName
             // 
+            this.cb_S_ServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_S_ServiceName.FormattingEnabled = true;
-            this.cb_S_ServiceName.Location = new System.Drawing.Point(104, 45);
+            this.cb_S_ServiceName.Location = new System.Drawing.Point(104, 69);
             this.cb_S_ServiceName.Name = "cb_S_ServiceName";
             this.cb_S_ServiceName.Size = new System.Drawing.Size(232, 21);
             this.cb_S_ServiceName.TabIndex = 2;
             // 
             // cb_S_StaftName
             // 
+            this.cb_S_StaftName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_S_StaftName.FormattingEnabled = true;
-            this.cb_S_StaftName.Location = new System.Drawing.Point(104, 20);
+            this.cb_S_StaftName.Location = new System.Drawing.Point(104, 46);
             this.cb_S_StaftName.Name = "cb_S_StaftName";
             this.cb_S_StaftName.Size = new System.Drawing.Size(359, 21);
-            this.cb_S_StaftName.TabIndex = 2;
+            this.cb_S_StaftName.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(19, 48);
+            this.label13.Location = new System.Drawing.Point(19, 72);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 13);
             this.label13.TabIndex = 1;
@@ -453,7 +511,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 23);
+            this.label12.Location = new System.Drawing.Point(19, 49);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
             this.label12.TabIndex = 1;
@@ -461,6 +519,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.cboGender);
             this.groupBox4.Controls.Add(this.txt_C_Postcode);
             this.groupBox4.Controls.Add(this.txt_C_DateofBirth);
             this.groupBox4.Controls.Add(this.txt_C_Name);
@@ -468,6 +529,7 @@
             this.groupBox4.Controls.Add(this.btnEditBooking);
             this.groupBox4.Controls.Add(this.btnCreate);
             this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label7);
@@ -480,54 +542,65 @@
             // 
             // txt_C_Postcode
             // 
-            this.txt_C_Postcode.Location = new System.Drawing.Point(104, 100);
+            this.txt_C_Postcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_C_Postcode.Location = new System.Drawing.Point(104, 111);
             this.txt_C_Postcode.Name = "txt_C_Postcode";
             this.txt_C_Postcode.Size = new System.Drawing.Size(226, 20);
-            this.txt_C_Postcode.TabIndex = 1;
+            this.txt_C_Postcode.TabIndex = 4;
             // 
             // txt_C_DateofBirth
             // 
-            this.txt_C_DateofBirth.Location = new System.Drawing.Point(104, 74);
+            this.txt_C_DateofBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_C_DateofBirth.Location = new System.Drawing.Point(104, 89);
             this.txt_C_DateofBirth.Name = "txt_C_DateofBirth";
             this.txt_C_DateofBirth.Size = new System.Drawing.Size(226, 20);
-            this.txt_C_DateofBirth.TabIndex = 1;
+            this.txt_C_DateofBirth.TabIndex = 3;
             // 
             // txt_C_Name
             // 
-            this.txt_C_Name.Location = new System.Drawing.Point(104, 48);
+            this.txt_C_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_C_Name.Location = new System.Drawing.Point(104, 44);
             this.txt_C_Name.Name = "txt_C_Name";
             this.txt_C_Name.Size = new System.Drawing.Size(226, 20);
             this.txt_C_Name.TabIndex = 1;
             // 
             // txt_C_PhoneNumber
             // 
+            this.txt_C_PhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_C_PhoneNumber.Location = new System.Drawing.Point(104, 22);
             this.txt_C_PhoneNumber.Name = "txt_C_PhoneNumber";
             this.txt_C_PhoneNumber.Size = new System.Drawing.Size(226, 20);
-            this.txt_C_PhoneNumber.TabIndex = 1;
+            this.txt_C_PhoneNumber.TabIndex = 0;
             // 
             // btnEditBooking
             // 
-            this.btnEditBooking.Location = new System.Drawing.Point(336, 74);
+            this.btnEditBooking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditBooking.Location = new System.Drawing.Point(336, 77);
             this.btnEditBooking.Name = "btnEditBooking";
-            this.btnEditBooking.Size = new System.Drawing.Size(121, 46);
-            this.btnEditBooking.TabIndex = 2;
+            this.btnEditBooking.Size = new System.Drawing.Size(121, 55);
+            this.btnEditBooking.TabIndex = 6;
             this.btnEditBooking.Text = "Edit Booking ";
             this.btnEditBooking.UseVisualStyleBackColor = true;
             // 
             // btnCreate
             // 
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.Location = new System.Drawing.Point(336, 22);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(121, 46);
-            this.btnCreate.TabIndex = 2;
+            this.btnCreate.Size = new System.Drawing.Size(121, 55);
+            this.btnCreate.TabIndex = 5;
             this.btnCreate.Text = "Create and Register";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(19, 103);
+            this.label11.Location = new System.Drawing.Point(19, 114);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 0;
@@ -536,7 +609,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(19, 77);
+            this.label9.Location = new System.Drawing.Point(19, 92);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 13);
             this.label9.TabIndex = 0;
@@ -545,7 +618,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 51);
+            this.label8.Location = new System.Drawing.Point(19, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 0;
@@ -560,21 +633,56 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Phone number:";
             // 
-            // numSL
+            // textBox1
             // 
-            this.numSL.Location = new System.Drawing.Point(340, 45);
-            this.numSL.Name = "numSL";
-            this.numSL.Size = new System.Drawing.Size(69, 20);
-            this.numSL.TabIndex = 8;
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(104, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(360, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(19, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(33, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Date:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(19, 70);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Gender:";
+            // 
+            // cboGender
+            // 
+            this.cboGender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboGender.FormattingEnabled = true;
+            this.cboGender.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
+            this.cboGender.Location = new System.Drawing.Point(104, 66);
+            this.cboGender.Name = "cboGender";
+            this.cboGender.Size = new System.Drawing.Size(226, 21);
+            this.cboGender.TabIndex = 2;
             // 
             // frmCheckin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 493);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(893, 531);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmCheckin";
-            this.Text = "Checkin";
+            this.Text = "Checking";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -584,10 +692,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegister)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSL)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -646,5 +754,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_ServiceCode;
         private System.Windows.Forms.NumericUpDown numSL;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cboGender;
+        private System.Windows.Forms.Label label16;
     }
 }
