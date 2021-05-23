@@ -31,21 +31,6 @@ namespace CoreBase.Helpers
             //--nhap kho is
         }
 
-        public static bool UpdateTrangThaiColor(TransactionState ts)
-        {
-            string sql = string.Format("UPDATE zDmTrangThai SET color = '{0}' WHERE trang_thai={1} and ma_ct='{2}'", ts.color.zToHex(), ts.trang_thai, ts.ma_ct);
-            try
-            {
-                MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                ErrorProcess.HandleException(ex);
-                return false;
-            }
-        }
         public static DateTime GetNgay_ks(string ma_dvcs)
         {
             string sql = string.Format("select ngay_ks from zSiOptions where ma_dvcs = '{0}'", ma_dvcs);
