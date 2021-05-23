@@ -21,7 +21,7 @@ AS
 	ServiceID,
 	branchId,
 	Title,
-	CONCAT(Title,CAST(Price as varchar)) as Display,
+	CONCAT(Title + ' - ', CAST(Price as varchar)) as Display,
 	Price,
 	EstimateTime,
 	Decriptions,

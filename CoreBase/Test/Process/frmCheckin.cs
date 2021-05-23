@@ -97,6 +97,7 @@ namespace AusNail.Process
                 txt_C_Name.Focus();
             }
             txtPhoneNumber.Clear();
+            txt_B_Date.Text = DateTime.Now.ToString();
         }
 
         private void zCustomerGetList()
@@ -172,6 +173,7 @@ namespace AusNail.Process
                     loadServiceList(_branchId);
 
                     txt_B_Date.Focus();
+                    btnCreate.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -182,7 +184,7 @@ namespace AusNail.Process
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            zCustomerInsert();
+            zCustomerInsert();           
         }
 
         private void btnEditBooking_Click(object sender, EventArgs e)
@@ -200,7 +202,7 @@ namespace AusNail.Process
             txt_C_Name.Clear();
             txt_C_PhoneNumber.Clear();
             txt_C_Postcode.Clear();
-            txt_C_DateofBirth.Clear();
+            txt_C_DateofBirth.Value = DateTime.Now;
         }
 
         private void treHistory_AfterSelect(object sender, TreeViewEventArgs e)
@@ -235,12 +237,28 @@ namespace AusNail.Process
 
         private void loadStaftList(int branchId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                cb_B_StaftName.DataSource = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", _branchId);
+                cb_B_StaftName.ValueMember = "StaffCode";
+                cb_B_StaftName.DisplayMember = "Display";
+            }
+            catch
+            {
+            }
         }
 
         private void checkHoliday(int branchId)
         {
-            throw new NotImplementedException();
+            DateTime time = txt_B_Date.Value;
+            foreach (DataRow dr in MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zHolidaysGetList", 0).Select(string.Format("{0} = {1}", _idBranchName, _branchId)))
+            {
+                if (time > DateTime.Parse(dr["HolidaysFrom"].ToString()) && time < DateTime.Parse(dr["HolidaysTo"].ToString()))
+                {
+                    MessageBox.Show("Current day is holiday. Please choose another date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
 
         private void loadHolidaysList(int branchId)
