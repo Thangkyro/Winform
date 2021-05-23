@@ -20,7 +20,7 @@ namespace CoreBase.DAL
 
             return t.Rows[0];
         }
-        public DataRow GetUserRow(string branchID, string userName, string password)
+        public DataRow GetUserRow(int branchID, string userName, string password)
         {
             DataTable t = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zusp_user_by_branch", new object[] { branchID, userName, password });
             if (t == null || t.Rows.Count == 0)
