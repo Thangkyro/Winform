@@ -136,4 +136,49 @@
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="application_side_contract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\application_side_contract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_side_contract16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\application_side_contract16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_side_expand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\application_side_expand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_side_expand16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\application_side_expand16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database_connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\database_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteRow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\deleterow1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormViewEntry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\formviewentry.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormViewList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\formviewlist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lightning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultset_first" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\resultset_first.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultset_last" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\resultset_last.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultset_next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\resultset_next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultset_previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\resultset_previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

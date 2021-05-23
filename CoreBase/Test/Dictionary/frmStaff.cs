@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace AusNail.Dictionary
 {
-    public partial class frmService : CoreBase.WinForm.Dictionary.Dictionary
+    public partial class frmStaff : CoreBase.WinForm.Dictionary.Dictionary
     {
         DataRow _dr;
-        DataTable _Service;
-        string _tableName = "zService";
-        public frmService()
+        DataTable _Staff;
+        string _tableName = "zStaff";
+        public frmStaff()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace AusNail.Dictionary
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
                 //Bds.DataSource = _Service = dal.GetData(string.Format("{0}=0", ZenDatabase.INACTIVE_COLUMN_NAME));
-                Bds.DataSource = _Service = dal.GetData();
+                Bds.DataSource = _Staff = dal.GetData();
             LoadGrid();
             base.BeforeFillData();
         }
@@ -34,9 +34,18 @@ namespace AusNail.Dictionary
         {
             base.FillData();
             CreateBinding(cbobranchId);
-            CreateBinding(txtTitle);
-            CreateBinding(txtEstimateTime);
-            CreateBinding(txtPrice);
+            CreateBinding(txtStaffCode);
+            CreateBinding(txtName);
+            CreateBinding(txtGender);
+            CreateBinding(txtPhoneNumber1);
+            CreateBinding(txtPhoneSimple1);
+            CreateBinding(txtPhoneNumber2);
+            CreateBinding(txtPhoneSimple2);
+            CreateBinding(txtDateOfBirth);
+            CreateBinding(txtTFN);
+            CreateBinding(txtAcountNumber);
+            CreateBinding(txtBSB);
+            CreateBinding(txtDecriptions);
             CreateBinding(chkis_inactive, "is_inactive", "Checked");
         }
         protected override bool InsertData()
@@ -50,24 +59,27 @@ namespace AusNail.Dictionary
         {
             this.zEditTableName = _tableName;
             this.zViewTableName = _tableName;
-            this.Text += " Service"; 
+            this.Text += " Staff"; 
             base.InitForm();
         }
 
-        private void GridDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
 
         private void LoadGrid()
         {
             GridDetail.DataSource = Bds.DataSource;
-            GridDetail.Columns["ServiceID"].Visible = false;
+            GridDetail.Columns["StaffId"].Visible = false;
             GridDetail.Columns["branchId"].HeaderText = "Branch";
-            GridDetail.Columns["Title"].HeaderText = "Title";
-            GridDetail.Columns["EstimateTime"].HeaderText = "EstimateTime";
-            GridDetail.Columns["Price"].HeaderText = "Price";
-            GridDetail.Columns["Decriptions"].Visible = false;
+            GridDetail.Columns["StaffCode"].HeaderText = "Staff Code";
+            GridDetail.Columns["Name"].HeaderText = "Name";
+            GridDetail.Columns["Gender"].HeaderText = "Gender";
+            GridDetail.Columns["PhoneNumber1"].HeaderText = "Phone Number 1";
+            GridDetail.Columns["PhoneSimple1"].HeaderText = "Phone Simple 1";
+            GridDetail.Columns["PhoneNumber2"].HeaderText = "Phone Number 2";
+            GridDetail.Columns["PhoneSimple2"].HeaderText = "Phone Simple 2";
+            GridDetail.Columns["DateOfBirth"].HeaderText = "Date Of Birth";
+            GridDetail.Columns["TFN"].HeaderText = "Tax Number";
+            GridDetail.Columns["BSB"].HeaderText = "BSB";
+            GridDetail.Columns["Decriptions"].HeaderText = "Decriptions";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["created_by"].HeaderText = "Create by";
             GridDetail.Columns["created_at"].HeaderText = "Create at";
@@ -75,5 +87,6 @@ namespace AusNail.Dictionary
             GridDetail.Columns["modified_at"].HeaderText = "Modified at";
             
         }
+
     }
 }
