@@ -41,9 +41,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(28, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Base text";
+            this.label1.Text = "Path text";
             // 
             // textBox1
             // 
@@ -60,9 +60,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(28, 136);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Path text";
+            this.label2.Text = "Base text";
             // 
             // textBox2
             // 
@@ -78,9 +78,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(162, 78);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(214, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Path";
+            this.button1.Text = "Path (View base text)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -89,9 +89,9 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(649, 78);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(190, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Re-Path";
+            this.button2.Text = "Re-Path (View path text)";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

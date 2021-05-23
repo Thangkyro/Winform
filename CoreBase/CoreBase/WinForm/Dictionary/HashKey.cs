@@ -21,12 +21,26 @@ namespace CoreBase.WinForm.Dictionary
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Text = StringCipher.Decrypt(textBox1.Text, ZenDatabase.DbCfgPassEncrypt);
+            try
+            {
+                textBox2.Text = StringCipher.Decrypt(textBox1.Text, ZenDatabase.DbCfgPassEncrypt);
+            }
+            catch
+            {
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Text = StringCipher.Encrypt(textBox2.Text, ZenDatabase.DbCfgPassEncrypt);
+            try
+            {
+                textBox1.Text = StringCipher.Encrypt(textBox2.Text, ZenDatabase.DbCfgPassEncrypt);
+            }
+            catch 
+            {
+            }
+            
         }
     }
 }
