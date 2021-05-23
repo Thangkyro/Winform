@@ -56,7 +56,7 @@ namespace AusNail
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CoreBase.WinForm.Dictionary.HashKey frm = new CoreBase.WinForm.Dictionary.HashKey();
+            AusNail.Dictionary.frmUser frm = new AusNail.Dictionary.frmUser();
             ShowForm(frm);
         }
 

@@ -24,12 +24,12 @@ namespace AusNail
 
 
             //Login
-            if (NailApp.MultiUser)
-            {
-                frmLogin lf = new frmLogin();
-                if (lf.ShowDialog() != DialogResult.OK)
-                    return;
-            }
+            //if (NailApp.MultiUser)
+            //{
+            //    frmLogin lf = new frmLogin();
+            //    if (lf.ShowDialog() != DialogResult.OK)
+            //        return;
+            //}
 
             //Load permisson
             //DataTable tblCmds = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUspSiGetCmdByUser", NailApp.CurrentUserId);
