@@ -33,3 +33,4 @@ E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResourc
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CoreCompileInputs.cache
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.FormCollectInfo.resources

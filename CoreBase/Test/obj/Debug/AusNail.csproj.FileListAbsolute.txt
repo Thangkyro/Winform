@@ -23,7 +23,6 @@ D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\CoreBase.pdb
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.csprojResolveAssemblyReference.cache
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmBranch.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmCustomer.resources
-D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmEmployee.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmHoliday.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmService.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmWorkShift.resources
@@ -60,3 +59,7 @@ E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.CoreCompileInputs.ca
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.CopyComplete
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.exe
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmStaff.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmVoucher.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Login.frmLogin.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmUser.resources
