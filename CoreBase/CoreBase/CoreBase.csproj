@@ -81,6 +81,12 @@
     <Compile Include="WinForm\Dictionary\Dictionary.Designer.cs">
       <DependentUpon>Dictionary.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\Dictionary\HashKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Dictionary\HashKey.Designer.cs">
+      <DependentUpon>HashKey.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Dictionary\Dictionary.resx">
       <DependentUpon>Dictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Dictionary\HashKey.resx">
+      <DependentUpon>HashKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
