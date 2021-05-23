@@ -63,7 +63,7 @@ namespace CoreBase.WinForm.Dictionary
         protected virtual void zProcessEscapeKey()
         {
 
-            if (MessageBox.Show("Bạn có muốn thoát không?") == DialogResult.Yes)
+            if (MessageBox.Show("Do you want exit?") == DialogResult.Yes)
             {
                 Close();
             }

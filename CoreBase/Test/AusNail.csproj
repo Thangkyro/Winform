@@ -45,47 +45,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dictionary\Branch.cs">
+    <Compile Include="Dictionary\frmBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\Branch.Designer.cs">
-      <DependentUpon>Branch.cs</DependentUpon>
+    <Compile Include="Dictionary\frmBranch.Designer.cs">
+      <DependentUpon>frmBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionary\Customer.cs">
+    <Compile Include="Dictionary\frmWorkShift.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\Customer.Designer.cs">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <Compile Include="Dictionary\frmWorkShift.Designer.cs">
+      <DependentUpon>frmWorkShift.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionary\Employee.cs">
+    <Compile Include="Dictionary\frmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\Employee.Designer.cs">
-      <DependentUpon>Employee.cs</DependentUpon>
+    <Compile Include="Dictionary\frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionary\Holiday.cs">
+    <Compile Include="Dictionary\frmHoliday.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\Holiday.Designer.cs">
-      <DependentUpon>Holiday.cs</DependentUpon>
+    <Compile Include="Dictionary\frmHoliday.Designer.cs">
+      <DependentUpon>frmHoliday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionary\Service.cs">
+    <Compile Include="Dictionary\frmService.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\Service.Designer.cs">
-      <DependentUpon>Service.cs</DependentUpon>
+    <Compile Include="Dictionary\frmService.Designer.cs">
+      <DependentUpon>frmService.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionary\WorkShift.cs">
+    <Compile Include="Dictionary\frmStaff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionary\WorkShift.Designer.cs">
-      <DependentUpon>WorkShift.cs</DependentUpon>
+    <Compile Include="Dictionary\frmStaff.Designer.cs">
+      <DependentUpon>frmStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionary\frmVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionary\frmVoucher.Designer.cs">
+      <DependentUpon>frmVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
@@ -101,26 +119,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dictionary\Branch.resx">
-      <DependentUpon>Branch.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmBranch.resx">
+      <DependentUpon>frmBranch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionary\Customer.resx">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmWorkShift.resx">
+      <DependentUpon>frmWorkShift.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionary\Employee.resx">
-      <DependentUpon>Employee.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionary\Holiday.resx">
-      <DependentUpon>Holiday.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmHoliday.resx">
+      <DependentUpon>frmHoliday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionary\Service.resx">
-      <DependentUpon>Service.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmService.resx">
+      <DependentUpon>frmService.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionary\WorkShift.resx">
-      <DependentUpon>WorkShift.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionary\frmStaff.resx">
+      <DependentUpon>frmStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionary\frmVoucher.resx">
+      <DependentUpon>frmVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
