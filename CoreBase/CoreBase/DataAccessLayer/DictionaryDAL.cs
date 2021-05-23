@@ -12,7 +12,6 @@ namespace CoreBase.DataAccessLayer
     {
         public string zEditTableName { get; private set; }
         public string zViewTableName { get; private set; }
-
         private DataTable _schemaTable;
         protected DataTable zSchemaTable
         {
@@ -27,17 +26,14 @@ namespace CoreBase.DataAccessLayer
                 return _schemaTable;
             }
         }
-        
         public DictionaryDAL(string viewTableName, string editTableName) : base(editTableName)
         {
             zEditTableName = editTableName;
             zViewTableName = viewTableName;
         }
-
         public DictionaryDAL(string tableName) : this(tableName, tableName)
         {
         }
-
         public DataTable GetEmptyViewTable()
         {
             base.buildSelectCommand("SelectEmpty", zViewTableName, null, null);
@@ -82,6 +78,21 @@ namespace CoreBase.DataAccessLayer
             MsSqlHelper.SetDefaultValueForTable(ds.Tables[0]);
             return ds.Tables[0];
         }
+        public DataTable GetData(string idName, string idValue)
+        {
+            string where = string.Format("{0} = '{1}'",idName, idValue);
+            if (zSchemaTable.Columns.Contains(ZenDatabase.IS_DELETED_COLNAME))
+                where += string.Format(" AND {0}=0", ZenDatabase.IS_DELETED_COLNAME);
+
+            string sql = base.buildSelectCommand("Select", zViewTableName, null, where);
+            DataSet ds = MsSqlHelper.ExecuteDataset(ZenDatabase.ConnectionString, CommandType.Text, sql);
+
+            if (ds == null || ds.Tables.Count < 0)
+                return null;
+            ds.Tables[0].TableName = zViewTableName;
+            MsSqlHelper.SetDefaultValueForTable(ds.Tables[0]);
+            return ds.Tables[0];
+        }
         public DataTable GetData(string where)
         {
             
@@ -102,7 +113,6 @@ namespace CoreBase.DataAccessLayer
             MsSqlHelper.SetDefaultValueForTable(ds.Tables[0]);
             return ds.Tables[0];
         }
-
         public virtual bool InsertData(DataRow row)
         {
             int ret = 0;
