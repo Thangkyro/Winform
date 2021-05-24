@@ -15,6 +15,7 @@ namespace AusNail.Process
     {
         int _branchId = 2;
         DataTable _dtCustomer = null;
+        DataTable _dtService = null;
         string _idBranchName = "branchId";
         string _idCustomerName = "CustId";
         string _idCustomerPhoneName1 = "PhoneNumber1";
@@ -24,6 +25,7 @@ namespace AusNail.Process
         {
             InitializeComponent();
             loadHolidaysList(_branchId);
+            _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
         }
 
         public frmCheckin(int branchID)
@@ -31,6 +33,7 @@ namespace AusNail.Process
             InitializeComponent();
             _branchId = branchID;
             loadHolidaysList(_branchId);
+            _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
         }
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
@@ -226,7 +229,7 @@ namespace AusNail.Process
         {
             try
             {
-                cb_B_ServiceName.DataSource = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
+                cb_B_ServiceName.DataSource = _dtService;
                 cb_B_ServiceName.ValueMember = "ServiceID";
                 cb_B_ServiceName.DisplayMember = "Display";
             }
@@ -284,6 +287,49 @@ namespace AusNail.Process
             catch 
             {
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // Check dữ liệu đầu vào.
+            checkDataInput();
+            // Check free time of staff
+            bool fCheck = checkFreetimeStaff(_branchId, int.Parse(cb_B_StaftName.Tag.ToString()), int.Parse(cb_B_ServiceName.Tag.ToString()));
+            // Add dữ liệu vào lưới.
+            if (fCheck)
+            {
+                MessageBox.Show("Staff have not free time", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                addGridBooking();
+            }
+        }
+
+        private bool checkFreetimeStaff(int branchId, int staffId, int serviceId)
+        {
+            bool flag = false;
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffCheckFreeTime", branchId, staffId, serviceId);
+            if (dt != null)
+            {
+                flag = (dt.Rows[0][0].ToString() == "1");
+            }
+            return flag;
+        }
+
+        private void checkDataInput()
+        {
+            // Check customer - phone
+            
+            // Check Staff
+
+            // Check service - quantity
+        }
+
+        private void addGridBooking()
+        {
+            throw new NotImplementedException();
         }
     }
 }
