@@ -14,6 +14,7 @@ namespace AusNail.Process
     public partial class frmCheckin : Form
     {
         int _branchId = 2;
+        int _UserId = 1;
         DataTable _dtCustomer = null;
         DataTable _dtService = null;
         string _idBranchName = "branchId";
@@ -28,10 +29,11 @@ namespace AusNail.Process
             _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
         }
 
-        public frmCheckin(int branchID)
+        public frmCheckin(int branchID, int userId)
         {
             InitializeComponent();
             _branchId = branchID;
+            _UserId = userId;
             loadHolidaysList(_branchId);
             _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
         }
@@ -370,7 +372,8 @@ namespace AusNail.Process
                 decimal quantity = numSL.Value;
                 decimal Amount = price * quantity;
                 string serviceId = cb_B_ServiceName.SelectedValue.ToString();
-                object[] row = { num, staffName, servicename, price, quantity, Amount, serviceId, staffId };
+                string note = txt_B_note.Text.Trim();
+                object[] row = { num, staffName, servicename, price, quantity, Amount, note, serviceId, staffId };
                 // Check service exiests.
                 for (int i = 0; i < gridRegister.Rows.Count - 1; i++)
                 {
@@ -384,6 +387,7 @@ namespace AusNail.Process
                             gridRegister.Rows[i].Cells["col_R_Amount"].Value = Amount;
                             gridRegister.Rows[i].Cells["Col_R_StaffName"].Value = staffName;
                             gridRegister.Rows[i].Cells["Col_R_StaffId"].Value = staffId;
+                            gridRegister.Rows[i].Cells["Col_R_Note"].Value = note;
                             return;
                         }
                         else if (dialogResult == DialogResult.No)
@@ -401,7 +405,28 @@ namespace AusNail.Process
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            try
+            {
+                for (int i = 0; i < gridRegister.Rows.Count - 1; i++)
+                {
+                    string CustomerPhone = txt_C_PhoneNumber.Text.Trim() ;
+                    int Num = int.Parse(gridRegister.Rows[i].Cells["col_R_Num"].Value.ToString());
+                    int ServiceID = int.Parse(gridRegister.Rows[i].Cells["col_R_ServiceId"].Value.ToString());
+                    decimal Quantity = decimal.Parse(gridRegister.Rows[i].Cells["ColQuantity"].Value.ToString());
+                    decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
+                    int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
+                    string Note = gridRegister.Rows[i].Cells["Col_R_Note"].Value.ToString();
+                    int error = 0;
+                    string errorMesg = "";
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert", _branchId, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _UserId, error, errorMesg);
 
+
+                }
+            }
+            catch 
+            {
+
+            }
         }
 
         private void gridRegister_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)

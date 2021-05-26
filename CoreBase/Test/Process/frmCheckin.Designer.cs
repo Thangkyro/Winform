@@ -66,12 +66,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txt_B_note = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.col_R_Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_R_StaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_T_ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_R_Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_R_Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_R_Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_R_ServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_R_StaffId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
@@ -216,6 +219,8 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.txt_B_note);
+            this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.txt_B_Date);
             this.groupBox5.Controls.Add(this.comboBox2);
             this.groupBox5.Controls.Add(this.comboBox1);
@@ -280,7 +285,7 @@
             this.numSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numSL.Location = new System.Drawing.Point(498, 60);
             this.numSL.Name = "numSL";
-            this.numSL.Size = new System.Drawing.Size(69, 20);
+            this.numSL.Size = new System.Drawing.Size(123, 20);
             this.numSL.TabIndex = 3;
             // 
             // btnRegister
@@ -327,21 +332,22 @@
             this.ColQuantity,
             this.col_R_Price,
             this.col_R_Amount,
+            this.col_R_Note,
             this.col_R_ServiceId,
             this.Col_R_StaffId});
-            this.gridRegister.Location = new System.Drawing.Point(22, 86);
+            this.gridRegister.Location = new System.Drawing.Point(22, 114);
             this.gridRegister.Name = "gridRegister";
-            this.gridRegister.Size = new System.Drawing.Size(599, 190);
+            this.gridRegister.Size = new System.Drawing.Size(599, 162);
             this.gridRegister.TabIndex = 4;
             this.gridRegister.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridRegister_RowsRemoved);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(570, 59);
+            this.btnAdd.Location = new System.Drawing.Point(569, 81);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(52, 23);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -524,6 +530,24 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Phone number:";
             // 
+            // txt_B_note
+            // 
+            this.txt_B_note.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_B_note.Location = new System.Drawing.Point(104, 83);
+            this.txt_B_note.Name = "txt_B_note";
+            this.txt_B_note.Size = new System.Drawing.Size(463, 20);
+            this.txt_B_note.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Note:";
+            // 
             // col_R_Num
             // 
             this.col_R_Num.HeaderText = "Num";
@@ -561,6 +585,12 @@
             this.col_R_Amount.HeaderText = "Amount";
             this.col_R_Amount.Name = "col_R_Amount";
             this.col_R_Amount.ReadOnly = true;
+            // 
+            // col_R_Note
+            // 
+            this.col_R_Note.HeaderText = "Note";
+            this.col_R_Note.Name = "col_R_Note";
+            this.col_R_Note.Width = 150;
             // 
             // col_R_ServiceId
             // 
@@ -640,12 +670,15 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DateTimePicker txt_C_DateofBirth;
+        private System.Windows.Forms.TextBox txt_B_note;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Num;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_R_StaffName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_T_ServiceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_ServiceId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_R_StaffId;
     }
