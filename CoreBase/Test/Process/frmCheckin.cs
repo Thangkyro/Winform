@@ -243,8 +243,8 @@ namespace AusNail.Process
             try
             {
                 cb_B_StaftName.DataSource = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", _branchId);
-                cb_B_StaftName.ValueMember = "StaffCode";
-                cb_B_StaftName.DisplayMember = "Display";
+                cb_B_StaftName.ValueMember = "StaffId";
+                cb_B_StaftName.DisplayMember = "Name";
             }
             catch
             {
@@ -270,7 +270,7 @@ namespace AusNail.Process
             {
                 gridHolidays.DataSource = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zHolidaysGetList", 0).Select(string.Format("{0} = {1}", _idBranchName, _branchId)).CopyToDataTable();
                 gridHolidays.Columns["branchId"].Visible = false;
-                gridHolidays.Columns["Names"].HeaderText = "Holiday Names";
+                gridHolidays.Columns["Names"].HeaderText = "Holiday";
                 gridHolidays.Columns["Names"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 gridHolidays.Columns["Names"].ReadOnly = true;
                 gridHolidays.Columns["HolidaysFrom"].HeaderText = "Holidays From";
@@ -291,19 +291,25 @@ namespace AusNail.Process
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Check dữ liệu đầu vào.
-            checkDataInput();
-            // Check free time of staff
-            bool fCheck = checkFreetimeStaff(_branchId, int.Parse(cb_B_StaftName.Tag.ToString()), int.Parse(cb_B_ServiceName.Tag.ToString()));
-            // Add dữ liệu vào lưới.
-            if (fCheck)
+            try
             {
-                MessageBox.Show("Staff have not free time", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                // Check dữ liệu đầu vào.
+                checkDataInput();
+                // Check free time of staff
+                bool fCheck = checkFreetimeStaff(_branchId, int.Parse(cb_B_StaftName.SelectedValue.ToString()), int.Parse(cb_B_ServiceName.SelectedValue.ToString()));
+                // Add dữ liệu vào lưới.
+                if (fCheck)
+                {
+                    MessageBox.Show("Staff have not free time", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    addGridBooking();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                addGridBooking();
             }
         }
 
@@ -320,16 +326,98 @@ namespace AusNail.Process
 
         private void checkDataInput()
         {
+            bool flag = false;
             // Check customer - phone
-            
+            if (txt_C_PhoneNumber.Text.Trim() == "")
+            {
+                flag = true;
+                txt_C_PhoneNumber.Focus();
+            }
             // Check Staff
-
+            if (cb_B_StaftName.Text.Trim() == "")
+            {
+                flag = true;
+                cb_B_StaftName.Focus();
+            }
             // Check service - quantity
+            if (cb_B_ServiceName.Text.Trim() == "")
+            {
+                flag = true;
+                cb_B_ServiceName.Focus();
+            }
+            if (numSL.Value < 1)
+            {
+                flag = true;
+                numSL.Focus();
+            }
+            if (flag)
+            {
+                MessageBox.Show("Please check data input.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         private void addGridBooking()
         {
-            throw new NotImplementedException();
+            try
+            {
+                int num = gridRegister.Rows.Count;
+                string servicetext = cb_B_ServiceName.Text;
+                string servicename = servicetext.Substring(0, servicetext.IndexOf('-') -1);
+                string staffName = cb_B_StaftName.Text;
+                string staffId = cb_B_StaftName.SelectedValue.ToString();
+                decimal price = decimal.Parse(servicetext.Substring(servicetext.LastIndexOf('-') + 2, servicetext.Length - servicetext.LastIndexOf('-') - 2));
+                decimal quantity = numSL.Value;
+                decimal Amount = price * quantity;
+                string serviceId = cb_B_ServiceName.SelectedValue.ToString();
+                object[] row = { num, staffName, servicename, price, quantity, Amount, serviceId, staffId };
+                // Check service exiests.
+                for (int i = 0; i < gridRegister.Rows.Count - 1; i++)
+                {
+                    if (gridRegister.Rows[i].Cells["col_R_ServiceId"].Value.ToString() == serviceId.ToString())
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Service exists, update it now?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            //Update quantity and Amount, staff infor
+                            gridRegister.Rows[i].Cells["col_R_Price"].Value = quantity;
+                            gridRegister.Rows[i].Cells["col_R_Amount"].Value = Amount;
+                            gridRegister.Rows[i].Cells["Col_R_StaffName"].Value = staffName;
+                            gridRegister.Rows[i].Cells["Col_R_StaffId"].Value = staffId;
+                            return;
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }
+                gridRegister.Rows.Add(row);
+            }
+            catch 
+            {
+            }
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridRegister_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            try
+            {
+                // Update row num
+                for (int i = 0; i < gridRegister.Rows.Count - 1; i++)
+                {
+                    //Update quantity and Amount
+                    gridRegister.Rows[i].Cells["col_R_Num"].Value = i + 1;
+                }
+            }
+            catch 
+            {
+            }
         }
     }
 }

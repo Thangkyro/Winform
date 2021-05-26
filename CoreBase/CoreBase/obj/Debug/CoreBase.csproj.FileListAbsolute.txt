@@ -25,14 +25,13 @@ E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResourc
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CoreCompileInputs.cache
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 E:\Code\Nail\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.dll
+D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.pdb
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.Properties.Resources.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.DicBase.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.FormCollectInfo.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.Dictionary.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.HashKey.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
-D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.dll
-D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\bin\Debug\CoreBase.pdb
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
-D:\MMO\GIT\WinForm\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csprojResolveAssemblyReference.cache
