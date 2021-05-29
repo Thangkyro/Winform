@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,32 @@ namespace AusNail.Dictionary
         string _Mode = "";
         string _idName = "VoucherID";
         int _postion = 0;
+        DataTable _user = new DataTable();
         public frmVoucher()
         {
             InitializeComponent();
+            Load += UserForm_Load;
         }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zUser"))
+            {
+                _user = dal.Read("is_inactive = 0");
+            }
+
+            _user.DefaultView.Sort = "user_name";
+            DataRow dr1 = _user.NewRow();
+            dr1["Userid"] = 0;
+            dr1["full_name"] = "";
+            _user.Rows.Add(dr1);
+
+            cboIssueBy.DisplayMember = "full_name";
+            cboIssueBy.ValueMember = "Userid";
+            cboIssueBy.DataSource = _user.DefaultView;
+
+        }
+
 
         protected override void BeforeFillData()
         {
@@ -37,7 +60,7 @@ namespace AusNail.Dictionary
             CreateBinding(txtAmount);
             CreateBinding(txtAvailableAmount);
             CreateBinding(txtIssueDate);
-            CreateBinding(txtIssueBy);
+            CreateBinding(cboIssueBy);
             CreateBinding(txtVoucherFrom);
             CreateBinding(txtVoucherTo);
             CreateBinding(txtzPrintname);
@@ -104,12 +127,26 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _Voucher;
+            GridDetail.Columns.Remove("IssueBy");
+
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.DataPropertyName = "IssueBy";
+            dgvCmb.HeaderText = "IssueBy";
+            dgvCmb.Name = "IssueBy";
+            dgvCmb.DisplayMember = "full_name";
+            dgvCmb.ValueMember = "Userid";
+            dgvCmb.DataSource = _user;
+            GridDetail.Columns.Add(dgvCmb);
+
+            GridDetail.Columns["IssueBy"].DisplayIndex = 0;
             GridDetail.Columns["VoucherID"].Visible = false;
             GridDetail.Columns["VoucherCode"].HeaderText = "Voucher Code";
+            GridDetail.Columns["VoucherCode"].ReadOnly = true;
             GridDetail.Columns["Amount"].HeaderText = "Amount";
             GridDetail.Columns["AvailableAmount"].HeaderText = "Available Amount";
             GridDetail.Columns["IssueDate"].HeaderText = "Issue Date";
-            GridDetail.Columns["IssueBy"].HeaderText = "Issue By";
+            //GridDetail.Columns["IssueBy"].HeaderText = "Issue By";
+            GridDetail.Columns["IssueBy"].ReadOnly = true;
             GridDetail.Columns["VoucherFrom"].HeaderText = "Voucher From";
             GridDetail.Columns["VoucherTo"].HeaderText = "Voucher To";
             GridDetail.Columns["zPrintname"].HeaderText = "Print Name";
@@ -164,7 +201,8 @@ namespace AusNail.Dictionary
                     txtAmount.Text = row.Cells["Amount"].Value.ToString();
                     txtAvailableAmount.Text = row.Cells["AvailableAmount"].Value.ToString();
                     txtIssueDate.Text = row.Cells["IssueDate"].Value.ToString();
-                    txtIssueBy.Text = row.Cells["IssueBy"].Value.ToString();
+                    //txtIssueBy.Text = row.Cells["IssueBy"].Value.ToString();
+                    cboIssueBy.SelectedValue = row.Cells["IssueBy"].Value.ToString();
                     txtVoucherFrom.Text = row.Cells["VoucherFrom"].Value.ToString();
                     txtVoucherTo.Text = row.Cells["VoucherTo"].Value.ToString();
                     txtzPrintname.Text = row.Cells["zPrintname"].Value.ToString();
@@ -185,12 +223,53 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
+                this.zEditRow["VoucherCode"] = GenVoucherCode();
+                this.zEditRow["IssueBy"] = NailApp.CurrentUserId;
                 _Mode = "Add";
             }
             else
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Rows[_postion];
                 _Mode = "Update";
+            }
+        }
+
+        private string GenVoucherCode()
+        {
+            string voucherCode = "";
+            try
+            {
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", _tableName, "VR", _idName, 8);
+                if (dt != null)
+                {
+                    voucherCode = dt.Rows[0][0].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            return voucherCode;
+        }
+
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 || e.ColumnIndex == 5 || e.ColumnIndex == 6) // Date
+            {
+                int rIndex = e.RowIndex;
+                int cIndex = e.ColumnIndex;
+                DateTime dt;
+                string hehe = Convert.ToString(e.FormattedValue);
+                if (DateTime.TryParse(Convert.ToString(e.FormattedValue), out dt))
+                {
+                    
+                }
+                else
+                {
+                    GridDetail[cIndex,rIndex].Style.BackColor = Color.Red;
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Value invalid";
+                }
             }
         }
     }

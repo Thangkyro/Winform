@@ -597,6 +597,7 @@ namespace CoreBase.DataAccessLayer
 
                 sbWhere.AppendFormat(" {0}={1}", col.ColumnName, ZenDatabase.ConvertParameterName(col.ColumnName));
                 lsPars.Add(new SqlParameter(ZenDatabase.ConvertParameterName(col.ColumnName), updateRow[col.ColumnName]));
+                isFirst = false;
             }
 
             pars = lsPars.ToArray();

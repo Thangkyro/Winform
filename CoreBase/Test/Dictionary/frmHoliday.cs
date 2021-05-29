@@ -20,10 +20,32 @@ namespace AusNail.Dictionary
         string _Mode = "";
         string _idName = "HolidaysID";
         int _postion = 0;
+        DataTable _branch = new DataTable();
         public frmHoliday()
         {
             InitializeComponent();
+            Load += UserForm_Load;
         }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            {
+                _branch = dal.Read("is_inactive = 0");
+            }
+
+            _branch.DefaultView.Sort = "BranchCode";
+            DataRow dr1 = _branch.NewRow();
+            dr1["branchId"] = 0;
+            dr1["BranchName"] = "";
+            _branch.Rows.Add(dr1);
+
+            cbobranchId.DisplayMember = "BranchName";
+            cbobranchId.ValueMember = "branchId";
+            cbobranchId.DataSource = _branch.DefaultView;
+
+        }
+
 
         protected override void BeforeFillData()
         {
@@ -100,11 +122,25 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _Holidays;
+            GridDetail.Columns.Remove("branchId");
+
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.DataPropertyName = "BranchId";
+            dgvCmb.HeaderText = "Branch";
+            dgvCmb.Name = "BranchId";
+            dgvCmb.DisplayMember = "BranchName";
+            dgvCmb.ValueMember = "branchId";
+            dgvCmb.DataSource = _branch;
+            GridDetail.Columns.Add(dgvCmb);
+            GridDetail.Columns["BranchId"].DisplayIndex = 0;
+
             GridDetail.Columns["HolidaysID"].Visible = false;
-            GridDetail.Columns["branchId"].HeaderText = "Branch";
+            //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["Names"].HeaderText = "Names";
             GridDetail.Columns["HolidaysFrom"].HeaderText = "Holidays From";
+            GridDetail.Columns["HolidaysFrom"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
             GridDetail.Columns["HolidaysTo"].HeaderText = "Holidays To";
+            GridDetail.Columns["HolidaysTo"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["created_by"].HeaderText = "Create by";
@@ -183,6 +219,40 @@ namespace AusNail.Dictionary
             return result;
         }
 
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 3) // From - TO
+            {
+                int rIndex = e.RowIndex;
+                int cIndex = e.ColumnIndex;
+                DateTime dt;
+                if (DateTime.TryParse(Convert.ToString(e.FormattedValue), out dt))
+                {
+                    
+                }
+                else
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Value invalid";
+                }
+            }
 
+
+            if (e.ColumnIndex == 3)
+            {
+                int rIndex = e.RowIndex;
+                int cIndex = 2;
+                DateTime dt1;
+                DateTime dt2;
+                DateTime.TryParse(Convert.ToString(GridDetail[cIndex, rIndex].Value), out dt1);
+                DateTime.TryParse(Convert.ToString(e.FormattedValue), out dt2);
+                if (dt2 < dt1)
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Holiday From cannot more than Holiday To";
+                }
+
+            }
+        }
     }
 }

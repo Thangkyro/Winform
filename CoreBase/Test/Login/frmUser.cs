@@ -14,9 +14,47 @@ namespace AusNail.Dictionary
         string _Mode = "";
         string _idName = "Userid";
         int _postion = 0;
+        DataTable _branch = new DataTable();
+        DataTable _staff = new DataTable();
         public frmUser()
         {
             InitializeComponent();
+            Load += UserForm_Load;
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            {
+                _branch = dal.Read("is_inactive = 0");
+            }
+
+            _branch.DefaultView.Sort = "BranchCode";
+            DataRow dr1 = _branch.NewRow();
+            dr1["branchId"] = 0;
+            dr1["BranchName"] = "";
+            _branch.Rows.Add(dr1);
+
+            cboBranchId.DisplayMember = "BranchName";
+            cboBranchId.ValueMember = "branchId";
+            cboBranchId.DataSource = _branch.DefaultView;
+
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zStaff"))
+            {
+                _staff = dal.Read("is_inactive = 0");
+            }
+
+            _staff.DefaultView.Sort = "StaffCode";
+            DataRow dr = _staff.NewRow();
+            dr["StaffId"] = 0;
+            dr["Name"] = "";
+            _staff.Rows.Add(dr);
+
+
+
+            cboStaffId.DisplayMember = "Name";
+            cboStaffId.ValueMember = "StaffId";
+            cboStaffId.DataSource = _staff.DefaultView;
         }
 
         protected override void BeforeFillData()
@@ -97,38 +135,51 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _User;
-            GridDetail.Columns["UserId"].Visible = false;
+            GridDetail.Columns.Remove("branchId");
+            GridDetail.Columns.Remove("StaffId");
+
             DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
-            dgvCmb.HeaderText = "BranchId";
-            dgvCmb.Name = "BranchId";  
-            DataTable dt  = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBranchGetList", 0);
-            foreach (DataRow dr in dt.Rows)
-            {
-                dgvCmb.Items.Add(dr["BranchId"].ToString());
-            }
+            dgvCmb.DataPropertyName = "BranchId";
+            dgvCmb.HeaderText = "Branch";
+            dgvCmb.Name = "BranchId";
+            dgvCmb.DisplayMember = "BranchName";
+            dgvCmb.ValueMember = "branchId";
+            dgvCmb.DataSource = _branch;
             GridDetail.Columns.Add(dgvCmb);
-            //for (int i = 0; i < list[0].Count; i++)
-            //{
-            //    int number = dataGridView1.Rows.Add();
-            //    GridDetail.Rows[number].Cells[0].Value = list[3][i]; //list[3][1]=="Apples"
-            //}
-            GridDetail.Columns["BranchId"].HeaderText = "Branch";
+
+            DataGridViewComboBoxColumn dgvCmb1 = new DataGridViewComboBoxColumn();
+            dgvCmb1.DataPropertyName = "StaffId";
+            dgvCmb1.HeaderText = "Staff";
+            dgvCmb1.Name = "StaffId";
+            dgvCmb1.DisplayMember = "Name";
+            dgvCmb1.ValueMember = "StaffId";
+            dgvCmb1.DataSource = _staff;
+            GridDetail.Columns.Add(dgvCmb1);
+
+            GridDetail.Columns["BranchId"].DisplayIndex = 0;
+
+            GridDetail.Columns["StaffId"].DisplayIndex = 1;
+
+
+
+            GridDetail.Columns["UserId"].Visible = false;
+            //GridDetail.Columns["BranchId"].HeaderText = "Branch";
             GridDetail.Columns["user_name"].HeaderText = "User Name";
             GridDetail.Columns["Full_name"].HeaderText = "Full Name";
-            GridDetail.Columns["StaffId"].HeaderText = "Staff";
+            //GridDetail.Columns["StaffId"].HeaderText = "Staff";
             GridDetail.Columns["Password"].HeaderText = "Password";
             GridDetail.Columns["Permission"].HeaderText = "Permission";
             GridDetail.Columns["is_Admin"].HeaderText = "Is Admin";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["created_by"].HeaderText = "Create by";
-            GridDetail.Columns["created_by"].ReadOnly = true;
+            GridDetail.Columns["created_by"].Visible = false;
             GridDetail.Columns["created_at"].HeaderText = "Create at";
-            GridDetail.Columns["created_at"].ReadOnly = true;
+            GridDetail.Columns["created_at"].Visible = false;
             GridDetail.Columns["modified_by"].HeaderText = "Modified by";
-            GridDetail.Columns["modified_by"].ReadOnly = true;
+            GridDetail.Columns["modified_by"].Visible = false;
             GridDetail.Columns["modified_at"].HeaderText = "Modified at";
-            GridDetail.Columns["modified_at"].ReadOnly = true;
+            GridDetail.Columns["modified_at"].Visible = false;
 
         }
 
@@ -151,9 +202,8 @@ namespace AusNail.Dictionary
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -200,6 +250,12 @@ namespace AusNail.Dictionary
             return result;
         }
 
-
+        private void GridDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.Value != null)
+            {
+                e.Value = new String('*', e.Value.ToString().Length);
+            }
+        }
     }
 }
