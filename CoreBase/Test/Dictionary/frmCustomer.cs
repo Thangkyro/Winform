@@ -13,14 +13,37 @@ namespace AusNail.Dictionary
 {
     public partial class frmCustomer : CoreBase.WinForm.Dictionary.Dictionary
     {
+        DataRow _dr;
         string _Mode = "";
         DataTable _Service;
         string _idName = "CustId";
         string _tableName = "zCustomer";
         int _postion = 0;
+        DataTable _branch = new DataTable();
         public frmCustomer()
         {
             InitializeComponent();
+            Load += UserForm_Load;
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            {
+                _branch = dal.Read("is_inactive = 0");
+            }
+
+            _branch.DefaultView.Sort = "BranchCode";
+            DataRow dr1 = _branch.NewRow();
+            dr1["branchId"] = 0;
+            dr1["BranchName"] = "";
+            _branch.Rows.Add(dr1);
+
+            cbobranchId.DisplayMember = "BranchName";
+            cbobranchId.ValueMember = "branchId";
+            cbobranchId.DataSource = _branch.DefaultView;
+
+
         }
 
         protected override void BeforeFillData()
@@ -113,12 +136,26 @@ namespace AusNail.Dictionary
             LoadGrid();
             _postion = 0;
         }
+
         private void LoadGrid()
         {
             GridDetail.DataSource = _Service;
+            GridDetail.Columns.Remove("branchId");
+
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.DataPropertyName = "BranchId";
+            dgvCmb.HeaderText = "Branch";
+            dgvCmb.Name = "BranchId";
+            dgvCmb.DisplayMember = "BranchName";
+            dgvCmb.ValueMember = "branchId";
+            dgvCmb.DataSource = _branch;
+            GridDetail.Columns.Add(dgvCmb);
+            GridDetail.Columns["BranchId"].DisplayIndex = 0;
+
             GridDetail.Columns["CustId"].Visible = false;
-            GridDetail.Columns["branchId"].HeaderText = "Branch";
+            //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["CustomerCode"].HeaderText = "Customer Code";
+            GridDetail.Columns["CustomerCode"].ReadOnly = true;
             GridDetail.Columns["Name"].HeaderText = "Name";
             GridDetail.Columns["Gender"].HeaderText = "Gender";
             GridDetail.Columns["PhoneNumber1"].HeaderText = "Phone Number 1";
@@ -127,8 +164,9 @@ namespace AusNail.Dictionary
             GridDetail.Columns["PhoneSimple2"].HeaderText = "Phone Simple 2";
             GridDetail.Columns["DateOfBirth"].HeaderText = "Date Of Birth";
             GridDetail.Columns["PostCode"].HeaderText = "Post Code";
-            GridDetail.Columns["Decriptions"].HeaderText = "Decriptions";
+            //GridDetail.Columns["Decriptions"].HeaderText = "Decriptions";
             GridDetail.Columns["IsMerge"].HeaderText = "IsMerge";
+            GridDetail.Columns["CustIdMerge"].HeaderText = "Cust Id Merge";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["created_by"].HeaderText = "Create by";
@@ -179,6 +217,7 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
+                this.zEditRow["CustomerCode"] = GenCustomerCode();
                 _Mode = "Add";
             }
             else
@@ -213,6 +252,43 @@ namespace AusNail.Dictionary
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
             return result;
+        }
+
+        private string GenCustomerCode()
+        {
+            string customerCode = "";
+            try
+            {
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", _tableName, "CR", _idName, 8);
+                if (dt != null)
+                {
+                    customerCode = dt.Rows[0][0].ToString();
+                }
+            }
+            catch
+            { }
+            return customerCode;
+        }
+
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 8) // From - TO
+            {
+                int rIndex = e.RowIndex;
+                int cIndex = e.ColumnIndex;
+                DateTime dt;
+                string hehe = Convert.ToString(e.FormattedValue);
+                if (DateTime.TryParse(Convert.ToString(e.FormattedValue), out dt))
+                {
+
+                }
+                else
+                {
+                    GridDetail[cIndex, rIndex].Style.BackColor = Color.Red;
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Value invalid";
+                }
+            }
         }
     }
 }

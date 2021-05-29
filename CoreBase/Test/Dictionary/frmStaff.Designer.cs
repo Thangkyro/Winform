@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStaff));
             this.panel2 = new System.Windows.Forms.Panel();
             this.GridDetail = new System.Windows.Forms.DataGridView();
+            this.ctmGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refeshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -61,16 +64,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.treHistory = new System.Windows.Forms.TreeView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ctmGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refeshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).BeginInit();
+            this.ctmGridView.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.ctmGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkis_inactive
@@ -78,12 +78,12 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(895, 393);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 578);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(1397, 54);
             // 
             // imageList
@@ -98,14 +98,15 @@
             // lblMessInfomation
             // 
             this.lblMessInfomation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblMessInfomation.Location = new System.Drawing.Point(772, 20);
-            this.lblMessInfomation.Size = new System.Drawing.Size(448, 17);
+            this.lblMessInfomation.Location = new System.Drawing.Point(281, 14);
+            this.lblMessInfomation.Size = new System.Drawing.Size(939, 23);
             // 
             // lblTime
             // 
             this.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTime.Location = new System.Drawing.Point(1240, 20);
-            this.lblTime.Text = "12:21:41";
+            this.lblTime.Location = new System.Drawing.Point(1240, 14);
+            this.lblTime.Size = new System.Drawing.Size(115, 23);
+            this.lblTime.Text = "22:11:48";
             // 
             // panel2
             // 
@@ -114,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
             this.panel2.Location = new System.Drawing.Point(13, 12);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(737, 557);
             this.panel2.TabIndex = 6;
@@ -123,13 +124,40 @@
             // 
             this.GridDetail.BackgroundColor = System.Drawing.Color.White;
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
             this.GridDetail.Size = new System.Drawing.Size(737, 557);
             this.GridDetail.TabIndex = 0;
+            this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
+            // 
+            // ctmGridView
+            // 
+            this.ctmGridView.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ctmGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.refeshListToolStripMenuItem});
+            this.ctmGridView.Name = "ctmGridView";
+            this.ctmGridView.Size = new System.Drawing.Size(215, 84);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
+            // 
+            // refeshListToolStripMenuItem
+            // 
+            this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
+            this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
+            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.refeshListToolStripMenuItem.Text = "Refesh List";
+            this.refeshListToolStripMenuItem.Click += new System.EventHandler(this.RefeshListToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -183,7 +211,7 @@
             // 
             this.txtStaffCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStaffCode.Location = new System.Drawing.Point(895, 68);
-            this.txtStaffCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStaffCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtStaffCode.Multiline = true;
             this.txtStaffCode.Name = "txtStaffCode";
             this.txtStaffCode.Size = new System.Drawing.Size(320, 25);
@@ -193,7 +221,7 @@
             // 
             this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGender.Location = new System.Drawing.Point(895, 194);
-            this.txtGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGender.Margin = new System.Windows.Forms.Padding(4);
             this.txtGender.Multiline = true;
             this.txtGender.Name = "txtGender";
             this.txtGender.Size = new System.Drawing.Size(147, 25);
@@ -203,7 +231,7 @@
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(895, 101);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(320, 25);
@@ -214,7 +242,7 @@
             this.cbobranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobranchId.FormattingEnabled = true;
             this.cbobranchId.Location = new System.Drawing.Point(895, 36);
-            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4);
             this.cbobranchId.Name = "cbobranchId";
             this.cbobranchId.Size = new System.Drawing.Size(320, 24);
             this.cbobranchId.TabIndex = 2;
@@ -223,7 +251,7 @@
             // 
             this.txtPhoneSimple1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneSimple1.Location = new System.Drawing.Point(1182, 227);
-            this.txtPhoneSimple1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhoneSimple1.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneSimple1.Multiline = true;
             this.txtPhoneSimple1.Name = "txtPhoneSimple1";
             this.txtPhoneSimple1.Size = new System.Drawing.Size(176, 25);
@@ -233,7 +261,7 @@
             // 
             this.txtPhoneNumber2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneNumber2.Location = new System.Drawing.Point(895, 260);
-            this.txtPhoneNumber2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhoneNumber2.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber2.Multiline = true;
             this.txtPhoneNumber2.Name = "txtPhoneNumber2";
             this.txtPhoneNumber2.Size = new System.Drawing.Size(147, 25);
@@ -243,7 +271,7 @@
             // 
             this.txtPhoneNumber1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneNumber1.Location = new System.Drawing.Point(895, 227);
-            this.txtPhoneNumber1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhoneNumber1.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber1.Multiline = true;
             this.txtPhoneNumber1.Name = "txtPhoneNumber1";
             this.txtPhoneNumber1.Size = new System.Drawing.Size(147, 25);
@@ -289,7 +317,7 @@
             // 
             this.txtDateOfBirth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDateOfBirth.Location = new System.Drawing.Point(1182, 194);
-            this.txtDateOfBirth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDateOfBirth.Margin = new System.Windows.Forms.Padding(4);
             this.txtDateOfBirth.Multiline = true;
             this.txtDateOfBirth.Name = "txtDateOfBirth";
             this.txtDateOfBirth.Size = new System.Drawing.Size(176, 25);
@@ -299,7 +327,7 @@
             // 
             this.txtTFN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTFN.Location = new System.Drawing.Point(895, 293);
-            this.txtTFN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTFN.Margin = new System.Windows.Forms.Padding(4);
             this.txtTFN.Multiline = true;
             this.txtTFN.Name = "txtTFN";
             this.txtTFN.Size = new System.Drawing.Size(147, 25);
@@ -309,7 +337,7 @@
             // 
             this.txtPhoneSimple2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneSimple2.Location = new System.Drawing.Point(1182, 260);
-            this.txtPhoneSimple2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhoneSimple2.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneSimple2.Multiline = true;
             this.txtPhoneSimple2.Name = "txtPhoneSimple2";
             this.txtPhoneSimple2.Size = new System.Drawing.Size(176, 25);
@@ -355,7 +383,7 @@
             // 
             this.txtAcountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAcountNumber.Location = new System.Drawing.Point(1182, 293);
-            this.txtAcountNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAcountNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtAcountNumber.Multiline = true;
             this.txtAcountNumber.Name = "txtAcountNumber";
             this.txtAcountNumber.Size = new System.Drawing.Size(176, 25);
@@ -377,7 +405,7 @@
             // 
             this.txtBSB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBSB.Location = new System.Drawing.Point(895, 326);
-            this.txtBSB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBSB.Margin = new System.Windows.Forms.Padding(4);
             this.txtBSB.Multiline = true;
             this.txtBSB.Name = "txtBSB";
             this.txtBSB.Size = new System.Drawing.Size(463, 25);
@@ -399,7 +427,7 @@
             // 
             this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecriptions.Location = new System.Drawing.Point(895, 359);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecriptions.Multiline = true;
             this.txtDecriptions.Name = "txtDecriptions";
             this.txtDecriptions.Size = new System.Drawing.Size(463, 25);
@@ -422,9 +450,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.treHistory);
             this.groupBox1.Location = new System.Drawing.Point(895, 423);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(464, 116);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
@@ -434,7 +462,7 @@
             // 
             this.treHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treHistory.Location = new System.Drawing.Point(4, 19);
-            this.treHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treHistory.Margin = new System.Windows.Forms.Padding(4);
             this.treHistory.Name = "treHistory";
             this.treHistory.Size = new System.Drawing.Size(456, 93);
             this.treHistory.TabIndex = 19;
@@ -443,34 +471,11 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(1232, 36);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(127, 133);
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
-            // 
-            // ctmGridView
-            // 
-            this.ctmGridView.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ctmGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem,
-            this.refeshListToolStripMenuItem});
-            this.ctmGridView.Name = "ctmGridView";
-            this.ctmGridView.Size = new System.Drawing.Size(153, 56);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // refeshListToolStripMenuItem
-            // 
-            this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
-            this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
-            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.refeshListToolStripMenuItem.Text = "Refesh List";
             // 
             // frmStaff
             // 
@@ -544,9 +549,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).EndInit();
+            this.ctmGridView.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ctmGridView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

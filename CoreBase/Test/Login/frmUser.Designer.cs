@@ -63,13 +63,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(669, 354);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 9;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 410);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(958, 44);
             // 
             // imageList
@@ -94,7 +94,7 @@
             this.lblTime.Location = new System.Drawing.Point(862, 12);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 15);
-            this.lblTime.Text = "21:41:06";
+            this.lblTime.Text = "11:48:51";
             // 
             // panel2
             // 
@@ -113,12 +113,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridDetail.BackgroundColor = System.Drawing.Color.White;
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
             this.GridDetail.Size = new System.Drawing.Size(585, 392);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
+            this.GridDetail.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridDetail_CellFormatting);
             // 
             // label2
             // 
@@ -335,7 +337,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmUser";
             this.Text = "User";
             this.Controls.SetChildIndex(this.panel1, 0);

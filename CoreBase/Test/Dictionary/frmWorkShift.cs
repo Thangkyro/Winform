@@ -19,10 +19,33 @@ namespace AusNail.Dictionary
         string _Mode = "";
         string _idName = "BusinessID";
         int _postion = 0;
+        DataTable _branch = new DataTable();
         public frmWorkShift()
         {
             InitializeComponent();
+            Load += UserForm_Load;
         }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            {
+                _branch = dal.Read("is_inactive = 0");
+            }
+
+            _branch.DefaultView.Sort = "BranchCode";
+            DataRow dr1 = _branch.NewRow();
+            dr1["branchId"] = 0;
+            dr1["BranchName"] = "";
+            _branch.Rows.Add(dr1);
+
+            cbobranchId.DisplayMember = "BranchName";
+            cbobranchId.ValueMember = "branchId";
+            cbobranchId.DataSource = _branch.DefaultView;
+
+          
+        }
+
 
         protected override void BeforeFillData()
         {
@@ -73,7 +96,7 @@ namespace AusNail.Dictionary
                 //return true;
                 #endregion
             }
-            catch
+            catch (Exception ex)
             {
 
             }
@@ -99,12 +122,25 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _BusinessHour;
+            GridDetail.Columns.Remove("branchId");
+
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.DataPropertyName = "BranchId";
+            dgvCmb.HeaderText = "Branch";
+            dgvCmb.Name = "BranchId";
+            dgvCmb.DisplayMember = "BranchName";
+            dgvCmb.ValueMember = "branchId";
+            dgvCmb.DataSource = _branch;
+            GridDetail.Columns.Add(dgvCmb);
+            GridDetail.Columns["BranchId"].DisplayIndex = 0;
             GridDetail.Columns["BusinessID"].Visible = false;
-            GridDetail.Columns["branchId"].HeaderText = "Branch";
+            //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["DayOfWeek"].HeaderText = "Day Of Week";
             GridDetail.Columns["BusinessFrom"].HeaderText = "Business From";
+            GridDetail.Columns["BusinessFrom"].DefaultCellStyle.Format = "HH:mm:ss";
             GridDetail.Columns["BusinessTo"].HeaderText = "Business To";
-            GridDetail.Columns["Decriptions"].HeaderText = "Decriptions";
+            GridDetail.Columns["BusinessTo"].DefaultCellStyle.Format = "HH:mm:ss";
+            GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["created_by"].HeaderText = "Create by";
             GridDetail.Columns["created_by"].ReadOnly = true;
@@ -181,5 +217,45 @@ namespace AusNail.Dictionary
             DialogResult result = MessageBox.Show(message, title, buttons);
             return result;
         }
+
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 1) // 1 Day of week
+            {
+                int i;
+
+                if (!int.TryParse(Convert.ToString(e.FormattedValue), out i))
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Please enter numeric";
+                }
+                else if (int.TryParse(Convert.ToString(e.FormattedValue), out i) && i > 7)
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Day Of Week cannot more than 7";
+                }
+                else
+                {
+
+                }
+            }
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3) // From - TO
+            {
+                int rIndex = e.RowIndex;
+                int cIndex = e.ColumnIndex;
+                DateTime dt;
+                if (DateTime.TryParse(Convert.ToString("01/01/1900 " +  e.FormattedValue), out dt))
+                {
+                    GridDetail[cIndex, rIndex].Value = dt.ToString("MM/dd/yyyy HH:mm:ss");
+                }
+                else
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "Value invalid";
+                }
+            }
+        }
+
+
     }
 }

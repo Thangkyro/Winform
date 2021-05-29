@@ -19,10 +19,32 @@ namespace AusNail.Dictionary
         string _Mode = "";
         string _idName = "ServiceID";
         int _postion = 0;
+        DataTable _branch = new DataTable();
         public frmService()
         {
             InitializeComponent();
+            Load += UserForm_Load;
         }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            {
+                _branch = dal.Read("is_inactive = 0");
+            }
+
+            _branch.DefaultView.Sort = "BranchCode";
+            DataRow dr1 = _branch.NewRow();
+            dr1["branchId"] = 0;
+            dr1["BranchName"] = "";
+            _branch.Rows.Add(dr1);
+
+            cbobranchId.DisplayMember = "BranchName";
+            cbobranchId.ValueMember = "branchId";
+            cbobranchId.DataSource = _branch.DefaultView;
+
+        }
+
 
         protected override void BeforeFillData()
         {
@@ -100,8 +122,20 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _Service;
+            GridDetail.Columns.Remove("branchId");
+
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.DataPropertyName = "BranchId";
+            dgvCmb.HeaderText = "Branch";
+            dgvCmb.Name = "BranchId";
+            dgvCmb.DisplayMember = "BranchName";
+            dgvCmb.ValueMember = "branchId";
+            dgvCmb.DataSource = _branch;
+            GridDetail.Columns.Add(dgvCmb);
+            GridDetail.Columns["BranchId"].DisplayIndex = 0;
+
             GridDetail.Columns["ServiceID"].Visible = false;
-            GridDetail.Columns["branchId"].HeaderText = "Branch";
+            //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["Title"].HeaderText = "Title";
             GridDetail.Columns["EstimateTime"].HeaderText = "EstimateTime";
             GridDetail.Columns["Price"].HeaderText = "Price";
@@ -180,6 +214,11 @@ namespace AusNail.Dictionary
 
                 throw;
             }
+        }
+
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+
         }
     }
 }
