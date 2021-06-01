@@ -43,20 +43,31 @@ namespace CoreBase.DAL
         {
 
         }
-        internal void SetPassword(DataRow row)
+        //internal void SetPassword(DataRow row)
+        //{
+        //    SetPassword(row[ZenDatabase.ID_COLUMN_NAME].zToInt(), row["password"].zToString());
+        //}
+        //internal void SetPassword(int userId, string password)
+        //{
+        //    string sql = string.Format("update zUser set password = '{0}' where id = {1}", password, userId);
+        //    MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+
+        //}
+
+        public void SetPassword(DataRow row)
         {
-            SetPassword(row[ZenDatabase.ID_COLUMN_NAME].zToInt(), row["password"].zToString());
+            SetPassword(row["Userid"].zToInt(), row["password"].zToString());
         }
-        internal void SetPassword(int userId, string password)
+        public void SetPassword(int userId, string password)
         {
-            string sql = string.Format("update zUser set password = '{0}' where id = {1}", password, userId);
+            string sql = string.Format("update zUser set password = '{0}' where Userid = {1}", password, userId);
             MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
 
         }
 
-        internal void UpdatePermission(int id, string cmdIds)
+        public void UpdatePermission(int id, string cmdIds)
         {
-            string sql = string.Format("update zUser set permission = '{0}' where id = {1}", cmdIds, id);
+            string sql = string.Format("update zUser set permission = '{0}' where Userid = {1}", cmdIds, id);
             MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
         }
         //internal void UpdateDvcsForUser(int id, string cmdIds)
