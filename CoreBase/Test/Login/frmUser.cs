@@ -1,4 +1,5 @@
 ﻿using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Data;
 using System.Linq;
@@ -160,14 +161,13 @@ namespace AusNail.Dictionary
 
             GridDetail.Columns["StaffId"].DisplayIndex = 1;
 
-
-
             GridDetail.Columns["UserId"].Visible = false;
             //GridDetail.Columns["BranchId"].HeaderText = "Branch";
             GridDetail.Columns["user_name"].HeaderText = "User Name";
             GridDetail.Columns["Full_name"].HeaderText = "Full Name";
             //GridDetail.Columns["StaffId"].HeaderText = "Staff";
             GridDetail.Columns["Password"].HeaderText = "Password";
+            GridDetail.Columns["Password"].ReadOnly = true;
             GridDetail.Columns["Permission"].HeaderText = "Permission";
             GridDetail.Columns["is_Admin"].HeaderText = "Is Admin";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
@@ -214,6 +214,7 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
+                this.zEditRow["Password"] = Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
             }
             else
@@ -255,6 +256,44 @@ namespace AusNail.Dictionary
             if (e.ColumnIndex == 4 && e.Value != null)
             {
                 e.Value = new String('*', e.Value.ToString().Length);
+            }
+        }
+
+        private int CheckExistsUserName(string userName)
+        {
+            int id = 0;
+            try
+            {
+                string sql = "Select 1 FROM  [dbo].[zUser] with(nolock) where user_name = '" + userName + "'";
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                if (dt != null)
+                {
+                    id = 1;
+                }
+
+            }
+            catch
+            {
+
+            }
+            return id;
+        }
+
+        private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 1) // 1 User Name
+            {
+                //int i;
+                //string value = Convert.ToString(e.FormattedValue);
+                if (CheckExistsUserName(Convert.ToString(e.FormattedValue)) == 1)
+                {
+                    e.Cancel = true;
+                    lblMessInfomation.Text = "User Name exists.";
+                }
+                else
+                {
+
+                }
             }
         }
     }

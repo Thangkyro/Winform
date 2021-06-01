@@ -138,9 +138,9 @@ namespace AusNail.Dictionary
             //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["Names"].HeaderText = "Names";
             GridDetail.Columns["HolidaysFrom"].HeaderText = "Holidays From";
-            GridDetail.Columns["HolidaysFrom"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+            GridDetail.Columns["HolidaysFrom"].DefaultCellStyle.Format = "MM/dd/yyyy";
             GridDetail.Columns["HolidaysTo"].HeaderText = "Holidays To";
-            GridDetail.Columns["HolidaysTo"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+            GridDetail.Columns["HolidaysTo"].DefaultCellStyle.Format = "MM/dd/yyyy";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["created_by"].HeaderText = "Create by";

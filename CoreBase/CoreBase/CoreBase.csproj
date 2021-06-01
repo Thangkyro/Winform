@@ -80,6 +80,12 @@
     <Compile Include="WinForm\Dictionary\DicBase.Designer.cs">
       <DependentUpon>DicBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\Dictionary\DictionaryEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Dictionary\DictionaryEdit.Designer.cs">
+      <DependentUpon>DictionaryEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\Dictionary\FormCollectInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Dictionary\DicBase.resx">
       <DependentUpon>DicBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Dictionary\DictionaryEdit.resx">
+      <DependentUpon>DictionaryEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Dictionary\FormCollectInfo.resx">
       <DependentUpon>FormCollectInfo.cs</DependentUpon>

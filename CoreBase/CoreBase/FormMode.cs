@@ -10,6 +10,8 @@ namespace CoreBase
     {
         Add,
         Edit,
-        Save
+        Save,
+        New,
+        View
     }
 }

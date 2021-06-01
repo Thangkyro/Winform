@@ -170,7 +170,7 @@ namespace AusNail.Dictionary
             GridDetail.Columns["PhoneNumber2"].HeaderText = "Phone Number 2";
             GridDetail.Columns["PhoneSimple2"].HeaderText = "Phone Simple 2";
             GridDetail.Columns["DateOfBirth"].HeaderText = "Date Of Birth";
-            GridDetail.Columns["DateOfBirth"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+            GridDetail.Columns["DateOfBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
             GridDetail.Columns["TFN"].HeaderText = "Tax Number";
             GridDetail.Columns["BSB"].HeaderText = "BSB";
             GridDetail.Columns["Decriptions"].Visible = false;

@@ -1,0 +1,86 @@
+﻿using CoreBase;
+using CoreBase.DAL;
+using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AusNail.Login
+{
+    public partial class frmChangePassword : CoreBase.WinForm.Dictionary.FormCollectInfo
+    {
+        public frmChangePassword()
+        {
+            InitializeComponent();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!ValidData())
+                return;
+            SaveData();
+
+            DialogResult = DialogResult.OK;
+        }
+        private bool ValidData()
+        {
+            if (txtPasswordOld.Text == "")
+            {
+                //ZenMessage.Show("Chưa nhập mật khẩu cũ.", ZenMessageType.Warning);
+                lblMessInfomation.Text = "Please input Old Password";
+                txtPasswordOld.Focus();
+                return false;
+            }
+            //Kiem tra mat khau cu
+            DataRow row = null;
+            using (SecurityDAO sDao = new SecurityDAO())
+                row = sDao.GetUserRow(NailApp.CurrentUserRow["user_name"].zToString(), Encryptor.MD5Hash(txtPasswordOld.Text.Trim()));
+
+            if (row == null)
+            {
+                //MessageBox.Show("Mật khẩu cũ không đúng, vui lòng nhập lại.");
+                lblMessInfomation.Text = "Old Password is invalid.";
+                txtPasswordOld.Focus();
+                return false;
+            }
+
+            if (txtPassword.Text == "")
+            {
+                //ZenMessage.Show("Chưa nhập mật khẩu.", ZenMessageType.Warning);
+                lblMessInfomation.Text = "Please input Password";
+                txtPassword.Focus();
+                return false;
+            }
+            if (txtRePassword.Text == "")
+            {
+                //ZenMessage.Show("Chưa nhập lại mật khẩu.", ZenMessageType.Warning);
+                lblMessInfomation.Text = "Please input Re Password";
+                txtRePassword.Focus();
+                return false;
+            }
+            if (txtPassword.Text != txtRePassword.Text)
+            {
+                //ZenMessage.Show("Mật khẩu xác nhận không đúng.", ZenMessageType.Warning);
+                lblMessInfomation.Text = "RePassword diferent Password";
+                txtRePassword.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void SaveData()
+        {
+            string password = Encryptor.MD5Hash(txtPassword.Text);
+            using (SecurityDAO sDao = new SecurityDAO())
+                sDao.SetPassword(NailApp.CurrentUserRow["Userid"].zToInt(), password);
+
+        }
+    }
+}
