@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmCustomer : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string CUSTOMER_CMDKEY = "Customer";
+        const string CUSTOMER_ADD_CMDKEY = "Customer_add";
+        const string CUSTOMER_DEL_CMDKEY = "Customer_del";
+        const string CUSTOMER_EDIT_CMDKEY = "Customer_edit";
+        const string CUSTOMER_LIST_CMDKEY = "Customer_list";
         DataRow _dr;
         string _Mode = "";
         DataTable _Service;
@@ -48,7 +54,14 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            LoadData();
+            if (!NailApp.lstPermission.Contains(CUSTOMER_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+            }
+            else
+            {
+                LoadData();
+            }
             base.BeforeFillData();
         }
         protected override void FillData()
@@ -70,15 +83,26 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
+            
             try
             {
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(CUSTOMER_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }
 
@@ -229,6 +253,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(CUSTOMER_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {
@@ -272,6 +301,11 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             if (e.ColumnIndex == 8) // From - TO
             {
                 int rIndex = e.RowIndex;

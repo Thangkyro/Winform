@@ -1,4 +1,5 @@
-﻿using AusNail.Login;
+﻿using AusNail.Dictionary;
+using AusNail.Login;
 using CoreBase;
 using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
@@ -32,9 +33,9 @@ namespace AusNail
             //}
 
             //Load permisson
+            NailApp.lstPermission = new List<string>();
+            NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
             //DataTable tblCmds = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUspSiGetCmdByUser", NailApp.CurrentUserId);
-            //if (tblCmds == null)
-            //    return;
             //NailApp.zDicCmds = new Dictionary<string, DataRow>();
             //foreach (DataRow row in tblCmds.Rows)
             //{
