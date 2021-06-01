@@ -41,6 +41,7 @@ namespace CoreBase
             }
         }
         public static Dictionary<string, DataRow> zDicCmds = new Dictionary<string, DataRow>();
+        public static List<string> lstPermission = new List<string>();
 
         //public static string ZP_Ten_cty
         //{
@@ -152,6 +153,7 @@ namespace CoreBase
                 return NailApp.CurrentUserRow["StaffId"].zToInt();
         }
 
+        //public string Password { get; set; }
 
 
         //public static string AppDll = "NaBiz";

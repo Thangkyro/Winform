@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmWorkShift : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string WORKSHIFT_CMDKEY = "WorkShift";
+        const string WORKSHIFT_ADD_CMDKEY = "WorkShift_add";
+        const string WORKSHIFT_DEL_CMDKEY = "WorkShift_del";
+        const string WORKSHIFT_EDIT_CMDKEY = "WorkShift_edit";
+        const string WORKSHIFT_LIST_CMDKEY = "WorkShift_list";
         DataRow _dr;
         DataTable _BusinessHour;
         string _tableName = "zBusinessHour";
@@ -49,6 +55,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
+            if (!NailApp.lstPermission.Contains(WORKSHIFT_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
@@ -70,10 +81,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(WORKSHIFT_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(WORKSHIFT_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false; 
+                    }
                     return base.UpdateData();
                 }
 
@@ -193,6 +214,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(WORKSHIFT_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {

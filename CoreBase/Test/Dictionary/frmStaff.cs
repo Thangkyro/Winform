@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmStaff : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string STAFF_CMDKEY = "Staff";
+        const string STAFF_ADD_CMDKEY = "Staff_add";
+        const string STAFF_DEL_CMDKEY = "Staff_del";
+        const string STAFF_EDIT_CMDKEY = "Staff_edit";
+        const string STAFF_LIST_CMDKEY = "Staff_list";
         DataRow _dr;
         DataTable _Staff;
         string _tableName = "zStaff";
@@ -49,6 +55,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
+            if (!NailApp.lstPermission.Contains(STAFF_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
@@ -78,10 +89,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(STAFF_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(STAFF_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }
 
@@ -215,6 +236,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(STAFF_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {

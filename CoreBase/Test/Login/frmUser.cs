@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
 using System;
 using System.Data;
@@ -9,6 +10,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmUser : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string USER_CMDKEY = "User";
+        const string USER_ADD_CMDKEY = "User_add";
+        const string USER_DEL_CMDKEY = "User_del";
+        const string USER_EDIT_CMDKEY = "User_edit";
+        const string USER_LIST_CMDKEY = "User_list";
         DataRow _dr;
         DataTable _User;
         string _tableName = "zUser";
@@ -60,6 +66,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
+            if (!NailApp.lstPermission.Contains(USER_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
@@ -84,10 +95,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(USER_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false; 
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(USER_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }
 
@@ -214,7 +235,8 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
-                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
+                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) + Encryptor.MD5Hash(GetMaxUserID().ToString()) + Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                    //Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
             }
             else
@@ -226,6 +248,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(USER_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {

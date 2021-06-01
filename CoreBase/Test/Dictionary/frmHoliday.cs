@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,12 @@ namespace AusNail.Dictionary
 {
     public partial class frmHoliday : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string HOLIDAY_CMDKEY = "Holiday";
+        const string HOLIDAY_ADD_CMDKEY = "Holiday_add";
+        const string HOLIDAY_DEL_CMDKEY = "Holiday_del";
+        const string HOLIDAY_EDIT_CMDKEY = "Holiday_edit";
+        const string HOLIDAY_LIST_CMDKEY = "Holiday_list";
+
         DataRow _dr;
         DataTable _Holidays;
         string _tableName = "zHolidays";
@@ -49,6 +56,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
+            if (!NailApp.lstPermission.Contains(HOLIDAY_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
@@ -65,15 +77,26 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
+            
             try
             {
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(HOLIDAY_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(HOLIDAY_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }
 
@@ -194,6 +217,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(HOLIDAY_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return ;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {

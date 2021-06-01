@@ -14,6 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmVoucher : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string VOUCHER_CMDKEY = "Voucher";
+        const string VOUCHER_ADD_CMDKEY = "Voucher_add";
+        const string VOUCHER_DEL_CMDKEY = "Voucher_del";
+        const string VOUCHER_EDIT_CMDKEY = "Voucher_edit";
+        const string VOUCHER_LIST_CMDKEY = "Voucher_list";
         DataRow _dr;
         DataTable _Voucher;
         string _tableName = "zVoucher";
@@ -49,6 +54,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
+            if (!NailApp.lstPermission.Contains(VOUCHER_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
@@ -74,10 +84,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(VOUCHER_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(VOUCHER_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }
 
@@ -164,6 +184,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(VOUCHER_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {

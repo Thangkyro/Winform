@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,12 @@ namespace AusNail.Dictionary
 {
     public partial class frmBranch : CoreBase.WinForm.Dictionary.Dictionary
     {
+        const string BRANCH_CMDKEY = "Branch";
+        const string BRANCH_ADD_CMDKEY = "Branch_add";
+        const string BRANCH_DEL_CMDKEY = "Branch_del";
+        const string BRANCH_EDIT_CMDKEY = "Branch_edit";
+        const string BRANCH_LIST_CMDKEY = "Branch_list";
+
         string _Mode = "";
         DataTable _Service;
         string _idName = "branchId";
@@ -24,7 +31,14 @@ namespace AusNail.Dictionary
         }
         protected override void BeforeFillData()
         {
-            LoadData();
+            if (!NailApp.lstPermission.Contains(BRANCH_LIST_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+            }
+            else
+            {
+                LoadData();
+            }
             base.BeforeFillData();
         }
         protected override void FillData()
@@ -49,10 +63,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
+                    if (!NailApp.lstPermission.Contains(BRANCH_ADD_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.InsertData();
                 }
                 else
                 {
+                    if (!NailApp.lstPermission.Contains(BRANCH_EDIT_CMDKEY))
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     return base.UpdateData();
                 }             
 
@@ -182,6 +206,11 @@ namespace AusNail.Dictionary
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(BRANCH_DEL_CMDKEY))
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {
