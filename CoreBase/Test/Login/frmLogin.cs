@@ -74,23 +74,44 @@ namespace AusNail.Login
 
         private bool CheckUser()
         {
-            DataRow userRow = null;
-            Cursor = Cursors.WaitCursor;
-            string branchID = cboBranch.SelectedValue.ToString();
-
-            using (SecurityDAO sDAO = new SecurityDAO())
+            try
             {
-                userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa" + txtPassword.Text.Trim()));
+                bool bResult = false;
+                int userID = 0;
+                string sqlGetInfo = "Select UserID From zUser with(nolock) Where user_name = '" + txtUsername + "'";
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sqlGetInfo);
+                if (dt != null)
+                {
+                    userID = int.Parse(dt.Rows[0][0].ToString());
+                }
+                if (userID != 0)
+                {
+                    DataRow userRow = null;
+                    Cursor = Cursors.WaitCursor;
+                    string branchID = cboBranch.SelectedValue.ToString();
+
+                    using (SecurityDAO sDAO = new SecurityDAO())
+                    {
+                        userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa" + branchID + userID.ToString() + txtPassword.Text.Trim()));
+                    }
+                    Cursor = Cursors.Default;
+
+                    if (userRow == null)
+                        return false;
+
+                    NailApp.CurrentUserRow = userRow;
+                    NailApp.BranchID = branchID;
+                }
+                else
+                {
+                    bResult = false;
+                }
+                return bResult;
             }
-            Cursor = Cursors.Default;
-
-            if (userRow == null)
+            catch (Exception)
+            {
                 return false;
-
-            NailApp.CurrentUserRow = userRow;
-            NailApp.BranchID = branchID;
-
-            return true;
+            }
         }
     }
 }

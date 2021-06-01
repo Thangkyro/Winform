@@ -214,7 +214,7 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
-                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa" + this.zEditRow["user_name"].ToString());
+                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
             }
             else
