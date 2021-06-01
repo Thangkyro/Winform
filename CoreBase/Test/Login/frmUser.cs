@@ -214,7 +214,7 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
-                this.zEditRow["Password"] = Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa" + this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
             }
             else
@@ -296,5 +296,26 @@ namespace AusNail.Dictionary
                 }
             }
         }
+
+        private int GetMaxUserID()
+        {
+            int id = 0;
+            try
+            {
+                string sql = "Select ISNULL(UserID,0) MaxID FROM  [dbo].[zUser] with(nolock) ";
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                if (dt != null)
+                {
+                    id = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                }
+
+            }
+            catch
+            {
+
+            }
+            return id;
+        }
+
     }
 }

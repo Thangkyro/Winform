@@ -80,7 +80,7 @@ namespace AusNail.Login
 
             using (SecurityDAO sDAO = new SecurityDAO())
             {
-                userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash(txtPassword.Text.Trim()));
+                userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa" + txtPassword.Text.Trim()));
             }
             Cursor = Cursors.Default;
 
