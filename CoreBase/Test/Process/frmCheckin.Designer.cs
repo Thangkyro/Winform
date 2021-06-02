@@ -28,27 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCheckin));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.gridHolidays = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.treHistory = new System.Windows.Forms.TreeView();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txt_B_note = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txt_B_Date = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numSL = new System.Windows.Forms.NumericUpDown();
-            this.btnRegister = new System.Windows.Forms.Button();
             this.lbl_R_Total = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.gridRegister = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.col_R_Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_R_StaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_T_ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_R_Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_R_Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_R_Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_R_ServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_R_StaffId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cb_B_ServiceName = new System.Windows.Forms.ComboBox();
             this.cb_B_StaftName = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -66,17 +79,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txt_B_note = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.col_R_Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_R_StaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_T_ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_R_Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_R_Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_R_Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_R_ServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_R_StaffId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -103,7 +111,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(987, 528);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1002, 518);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
@@ -116,7 +124,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(295, 522);
+            this.groupBox1.Size = new System.Drawing.Size(300, 512);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Checking";
@@ -126,15 +134,16 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.gridHolidays);
-            this.groupBox6.Location = new System.Drawing.Point(6, 332);
+            this.groupBox6.Location = new System.Drawing.Point(6, 322);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(284, 181);
+            this.groupBox6.Size = new System.Drawing.Size(289, 181);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Holidays";
             // 
             // gridHolidays
             // 
+            this.gridHolidays.AllowUserToAddRows = false;
             this.gridHolidays.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -142,7 +151,7 @@
             this.gridHolidays.Location = new System.Drawing.Point(10, 20);
             this.gridHolidays.Name = "gridHolidays";
             this.gridHolidays.RowHeadersVisible = false;
-            this.gridHolidays.Size = new System.Drawing.Size(265, 150);
+            this.gridHolidays.Size = new System.Drawing.Size(270, 150);
             this.gridHolidays.TabIndex = 0;
             // 
             // groupBox3
@@ -153,7 +162,7 @@
             this.groupBox3.Controls.Add(this.treHistory);
             this.groupBox3.Location = new System.Drawing.Point(6, 96);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 230);
+            this.groupBox3.Size = new System.Drawing.Size(289, 220);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "History";
@@ -165,20 +174,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treHistory.Location = new System.Drawing.Point(25, 22);
             this.treHistory.Name = "treHistory";
-            this.treHistory.Size = new System.Drawing.Size(239, 187);
+            this.treHistory.Size = new System.Drawing.Size(244, 177);
             this.treHistory.TabIndex = 0;
             this.treHistory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treHistory_AfterSelect);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheck.Location = new System.Drawing.Point(215, 41);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(75, 40);
-            this.btnCheck.TabIndex = 1;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            this.treHistory.Click += new System.EventHandler(this.treHistory_Click);
             // 
             // label1
             // 
@@ -197,7 +196,7 @@
             this.txtPhoneNumber.Location = new System.Drawing.Point(31, 41);
             this.txtPhoneNumber.Multiline = true;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(178, 40);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(174, 40);
             this.txtPhoneNumber.TabIndex = 0;
             this.txtPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhoneNumber_KeyPress);
@@ -207,9 +206,9 @@
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(304, 3);
+            this.groupBox2.Location = new System.Drawing.Point(309, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(680, 522);
+            this.groupBox2.Size = new System.Drawing.Size(690, 512);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registration";
@@ -226,6 +225,8 @@
             this.groupBox5.Controls.Add(this.comboBox1);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.numSL);
+            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.button2);
             this.groupBox5.Controls.Add(this.btnRegister);
             this.groupBox5.Controls.Add(this.lbl_R_Total);
             this.groupBox5.Controls.Add(this.label15);
@@ -237,10 +238,28 @@
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Location = new System.Drawing.Point(27, 170);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(632, 335);
+            this.groupBox5.Size = new System.Drawing.Size(657, 325);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Booking information";
+            // 
+            // txt_B_note
+            // 
+            this.txt_B_note.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_B_note.Location = new System.Drawing.Point(104, 83);
+            this.txt_B_note.Name = "txt_B_note";
+            this.txt_B_note.Size = new System.Drawing.Size(475, 20);
+            this.txt_B_note.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Note:";
             // 
             // txt_B_Date
             // 
@@ -248,7 +267,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_B_Date.Location = new System.Drawing.Point(104, 14);
             this.txt_B_Date.Name = "txt_B_Date";
-            this.txt_B_Date.Size = new System.Drawing.Size(517, 20);
+            this.txt_B_Date.Size = new System.Drawing.Size(542, 20);
             this.txt_B_Date.TabIndex = 0;
             // 
             // comboBox2
@@ -256,9 +275,9 @@
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(98, 422);
+            this.comboBox2.Location = new System.Drawing.Point(98, 412);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(390, 21);
+            this.comboBox2.Size = new System.Drawing.Size(415, 21);
             this.comboBox2.TabIndex = 2;
             // 
             // comboBox1
@@ -266,9 +285,9 @@
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(98, 358);
+            this.comboBox1.Location = new System.Drawing.Point(98, 348);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(390, 21);
+            this.comboBox1.Size = new System.Drawing.Size(415, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // label14
@@ -283,44 +302,38 @@
             // numSL
             // 
             this.numSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numSL.Location = new System.Drawing.Point(498, 60);
+            this.numSL.Location = new System.Drawing.Point(523, 60);
             this.numSL.Name = "numSL";
             this.numSL.Size = new System.Drawing.Size(123, 20);
             this.numSL.TabIndex = 3;
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegister.Location = new System.Drawing.Point(500, 282);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(121, 43);
-            this.btnRegister.TabIndex = 5;
-            this.btnRegister.Text = "Save";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // lbl_R_Total
             // 
             this.lbl_R_Total.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_R_Total.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_R_Total.Location = new System.Drawing.Point(104, 282);
+            this.lbl_R_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_R_Total.ForeColor = System.Drawing.Color.Red;
+            this.lbl_R_Total.Location = new System.Drawing.Point(104, 272);
             this.lbl_R_Total.Name = "lbl_R_Total";
-            this.lbl_R_Total.Size = new System.Drawing.Size(390, 43);
-            this.lbl_R_Total.TabIndex = 6;
+            this.lbl_R_Total.Size = new System.Drawing.Size(252, 43);
+            this.lbl_R_Total.TabIndex = 8;
+            this.lbl_R_Total.Text = "0";
+            this.lbl_R_Total.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label15
             // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 299);
+            this.label15.Location = new System.Drawing.Point(19, 289);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 13);
-            this.label15.TabIndex = 5;
+            this.label15.TabIndex = 7;
             this.label15.Text = "Total";
             // 
             // gridRegister
             // 
+            this.gridRegister.AllowUserToAddRows = false;
             this.gridRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -337,20 +350,76 @@
             this.Col_R_StaffId});
             this.gridRegister.Location = new System.Drawing.Point(22, 114);
             this.gridRegister.Name = "gridRegister";
-            this.gridRegister.Size = new System.Drawing.Size(599, 162);
-            this.gridRegister.TabIndex = 4;
+            this.gridRegister.Size = new System.Drawing.Size(624, 152);
+            this.gridRegister.TabIndex = 6;
             this.gridRegister.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridRegister_RowsRemoved);
             // 
-            // btnAdd
+            // col_R_Num
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(569, 81);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(52, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.col_R_Num.HeaderText = "Num";
+            this.col_R_Num.Name = "col_R_Num";
+            this.col_R_Num.ReadOnly = true;
+            this.col_R_Num.Width = 40;
+            // 
+            // Col_R_StaffName
+            // 
+            this.Col_R_StaffName.HeaderText = "Staff Name";
+            this.Col_R_StaffName.Name = "Col_R_StaffName";
+            this.Col_R_StaffName.ReadOnly = true;
+            this.Col_R_StaffName.Width = 150;
+            // 
+            // col_T_ServiceName
+            // 
+            this.col_T_ServiceName.HeaderText = "ServiceName";
+            this.col_T_ServiceName.Name = "col_T_ServiceName";
+            this.col_T_ServiceName.Width = 150;
+            // 
+            // ColQuantity
+            // 
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.ColQuantity.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ColQuantity.FillWeight = 70F;
+            this.ColQuantity.HeaderText = "Quantity";
+            this.ColQuantity.Name = "ColQuantity";
+            this.ColQuantity.ReadOnly = true;
+            this.ColQuantity.Width = 70;
+            // 
+            // col_R_Price
+            // 
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.col_R_Price.DefaultCellStyle = dataGridViewCellStyle5;
+            this.col_R_Price.HeaderText = "Price";
+            this.col_R_Price.Name = "col_R_Price";
+            this.col_R_Price.ReadOnly = true;
+            // 
+            // col_R_Amount
+            // 
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.col_R_Amount.DefaultCellStyle = dataGridViewCellStyle6;
+            this.col_R_Amount.HeaderText = "Amount";
+            this.col_R_Amount.Name = "col_R_Amount";
+            this.col_R_Amount.ReadOnly = true;
+            // 
+            // col_R_Note
+            // 
+            this.col_R_Note.HeaderText = "Note";
+            this.col_R_Note.Name = "col_R_Note";
+            this.col_R_Note.Width = 150;
+            // 
+            // col_R_ServiceId
+            // 
+            this.col_R_ServiceId.HeaderText = "ServiceId";
+            this.col_R_ServiceId.Name = "col_R_ServiceId";
+            this.col_R_ServiceId.Visible = false;
+            // 
+            // Col_R_StaffId
+            // 
+            this.Col_R_StaffId.HeaderText = "Staff Id";
+            this.Col_R_StaffId.Name = "Col_R_StaffId";
+            this.Col_R_StaffId.Visible = false;
             // 
             // cb_B_ServiceName
             // 
@@ -359,7 +428,7 @@
             this.cb_B_ServiceName.FormattingEnabled = true;
             this.cb_B_ServiceName.Location = new System.Drawing.Point(104, 60);
             this.cb_B_ServiceName.Name = "cb_B_ServiceName";
-            this.cb_B_ServiceName.Size = new System.Drawing.Size(390, 21);
+            this.cb_B_ServiceName.Size = new System.Drawing.Size(415, 21);
             this.cb_B_ServiceName.TabIndex = 2;
             // 
             // cb_B_StaftName
@@ -369,7 +438,7 @@
             this.cb_B_StaftName.FormattingEnabled = true;
             this.cb_B_StaftName.Location = new System.Drawing.Point(104, 37);
             this.cb_B_StaftName.Name = "cb_B_StaftName";
-            this.cb_B_StaftName.Size = new System.Drawing.Size(517, 21);
+            this.cb_B_StaftName.Size = new System.Drawing.Size(542, 21);
             this.cb_B_StaftName.TabIndex = 1;
             // 
             // label13
@@ -408,7 +477,7 @@
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Location = new System.Drawing.Point(27, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(632, 143);
+            this.groupBox4.Size = new System.Drawing.Size(657, 143);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Customer information";
@@ -419,7 +488,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_C_DateofBirth.Location = new System.Drawing.Point(104, 89);
             this.txt_C_DateofBirth.Name = "txt_C_DateofBirth";
-            this.txt_C_DateofBirth.Size = new System.Drawing.Size(384, 20);
+            this.txt_C_DateofBirth.Size = new System.Drawing.Size(409, 20);
             this.txt_C_DateofBirth.TabIndex = 3;
             // 
             // cboGender
@@ -433,7 +502,7 @@
             "Other"});
             this.cboGender.Location = new System.Drawing.Point(104, 66);
             this.cboGender.Name = "cboGender";
-            this.cboGender.Size = new System.Drawing.Size(384, 21);
+            this.cboGender.Size = new System.Drawing.Size(409, 21);
             this.cboGender.TabIndex = 2;
             // 
             // txt_C_Postcode
@@ -442,7 +511,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_C_Postcode.Location = new System.Drawing.Point(104, 111);
             this.txt_C_Postcode.Name = "txt_C_Postcode";
-            this.txt_C_Postcode.Size = new System.Drawing.Size(384, 20);
+            this.txt_C_Postcode.Size = new System.Drawing.Size(409, 20);
             this.txt_C_Postcode.TabIndex = 4;
             // 
             // txt_C_Name
@@ -451,7 +520,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_C_Name.Location = new System.Drawing.Point(104, 44);
             this.txt_C_Name.Name = "txt_C_Name";
-            this.txt_C_Name.Size = new System.Drawing.Size(384, 20);
+            this.txt_C_Name.Size = new System.Drawing.Size(409, 20);
             this.txt_C_Name.TabIndex = 1;
             // 
             // txt_C_PhoneNumber
@@ -460,15 +529,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_C_PhoneNumber.Location = new System.Drawing.Point(104, 22);
             this.txt_C_PhoneNumber.Name = "txt_C_PhoneNumber";
-            this.txt_C_PhoneNumber.Size = new System.Drawing.Size(384, 20);
+            this.txt_C_PhoneNumber.Size = new System.Drawing.Size(409, 20);
             this.txt_C_PhoneNumber.TabIndex = 0;
             // 
             // btnEditBooking
             // 
             this.btnEditBooking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditBooking.Location = new System.Drawing.Point(494, 77);
+            this.btnEditBooking.Location = new System.Drawing.Point(519, 77);
             this.btnEditBooking.Name = "btnEditBooking";
-            this.btnEditBooking.Size = new System.Drawing.Size(121, 55);
+            this.btnEditBooking.Size = new System.Drawing.Size(132, 55);
             this.btnEditBooking.TabIndex = 6;
             this.btnEditBooking.Text = "Edit Booking ";
             this.btnEditBooking.UseVisualStyleBackColor = true;
@@ -477,9 +546,9 @@
             // btnCreate
             // 
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.Location = new System.Drawing.Point(494, 22);
+            this.btnCreate.Location = new System.Drawing.Point(519, 22);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(121, 55);
+            this.btnCreate.Size = new System.Drawing.Size(132, 55);
             this.btnCreate.TabIndex = 5;
             this.btnCreate.Text = "Create and Register";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -530,86 +599,84 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Phone number:";
             // 
-            // txt_B_note
+            // imageList1
             // 
-            this.txt_B_note.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_B_note.Location = new System.Drawing.Point(104, 83);
-            this.txt_B_note.Name = "txt_B_note";
-            this.txt_B_note.Size = new System.Drawing.Size(463, 20);
-            this.txt_B_note.TabIndex = 4;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder.bmp");
             // 
-            // label2
+            // btnCheck
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Note:";
+            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheck.Image = global::AusNail.Properties.Resources.zoom;
+            this.btnCheck.Location = new System.Drawing.Point(209, 41);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(86, 40);
+            this.btnCheck.TabIndex = 1;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // col_R_Num
+            // button1
             // 
-            this.col_R_Num.HeaderText = "Num";
-            this.col_R_Num.Name = "col_R_Num";
-            this.col_R_Num.Width = 40;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = global::AusNail.Properties.Resources.Print;
+            this.button1.Location = new System.Drawing.Point(436, 272);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 43);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Print Temporary Bill";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Col_R_StaffName
+            // button2
             // 
-            this.Col_R_StaffName.HeaderText = "Staff Name";
-            this.Col_R_StaffName.Name = "Col_R_StaffName";
-            this.Col_R_StaffName.Width = 150;
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Image = global::AusNail.Properties.Resources.cancel;
+            this.button2.Location = new System.Drawing.Point(575, 272);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(71, 43);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Exit";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // col_T_ServiceName
+            // btnRegister
             // 
-            this.col_T_ServiceName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_T_ServiceName.HeaderText = "ServiceName";
-            this.col_T_ServiceName.Name = "col_T_ServiceName";
-            this.col_T_ServiceName.ReadOnly = true;
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.Image = global::AusNail.Properties.Resources.Save;
+            this.btnRegister.Location = new System.Drawing.Point(362, 272);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(71, 43);
+            this.btnRegister.TabIndex = 9;
+            this.btnRegister.Text = "Save";
+            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // ColQuantity
+            // btnAdd
             // 
-            this.ColQuantity.FillWeight = 70F;
-            this.ColQuantity.HeaderText = "Quantity";
-            this.ColQuantity.Name = "ColQuantity";
-            this.ColQuantity.Width = 70;
-            // 
-            // col_R_Price
-            // 
-            this.col_R_Price.HeaderText = "Price";
-            this.col_R_Price.Name = "col_R_Price";
-            this.col_R_Price.ReadOnly = true;
-            // 
-            // col_R_Amount
-            // 
-            this.col_R_Amount.HeaderText = "Amount";
-            this.col_R_Amount.Name = "col_R_Amount";
-            this.col_R_Amount.ReadOnly = true;
-            // 
-            // col_R_Note
-            // 
-            this.col_R_Note.HeaderText = "Note";
-            this.col_R_Note.Name = "col_R_Note";
-            this.col_R_Note.Width = 150;
-            // 
-            // col_R_ServiceId
-            // 
-            this.col_R_ServiceId.HeaderText = "ServiceId";
-            this.col_R_ServiceId.Name = "col_R_ServiceId";
-            this.col_R_ServiceId.Visible = false;
-            // 
-            // Col_R_StaffId
-            // 
-            this.Col_R_StaffId.HeaderText = "Staff Id";
-            this.Col_R_StaffId.Name = "Col_R_StaffId";
-            this.Col_R_StaffId.Visible = false;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Image = global::AusNail.Properties.Resources.add;
+            this.btnAdd.Location = new System.Drawing.Point(581, 81);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(65, 23);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmCheckin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1017, 551);
+            this.ClientSize = new System.Drawing.Size(1026, 541);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmCheckin";
             this.Text = "Checking";
@@ -681,5 +748,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_ServiceId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_R_StaffId;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
