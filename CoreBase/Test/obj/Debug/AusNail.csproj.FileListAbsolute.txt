@@ -41,7 +41,9 @@ E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.CoreCompileInputs.ca
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.CopyComplete
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.exe
 E:\Code\Nail\Winform\CoreBase\Test\obj\Debug\AusNail.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\AusNail.exe.config
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\AusNail.exe
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\AusNail.pdb
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\CoreBase.dll
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\CoreBase.pdb
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.csprojResolveAssemblyReference.cache
@@ -61,5 +63,5 @@ D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Properties.Resources.
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.GenerateResource.Cache
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.exe
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.pdb
-D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\AusNail.exe.config
-D:\MMO\GIT\WinForm\Winform\CoreBase\Test\bin\Debug\AusNail.pdb
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPay.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPrint.resources
