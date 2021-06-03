@@ -16,6 +16,7 @@ namespace AusNail.Login
 {
     public partial class frmLogin : CoreBase.WinForm.Dictionary.FormCollectInfo
     {
+        public static int _userID;
         DataTable _dmdvcs = new DataTable();
         public frmLogin()
         {
@@ -77,14 +78,14 @@ namespace AusNail.Login
             try
             {
                 bool bResult = false;
-                int userID = 0;
-                string sqlGetInfo = "Select UserID From zUser with(nolock) Where user_name = '" + txtUsername + "'";
+                _userID = 0;
+                string sqlGetInfo = "Select UserID From zUser with(nolock) Where user_name = '" + txtUsername.Text + "'";
                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sqlGetInfo);
                 if (dt != null)
                 {
-                    userID = int.Parse(dt.Rows[0][0].ToString());
+                    _userID = int.Parse(dt.Rows[0][0].ToString());
                 }
-                if (userID != 0)
+                if (_userID != 0)
                 {
                     DataRow userRow = null;
                     Cursor = Cursors.WaitCursor;
@@ -92,12 +93,19 @@ namespace AusNail.Login
 
                     using (SecurityDAO sDAO = new SecurityDAO())
                     {
-                        userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(branchID) + Encryptor.MD5Hash(userID.ToString()) + Encryptor.MD5Hash(txtPassword.Text.Trim()));
+                        //userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(branchID) + Encryptor.MD5Hash(_userID.ToString()) + Encryptor.MD5Hash(txtPassword.Text.Trim()));
+                        userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, txtPassword.Text);
                     }
                     Cursor = Cursors.Default;
 
                     if (userRow == null)
+                    {
                         return false;
+                    }
+                    else
+                    {
+                        bResult = true;
+                    }
 
                     NailApp.CurrentUserRow = userRow;
                     NailApp.BranchID = branchID;
@@ -114,5 +122,21 @@ namespace AusNail.Login
                 return false;
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (DialogResult == DialogResult.OK)
+            {
+                frmMain frm = new frmMain();
+                frm.Sender(int.Parse(cboBranch.SelectedValue.ToString()), _userID);
+                this.Close();
+            }
+        }
+        
     }
 }
