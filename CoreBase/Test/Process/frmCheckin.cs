@@ -479,7 +479,7 @@ namespace AusNail.Process
                         }
                         if (flag)
                         {
-                            MessageBox.Show("Register sucessfull.", "Question", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Register sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             btnRegister.Text = "Pay";
                             EnableBookingInfor(false);
                         }
@@ -492,10 +492,15 @@ namespace AusNail.Process
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         _bookingID = int.Parse(dt.Rows[0][0].ToString());
+                        // Send total Amount.
+                        frmPay prn = new frmPay(_branchId, _bookingID, _totalAmount, _UserId);
+                        prn.Show();
                     }
-                    // Send total Amount.
-                    frmPay prn = new frmPay(_branchId, _bookingID, _totalAmount, _UserId);
-                    prn.Show();
+                    else
+                    {
+                        MessageBox.Show("Bill paid.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                 }
             }
             catch 
