@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmService : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string SERVICE_CMDKEY = "frmService";
-        const string SERVICE_ADD_CMDKEY = "frmService_add";
-        const string SERVICE_DEL_CMDKEY = "frmService_del";
-        const string SERVICE_EDIT_CMDKEY = "frmService_edit";
-        const string SERVICE_LIST_CMDKEY = "frmService_list";
+        const string SERVICE_CMDKEY = "Service";
+        const string SERVICE_ADD_CMDKEY = "Service_add";
+        const string SERVICE_DEL_CMDKEY = "Service_del";
+        const string SERVICE_EDIT_CMDKEY = "Service_edit";
+        const string SERVICE_LIST_CMDKEY = "Service_list";
         DataRow _dr;
         DataTable _Service;
         string _tableName = "zService";
