@@ -93,7 +93,7 @@ namespace AusNail
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Process.frmCheckin frm = new Process.frmCheckin();
+            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
             ShowForm(frm);
         }
 
@@ -267,6 +267,13 @@ namespace AusNail
         {
             frmChangePassword f = new frmChangePassword();
             ShowForm(f);
+        }
+
+        private void checkingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            ShowForm(frm);
         }
     }
 }
