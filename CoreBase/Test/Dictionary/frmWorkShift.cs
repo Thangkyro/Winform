@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmWorkShift : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string WORKSHIFT_CMDKEY = "WorkShift";
-        const string WORKSHIFT_ADD_CMDKEY = "WorkShift_add";
-        const string WORKSHIFT_DEL_CMDKEY = "WorkShift_del";
-        const string WORKSHIFT_EDIT_CMDKEY = "WorkShift_edit";
-        const string WORKSHIFT_LIST_CMDKEY = "WorkShift_list";
+        const string WORKSHIFT_CMDKEY = "frmWorkShift";
+        const string WORKSHIFT_ADD_CMDKEY = "frmWorkShift_add";
+        const string WORKSHIFT_DEL_CMDKEY = "frmWorkShift_del";
+        const string WORKSHIFT_EDIT_CMDKEY = "frmWorkShift_edit";
+        const string WORKSHIFT_LIST_CMDKEY = "frmWorkShift_list";
         DataRow _dr;
         DataTable _BusinessHour;
         string _tableName = "zBusinessHour";

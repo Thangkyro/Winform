@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmCustomer : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string CUSTOMER_CMDKEY = "Customer";
-        const string CUSTOMER_ADD_CMDKEY = "Customer_add";
-        const string CUSTOMER_DEL_CMDKEY = "Customer_del";
-        const string CUSTOMER_EDIT_CMDKEY = "Customer_edit";
-        const string CUSTOMER_LIST_CMDKEY = "Customer_list";
+        const string CUSTOMER_CMDKEY = "frmCustomer";
+        const string CUSTOMER_ADD_CMDKEY = "frmCustomer_add";
+        const string CUSTOMER_DEL_CMDKEY = "frmCustomer_del";
+        const string CUSTOMER_EDIT_CMDKEY = "frmCustomer_edit";
+        const string CUSTOMER_LIST_CMDKEY = "frmCustomer_list";
         DataRow _dr;
         string _Mode = "";
         DataTable _Service;

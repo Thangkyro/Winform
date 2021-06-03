@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmVoucher : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string VOUCHER_CMDKEY = "Voucher";
-        const string VOUCHER_ADD_CMDKEY = "Voucher_add";
-        const string VOUCHER_DEL_CMDKEY = "Voucher_del";
-        const string VOUCHER_EDIT_CMDKEY = "Voucher_edit";
-        const string VOUCHER_LIST_CMDKEY = "Voucher_list";
+        const string VOUCHER_CMDKEY = "frmVoucher";
+        const string VOUCHER_ADD_CMDKEY = "frmVoucher_add";
+        const string VOUCHER_DEL_CMDKEY = "frmVoucher_del";
+        const string VOUCHER_EDIT_CMDKEY = "frmVoucher_edit";
+        const string VOUCHER_LIST_CMDKEY = "frmVoucher_list";
         DataRow _dr;
         DataTable _Voucher;
         string _tableName = "zVoucher";

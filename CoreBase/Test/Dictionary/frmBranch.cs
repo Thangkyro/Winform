@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmBranch : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string BRANCH_CMDKEY = "Branch";
-        const string BRANCH_ADD_CMDKEY = "Branch_add";
-        const string BRANCH_DEL_CMDKEY = "Branch_del";
-        const string BRANCH_EDIT_CMDKEY = "Branch_edit";
-        const string BRANCH_LIST_CMDKEY = "Branch_list";
+        const string BRANCH_CMDKEY = "frmBranch";
+        const string BRANCH_ADD_CMDKEY = "frmBranch_add";
+        const string BRANCH_DEL_CMDKEY = "frmBranch_del";
+        const string BRANCH_EDIT_CMDKEY = "frmBranch_edit";
+        const string BRANCH_LIST_CMDKEY = "frmBranch_list";
 
         string _Mode = "";
         DataTable _Service;
