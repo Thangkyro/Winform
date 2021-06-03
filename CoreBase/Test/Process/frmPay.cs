@@ -145,13 +145,8 @@ namespace AusNail.Process
                 int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert", _branchId, _bookingID, voucherCode, discountAmount, cardAmount, cashAmount, _userId, error, errorMesg);
                 if (ret > 0)
                 {
-                    // Update booking
-
-                    // Update vouccher
-
-                    // Post
-
-                    // Update revenue
+                    MessageBox.Show("Pay sucessfull.", "Question", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
             }
             catch 
@@ -169,6 +164,10 @@ namespace AusNail.Process
                 if (checkBox1.Checked)
                 {
                     // In
+                }
+                if (this.DialogResult == DialogResult.OK)
+                {
+                    this.Close();
                 }
             }
             catch
