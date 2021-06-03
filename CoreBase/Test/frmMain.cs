@@ -15,18 +15,37 @@ namespace AusNail
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        private int _branchID;
+        private int _userID;
+        //public frmMain()
+        //{
+        //    InitializeComponent();
+            
+        //}
+
+        public delegate void SendMessage(int branchid, int userid);
+        public SendMessage Sender; public frmMain()
         {
             InitializeComponent();
-            //Login.Login frm = new Login.Login();
-            //ShowForm(frm);
-            //splitContainer1.Panel1.Enabled = frm.loginTrue;
+            //Tạo con trỏ tới hàm GetMessage
+            Sender = new SendMessage(GetMessage);
+            //Hàm có nhiệm vụ lấy tham số truyền vào
+            Login.frmLogin frm = new Login.frmLogin();
+            ShowForm(frm);
             LoadMenu();
+        }   
+        private void GetMessage(int branchid, int userid)
+        {
+            _branchID = branchid;
+            _userID = userid;
         }
 
-        public frmMain(bool loginTrue) : this()
+        public frmMain(int branchID, int userId)
         {
-            txtSearchMenu.Text = loginTrue.ToString();
+            InitializeComponent();
+            _branchID = branchID;
+            _userID = userId;
+            LoadMenu();
         }
 
         private void LoadMenu()

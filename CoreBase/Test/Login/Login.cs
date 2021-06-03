@@ -21,7 +21,7 @@ namespace AusNail.Login
         private void button1_Click(object sender, EventArgs e)
         {
             loginTrue = true;
-            frmMain frm = new frmMain(loginTrue);
+            //frmMain frm = new frmMain(loginTrue);
             //this.Close();          
         }
     }

@@ -55,13 +55,14 @@ D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmService
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmStaff.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmVoucher.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.frmMain.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Login.frmChangePassword.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Login.frmLogin.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Dictionary.frmUser.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Login.Login.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmCheckin.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPay.resources
+D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPrint.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Properties.Resources.resources
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.csproj.GenerateResource.Cache
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.exe
 D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.pdb
-D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPay.resources
-D:\MMO\GIT\WinForm\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmPrint.resources
