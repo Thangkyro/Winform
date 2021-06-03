@@ -36,7 +36,7 @@ namespace AusNail
             //Load permisson
             NailApp.lstPermission = new List<string>();
             NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
-            
+
 
             frmMain main = new frmMain();
             Application.Run(main);
