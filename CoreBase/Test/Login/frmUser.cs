@@ -10,11 +10,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmUser : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string USER_CMDKEY = "frmUser";
-        const string USER_ADD_CMDKEY = "frmUser_add";
-        const string USER_DEL_CMDKEY = "frmUser_del";
-        const string USER_EDIT_CMDKEY = "frmUser_edit";
-        const string USER_LIST_CMDKEY = "frmUser_list";
+        const string USER_CMDKEY = "User";
+        const string USER_ADD_CMDKEY = "User_add";
+        const string USER_DEL_CMDKEY = "User_del";
+        const string USER_EDIT_CMDKEY = "User_edit";
+        const string USER_LIST_CMDKEY = "User_list";
         DataRow _dr;
         DataTable _User;
         string _tableName = "zUser";

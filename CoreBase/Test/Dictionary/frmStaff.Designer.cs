@@ -63,14 +63,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.treHistory = new System.Windows.Forms.TreeView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).BeginInit();
             this.ctmGridView.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // chkis_inactive
@@ -97,16 +97,14 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblMessInfomation.Location = new System.Drawing.Point(281, 14);
             this.lblMessInfomation.Size = new System.Drawing.Size(939, 23);
             // 
             // lblTime
             // 
-            this.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTime.Location = new System.Drawing.Point(1240, 14);
             this.lblTime.Size = new System.Drawing.Size(115, 23);
-            this.lblTime.Text = "22:11:48";
+            this.lblTime.Text = "23:07:34";
             // 
             // panel2
             // 
@@ -133,6 +131,9 @@
             this.GridDetail.Size = new System.Drawing.Size(737, 557);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
+            this.GridDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellContentClick);
+            this.GridDetail.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellLeave);
+            this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
             // 
             // ctmGridView
             // 
@@ -141,13 +142,13 @@
             this.deleteToolStripMenuItem,
             this.refeshListToolStripMenuItem});
             this.ctmGridView.Name = "ctmGridView";
-            this.ctmGridView.Size = new System.Drawing.Size(215, 84);
+            this.ctmGridView.Size = new System.Drawing.Size(153, 56);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
@@ -155,7 +156,7 @@
             // 
             this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
             this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
-            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.refeshListToolStripMenuItem.Text = "Refesh List";
             this.refeshListToolStripMenuItem.Click += new System.EventHandler(this.RefeshListToolStripMenuItem_Click);
             // 
@@ -467,22 +468,23 @@
             this.treHistory.Size = new System.Drawing.Size(456, 93);
             this.treHistory.TabIndex = 19;
             // 
-            // pictureBox1
+            // pbImage
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(1232, 36);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(127, 133);
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
+            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbImage.Location = new System.Drawing.Point(1232, 36);
+            this.pbImage.Margin = new System.Windows.Forms.Padding(4);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(127, 133);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 30;
+            this.pbImage.TabStop = false;
             // 
             // frmStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1397, 633);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtDecriptions);
             this.Controls.Add(this.label14);
@@ -544,14 +546,14 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.chkis_inactive, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.pbImage, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).EndInit();
             this.ctmGridView.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,7 +591,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView treHistory;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.ContextMenuStrip ctmGridView;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refeshListToolStripMenuItem;

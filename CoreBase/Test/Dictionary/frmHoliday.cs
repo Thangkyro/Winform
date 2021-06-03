@@ -14,11 +14,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmHoliday : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string HOLIDAY_CMDKEY = "frmHoliday";
-        const string HOLIDAY_ADD_CMDKEY = "frmHoliday_add";
-        const string HOLIDAY_DEL_CMDKEY = "frmHoliday_del";
-        const string HOLIDAY_EDIT_CMDKEY = "frmHoliday_edit";
-        const string HOLIDAY_LIST_CMDKEY = "frmHoliday_list";
+        const string HOLIDAY_CMDKEY = "Holiday";
+        const string HOLIDAY_ADD_CMDKEY = "Holiday_add";
+        const string HOLIDAY_DEL_CMDKEY = "Holiday_del";
+        const string HOLIDAY_EDIT_CMDKEY = "Holiday_edit";
+        const string HOLIDAY_LIST_CMDKEY = "Holiday_list";
 
         DataRow _dr;
         DataTable _Holidays;
