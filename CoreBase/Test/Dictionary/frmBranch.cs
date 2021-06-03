@@ -31,18 +31,21 @@ namespace AusNail.Dictionary
         }
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(BRANCH_LIST_CMDKEY))
+            if (!NailApp.lstPermission.Contains(BRANCH_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
+                return;
             }
-            else
-            {
-                LoadData();
-            }
+            LoadData();
             base.BeforeFillData();
         }
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(BRANCH_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(txtBranchCode);
             CreateBinding(txtBranchName);
@@ -63,7 +66,7 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(BRANCH_ADD_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(BRANCH_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -72,13 +75,13 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(BRANCH_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(BRANCH_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
                     return base.UpdateData();
-                }             
+                }
 
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 //DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
@@ -99,9 +102,9 @@ namespace AusNail.Dictionary
                 //return true;
                 #endregion
             }
-            catch 
+            catch
             {
-                
+
             }
             return true;
         }
@@ -206,7 +209,7 @@ namespace AusNail.Dictionary
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(BRANCH_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(BRANCH_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -220,7 +223,7 @@ namespace AusNail.Dictionary
             }
             else
             {
-                
+
             }
         }
 
