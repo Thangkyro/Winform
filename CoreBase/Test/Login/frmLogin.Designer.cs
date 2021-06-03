@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboBranch = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -37,15 +38,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cboBranch = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 435);
-            this.panel1.Size = new System.Drawing.Size(587, 54);
+            this.panel1.Location = new System.Drawing.Point(0, 438);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Size = new System.Drawing.Size(440, 44);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOk
+            // 
+            this.btnOk.TabIndex = 3;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // imageList
             // 
@@ -58,12 +69,15 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Size = new System.Drawing.Size(109, 17);
+            this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMessInfomation.Size = new System.Drawing.Size(82, 14);
             // 
             // lblTime
             // 
-            this.lblTime.Location = new System.Drawing.Point(468, 21);
-            this.lblTime.Text = "11:50:00";
+            this.lblTime.Location = new System.Drawing.Point(351, 17);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTime.Size = new System.Drawing.Size(64, 11);
+            this.lblTime.Text = "06:49:57";
             // 
             // panel2
             // 
@@ -77,62 +91,64 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(587, 427);
-            this.panel2.TabIndex = 5;
+            this.panel2.Size = new System.Drawing.Size(440, 433);
+            this.panel2.TabIndex = 0;
+            // 
+            // cboBranch
+            // 
+            this.cboBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboBranch.FormattingEnabled = true;
+            this.cboBranch.Location = new System.Drawing.Point(109, 170);
+            this.cboBranch.Margin = new System.Windows.Forms.Padding(2);
+            this.cboBranch.Name = "cboBranch";
+            this.cboBranch.Size = new System.Drawing.Size(243, 21);
+            this.cboBranch.TabIndex = 3;
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.BackgroundImage = global::AusNail.Properties.Resources.login1;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Location = new System.Drawing.Point(52, 203);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Location = new System.Drawing.Point(43, 201);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(492, 219);
+            this.panel3.Size = new System.Drawing.Size(369, 214);
             this.panel3.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(41, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(31, 68);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(504, 65);
-            this.label4.TabIndex = 4;
+            this.label4.Size = new System.Drawing.Size(378, 45);
+            this.label4.TabIndex = 0;
             this.label4.Text = "Login";
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPassword.Location = new System.Drawing.Point(181, 110);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Location = new System.Drawing.Point(109, 145);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(323, 22);
+            this.txtPassword.Size = new System.Drawing.Size(243, 20);
             this.txtPassword.TabIndex = 2;
             // 
             // txtUsername
             // 
             this.txtUsername.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtUsername.Location = new System.Drawing.Point(181, 80);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUsername.Location = new System.Drawing.Point(109, 121);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(323, 22);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.Size = new System.Drawing.Size(243, 20);
+            this.txtUsername.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(85, 143);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(37, 172);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 17);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Distributor:";
             // 
@@ -140,10 +156,9 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 113);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(37, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
@@ -151,29 +166,23 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(85, 84);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(37, 124);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 17);
+            this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 1;
             this.label5.Text = "User name:";
             // 
-            // cboBranch
-            // 
-            this.cboBranch.FormattingEnabled = true;
-            this.cboBranch.Location = new System.Drawing.Point(181, 140);
-            this.cboBranch.Name = "cboBranch";
-            this.cboBranch.Size = new System.Drawing.Size(323, 24);
-            this.cboBranch.TabIndex = 6;
-            // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 493);
+            this.ClientSize = new System.Drawing.Size(440, 486);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.TopMost = true;
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.ResumeLayout(false);

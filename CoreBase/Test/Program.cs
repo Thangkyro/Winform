@@ -30,6 +30,7 @@ namespace AusNail
             //    frmLogin lf = new frmLogin();
             //    if (lf.ShowDialog() != DialogResult.OK)
             //        return;
+            //    Application.Run(lf);
             //}
 
             //Load permisson
@@ -47,8 +48,9 @@ namespace AusNail
             //}
 
             frmMain main = new frmMain();
-
             Application.Run(main);
+
+            
         }
     }
 }
