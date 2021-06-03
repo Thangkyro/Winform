@@ -54,18 +54,22 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(CUSTOMER_LIST_CMDKEY))
+            if (!NailApp.lstPermission.Contains(CUSTOMER_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
+                return;
             }
-            else
-            {
+           
                 LoadData();
-            }
             base.BeforeFillData();
         }
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(CUSTOMER_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(cbobranchId);
             CreateBinding(txtCustomerCode);
@@ -89,7 +93,7 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(CUSTOMER_ADD_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(CUSTOMER_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -98,7 +102,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -253,7 +257,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(CUSTOMER_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(CUSTOMER_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -301,7 +305,7 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY))
+            if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;

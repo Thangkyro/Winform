@@ -54,7 +54,7 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(VOUCHER_LIST_CMDKEY))
+            if (!NailApp.lstPermission.Contains(VOUCHER_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -65,6 +65,11 @@ namespace AusNail.Dictionary
 
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(VOUCHER_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(txtVoucherCode);
             CreateBinding(txtAmount);
@@ -84,7 +89,7 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(VOUCHER_ADD_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(VOUCHER_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -93,7 +98,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(VOUCHER_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(VOUCHER_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -184,7 +189,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(VOUCHER_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(VOUCHER_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;

@@ -25,27 +25,18 @@ namespace AusNail
 
 
             //Login
-            //if (NailApp.MultiUser)
-            //{
-            //    frmLogin lf = new frmLogin();
-            //    if (lf.ShowDialog() != DialogResult.OK)
-            //        return;
-            //    Application.Run(lf);
-            //}
+            if (NailApp.MultiUser)
+            {
+                frmLogin lf = new frmLogin();
+                if (lf.ShowDialog() != DialogResult.OK)
+                    return;
+                //Application.Run(lf);
+            }
 
             //Load permisson
             NailApp.lstPermission = new List<string>();
             NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
-            //DataTable tblCmds = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUspSiGetCmdByUser", NailApp.CurrentUserId);
-            //NailApp.zDicCmds = new Dictionary<string, DataRow>();
-            //foreach (DataRow row in tblCmds.Rows)
-            //{
-            //    string cmdKey = row["cmd_key"].zToString();
-            //    if (!NailApp.zDicCmds.ContainsKey(cmdKey))
-            //    {
-            //        NailApp.zDicCmds.Add(cmdKey, row);
-            //    }
-            //}
+            
 
             frmMain main = new frmMain();
             Application.Run(main);

@@ -39,10 +39,25 @@ namespace AusNail
             this.btnGeneral = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.pnlForm = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formBorderStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnsMenu = new System.Windows.Forms.MenuStrip();
+            this.zdm = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.zps = new System.Windows.Forms.ToolStripMenuItem();
+            this.zbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.zsys = new System.Windows.Forms.ToolStripMenuItem();
+            this.Branch = new System.Windows.Forms.ToolStripMenuItem();
+            this.Customer = new System.Windows.Forms.ToolStripMenuItem();
+            this.Service = new System.Windows.Forms.ToolStripMenuItem();
+            this.Staff = new System.Windows.Forms.ToolStripMenuItem();
+            this.Holiday = new System.Windows.Forms.ToolStripMenuItem();
+            this.Voucher = new System.Windows.Forms.ToolStripMenuItem();
+            this.BusinessHour = new System.Windows.Forms.ToolStripMenuItem();
+            this.Booking = new System.Windows.Forms.ToolStripMenuItem();
+            this.Bill = new System.Windows.Forms.ToolStripMenuItem();
+            this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
+            this.zst = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
+            this.formBorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,25 +66,27 @@ namespace AusNail
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(242)))));
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlForm);
-            this.splitContainer1.Size = new System.Drawing.Size(879, 437);
-            this.splitContainer1.SplitterDistance = 165;
+            this.splitContainer1.Size = new System.Drawing.Size(1172, 539);
+            this.splitContainer1.SplitterDistance = 220;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -78,23 +95,27 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Location = new System.Drawing.Point(4, 4);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(242)))));
             this.splitContainer2.Panel1.Controls.Add(this.txtSearchMenu);
             this.splitContainer2.Panel1.Controls.Add(this.trvMenu);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(242)))));
             this.splitContainer2.Panel2.Controls.Add(this.btnRevenue);
             this.splitContainer2.Panel2.Controls.Add(this.btnCost);
             this.splitContainer2.Panel2.Controls.Add(this.btnGeneral);
             this.splitContainer2.Panel2.Controls.Add(this.btnReport);
-            this.splitContainer2.Size = new System.Drawing.Size(160, 431);
-            this.splitContainer2.SplitterDistance = 251;
+            this.splitContainer2.Size = new System.Drawing.Size(213, 531);
+            this.splitContainer2.SplitterDistance = 309;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 1;
             // 
             // txtSearchMenu
@@ -103,8 +124,9 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearchMenu.ForeColor = System.Drawing.Color.LightGray;
             this.txtSearchMenu.Location = new System.Drawing.Point(1, -1);
+            this.txtSearchMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchMenu.Name = "txtSearchMenu";
-            this.txtSearchMenu.Size = new System.Drawing.Size(154, 20);
+            this.txtSearchMenu.Size = new System.Drawing.Size(205, 22);
             this.txtSearchMenu.TabIndex = 0;
             this.txtSearchMenu.Text = "Please Enter Search Key";
             this.txtSearchMenu.Enter += new System.EventHandler(this.txtSearchMenu_Enter);
@@ -115,9 +137,10 @@ namespace AusNail
             this.trvMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trvMenu.Location = new System.Drawing.Point(2, 20);
+            this.trvMenu.Location = new System.Drawing.Point(3, 25);
+            this.trvMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trvMenu.Name = "trvMenu";
-            this.trvMenu.Size = new System.Drawing.Size(152, 210);
+            this.trvMenu.Size = new System.Drawing.Size(202, 259);
             this.trvMenu.TabIndex = 0;
             // 
             // btnRevenue
@@ -126,9 +149,10 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevenue.Image = global::AusNail.Properties.Resources.revenue;
             this.btnRevenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRevenue.Location = new System.Drawing.Point(2, 36);
+            this.btnRevenue.Location = new System.Drawing.Point(3, 44);
+            this.btnRevenue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRevenue.Name = "btnRevenue";
-            this.btnRevenue.Size = new System.Drawing.Size(152, 35);
+            this.btnRevenue.Size = new System.Drawing.Size(204, 43);
             this.btnRevenue.TabIndex = 0;
             this.btnRevenue.Text = "Revenue management";
             this.btnRevenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -141,9 +165,10 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCost.Image = global::AusNail.Properties.Resources.cost;
             this.btnCost.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCost.Location = new System.Drawing.Point(2, 70);
+            this.btnCost.Location = new System.Drawing.Point(3, 86);
+            this.btnCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCost.Name = "btnCost";
-            this.btnCost.Size = new System.Drawing.Size(152, 35);
+            this.btnCost.Size = new System.Drawing.Size(204, 43);
             this.btnCost.TabIndex = 0;
             this.btnCost.Text = "Cost management";
             this.btnCost.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -156,9 +181,10 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGeneral.Image = global::AusNail.Properties.Resources.general;
             this.btnGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGeneral.Location = new System.Drawing.Point(2, 2);
+            this.btnGeneral.Location = new System.Drawing.Point(3, 2);
+            this.btnGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGeneral.Name = "btnGeneral";
-            this.btnGeneral.Size = new System.Drawing.Size(152, 35);
+            this.btnGeneral.Size = new System.Drawing.Size(204, 43);
             this.btnGeneral.TabIndex = 0;
             this.btnGeneral.Text = "General Management";
             this.btnGeneral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -171,9 +197,10 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReport.Image = global::AusNail.Properties.Resources.report;
             this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(2, 104);
+            this.btnReport.Location = new System.Drawing.Point(3, 128);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(152, 35);
+            this.btnReport.Size = new System.Drawing.Size(204, 43);
             this.btnReport.TabIndex = 0;
             this.btnReport.Text = "Report";
             this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -182,56 +209,168 @@ namespace AusNail
             // 
             // pnlForm
             // 
-            this.pnlForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pnlForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(242)))));
             this.pnlForm.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
+            this.pnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(710, 437);
+            this.pnlForm.Size = new System.Drawing.Size(947, 539);
             this.pnlForm.TabIndex = 0;
             // 
-            // menuStrip1
+            // mnsMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(879, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mnsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zdm,
+            this.zps,
+            this.zbc,
+            this.zsys,
+            this.zst});
+            this.mnsMenu.Location = new System.Drawing.Point(0, 0);
+            this.mnsMenu.Name = "mnsMenu";
+            this.mnsMenu.Size = new System.Drawing.Size(1172, 28);
+            this.mnsMenu.TabIndex = 6;
+            this.mnsMenu.Text = "Menu";
             // 
-            // settingToolStripMenuItem
+            // zdm
             // 
-            this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formBorderStyleToolStripMenuItem});
-            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.settingToolStripMenuItem.Text = "Setting";
-            // 
-            // formBorderStyleToolStripMenuItem
-            // 
-            this.formBorderStyleToolStripMenuItem.Checked = true;
-            this.formBorderStyleToolStripMenuItem.CheckOnClick = true;
-            this.formBorderStyleToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.formBorderStyleToolStripMenuItem.Name = "formBorderStyleToolStripMenuItem";
-            this.formBorderStyleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.formBorderStyleToolStripMenuItem.Text = "FormBorderStyle";
+            this.zdm.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Branch,
+            this.Customer,
+            this.Service,
+            this.Staff,
+            this.Holiday,
+            this.Voucher,
+            this.BusinessHour});
+            this.zdm.Name = "zdm";
+            this.zdm.Size = new System.Drawing.Size(83, 24);
+            this.zdm.Text = "Category";
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // zps
+            // 
+            this.zps.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Booking,
+            this.Bill,
+            this.TimeKeeping});
+            this.zps.Name = "zps";
+            this.zps.Size = new System.Drawing.Size(72, 24);
+            this.zps.Text = "Process";
+            // 
+            // zbc
+            // 
+            this.zbc.Name = "zbc";
+            this.zbc.Size = new System.Drawing.Size(74, 24);
+            this.zbc.Text = "Reports";
+            // 
+            // zsys
+            // 
+            this.zsys.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.formBorToolStripMenuItem});
+            this.zsys.Name = "zsys";
+            this.zsys.Size = new System.Drawing.Size(70, 24);
+            this.zsys.Text = "System";
+            // 
+            // Branch
+            // 
+            this.Branch.Name = "Branch";
+            this.Branch.Size = new System.Drawing.Size(224, 26);
+            this.Branch.Text = "Branch";
+            // 
+            // Customer
+            // 
+            this.Customer.Name = "Customer";
+            this.Customer.Size = new System.Drawing.Size(224, 26);
+            this.Customer.Text = "Customer";
+            // 
+            // Service
+            // 
+            this.Service.Name = "Service";
+            this.Service.Size = new System.Drawing.Size(224, 26);
+            this.Service.Text = "Service";
+            // 
+            // Staff
+            // 
+            this.Staff.Name = "Staff";
+            this.Staff.Size = new System.Drawing.Size(224, 26);
+            this.Staff.Text = "Staff";
+            // 
+            // Holiday
+            // 
+            this.Holiday.Name = "Holiday";
+            this.Holiday.Size = new System.Drawing.Size(224, 26);
+            this.Holiday.Text = "Holiday";
+            // 
+            // Voucher
+            // 
+            this.Voucher.Name = "Voucher";
+            this.Voucher.Size = new System.Drawing.Size(224, 26);
+            this.Voucher.Text = "Voucher";
+            // 
+            // BusinessHour
+            // 
+            this.BusinessHour.Name = "BusinessHour";
+            this.BusinessHour.Size = new System.Drawing.Size(224, 26);
+            this.BusinessHour.Text = "BusinessHour";
+            // 
+            // Booking
+            // 
+            this.Booking.Name = "Booking";
+            this.Booking.Size = new System.Drawing.Size(224, 26);
+            this.Booking.Text = "Booking";
+            // 
+            // Bill
+            // 
+            this.Bill.Name = "Bill";
+            this.Bill.Size = new System.Drawing.Size(224, 26);
+            this.Bill.Text = "Bill";
+            // 
+            // TimeKeeping
+            // 
+            this.TimeKeeping.Name = "TimeKeeping";
+            this.TimeKeeping.Size = new System.Drawing.Size(224, 26);
+            this.TimeKeeping.Text = "TimeKeeping";
+            // 
+            // zst
+            // 
+            this.zst.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChangePassword});
+            this.zst.Name = "zst";
+            this.zst.Size = new System.Drawing.Size(70, 24);
+            this.zst.Text = "Setting";
+            // 
+            // ChangePassword
+            // 
+            this.ChangePassword.Name = "ChangePassword";
+            this.ChangePassword.Size = new System.Drawing.Size(224, 26);
+            this.ChangePassword.Text = "Change Password";
+            this.ChangePassword.Click += new System.EventHandler(this.ChangePassword_Click);
+            // 
+            // formBorToolStripMenuItem
+            // 
+            this.formBorToolStripMenuItem.Checked = true;
+            this.formBorToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.formBorToolStripMenuItem.Name = "formBorToolStripMenuItem";
+            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.formBorToolStripMenuItem.Text = "Form Border Style";
+            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 461);
+            this.ClientSize = new System.Drawing.Size(1172, 567);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mnsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mnsMenu;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -244,8 +383,8 @@ namespace AusNail
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mnsMenu.ResumeLayout(false);
+            this.mnsMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,21 +396,30 @@ namespace AusNail
         private System.Windows.Forms.Panel pnlForm;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button btnCost;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formBorderStyleToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip mnsMenu;
+        private System.Windows.Forms.ToolStripMenuItem zdm;
         private System.Windows.Forms.Button btnRevenue;
         private System.Windows.Forms.Button btnGeneral;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TreeView trvMenu;
         private System.Windows.Forms.TextBox txtSearchMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-
-
-
-
-
-
+        private System.Windows.Forms.ToolStripMenuItem zps;
+        private System.Windows.Forms.ToolStripMenuItem zbc;
+        private System.Windows.Forms.ToolStripMenuItem zsys;
+        private System.Windows.Forms.ToolStripMenuItem Branch;
+        private System.Windows.Forms.ToolStripMenuItem Customer;
+        private System.Windows.Forms.ToolStripMenuItem Service;
+        private System.Windows.Forms.ToolStripMenuItem Staff;
+        private System.Windows.Forms.ToolStripMenuItem Holiday;
+        private System.Windows.Forms.ToolStripMenuItem Voucher;
+        private System.Windows.Forms.ToolStripMenuItem BusinessHour;
+        private System.Windows.Forms.ToolStripMenuItem Booking;
+        private System.Windows.Forms.ToolStripMenuItem Bill;
+        private System.Windows.Forms.ToolStripMenuItem TimeKeeping;
+        private System.Windows.Forms.ToolStripMenuItem zst;
+        private System.Windows.Forms.ToolStripMenuItem ChangePassword;
+        private System.Windows.Forms.ToolStripMenuItem formBorToolStripMenuItem;
     }
 }
 

@@ -56,7 +56,7 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(HOLIDAY_LIST_CMDKEY))
+            if (!NailApp.lstPermission.Contains(HOLIDAY_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -67,6 +67,11 @@ namespace AusNail.Dictionary
 
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(HOLIDAY_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(cbobranchId);
             CreateBinding(txtNames);
@@ -83,7 +88,7 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(HOLIDAY_ADD_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(HOLIDAY_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -92,7 +97,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(HOLIDAY_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(HOLIDAY_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -217,7 +222,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(HOLIDAY_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(HOLIDAY_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return ;

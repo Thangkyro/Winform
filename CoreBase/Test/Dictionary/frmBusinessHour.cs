@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace AusNail.Dictionary
 {
-    public partial class frmWorkShift : CoreBase.WinForm.Dictionary.Dictionary
+    public partial class frmBusinessHour : CoreBase.WinForm.Dictionary.Dictionary
     {
         const string WORKSHIFT_CMDKEY = "BusinessHour";
         const string WORKSHIFT_ADD_CMDKEY = "BusinessHour_add";
@@ -26,7 +26,7 @@ namespace AusNail.Dictionary
         string _idName = "BusinessID";
         int _postion = 0;
         DataTable _branch = new DataTable();
-        public frmWorkShift()
+        public frmBusinessHour()
         {
             InitializeComponent();
             Load += UserForm_Load;
@@ -55,7 +55,7 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(WORKSHIFT_LIST_CMDKEY))
+            if (!NailApp.lstPermission.Contains(WORKSHIFT_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -66,6 +66,11 @@ namespace AusNail.Dictionary
 
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(WORKSHIFT_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(cbobranchId);
             CreateBinding(txtDayOfWeek);
@@ -81,7 +86,7 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(WORKSHIFT_ADD_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(WORKSHIFT_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -90,7 +95,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(WORKSHIFT_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(WORKSHIFT_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false; 
@@ -214,7 +219,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(WORKSHIFT_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(WORKSHIFT_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;

@@ -58,17 +58,22 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            //if (!NailApp.lstPermission.Contains(STAFF_LIST_CMDKEY))
-            //{
-            //    lblMessInfomation.Text = "Unauthorized";
-            //    return;
-            //}
+            if (!NailApp.lstPermission.Contains(STAFF_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             LoadData();
             base.BeforeFillData();
         }
 
         protected override void FillData()
         {
+            if (!NailApp.lstPermission.Contains(STAFF_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
             base.FillData();
             CreateBinding(cbobranchId);
             CreateBinding(txtStaffCode);
@@ -92,11 +97,11 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    //if (!NailApp.lstPermission.Contains(STAFF_ADD_CMDKEY))
-                    //{
-                    //    lblMessInfomation.Text = "Unauthorized";
-                    //    return false;
-                    //}
+                    if (!NailApp.lstPermission.Contains(STAFF_ADD_CMDKEY) && !NailApp.IsAdmin())
+                    {
+                        lblMessInfomation.Text = "Unauthorized";
+                        return false;
+                    }
                     if (base.InsertData())
                     {
                         // Insert Image
@@ -125,7 +130,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(STAFF_EDIT_CMDKEY))
+                    if (!NailApp.lstPermission.Contains(STAFF_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -324,7 +329,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(STAFF_DEL_CMDKEY))
+            if (!NailApp.lstPermission.Contains(STAFF_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;

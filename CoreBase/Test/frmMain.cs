@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using CoreBase;
 using CoreBase.Helpers;
 using CoreBase.DataAccessLayer;
+using AusNail.Dictionary;
+using AusNail.Login;
 
 namespace AusNail
 {
@@ -30,9 +32,10 @@ namespace AusNail
             //Tạo con trỏ tới hàm GetMessage
             Sender = new SendMessage(GetMessage);
             //Hàm có nhiệm vụ lấy tham số truyền vào
-            Login.frmLogin frm = new Login.frmLogin();
-            ShowForm(frm);
-            LoadMenu();
+            //Login.frmLogin frm = new Login.frmLogin();
+            //ShowForm(frm);
+            //LoadMenu();
+            InitCommandOld();
         }   
         private void GetMessage(int branchid, int userid)
         {
@@ -40,13 +43,13 @@ namespace AusNail
             _userID = userid;
         }
 
-        public frmMain(int branchID, int userId)
-        {
-            InitializeComponent();
-            _branchID = branchID;
-            _userID = userId;
-            LoadMenu();
-        }
+        //public frmMain()
+        //{
+        //    InitializeComponent();
+        //    _branchID = branchID;
+        //    _userID = userId;
+        //    //LoadMenu();
+        //}
 
         private void LoadMenu()
         {
@@ -64,13 +67,22 @@ namespace AusNail
             //    f.Close();
             //}
             frm.TopLevel = false;
-            pnlForm.Controls.Add(frm);
-            if (formBorderStyleToolStripMenuItem.Checked)
+            if (pnlForm.Controls.ContainsKey(frm.Name))
             {
-                frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
             }
-            frm.Dock = DockStyle.Fill;
-            frm.Show();
+            else
+            {
+                pnlForm.Controls.Add(frm);
+                if (formBorToolStripMenuItem.Checked)
+                {
+                    frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                }
+                frm.Dock = DockStyle.Fill;
+                frm.TopMost = true;
+                frm.Show();
+            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -101,6 +113,160 @@ namespace AusNail
                 txtSearchMenu.Text = "";
                 txtSearchMenu.ForeColor = Color.Black;
             }
+        }
+
+        void InitCommandOld()
+        {
+            InitCommandDm();
+            //InitCommandCs();
+            //InitCommandPs();
+            //InitCommandBc();
+            //InitCommandSys();
+            //InitCommandQuyDinh();
+
+        }
+
+        void InitCommandDm()
+        {
+            //category
+            if (NailApp.lstPermission.Contains(Branch.Name) || NailApp.IsAdmin())
+                Branch.Click += (s, e) => { frmBranch(); };
+            else
+                Branch.Visible = false;
+
+            if (NailApp.lstPermission.Contains(Customer.Name) || NailApp.IsAdmin())
+                Customer.Click += (s, e) => { frmCustomer(); };
+            else
+                Customer.Visible = false;
+
+
+            if (NailApp.lstPermission.Contains(Service.Name) || NailApp.IsAdmin())
+                Service.Click += (s, e) => { frmService(); };
+            else
+                Service.Visible = false;
+
+
+            if (NailApp.lstPermission.Contains(Staff.Name) || NailApp.IsAdmin())
+                Staff.Click += (s, e) => { frmStaff(); };
+            else
+                Staff.Visible = false;
+
+
+            if (NailApp.lstPermission.Contains(Holiday.Name) || NailApp.IsAdmin())
+                Holiday.Click += (s, e) => { frmHoliday(); };
+            else
+                Holiday.Visible = false;
+
+            if (NailApp.lstPermission.Contains(Voucher.Name) || NailApp.IsAdmin())
+                Voucher.Click += (s, e) => { frmVoucher(); };
+            else
+                Voucher.Visible = false;
+
+            if (NailApp.lstPermission.Contains(BusinessHour.Name) || NailApp.IsAdmin())
+                BusinessHour.Click += (s, e) => { frmBusinessHour(); };
+            else
+                BusinessHour.Visible = false;
+
+        }
+
+        void InitCommandPS()
+        {
+            //category
+            if (NailApp.lstPermission.Contains(Booking.Name) || NailApp.IsAdmin())
+                Booking.Click += (s, e) => { frmBooking(); };
+            else
+                Booking.Visible = false;
+
+            //if (NailApp.lstPermission.Contains(Bill.Name) || NailApp.IsAdmin())
+            //    Bill.Click += (s, e) => { frmBill(); };
+            //else
+            //    Bill.Visible = false;
+
+            //if (NailApp.lstPermission.Contains(TimeKeeping.Name) || NailApp.IsAdmin())
+            //    TimeKeeping.Click += (s, e) => { frmTimeKeeping(); };
+            //else
+            //    TimeKeeping.Visible = false;
+        }
+
+
+        #region Category
+        void DoDmKhAdd()
+        {
+            if (!NailApp.lstPermission.Contains("Branch"))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này.",MessageType.Warning.ToString(),MessageBoxButtons.OKCancel);
+                return;
+            }
+
+            frmBranch frmBranch = new frmBranch();
+            if (frmBranch.AddNew())
+                MessageBox.Show(string.Format("Thêm thành công khách hàng [{0}].", frmBranch.zEditRow["ten_kh"]));
+        }
+
+        void frmBranch()
+        {
+            frmBranch f = new frmBranch();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmCustomer()
+        {
+            frmCustomer f = new frmCustomer();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmService()
+        {
+            frmService f = new frmService();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmStaff()
+        {
+            frmStaff f = new frmStaff();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmHoliday()
+        {
+            frmHoliday f = new frmHoliday();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmVoucher()
+        {
+            frmVoucher f = new frmVoucher();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        void frmBusinessHour()
+        {
+            frmBusinessHour f = new frmBusinessHour();
+            ShowForm(f);
+            //f.ShowDialog();
+        }
+        #endregion
+
+        #region Process
+        void frmBooking()
+        {
+            //frmBooking f = new frmBranch();
+            //ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        #endregion
+
+        private void ChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword f = new frmChangePassword();
+            ShowForm(f);
         }
     }
 }
