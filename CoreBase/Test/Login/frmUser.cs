@@ -10,11 +10,11 @@ namespace AusNail.Dictionary
 {
     public partial class frmUser : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string USER_CMDKEY = "User";
-        const string USER_ADD_CMDKEY = "User_add";
-        const string USER_DEL_CMDKEY = "User_del";
-        const string USER_EDIT_CMDKEY = "User_edit";
-        const string USER_LIST_CMDKEY = "User_list";
+        const string USER_CMDKEY = "frmUser";
+        const string USER_ADD_CMDKEY = "frmUser_add";
+        const string USER_DEL_CMDKEY = "frmUser_del";
+        const string USER_EDIT_CMDKEY = "frmUser_edit";
+        const string USER_LIST_CMDKEY = "frmUser_list";
         DataRow _dr;
         DataTable _User;
         string _tableName = "zUser";
@@ -66,11 +66,11 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(USER_LIST_CMDKEY))
-            {
-                lblMessInfomation.Text = "Unauthorized";
-                return;
-            }
+            //if (!NailApp.lstPermission.Contains(USER_LIST_CMDKEY))
+            //{
+            //    lblMessInfomation.Text = "Unauthorized";
+            //    return;
+            //}
             LoadData();
             base.BeforeFillData();
         }
@@ -95,20 +95,20 @@ namespace AusNail.Dictionary
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(USER_ADD_CMDKEY))
-                    {
-                        lblMessInfomation.Text = "Unauthorized";
-                        return false; 
-                    }
+                    //if (!NailApp.lstPermission.Contains(USER_ADD_CMDKEY))
+                    //{
+                    //    lblMessInfomation.Text = "Unauthorized";
+                    //    return false; 
+                    //}
                     return base.InsertData();
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(USER_EDIT_CMDKEY))
-                    {
-                        lblMessInfomation.Text = "Unauthorized";
-                        return false;
-                    }
+                    //if (!NailApp.lstPermission.Contains(USER_EDIT_CMDKEY))
+                    //{
+                    //    lblMessInfomation.Text = "Unauthorized";
+                    //    return false;
+                    //}
                     return base.UpdateData();
                 }
 
@@ -248,11 +248,11 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(USER_DEL_CMDKEY))
-            {
-                lblMessInfomation.Text = "Unauthorized";
-                return;
-            }
+            //if (!NailApp.lstPermission.Contains(USER_DEL_CMDKEY))
+            //{
+            //    lblMessInfomation.Text = "Unauthorized";
+            //    return;
+            //}
             DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
             if (result == DialogResult.Yes)
             {
@@ -315,7 +315,7 @@ namespace AusNail.Dictionary
                 if (CheckExistsUserName(Convert.ToString(e.FormattedValue)) == 1)
                 {
                     e.Cancel = true;
-                    lblMessInfomation.Text = "User Name exists.";
+                    lblMessInfomation.Text = "User Name existed.";
                 }
                 else
                 {
