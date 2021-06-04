@@ -34,10 +34,6 @@ namespace AusNail
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtSearchMenu = new System.Windows.Forms.TextBox();
             this.trvMenu = new System.Windows.Forms.TreeView();
-            this.btnRevenue = new System.Windows.Forms.Button();
-            this.btnCost = new System.Windows.Forms.Button();
-            this.btnGeneral = new System.Windows.Forms.Button();
-            this.btnReport = new System.Windows.Forms.Button();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.mnsMenu = new System.Windows.Forms.MenuStrip();
             this.zdm = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,13 +48,17 @@ namespace AusNail
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
             this.Bill = new System.Windows.Forms.ToolStripMenuItem();
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zbc = new System.Windows.Forms.ToolStripMenuItem();
             this.zsys = new System.Windows.Forms.ToolStripMenuItem();
             this.formBorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zst = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRevenue = new System.Windows.Forms.Button();
+            this.btnCost = new System.Windows.Forms.Button();
+            this.btnGeneral = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
+            this.checkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,66 +137,6 @@ namespace AusNail
             this.trvMenu.Name = "trvMenu";
             this.trvMenu.Size = new System.Drawing.Size(151, 209);
             this.trvMenu.TabIndex = 0;
-            // 
-            // btnRevenue
-            // 
-            this.btnRevenue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRevenue.Image = global::AusNail.Properties.Resources.revenue;
-            this.btnRevenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRevenue.Location = new System.Drawing.Point(2, 36);
-            this.btnRevenue.Name = "btnRevenue";
-            this.btnRevenue.Size = new System.Drawing.Size(152, 35);
-            this.btnRevenue.TabIndex = 0;
-            this.btnRevenue.Text = "Revenue management";
-            this.btnRevenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRevenue.UseVisualStyleBackColor = true;
-            this.btnRevenue.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnCost
-            // 
-            this.btnCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCost.Image = global::AusNail.Properties.Resources.cost;
-            this.btnCost.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCost.Location = new System.Drawing.Point(2, 70);
-            this.btnCost.Name = "btnCost";
-            this.btnCost.Size = new System.Drawing.Size(152, 35);
-            this.btnCost.TabIndex = 0;
-            this.btnCost.Text = "Cost management";
-            this.btnCost.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCost.UseVisualStyleBackColor = true;
-            this.btnCost.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnGeneral
-            // 
-            this.btnGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGeneral.Image = global::AusNail.Properties.Resources.general;
-            this.btnGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGeneral.Location = new System.Drawing.Point(2, 2);
-            this.btnGeneral.Name = "btnGeneral";
-            this.btnGeneral.Size = new System.Drawing.Size(152, 35);
-            this.btnGeneral.TabIndex = 0;
-            this.btnGeneral.Text = "General Management";
-            this.btnGeneral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGeneral.UseVisualStyleBackColor = true;
-            this.btnGeneral.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnReport
-            // 
-            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReport.Image = global::AusNail.Properties.Resources.report;
-            this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(2, 104);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(152, 35);
-            this.btnReport.TabIndex = 0;
-            this.btnReport.Text = "Report";
-            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReport.UseVisualStyleBackColor = true;
-            this.btnReport.Click += new System.EventHandler(this.button2_Click);
             // 
             // pnlForm
             // 
@@ -294,28 +234,20 @@ namespace AusNail
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(180, 22);
+            this.Booking.Size = new System.Drawing.Size(143, 22);
             this.Booking.Text = "Booking";
             // 
             // Bill
             // 
             this.Bill.Name = "Bill";
-            this.Bill.Size = new System.Drawing.Size(180, 22);
+            this.Bill.Size = new System.Drawing.Size(143, 22);
             this.Bill.Text = "Bill";
-            this.Bill.Click += new System.EventHandler(this.Bill_Click);
             // 
             // TimeKeeping
             // 
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(180, 22);
+            this.TimeKeeping.Size = new System.Drawing.Size(143, 22);
             this.TimeKeeping.Text = "TimeKeeping";
-            // 
-            // checkingToolStripMenuItem
-            // 
-            this.checkingToolStripMenuItem.Name = "checkingToolStripMenuItem";
-            this.checkingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.checkingToolStripMenuItem.Text = "Checking";
-            this.checkingToolStripMenuItem.Click += new System.EventHandler(this.checkingToolStripMenuItem_Click);
             // 
             // zbc
             // 
@@ -360,6 +292,73 @@ namespace AusNail
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // btnRevenue
+            // 
+            this.btnRevenue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRevenue.Image = global::AusNail.Properties.Resources.revenue;
+            this.btnRevenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRevenue.Location = new System.Drawing.Point(2, 36);
+            this.btnRevenue.Name = "btnRevenue";
+            this.btnRevenue.Size = new System.Drawing.Size(152, 35);
+            this.btnRevenue.TabIndex = 0;
+            this.btnRevenue.Text = "Revenue management";
+            this.btnRevenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRevenue.UseVisualStyleBackColor = true;
+            this.btnRevenue.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnCost
+            // 
+            this.btnCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCost.Image = global::AusNail.Properties.Resources.cost;
+            this.btnCost.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCost.Location = new System.Drawing.Point(2, 70);
+            this.btnCost.Name = "btnCost";
+            this.btnCost.Size = new System.Drawing.Size(152, 35);
+            this.btnCost.TabIndex = 0;
+            this.btnCost.Text = "Cost management";
+            this.btnCost.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCost.UseVisualStyleBackColor = true;
+            this.btnCost.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnGeneral
+            // 
+            this.btnGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGeneral.Image = global::AusNail.Properties.Resources.general;
+            this.btnGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGeneral.Location = new System.Drawing.Point(2, 2);
+            this.btnGeneral.Name = "btnGeneral";
+            this.btnGeneral.Size = new System.Drawing.Size(152, 35);
+            this.btnGeneral.TabIndex = 0;
+            this.btnGeneral.Text = "General Management";
+            this.btnGeneral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGeneral.UseVisualStyleBackColor = true;
+            this.btnGeneral.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.Image = global::AusNail.Properties.Resources.report;
+            this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReport.Location = new System.Drawing.Point(2, 104);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(152, 35);
+            this.btnReport.TabIndex = 0;
+            this.btnReport.Text = "Report";
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // checkingToolStripMenuItem
+            // 
+            this.checkingToolStripMenuItem.Name = "checkingToolStripMenuItem";
+            this.checkingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.checkingToolStripMenuItem.Text = "Checking";
+            this.checkingToolStripMenuItem.Click += new System.EventHandler(this.checkingToolStripMenuItem_Click);
             // 
             // frmMain
             // 

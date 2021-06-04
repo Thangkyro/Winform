@@ -100,7 +100,7 @@ namespace CoreBase
                 if (CurrentUserRow == null)
                     return -1;
 
-                return CurrentUserRow[0].zToInt();
+                return CurrentUserRow[4].zToInt();
             }
         }
 

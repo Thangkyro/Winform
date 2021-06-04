@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCheckin));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,7 +39,6 @@
             this.gridHolidays = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.treHistory = new System.Windows.Forms.TreeView();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,9 +50,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numSL = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
             this.lbl_R_Total = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.gridRegister = new System.Windows.Forms.DataGridView();
@@ -66,7 +62,6 @@
             this.col_R_Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_R_ServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_R_StaffId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.cb_B_ServiceName = new System.Windows.Forms.ComboBox();
             this.cb_B_StaftName = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -85,6 +80,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -134,9 +134,9 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.gridHolidays);
-            this.groupBox6.Location = new System.Drawing.Point(6, 399);
+            this.groupBox6.Location = new System.Drawing.Point(6, 322);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(289, 104);
+            this.groupBox6.Size = new System.Drawing.Size(289, 181);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Holidays";
@@ -151,7 +151,7 @@
             this.gridHolidays.Location = new System.Drawing.Point(10, 20);
             this.gridHolidays.Name = "gridHolidays";
             this.gridHolidays.RowHeadersVisible = false;
-            this.gridHolidays.Size = new System.Drawing.Size(270, 73);
+            this.gridHolidays.Size = new System.Drawing.Size(270, 150);
             this.gridHolidays.TabIndex = 0;
             // 
             // groupBox3
@@ -162,7 +162,7 @@
             this.groupBox3.Controls.Add(this.treHistory);
             this.groupBox3.Location = new System.Drawing.Point(6, 96);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(289, 297);
+            this.groupBox3.Size = new System.Drawing.Size(289, 220);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "History";
@@ -174,24 +174,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treHistory.Location = new System.Drawing.Point(25, 22);
             this.treHistory.Name = "treHistory";
-            this.treHistory.Size = new System.Drawing.Size(244, 254);
+            this.treHistory.Size = new System.Drawing.Size(244, 177);
             this.treHistory.TabIndex = 0;
             this.treHistory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treHistory_AfterSelect);
             this.treHistory.Click += new System.EventHandler(this.treHistory_Click);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheck.Image = global::AusNail.Properties.Resources.zoom;
-            this.btnCheck.Location = new System.Drawing.Point(209, 41);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(86, 40);
-            this.btnCheck.TabIndex = 1;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // label1
             // 
@@ -321,45 +307,6 @@
             this.numSL.Size = new System.Drawing.Size(123, 20);
             this.numSL.TabIndex = 3;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::AusNail.Properties.Resources.Print;
-            this.button1.Location = new System.Drawing.Point(436, 272);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 43);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Print Temporary Bill";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Image = global::AusNail.Properties.Resources.cancel;
-            this.button2.Location = new System.Drawing.Point(575, 272);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(71, 43);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Exit";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegister.Image = global::AusNail.Properties.Resources.Save;
-            this.btnRegister.Location = new System.Drawing.Point(362, 272);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(71, 43);
-            this.btnRegister.TabIndex = 9;
-            this.btnRegister.Text = "Save";
-            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
             // lbl_R_Total
             // 
             this.lbl_R_Total.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -429,9 +376,9 @@
             // 
             // ColQuantity
             // 
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.ColQuantity.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.ColQuantity.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColQuantity.FillWeight = 70F;
             this.ColQuantity.HeaderText = "Quantity";
             this.ColQuantity.Name = "ColQuantity";
@@ -440,18 +387,18 @@
             // 
             // col_R_Price
             // 
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.col_R_Price.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.col_R_Price.DefaultCellStyle = dataGridViewCellStyle5;
             this.col_R_Price.HeaderText = "Price";
             this.col_R_Price.Name = "col_R_Price";
             this.col_R_Price.ReadOnly = true;
             // 
             // col_R_Amount
             // 
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.col_R_Amount.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.col_R_Amount.DefaultCellStyle = dataGridViewCellStyle6;
             this.col_R_Amount.HeaderText = "Amount";
             this.col_R_Amount.Name = "col_R_Amount";
             this.col_R_Amount.ReadOnly = true;
@@ -473,19 +420,6 @@
             this.Col_R_StaffId.HeaderText = "Staff Id";
             this.Col_R_StaffId.Name = "Col_R_StaffId";
             this.Col_R_StaffId.Visible = false;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Image = global::AusNail.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(581, 81);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(65, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cb_B_ServiceName
             // 
@@ -670,6 +604,72 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheck.Image = global::AusNail.Properties.Resources.zoom;
+            this.btnCheck.Location = new System.Drawing.Point(209, 41);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(86, 40);
+            this.btnCheck.TabIndex = 1;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = global::AusNail.Properties.Resources.Print;
+            this.button1.Location = new System.Drawing.Point(436, 272);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 43);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Print Temporary Bill";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Image = global::AusNail.Properties.Resources.cancel;
+            this.button2.Location = new System.Drawing.Point(575, 272);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(71, 43);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Exit";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.Image = global::AusNail.Properties.Resources.Save;
+            this.btnRegister.Location = new System.Drawing.Point(362, 272);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(71, 43);
+            this.btnRegister.TabIndex = 9;
+            this.btnRegister.Text = "Save";
+            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Image = global::AusNail.Properties.Resources.add;
+            this.btnAdd.Location = new System.Drawing.Point(581, 81);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(65, 23);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmCheckin
             // 
