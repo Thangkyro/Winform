@@ -103,7 +103,7 @@
             this.lblTime.Location = new System.Drawing.Point(1082, 12);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 21);
-            this.lblTime.Text = "22:55:10";
+            this.lblTime.Text = "14:34:58";
             // 
             // GridDetail
             // 
@@ -112,6 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridDetail.BackgroundColor = System.Drawing.Color.White;
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Location = new System.Drawing.Point(13, 14);
             this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";

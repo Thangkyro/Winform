@@ -94,6 +94,7 @@ namespace AusNail.Dictionary
         {
             try
             {
+                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -102,7 +103,8 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    if (base.InsertData())
+                    isSuccess = base.InsertData();
+                    if (isSuccess)
                     {
                         // Insert Image
                         int staffID = 0;
@@ -123,10 +125,7 @@ namespace AusNail.Dictionary
                         }
                         
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    
                 }
                 else
                 {
@@ -135,7 +134,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    if (base.UpdateData())
+                    if (isSuccess = base.UpdateData())
                     {
                         // Insert Image
                         int staffID = 0;
@@ -176,7 +175,11 @@ namespace AusNail.Dictionary
                 //}
                 //return true;
                 #endregion
-                LoadData();
+                if (isSuccess)
+                {
+                    LoadData();
+                }
+                return isSuccess;
             }
             catch (Exception ex)
             {
@@ -233,7 +236,7 @@ namespace AusNail.Dictionary
             GridDetail.Columns.Add(dgvCmb);
             GridDetail.Columns["BranchId"].DisplayIndex = 0;
 
-           
+
 
             DataGridViewButtonColumn dgvC = new DataGridViewButtonColumn();
             dgvC.DataPropertyName = "UploadImage";
@@ -241,16 +244,21 @@ namespace AusNail.Dictionary
             dgvC.Name = "UploadImage";
             dgvC.Text = "Upload Image";
             dgvC.UseColumnTextForButtonValue = true;
-            GridDetail.Columns.Add(dgvC);
-            GridDetail.Columns["UploadImage"].DisplayIndex = 4;
+            var DataGridViewButtonColumn = GridDetail.Columns["UploadImage"];
+            if (DataGridViewButtonColumn == null)
+            {
+                GridDetail.Columns.Add(dgvC);
+                GridDetail.Columns["UploadImage"].DisplayIndex = 2;
+            }
+            
 
             //Image
-            DataGridViewImageColumn dgvIm = new DataGridViewImageColumn();
-            dgvIm.DataPropertyName = "ImageName";
-            dgvIm.HeaderText = "ImageName";
-            dgvIm.Name = "ImageName";
-            GridDetail.Columns.Add(dgvIm);
-            GridDetail.Columns["ImageName"].DisplayIndex = 20;
+            //DataGridViewImageColumn dgvIm = new DataGridViewImageColumn();
+            //dgvIm.DataPropertyName = "ImageName";
+            //dgvIm.HeaderText = "ImageName";
+            //dgvIm.Name = "ImageName";
+            //GridDetail.Columns.Add(dgvIm);
+            //GridDetail.Columns["ImageName"].DisplayIndex = 20;
 
 
             //DataGridViewTextBoxColumn dgvT = new DataGridViewTextBoxColumn();
@@ -259,7 +267,7 @@ namespace AusNail.Dictionary
             //dgvT.Name = "ImageName";
             //GridDetail.Columns.Add(dgvT);
 
-            GridDetail.Columns["ImageName"].ReadOnly = true;
+            ///GridDetail.Columns["ImageName"].ReadOnly = true;
             GridDetail.Columns["StaffId"].Visible = false;
             //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["StaffCode"].HeaderText = "Staff Code";
@@ -310,9 +318,13 @@ namespace AusNail.Dictionary
                     DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select Top 1 Image From zStaffImages WITH(NOLOCK) Where StaffId = " + staffID + " order by created_at desc");
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        var data = (Byte[])dt.Rows[0][0];
-                        var stream = new MemoryStream(data);
-                        pbImage.Image = Image.FromStream(stream);
+                        if (dt.Rows[0][0] != DBNull.Value)
+                        {
+                            var data = (Byte[])dt.Rows[0][0];
+                            var stream = new MemoryStream(data);
+                            pbImage.Image = Image.FromStream(stream);
+                        }
+                        
                     }
                     else
                     {
@@ -320,10 +332,10 @@ namespace AusNail.Dictionary
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.ToString());
+                //throw;
             }
         }
 
@@ -383,7 +395,7 @@ namespace AusNail.Dictionary
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0 && GridDetail[1, e.RowIndex].Value != DBNull.Value)
+                e.RowIndex >= 0 && GridDetail["StaffCode", e.RowIndex].Value != "")
             {
                 //TODO - Button Clicked - Execute Code Here
                 OpenFileDialog opnfd = new OpenFileDialog();
@@ -401,7 +413,7 @@ namespace AusNail.Dictionary
                     if (bytes != null)
                     {
                         GridDetail[cIndex, rIndex].Value = bytes;
-                        string staffCode = GridDetail[1, rIndex].Value.ToString();
+                        string staffCode = GridDetail["StaffCode", rIndex].Value.ToString();
                         if (dicImage.ContainsKey(staffCode))
                         {
                             dicImage.Remove(staffCode);
@@ -430,12 +442,16 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 2) // 1 Name
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("Name") && Convert.ToString(e.FormattedValue) != "") // 1 Name
             {
-                int rIndex = e.RowIndex;
-                int cIndex = 1;
-
-                GridDetail[cIndex, rIndex].Value = GenStaffCode();
+                int id = int.Parse(GridDetail["StaffId", e.RowIndex].Value != DBNull.Value ? GridDetail["StaffId", e.RowIndex].Value.ToString() : "0");
+                if (id == 0) // add new
+                {
+                    int rIndex = e.RowIndex;
+                    GridDetail["StaffCode", rIndex].Value = GenStaffCode();
+                }
+                
             }
         }
 
