@@ -15,6 +15,7 @@ namespace AusNail.Process
     {
         int _branchId = 2;
         int _UserId = 1;
+        string _fromID = "";
         DataTable _dtCustomer = null;
         DataTable _dtService = null;
         string _idBranchName = "branchId";
@@ -35,6 +36,33 @@ namespace AusNail.Process
         public frmCheckin(int branchID, int userId)
         {
             InitializeComponent();
+            _branchId = branchID;
+            _UserId = userId;
+            loadHolidaysList(_branchId);
+            _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
+            EnableBookingInfor(false);
+        }
+
+        /// <summary>
+        /// Component 
+        /// </summary>
+        /// <param name="branchID"></param>
+        /// <param name="userId"></param>
+        /// <param name="FormId"> Bill -  Form bill; Book - From Booking</param>
+        public frmCheckin(int branchID, int userId, string FormId)
+        {
+            InitializeComponent();
+            _fromID = FormId;
+            if (_fromID == "Bill")
+            {
+                this.Text = "Form Bill";
+                btnEditBooking.Text = "Edit Bill";
+            }
+            if (_fromID == "Book")
+            {
+                this.Text = "Form Checking";
+                btnEditBooking.Text = "Edit Booking";
+            }
             _branchId = branchID;
             _UserId = userId;
             loadHolidaysList(_branchId);
@@ -139,25 +167,52 @@ namespace AusNail.Process
             {
                 treHistory.Nodes.Clear();
                 int customerid = int.Parse(_dtCustomer.Rows[0][_idCustomerName].ToString());
-                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_byCustomer", customerid);
-                if (dt != null && dt.Rows.Count > 0)
+                DataTable dt = null;
+                if (_fromID == "Book")
                 {
-                    foreach (DataRow dr in dt.Rows)
+                    dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_byCustomer", customerid);
+                    if (dt != null && dt.Rows.Count > 0)
                     {
-                        treHistory.ImageList = imageList1;
-                        string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BookingDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            treHistory.ImageList = imageList1;
+                            string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BookingDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
+                            TreeNode note = new TreeNode();
+                            note.Text = infor;
+                            note.Tag = dr["BookID"].ToString();
+                            treHistory.Nodes.Add(note);
+                        }
+                    }
+                    else
+                    {
                         TreeNode note = new TreeNode();
-                        note.Text = infor;
-                        note.Tag = dr["BookID"].ToString();
+                        note.Text = "No historical data.";
+                        note.Tag = "-1";
                         treHistory.Nodes.Add(note);
                     }
                 }
-                else
+                if (_fromID == "Bill")
                 {
-                    TreeNode note = new TreeNode();
-                    note.Text = "No historical data.";
-                    note.Tag = "-1";
-                    treHistory.Nodes.Add(note);
+                    dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_byCustomer", customerid);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            treHistory.ImageList = imageList1;
+                            string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BillDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
+                            TreeNode note = new TreeNode();
+                            note.Text = infor;
+                            note.Tag = dr["BillID"].ToString();
+                            treHistory.Nodes.Add(note);
+                        }
+                    }
+                    else
+                    {
+                        TreeNode note = new TreeNode();
+                        note.Text = "No historical data.";
+                        note.Tag = "-1";
+                        treHistory.Nodes.Add(note);
+                    }
                 }
             }
             catch 
@@ -532,11 +587,18 @@ namespace AusNail.Process
         {
             try
             {
-                int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
-                string str = treHistory.SelectedNode.Text.ToString();
-                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
-                txt_B_Date.Value = DateTime.Parse(date);
-                loadGridDetail(bookingId);               
+                if (_fromID == "Book")
+                {
+                    int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
+                    string str = treHistory.SelectedNode.Text.ToString();
+                    string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                    txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                    loadGridDetail(bookingId);
+                }
+                if (_fromID == "Bill")
+                {
+
+                }
             }
             catch
             {
@@ -547,11 +609,18 @@ namespace AusNail.Process
         {
             try
             {
-                int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
-                string str = treHistory.SelectedNode.Text.ToString();
-                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
-                txt_B_Date.Value = DateTime.Parse(date);
-                loadGridDetail(bookingId);
+                if (_fromID == "Book")
+                {
+                    int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
+                    string str = treHistory.SelectedNode.Text.ToString();
+                    string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                    txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                    loadGridDetail(bookingId);
+                }
+                if (_fromID == "Bill")
+                {
+
+                }
             }
             catch
             {

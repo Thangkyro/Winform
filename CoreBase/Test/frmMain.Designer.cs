@@ -49,7 +49,6 @@ namespace AusNail
             this.Voucher = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessHour = new System.Windows.Forms.ToolStripMenuItem();
             this.zps = new System.Windows.Forms.ToolStripMenuItem();
-            this.Booking = new System.Windows.Forms.ToolStripMenuItem();
             this.Bill = new System.Windows.Forms.ToolStripMenuItem();
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
             this.checkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,8 +57,8 @@ namespace AusNail
             this.formBorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zst = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.User = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,8 +73,7 @@ namespace AusNail
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -86,9 +84,8 @@ namespace AusNail
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlForm);
-            this.splitContainer1.Size = new System.Drawing.Size(1172, 539);
-            this.splitContainer1.SplitterDistance = 220;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(879, 437);
+            this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -97,8 +94,7 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer2.Location = new System.Drawing.Point(4, 4);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -115,9 +111,8 @@ namespace AusNail
             this.splitContainer2.Panel2.Controls.Add(this.btnCost);
             this.splitContainer2.Panel2.Controls.Add(this.btnGeneral);
             this.splitContainer2.Panel2.Controls.Add(this.btnReport);
-            this.splitContainer2.Size = new System.Drawing.Size(213, 530);
-            this.splitContainer2.SplitterDistance = 308;
-            this.splitContainer2.SplitterWidth = 5;
+            this.splitContainer2.Size = new System.Drawing.Size(160, 430);
+            this.splitContainer2.SplitterDistance = 249;
             this.splitContainer2.TabIndex = 1;
             // 
             // txtSearchMenu
@@ -126,9 +121,8 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearchMenu.ForeColor = System.Drawing.Color.LightGray;
             this.txtSearchMenu.Location = new System.Drawing.Point(1, -1);
-            this.txtSearchMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchMenu.Name = "txtSearchMenu";
-            this.txtSearchMenu.Size = new System.Drawing.Size(205, 22);
+            this.txtSearchMenu.Size = new System.Drawing.Size(154, 20);
             this.txtSearchMenu.TabIndex = 0;
             this.txtSearchMenu.Text = "Please Enter Search Key";
             this.txtSearchMenu.Enter += new System.EventHandler(this.txtSearchMenu_Enter);
@@ -139,10 +133,9 @@ namespace AusNail
             this.trvMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trvMenu.Location = new System.Drawing.Point(3, 25);
-            this.trvMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trvMenu.Location = new System.Drawing.Point(2, 20);
             this.trvMenu.Name = "trvMenu";
-            this.trvMenu.Size = new System.Drawing.Size(201, 257);
+            this.trvMenu.Size = new System.Drawing.Size(151, 208);
             this.trvMenu.TabIndex = 0;
             // 
             // btnRevenue
@@ -151,10 +144,9 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevenue.Image = global::AusNail.Properties.Resources.revenue;
             this.btnRevenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRevenue.Location = new System.Drawing.Point(3, 44);
-            this.btnRevenue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRevenue.Location = new System.Drawing.Point(2, 36);
             this.btnRevenue.Name = "btnRevenue";
-            this.btnRevenue.Size = new System.Drawing.Size(204, 43);
+            this.btnRevenue.Size = new System.Drawing.Size(152, 35);
             this.btnRevenue.TabIndex = 0;
             this.btnRevenue.Text = "Revenue management";
             this.btnRevenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -167,10 +159,9 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCost.Image = global::AusNail.Properties.Resources.cost;
             this.btnCost.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCost.Location = new System.Drawing.Point(3, 86);
-            this.btnCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCost.Location = new System.Drawing.Point(2, 70);
             this.btnCost.Name = "btnCost";
-            this.btnCost.Size = new System.Drawing.Size(204, 43);
+            this.btnCost.Size = new System.Drawing.Size(152, 35);
             this.btnCost.TabIndex = 0;
             this.btnCost.Text = "Cost management";
             this.btnCost.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -183,10 +174,9 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGeneral.Image = global::AusNail.Properties.Resources.general;
             this.btnGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGeneral.Location = new System.Drawing.Point(3, 2);
-            this.btnGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGeneral.Location = new System.Drawing.Point(2, 2);
             this.btnGeneral.Name = "btnGeneral";
-            this.btnGeneral.Size = new System.Drawing.Size(204, 43);
+            this.btnGeneral.Size = new System.Drawing.Size(152, 35);
             this.btnGeneral.TabIndex = 0;
             this.btnGeneral.Text = "General Management";
             this.btnGeneral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -199,10 +189,9 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReport.Image = global::AusNail.Properties.Resources.report;
             this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(3, 128);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReport.Location = new System.Drawing.Point(2, 104);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(204, 43);
+            this.btnReport.Size = new System.Drawing.Size(152, 35);
             this.btnReport.TabIndex = 0;
             this.btnReport.Text = "Report";
             this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -215,9 +204,8 @@ namespace AusNail
             this.pnlForm.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
-            this.pnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(947, 539);
+            this.pnlForm.Size = new System.Drawing.Size(710, 437);
             this.pnlForm.TabIndex = 0;
             // 
             // mnsMenu
@@ -231,8 +219,8 @@ namespace AusNail
             this.zst});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.mnsMenu.Size = new System.Drawing.Size(1172, 28);
+            this.mnsMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.mnsMenu.Size = new System.Drawing.Size(879, 24);
             this.mnsMenu.TabIndex = 6;
             this.mnsMenu.Text = "Menu";
             // 
@@ -247,91 +235,85 @@ namespace AusNail
             this.Voucher,
             this.BusinessHour});
             this.zdm.Name = "zdm";
-            this.zdm.Size = new System.Drawing.Size(83, 24);
+            this.zdm.Size = new System.Drawing.Size(67, 20);
             this.zdm.Text = "Category";
             // 
             // Branch
             // 
             this.Branch.Name = "Branch";
-            this.Branch.Size = new System.Drawing.Size(180, 26);
+            this.Branch.Size = new System.Drawing.Size(146, 22);
             this.Branch.Text = "Branch";
             // 
             // Customer
             // 
             this.Customer.Name = "Customer";
-            this.Customer.Size = new System.Drawing.Size(180, 26);
+            this.Customer.Size = new System.Drawing.Size(146, 22);
             this.Customer.Text = "Customer";
             // 
             // Service
             // 
             this.Service.Name = "Service";
-            this.Service.Size = new System.Drawing.Size(180, 26);
+            this.Service.Size = new System.Drawing.Size(146, 22);
             this.Service.Text = "Service";
             // 
             // Staff
             // 
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(180, 26);
+            this.Staff.Size = new System.Drawing.Size(146, 22);
             this.Staff.Text = "Staff";
             // 
             // Holiday
             // 
             this.Holiday.Name = "Holiday";
-            this.Holiday.Size = new System.Drawing.Size(180, 26);
+            this.Holiday.Size = new System.Drawing.Size(146, 22);
             this.Holiday.Text = "Holiday";
             // 
             // Voucher
             // 
             this.Voucher.Name = "Voucher";
-            this.Voucher.Size = new System.Drawing.Size(180, 26);
+            this.Voucher.Size = new System.Drawing.Size(146, 22);
             this.Voucher.Text = "Voucher";
             // 
             // BusinessHour
             // 
             this.BusinessHour.Name = "BusinessHour";
-            this.BusinessHour.Size = new System.Drawing.Size(180, 26);
+            this.BusinessHour.Size = new System.Drawing.Size(146, 22);
             this.BusinessHour.Text = "BusinessHour";
             // 
             // zps
             // 
             this.zps.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Booking,
             this.Bill,
             this.TimeKeeping,
             this.checkingToolStripMenuItem});
             this.zps.Name = "zps";
-            this.zps.Size = new System.Drawing.Size(72, 24);
+            this.zps.Size = new System.Drawing.Size(59, 20);
             this.zps.Text = "Process";
-            // 
-            // Booking
-            // 
-            this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(180, 26);
-            this.Booking.Text = "Booking";
             // 
             // Bill
             // 
             this.Bill.Name = "Bill";
-            this.Bill.Size = new System.Drawing.Size(180, 26);
+            this.Bill.Size = new System.Drawing.Size(180, 22);
             this.Bill.Text = "Bill";
+            this.Bill.Click += new System.EventHandler(this.Bill_Click);
             // 
             // TimeKeeping
             // 
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(180, 26);
+            this.TimeKeeping.Size = new System.Drawing.Size(180, 22);
             this.TimeKeeping.Text = "TimeKeeping";
             // 
             // checkingToolStripMenuItem
             // 
             this.checkingToolStripMenuItem.Name = "checkingToolStripMenuItem";
-            this.checkingToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.checkingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkingToolStripMenuItem.Text = "Checking";
             this.checkingToolStripMenuItem.Click += new System.EventHandler(this.checkingToolStripMenuItem_Click);
             // 
             // zbc
             // 
             this.zbc.Name = "zbc";
-            this.zbc.Size = new System.Drawing.Size(74, 24);
+            this.zbc.Size = new System.Drawing.Size(59, 20);
             this.zbc.Text = "Reports";
             // 
             // zsys
@@ -339,14 +321,14 @@ namespace AusNail
             this.zsys.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.formBorToolStripMenuItem});
             this.zsys.Name = "zsys";
-            this.zsys.Size = new System.Drawing.Size(70, 24);
+            this.zsys.Size = new System.Drawing.Size(57, 20);
             this.zsys.Text = "System";
             // 
             // formBorToolStripMenuItem
             // 
             this.formBorToolStripMenuItem.CheckOnClick = true;
             this.formBorToolStripMenuItem.Name = "formBorToolStripMenuItem";
-            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.formBorToolStripMenuItem.Text = "Form Border Style";
             // 
             // zst
@@ -355,15 +337,21 @@ namespace AusNail
             this.ChangePassword,
             this.User});
             this.zst.Name = "zst";
-            this.zst.Size = new System.Drawing.Size(70, 24);
+            this.zst.Size = new System.Drawing.Size(56, 20);
             this.zst.Text = "Setting";
             // 
             // ChangePassword
             // 
             this.ChangePassword.Name = "ChangePassword";
-            this.ChangePassword.Size = new System.Drawing.Size(224, 26);
+            this.ChangePassword.Size = new System.Drawing.Size(168, 22);
             this.ChangePassword.Text = "Change Password";
             this.ChangePassword.Click += new System.EventHandler(this.ChangePassword_Click);
+            // 
+            // User
+            // 
+            this.User.Name = "User";
+            this.User.Size = new System.Drawing.Size(168, 22);
+            this.User.Text = "User";
             // 
             // contextMenuStrip1
             // 
@@ -371,23 +359,16 @@ namespace AusNail
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // User
-            // 
-            this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(224, 26);
-            this.User.Text = "User";
-            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 567);
+            this.ClientSize = new System.Drawing.Size(879, 461);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mnsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMenu;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -431,7 +412,6 @@ namespace AusNail
         private System.Windows.Forms.ToolStripMenuItem Holiday;
         private System.Windows.Forms.ToolStripMenuItem Voucher;
         private System.Windows.Forms.ToolStripMenuItem BusinessHour;
-        private System.Windows.Forms.ToolStripMenuItem Booking;
         private System.Windows.Forms.ToolStripMenuItem Bill;
         private System.Windows.Forms.ToolStripMenuItem TimeKeeping;
         private System.Windows.Forms.ToolStripMenuItem zst;

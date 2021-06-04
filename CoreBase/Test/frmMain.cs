@@ -201,10 +201,10 @@ namespace AusNail
         void InitCommandPS()
         {
             //category
-            if (NailApp.lstPermission.Contains(Booking.Name) || NailApp.IsAdmin())
-                Booking.Click += (s, e) => { frmBooking(); };
-            else
-                Booking.Visible = false;
+            //if (NailApp.lstPermission.Contains(Booking.Name) || NailApp.IsAdmin())
+            //    Booking.Click += (s, e) => { frmBooking(); };
+            //else
+            //    Booking.Visible = false;
 
             //if (NailApp.lstPermission.Contains(Bill.Name) || NailApp.IsAdmin())
             //    Bill.Click += (s, e) => { frmBill(); };
@@ -321,7 +321,13 @@ namespace AusNail
         private void checkingToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Book");
+            ShowForm(frm);
+        }
+
+        private void Bill_Click(object sender, EventArgs e)
+        {
+            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Bill");
             ShowForm(frm);
         }
     }
