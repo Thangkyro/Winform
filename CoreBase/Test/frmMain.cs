@@ -22,7 +22,7 @@ namespace AusNail
         //public frmMain()
         //{
         //    InitializeComponent();
-            
+
         //}
 
         public delegate void SendMessage(int branchid, int userid);
@@ -36,7 +36,7 @@ namespace AusNail
             //ShowForm(frm);
             //LoadMenu();
             InitCommandOld();
-        }   
+        }
         private void GetMessage(int branchid, int userid)
         {
             _branchID = branchid;
@@ -69,26 +69,54 @@ namespace AusNail
             frm.TopLevel = false;
             if (pnlForm.Controls.ContainsKey(frm.Name))
             {
+                //pnlForm.Controls.Clear();
+                if (pnlForm.Controls.Count > 0)
+                {
+                    foreach (Form item in pnlForm.Controls)
+                    {
+                        if (!item.Name.Equals(frm.Name))
+                        {
+                            item.WindowState = FormWindowState.Minimized;
 
+                        }
+                        else
+                        {
+                            item.WindowState = FormWindowState.Maximized;
+                            item.Dock = DockStyle.Fill;
+                            item.TopMost = true;
+                            item.Show();
+                        }
+                    }
+                    //frm.Show();
+                }
             }
             else
             {
+                if (pnlForm.Controls.Count > 0)
+                {
+                    foreach (Form item in pnlForm.Controls)
+                    {
+                        //item.TopMost = false;
+                        item.WindowState = FormWindowState.Minimized;
+                    }
+                }
                 pnlForm.Controls.Add(frm);
                 if (formBorToolStripMenuItem.Checked)
                 {
                     frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 }
                 frm.Dock = DockStyle.Fill;
+                frm.WindowState = FormWindowState.Maximized;
                 frm.TopMost = true;
                 frm.Show();
             }
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AusNail.Dictionary.frmUser frm = new AusNail.Dictionary.frmUser();
-            ShowForm(frm);
+            //AusNail.Dictionary.frmUser frm = new AusNail.Dictionary.frmUser();
+            //ShowForm(frm);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -123,6 +151,7 @@ namespace AusNail
             //InitCommandBc();
             //InitCommandSys();
             //InitCommandQuyDinh();
+            InitCommandST();
 
         }
 
@@ -188,13 +217,23 @@ namespace AusNail
             //    TimeKeeping.Visible = false;
         }
 
+        void InitCommandST()
+        {
+            //category
+            if (NailApp.IsAdmin())
+                User.Click += (s, e) => { frmUser(); };
+            else
+                User.Visible = false;
+
+        }
+
 
         #region Category
         void DoDmKhAdd()
         {
             if (!NailApp.lstPermission.Contains("Branch"))
             {
-                MessageBox.Show("Bạn không có quyền thực hiện chức năng này.",MessageType.Warning.ToString(),MessageBoxButtons.OKCancel);
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này.", MessageType.Warning.ToString(), MessageBoxButtons.OKCancel);
                 return;
             }
 
@@ -258,6 +297,16 @@ namespace AusNail
         {
             //frmBooking f = new frmBranch();
             //ShowForm(f);
+            //f.ShowDialog();
+        }
+
+        #endregion
+
+        #region Setting
+        void frmUser()
+        {
+            frmUser f = new frmUser();
+            ShowForm(f);
             //f.ShowDialog();
         }
 

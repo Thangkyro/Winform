@@ -250,11 +250,21 @@ namespace CoreBase.WinForm.Dictionary
 
             //update label
             lblTime.Text = time;
+
+           
         }
 
         public void LoadMess()
         {
             lblMessInfomation.Text = strMessInfor;
+            //var t = new Timer();
+            //t.Interval = 3000; // it will Tick in 3 seconds
+            //t.Tick += (s, e) =>
+            //{
+            //    lblMessInfomation.Text = "";
+            //    t.Stop();
+            //};
+            //t.Start();
         }
 
         #region Action

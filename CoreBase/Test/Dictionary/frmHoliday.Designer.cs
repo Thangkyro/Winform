@@ -55,14 +55,15 @@
             // 
             // chkis_inactive
             // 
+            this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(703, 331);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 418);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(1057, 54);
             // 
             // imageList
@@ -85,7 +86,7 @@
             this.lblTime.Location = new System.Drawing.Point(957, 14);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 30);
-            this.lblTime.Text = "22:56:06";
+            this.lblTime.Text = "10:53:03";
             // 
             // panel2
             // 
@@ -94,7 +95,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
             this.panel2.Location = new System.Drawing.Point(13, 14);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(597, 396);
             this.panel2.TabIndex = 6;
@@ -106,7 +107,7 @@
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
             this.GridDetail.Size = new System.Drawing.Size(597, 396);
@@ -141,6 +142,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(643, 108);
@@ -152,6 +154,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(642, 76);
@@ -163,6 +166,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(670, 174);
@@ -174,6 +178,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(655, 141);
@@ -185,8 +190,9 @@
             // 
             // txtNames
             // 
+            this.txtNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNames.Location = new System.Drawing.Point(703, 107);
-            this.txtNames.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNames.Margin = new System.Windows.Forms.Padding(4);
             this.txtNames.Multiline = true;
             this.txtNames.Name = "txtNames";
             this.txtNames.Size = new System.Drawing.Size(339, 25);
@@ -194,8 +200,9 @@
             // 
             // txtHolidaysTo
             // 
+            this.txtHolidaysTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHolidaysTo.Location = new System.Drawing.Point(703, 172);
-            this.txtHolidaysTo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHolidaysTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtHolidaysTo.Multiline = true;
             this.txtHolidaysTo.Name = "txtHolidaysTo";
             this.txtHolidaysTo.Size = new System.Drawing.Size(339, 25);
@@ -203,8 +210,9 @@
             // 
             // txtHolidaysFrom
             // 
+            this.txtHolidaysFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHolidaysFrom.Location = new System.Drawing.Point(703, 139);
-            this.txtHolidaysFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHolidaysFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtHolidaysFrom.Multiline = true;
             this.txtHolidaysFrom.Name = "txtHolidaysFrom";
             this.txtHolidaysFrom.Size = new System.Drawing.Size(339, 25);
@@ -212,17 +220,19 @@
             // 
             // cbobranchId
             // 
+            this.cbobranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobranchId.FormattingEnabled = true;
             this.cbobranchId.Location = new System.Drawing.Point(703, 75);
-            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4);
             this.cbobranchId.Name = "cbobranchId";
             this.cbobranchId.Size = new System.Drawing.Size(339, 24);
             this.cbobranchId.TabIndex = 1;
             // 
             // txtDecriptions
             // 
+            this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecriptions.Location = new System.Drawing.Point(703, 205);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecriptions.Multiline = true;
             this.txtDecriptions.Name = "txtDecriptions";
             this.txtDecriptions.Size = new System.Drawing.Size(339, 116);
@@ -230,6 +240,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(617, 207);

@@ -66,13 +66,13 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(829, 385);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
             this.chkis_inactive.TabIndex = 11;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 517);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(1144, 54);
             // 
             // imageList
@@ -94,7 +94,7 @@
             // 
             this.lblTime.Location = new System.Drawing.Point(996, 14);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblTime.Text = "22:58:11";
+            this.lblTime.Text = "10:52:02";
             // 
             // panel2
             // 
@@ -103,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
             this.panel2.Location = new System.Drawing.Point(13, 14);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(680, 495);
             this.panel2.TabIndex = 6;
@@ -115,7 +115,7 @@
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
             this.GridDetail.Size = new System.Drawing.Size(680, 495);
@@ -188,7 +188,7 @@
             // 
             this.txtVoucherCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVoucherCode.Location = new System.Drawing.Point(829, 85);
-            this.txtVoucherCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVoucherCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtVoucherCode.Multiline = true;
             this.txtVoucherCode.Name = "txtVoucherCode";
             this.txtVoucherCode.Size = new System.Drawing.Size(281, 25);
@@ -198,7 +198,7 @@
             // 
             this.txtAvailableAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAvailableAmount.Location = new System.Drawing.Point(829, 152);
-            this.txtAvailableAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAvailableAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAvailableAmount.Multiline = true;
             this.txtAvailableAmount.Name = "txtAvailableAmount";
             this.txtAvailableAmount.Size = new System.Drawing.Size(281, 25);
@@ -208,7 +208,7 @@
             // 
             this.txtAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAmount.Location = new System.Drawing.Point(829, 119);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.Multiline = true;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(281, 25);
@@ -218,7 +218,7 @@
             // 
             this.txtIssueDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIssueDate.Location = new System.Drawing.Point(829, 186);
-            this.txtIssueDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIssueDate.Margin = new System.Windows.Forms.Padding(4);
             this.txtIssueDate.Multiline = true;
             this.txtIssueDate.Name = "txtIssueDate";
             this.txtIssueDate.Size = new System.Drawing.Size(281, 25);
@@ -252,7 +252,7 @@
             // 
             this.txtVoucherFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVoucherFrom.Location = new System.Drawing.Point(829, 252);
-            this.txtVoucherFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVoucherFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtVoucherFrom.Multiline = true;
             this.txtVoucherFrom.Name = "txtVoucherFrom";
             this.txtVoucherFrom.Size = new System.Drawing.Size(281, 25);
@@ -274,7 +274,7 @@
             // 
             this.txtVoucherTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVoucherTo.Location = new System.Drawing.Point(829, 285);
-            this.txtVoucherTo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVoucherTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtVoucherTo.Multiline = true;
             this.txtVoucherTo.Name = "txtVoucherTo";
             this.txtVoucherTo.Size = new System.Drawing.Size(281, 25);
@@ -296,7 +296,7 @@
             // 
             this.txtzPrintname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtzPrintname.Location = new System.Drawing.Point(829, 318);
-            this.txtzPrintname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtzPrintname.Margin = new System.Windows.Forms.Padding(4);
             this.txtzPrintname.Multiline = true;
             this.txtzPrintname.Name = "txtzPrintname";
             this.txtzPrintname.Size = new System.Drawing.Size(281, 25);
@@ -318,7 +318,7 @@
             // 
             this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecriptions.Location = new System.Drawing.Point(829, 351);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecriptions.Multiline = true;
             this.txtDecriptions.Name = "txtDecriptions";
             this.txtDecriptions.Size = new System.Drawing.Size(281, 25);
@@ -338,11 +338,10 @@
             // 
             // cboIssueBy
             // 
-            this.cboIssueBy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboIssueBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboIssueBy.FormattingEnabled = true;
             this.cboIssueBy.Location = new System.Drawing.Point(829, 220);
-            this.cboIssueBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboIssueBy.Margin = new System.Windows.Forms.Padding(4);
             this.cboIssueBy.Name = "cboIssueBy";
             this.cboIssueBy.Size = new System.Drawing.Size(281, 24);
             this.cboIssueBy.TabIndex = 6;

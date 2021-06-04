@@ -567,6 +567,13 @@ namespace CoreBase.DataAccessLayer
 
             foreach (DataColumn col in schemaTable.Columns)
             {
+                //Update for update branchID
+                if (NailApp.IsAdmin() && !(col.AutoIncrement || !string.IsNullOrEmpty(col.Expression) || ZenDatabase.excludeColumns.Contains(col.ColumnName)
+                    || !updateRow.Table.Columns.Contains(col.ColumnName)))
+                {
+
+                }
+                else 
                 if (col.AutoIncrement || !string.IsNullOrEmpty(col.Expression) || schemaTable.PrimaryKey.Contains(col) || ZenDatabase.excludeColumns.Contains(col.ColumnName)
                     || !updateRow.Table.Columns.Contains(col.ColumnName))
                 {
@@ -592,6 +599,10 @@ namespace CoreBase.DataAccessLayer
             isFirst = true;
             foreach (DataColumn col in schemaTable.PrimaryKey)
             {
+                if (NailApp.IsAdmin() && col.ColumnName == "branchId") //Update for update branchID
+                {
+                    continue;
+                }
                 if (!isFirst)
                     sbWhere.Append(" AND");
 

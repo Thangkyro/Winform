@@ -86,6 +86,7 @@ namespace AusNail.Dictionary
         {
             try
             {
+                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -94,7 +95,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    return base.InsertData();
+                    isSuccess = base.InsertData();
                 }
                 else
                 {
@@ -103,7 +104,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    return base.UpdateData();
+                    isSuccess = base.UpdateData();
                 }
 
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
@@ -124,6 +125,12 @@ namespace AusNail.Dictionary
                 //}
                 //return true;
                 #endregion
+
+                if (isSuccess)
+                {
+                    LoadData();
+                }
+                return isSuccess;
             }
             catch
             {
@@ -284,7 +291,8 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 4 || e.ColumnIndex == 5 || e.ColumnIndex == 6) // Date
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("IssueDate") || headerText.Equals("VoucherFrom") || headerText.Equals("VoucherTo")) // Date
             {
                 int rIndex = e.RowIndex;
                 int cIndex = e.ColumnIndex;
