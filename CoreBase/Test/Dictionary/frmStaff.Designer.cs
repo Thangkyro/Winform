@@ -105,7 +105,7 @@
             // 
             this.lblTime.Location = new System.Drawing.Point(1240, 14);
             this.lblTime.Size = new System.Drawing.Size(115, 23);
-            this.lblTime.Text = "22:57:20";
+            this.lblTime.Text = "10:53:38";
             // 
             // panel2
             // 
@@ -471,6 +471,7 @@
             // 
             // pbImage
             // 
+            this.pbImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbImage.Location = new System.Drawing.Point(1228, 66);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4);

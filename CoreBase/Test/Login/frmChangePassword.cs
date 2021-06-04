@@ -21,14 +21,6 @@ namespace AusNail.Login
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (!ValidData())
-                return;
-            SaveData();
-
-            DialogResult = DialogResult.OK;
-        }
         private bool ValidData()
         {
             if (txtPasswordOld.Text == "")
@@ -82,6 +74,25 @@ namespace AusNail.Login
             using (SecurityDAO sDao = new SecurityDAO())
                 sDao.SetPassword(NailApp.CurrentUserRow["Userid"].zToInt(), password);
 
+        }
+
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            if (!ValidData())
+            {
+                MessageBox.Show("Change Password Failed");
+            }
+            else
+            {
+                SaveData();
+                MessageBox.Show("Change Password Successfully");
+            }
+
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
