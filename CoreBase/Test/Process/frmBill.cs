@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AusNail.Process
 {
-    public partial class frmCheckin : Form
+    public partial class frmBill : Form
     {
         int _branchId = 2;
         int _UserId = 1;
@@ -26,7 +26,8 @@ namespace AusNail.Process
         decimal _totalAmount = 0;
         int _serviceId = 0;
         int _bookingID = -1;
-        public frmCheckin()
+        int _billID = -1;
+        public frmBill()
         {
             InitializeComponent();
             dgv_B_Service.Visible = false;
@@ -35,7 +36,7 @@ namespace AusNail.Process
             EnableBookingInfor(false);
         }
 
-        public frmCheckin(int branchID, int userId)
+        public frmBill(int branchID, int userId)
         {
             InitializeComponent();
             dgv_B_Service.Visible = false;
@@ -52,7 +53,7 @@ namespace AusNail.Process
         /// <param name="branchID"></param>
         /// <param name="userId"></param>
         /// <param name="FormId"> Bill -  Form bill; Book - From Booking</param>
-        public frmCheckin(int branchID, int userId, string FormId)
+        public frmBill(int branchID, int userId, string FormId)
         {
             InitializeComponent();
             dgv_B_Service.Visible = false;
@@ -108,6 +109,8 @@ namespace AusNail.Process
             txt_B_note.Enabled = bol;
             txt_B_note.Text = "";
             btnAdd.Enabled = bol;
+            txt_B_Discount.Text = "0";
+            txt_B_Discount.Enabled = bol;
             gridRegister.Enabled = bol;
             dgv_B_Service.Visible = false;
         }
@@ -148,11 +151,11 @@ namespace AusNail.Process
                     btnCreate.Enabled = true;
                     btnEditBooking.Enabled = false;
                     txt_C_Name.Focus();
-                    treHistory.Nodes.Clear();
+                    treHistoryBook.Nodes.Clear();
                     TreeNode note = new TreeNode();
                     note.Text = "No historical data.";
                     note.Tag = "-1";
-                    treHistory.Nodes.Add(note);
+                    treHistoryBook.Nodes.Add(note);
                 }
                 txtPhoneNumber.Clear();
                 txt_B_Date.Text = DateTime.Now.ToString();
@@ -175,55 +178,53 @@ namespace AusNail.Process
         {
             try
             {
-                treHistory.Nodes.Clear();
+                treHistoryBook.Nodes.Clear();
                 int customerid = int.Parse(_dtCustomer.Rows[0][_idCustomerName].ToString());
                 DataTable dt = null;
-                if (_fromID == "Book")
+                // Load booking
+                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_byCustomer", customerid);
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_byCustomer", customerid);
-                    if (dt != null && dt.Rows.Count > 0)
+                    foreach (DataRow dr in dt.Rows)
                     {
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            treHistory.ImageList = imageList1;
-                            string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BookingDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
-                            TreeNode note = new TreeNode();
-                            note.Text = infor;
-                            note.Tag = dr["BookID"].ToString();
-                            treHistory.Nodes.Add(note);
-                        }
-                    }
-                    else
-                    {
+                        treHistoryBook.ImageList = imageList1;
+                        string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BookingDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
                         TreeNode note = new TreeNode();
-                        note.Text = "No historical data.";
-                        note.Tag = "-1";
-                        treHistory.Nodes.Add(note);
+                        note.Text = infor;
+                        note.Tag = dr["BookID"].ToString();
+                        treHistoryBook.Nodes.Add(note);
                     }
                 }
-                if (_fromID == "Bill")
+                else
                 {
-                    dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_byCustomer", customerid);
-                    if (dt != null && dt.Rows.Count > 0)
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    treHistoryBook.Nodes.Add(note);
+                }
+
+                // Load temporary bill
+                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_byCustomer", customerid);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
                     {
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            treHistory.ImageList = imageList1;
-                            string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BillDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
-                            TreeNode note = new TreeNode();
-                            note.Text = infor;
-                            note.Tag = dr["BillID"].ToString();
-                            treHistory.Nodes.Add(note);
-                        }
-                    }
-                    else
-                    {
+                        trHistoryBill.ImageList = imageList1;
+                        string infor = dr["BranchName"].ToString() + " - " + DateTime.Parse(dr["BillDate"].ToString()).ToString("dd/MM/yyyy") + " - " + dr["Status"].ToString();
                         TreeNode note = new TreeNode();
-                        note.Text = "No historical data.";
-                        note.Tag = "-1";
-                        treHistory.Nodes.Add(note);
+                        note.Text = infor;
+                        note.Tag = dr["BillID"].ToString();
+                        trHistoryBill.Nodes.Add(note);
                     }
                 }
+                else
+                {
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trHistoryBill.Nodes.Add(note);
+                }
+
             }
             catch
             { }
@@ -301,7 +302,7 @@ namespace AusNail.Process
             txt_C_DateofBirth.Value = DateTime.Now;
         }
 
-        private void loadGridDetail(int bookingId)
+        private void loadGridDetail_Booking(int bookingId)
         {
             gridRegister.Rows.Clear();
             DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingDetailGetList_History", bookingId, _branchId);
@@ -318,13 +319,41 @@ namespace AusNail.Process
                     decimal Amount = decimal.Parse(dt.Rows[i]["Amout"].ToString());
                     string serviceId = dt.Rows[i]["ServiceID"].ToString();
                     string note = dt.Rows[i]["Note"].ToString();
-                    object[] row = { num, staffName, servicename, quantity, price, Amount, note, serviceId, staffId };
+                    decimal discount = 0;
+                    object[] row = { num, staffName, servicename, quantity, price, Amount, discount, note, serviceId, staffId };
                     gridRegister.Rows.Add(row);
                 }
             }
             _totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
             lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
-            //btnRegister.Text = "Pay";
+            btnRegister.Text = "Pay";
+        }
+
+        private void loadGridDetail_Bill(int billId)
+        {
+            gridRegister.Rows.Clear();
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, _branchId);
+            if (dt != null)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    int num = i + 1;
+                    string servicename = dt.Rows[i]["ServiceName"].ToString();
+                    string staffName = dt.Rows[i]["StaffName"].ToString();
+                    string staffId = dt.Rows[i]["StaffId"].ToString();
+                    decimal price = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                    decimal quantity = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
+                    decimal Amount = decimal.Parse(dt.Rows[i]["Amout"].ToString());
+                    string serviceId = dt.Rows[i]["ServiceID"].ToString();
+                    string note = dt.Rows[i]["Note"].ToString();
+                    decimal discount = decimal.Parse(dt.Rows[i]["Discount"].ToString());
+                    object[] row = { num, staffName, servicename, quantity, price, Amount, discount, note, serviceId, staffId };
+                    gridRegister.Rows.Add(row);
+                }
+            }
+            _totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
+            lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            btnRegister.Text = "Pay";
         }
 
         private void loadStaftList(int branchId)
@@ -472,7 +501,8 @@ namespace AusNail.Process
                 decimal Amount = price * quantity;
                 string serviceId = _serviceId.ToString();
                 string note = txt_B_note.Text.Trim();
-                object[] row = { num, staffName, servicename, quantity, price, Amount, note, serviceId, staffId };
+                decimal discount = decimal.Parse(txt_B_Discount.Text.Trim());
+                object[] row = { num, staffName, servicename, quantity, price, Amount, discount, note, serviceId, staffId };
                 // Check service exiests.
                 for (int i = 0; i < gridRegister.Rows.Count; i++)
                 {
@@ -487,6 +517,7 @@ namespace AusNail.Process
                             gridRegister.Rows[i].Cells["Col_R_StaffName"].Value = staffName;
                             gridRegister.Rows[i].Cells["Col_R_StaffId"].Value = staffId;
                             gridRegister.Rows[i].Cells["Col_R_Note"].Value = note;
+                            gridRegister.Rows[i].Cells["col_B_Discount"].Value = discount;
                             return;
                         }
                         else if (dialogResult == DialogResult.No)
@@ -508,36 +539,17 @@ namespace AusNail.Process
             {
                 if (btnRegister.Text == "Save")
                 {
-                    if (gridRegister.Rows.Count > 0)
+                    if (_bookingID != -1 || (_bookingID == -1 && _billID == -1)) // insert mới
                     {
-                        bool flag = true;
-                        for (int i = 0; i < gridRegister.Rows.Count; i++)
-                        {
-                            string CustomerPhone = txt_C_PhoneNumber.Text.Trim();
-                            int Num = int.Parse(gridRegister.Rows[i].Cells["col_R_Num"].Value.ToString());
-                            int ServiceID = int.Parse(gridRegister.Rows[i].Cells["col_R_ServiceId"].Value.ToString());
-                            decimal Quantity = decimal.Parse(gridRegister.Rows[i].Cells["ColQuantity"].Value.ToString());
-                            decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
-                            int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
-                            string Note = gridRegister.Rows[i].Cells["Col_R_Note"].Value.ToString();
-                            DateTime bookingdate = DateTime.Parse(txt_B_Date.Value.ToShortDateString());
-                            int error = 0;
-                            string errorMesg = "";
-                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert", bookingdate, _branchId, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _UserId, error, errorMesg);
-
-                            if (ret == 0)
-                            {
-                                flag = false;
-                            }
-                        }
-                        if (flag)
-                        {
-                            MessageBox.Show("Register sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //btnRegister.Text = "Pay";
-                            EnableBookingInfor(false);
-                            LoadHistory();
-                        }
+                        SaveBillbyBook(_bookingID, "");
                     }
+                    if (_billID != -1) // update
+                    {
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billID, _branchId, 0, "");
+                        SaveBill(_billID, "");
+                    }
+                    EnableBookingInfor(false);
+                    LoadHistory();
                 }
                 else if (btnRegister.Text == "Pay")
                 {
@@ -560,6 +572,115 @@ namespace AusNail.Process
             catch
             {
 
+            }
+        }
+        private void SaveBill(int billId, string voucherCode)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < gridRegister.Rows.Count; i++)
+                {
+                    int Num = int.Parse(gridRegister.Rows[i].Cells["col_R_Num"].Value.ToString());
+                    int ServiceID = int.Parse(gridRegister.Rows[i].Cells["col_R_ServiceId"].Value.ToString());
+                    decimal Quantity = decimal.Parse(gridRegister.Rows[i].Cells["ColQuantity"].Value.ToString());
+                    decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
+                    int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
+                    decimal discount = decimal.Parse(gridRegister.Rows[i].Cells["co_B_Discount"].Value.ToString());
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, _branchId, Num, ServiceID, Quantity, Price, discount, StaffId, _UserId, error, errorMesg);
+                    if (ret == 0)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag)
+                {
+                    MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    // call store dell bii moiws tao
+                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+        private void SaveBillbyBook(int bookingid, string voucherCode)
+        {
+            try
+            {
+                int outBill = -1;
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+                string CustomerPhone = txt_C_PhoneNumber.Text.Trim();
+                // Get billCode
+                string billCode = "";
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
+                if (dt != null)
+                {
+                    billCode = dt.Rows[0][0].ToString();
+                }
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterInsert_Ver1", DateTime.Now, _branchId, billCode, CustomerPhone,_bookingID, voucherCode, _UserId, outBill, error, errorMesg);
+                if (ret > 0)
+                {
+                    //get new id
+                    dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetId_Ver1", _branchId, billCode, error, errorMesg);
+                    if (dt != null)
+                    {
+                        outBill = int.Parse(dt.Rows[0][0].ToString());
+                    }
+                    for (int i = 0; i < gridRegister.Rows.Count; i++)
+                    {
+                        int Num = int.Parse(gridRegister.Rows[i].Cells["col_R_Num"].Value.ToString());
+                        int ServiceID = int.Parse(gridRegister.Rows[i].Cells["col_R_ServiceId"].Value.ToString());
+                        decimal Quantity = decimal.Parse(gridRegister.Rows[i].Cells["ColQuantity"].Value.ToString());
+                        decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
+                        int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
+                        decimal discount = decimal.Parse(gridRegister.Rows[i].Cells["co_B_Discount"].Value.ToString());
+                        ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", outBill, _branchId, Num, ServiceID, Quantity, Price, discount, StaffId, _UserId, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    flag = false;
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    // call store dell bii moiws tao
+                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    gridRegister.Rows.Clear();
+                    lbl_R_Total.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
@@ -586,18 +707,12 @@ namespace AusNail.Process
         {
             try
             {
-                if (_fromID == "Book")
-                {
-                    int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
-                    string str = treHistory.SelectedNode.Text.ToString();
-                    string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
-                    txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
-                    loadGridDetail(bookingId);
-                }
-                if (_fromID == "Bill")
-                {
-
-                }
+                _billID = -1;
+                _bookingID = int.Parse(treHistoryBook.SelectedNode.Tag.ToString());
+                string str = treHistoryBook.SelectedNode.Text.ToString();
+                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                loadGridDetail_Booking(_bookingID);
             }
             catch
             {
@@ -608,18 +723,12 @@ namespace AusNail.Process
         {
             try
             {
-                if (_fromID == "Book")
-                {
-                    int bookingId = int.Parse(treHistory.SelectedNode.Tag.ToString());
-                    string str = treHistory.SelectedNode.Text.ToString();
-                    string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
-                    txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
-                    loadGridDetail(bookingId);
-                }
-                if (_fromID == "Bill")
-                {
-
-                }
+                _billID = -1;
+                _bookingID = int.Parse(treHistoryBook.SelectedNode.Tag.ToString());
+                string str = treHistoryBook.SelectedNode.Text.ToString();
+                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                loadGridDetail_Booking(_bookingID);
             }
             catch
             {
@@ -724,6 +833,38 @@ namespace AusNail.Process
             if (e.KeyCode == Keys.F5)
             {
                 txt_B_Service_TextChanged(sender, e);
+            }
+        }
+
+        private void trHistoryBill_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                _bookingID = -1;
+                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                string str = trHistoryBill.SelectedNode.Text.ToString();
+                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                loadGridDetail_Bill(_billID);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void trHistoryBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _bookingID = -1;
+                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                string str = trHistoryBill.SelectedNode.Text.ToString();
+                string date = str.Substring(str.IndexOf('-') + 2, str.LastIndexOf('-') - str.IndexOf('-') - 3);
+                txt_B_Date.Value = new DateTime(int.Parse(date.Substring(6, 4)), int.Parse(date.Substring(3, 2)), int.Parse(date.Substring(0, 2)));
+                loadGridDetail_Bill(_billID);
+            }
+            catch
+            {
             }
         }
     }
