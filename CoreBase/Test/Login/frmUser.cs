@@ -1,4 +1,5 @@
 ﻿using CoreBase;
+using CoreBase.DAL;
 using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
 using System;
@@ -111,7 +112,7 @@ namespace AusNail.Dictionary
                         {
                             userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
                             string passWord = Encryptor.MD5Hash("123456Aa") +
-                                                Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) +
+                                                //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) +
                                                 Encryptor.MD5Hash(userID.ToString()) +
                                                 Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
                             sql = string.Format("update zUser set password = '{0}' where Userid = {1}", passWord, userID);
@@ -152,7 +153,7 @@ namespace AusNail.Dictionary
                 if (isSuccess)
                 {
                     LoadData();
-                    
+
                 }
                 return isSuccess;
             }
@@ -246,6 +247,8 @@ namespace AusNail.Dictionary
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
                     chkIs_Admin.Checked = bool.Parse(row.Cells["is_admin"].Value.ToString());
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
+                    txtUserId.Text = row.Cells["userid"].Value.ToString();
+
                 }
             }
             catch (Exception ex)
@@ -260,9 +263,9 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
-                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa") + 
-                    Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) + 
-                    Encryptor.MD5Hash(GetMaxUserID().ToString()) + 
+                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa") +
+                    //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) + 
+                    Encryptor.MD5Hash(GetMaxUserID().ToString()) +
                     Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
                 //Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
@@ -386,5 +389,46 @@ namespace AusNail.Dictionary
             return id;
         }
 
+        private void BtnResetPass_Click(object sender, EventArgs e)
+        {
+            if (!NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Do You Want Reset Password ?", "Reset Password", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (txtUserId.Text != "0" && !string.IsNullOrWhiteSpace(txtUserId.Text))
+                    {
+                        int _userID = int.Parse(txtUserId.Text.Trim().ToString());
+                        string _userName = txtUser_name.Text.ToString();
+
+                        string password = Encryptor.MD5Hash("123456Aa") +
+                                //Encryptor.MD5Hash(NailApp.BranchID) + 
+                                Encryptor.MD5Hash(_userID.ToString()) +
+                                Encryptor.MD5Hash(_userName);
+                        using (SecurityDAO sDao = new SecurityDAO())
+                        {
+                            if (sDao.SetPasswordNew(_userID, password))
+                            {
+                                MessageBox.Show("Change Password Successfully");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Change Password Failed");
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Choose User!");
+                    }
+                }
+            }
+        }
     }
 }
