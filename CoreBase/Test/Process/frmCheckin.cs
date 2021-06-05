@@ -24,10 +24,12 @@ namespace AusNail.Process
         string _idCustomerPhoneName2 = "PhoneNumber2";
         string _tableNameCustomer = "zCustomer";
         decimal _totalAmount = 0;
+        int _serviceId = 0;
         int _bookingID = -1;
         public frmCheckin()
         {
             InitializeComponent();
+            dgv_B_Service.Visible = false;
             loadHolidaysList(_branchId);
             _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchId);
             EnableBookingInfor(false);
@@ -36,6 +38,7 @@ namespace AusNail.Process
         public frmCheckin(int branchID, int userId)
         {
             InitializeComponent();
+            dgv_B_Service.Visible = false;
             _branchId = branchID;
             _UserId = userId;
             loadHolidaysList(_branchId);
@@ -52,6 +55,7 @@ namespace AusNail.Process
         public frmCheckin(int branchID, int userId, string FormId)
         {
             InitializeComponent();
+            dgv_B_Service.Visible = false;
             _fromID = FormId;
             if (_fromID == "Bill")
             {
@@ -97,25 +101,26 @@ namespace AusNail.Process
             txt_B_Date.Enabled = bol;
             cb_B_StaftName.Enabled = bol;
             cb_B_StaftName.Text = "";
-            cb_B_ServiceName.Enabled = bol;
-            cb_B_ServiceName.Text = "";
+            txt_B_Service.Enabled = bol;
+            txt_B_Service.Text = "";
             numSL.Enabled = bol;
             numSL.Value = 0;
             txt_B_note.Enabled = bol;
             txt_B_note.Text = "";
             btnAdd.Enabled = bol;
             gridRegister.Enabled = bol;
+            dgv_B_Service.Visible = false;
         }
 
         private bool checkExiestCustomer(string phoneNumber)
         {
             try
             {
-                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCustomerGetbyPhoneNum", txtPhoneNumber.Text.Trim());         
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCustomerGetbyPhoneNum", txtPhoneNumber.Text.Trim());
             }
-            catch 
+            catch
             {
-                
+
             }
             return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
         }
@@ -143,6 +148,11 @@ namespace AusNail.Process
                     btnCreate.Enabled = true;
                     btnEditBooking.Enabled = false;
                     txt_C_Name.Focus();
+                    treHistory.Nodes.Clear();
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    treHistory.Nodes.Add(note);
                 }
                 txtPhoneNumber.Clear();
                 txt_B_Date.Text = DateTime.Now.ToString();
@@ -215,8 +225,8 @@ namespace AusNail.Process
                     }
                 }
             }
-            catch 
-            {}
+            catch
+            { }
         }
 
         private string GenCustomerCode()
@@ -230,8 +240,8 @@ namespace AusNail.Process
                     customerCode = dt.Rows[0][0].ToString();
                 }
             }
-            catch 
-            {}
+            catch
+            { }
             return customerCode;
         }
 
@@ -247,7 +257,7 @@ namespace AusNail.Process
                 string CustomerCode = GenCustomerCode();
                 int CreateBy = 0;
                 // kiem tra khong được đặt mã trùng
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zCustomerInsert", _branchId, CustomerCode, Name, Gender, PhoneNumber1, "", "", "", DateOfBirth, PostCode, 0, 0, "", 0, CreateBy, DateTime.Now.ToString(), CreateBy, DateTime.Now.ToString(),0,"");
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zCustomerInsert", _branchId, CustomerCode, Name, Gender, PhoneNumber1, "", "", "", DateOfBirth, PostCode, 0, 0, "", 0, CreateBy, DateTime.Now.ToString(), CreateBy, DateTime.Now.ToString(), 0, "");
 
                 if (ret > 0)
                 {
@@ -255,8 +265,6 @@ namespace AusNail.Process
                     checkHoliday(_branchId);
                     // Get list staft
                     loadStaftList(_branchId);
-                    // Get list Service
-                    loadServiceList(_branchId);
 
                     txt_B_Date.Focus();
                     btnCreate.Enabled = false;
@@ -267,7 +275,7 @@ namespace AusNail.Process
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }        
+        }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
@@ -281,8 +289,6 @@ namespace AusNail.Process
             checkHoliday(_branchId);
             // Get list staft
             loadStaftList(_branchId);
-            // Get list Service
-            loadServiceList(_branchId);
             EnableBookingInfor(true);
             btnRegister.Text = "Save";
         }
@@ -319,19 +325,6 @@ namespace AusNail.Process
             _totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
             lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
             btnRegister.Text = "Pay";
-        }
-
-        private void loadServiceList(int branchId)
-        {
-            try
-            {
-                cb_B_ServiceName.DataSource = _dtService;
-                cb_B_ServiceName.ValueMember = "ServiceID";
-                cb_B_ServiceName.DisplayMember = "Display";
-            }
-            catch
-            {
-            }
         }
 
         private void loadStaftList(int branchId)
@@ -380,7 +373,7 @@ namespace AusNail.Process
                 gridHolidays.Columns["modified_by"].Visible = false;
                 gridHolidays.Columns["modified_at"].Visible = false;
             }
-            catch 
+            catch
             {
             }
         }
@@ -392,7 +385,7 @@ namespace AusNail.Process
                 // Check dữ liệu đầu vào.
                 checkDataInput();
                 // Check free time of staff
-                bool fCheck = checkFreetimeStaff(_branchId, int.Parse(cb_B_StaftName.SelectedValue.ToString()), int.Parse(cb_B_ServiceName.SelectedValue.ToString()));
+                bool fCheck = checkFreetimeStaff(_branchId, int.Parse(cb_B_StaftName.SelectedValue.ToString()), _serviceId);
                 // Add dữ liệu vào lưới.
                 if (fCheck)
                 {
@@ -444,10 +437,10 @@ namespace AusNail.Process
                 cb_B_StaftName.Focus();
             }
             // Check service - quantity
-            if (cb_B_ServiceName.Text.Trim() == "")
+            if (txt_B_Service.Text.Trim() == "")
             {
                 flag = true;
-                cb_B_ServiceName.Focus();
+                txt_B_Service.Focus();
             }
             if (numSL.Value < 1)
             {
@@ -466,14 +459,14 @@ namespace AusNail.Process
             try
             {
                 int num = gridRegister.Rows.Count + 1;
-                string servicetext = cb_B_ServiceName.Text;
-                string servicename = servicetext.Substring(0, servicetext.IndexOf('-') -1);
+                string servicetext = txt_B_Service.Text;
+                string servicename = servicetext.Substring(0, servicetext.IndexOf('-') - 1);
                 string staffName = cb_B_StaftName.Text;
                 string staffId = cb_B_StaftName.SelectedValue.ToString();
                 decimal price = decimal.Parse(servicetext.Substring(servicetext.LastIndexOf('-') + 2, servicetext.Length - servicetext.LastIndexOf('-') - 2));
                 decimal quantity = numSL.Value;
                 decimal Amount = price * quantity;
-                string serviceId = cb_B_ServiceName.SelectedValue.ToString();
+                string serviceId = _serviceId.ToString();
                 string note = txt_B_note.Text.Trim();
                 object[] row = { num, staffName, servicename, quantity, price, Amount, note, serviceId, staffId };
                 // Check service exiests.
@@ -500,7 +493,7 @@ namespace AusNail.Process
                 }
                 gridRegister.Rows.Add(row);
             }
-            catch 
+            catch
             {
             }
         }
@@ -523,9 +516,10 @@ namespace AusNail.Process
                             decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
                             int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
                             string Note = gridRegister.Rows[i].Cells["Col_R_Note"].Value.ToString();
+                            DateTime bookingdate = DateTime.Parse(txt_B_Date.Value.ToShortDateString());
                             int error = 0;
                             string errorMesg = "";
-                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert", _branchId, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _UserId, error, errorMesg);
+                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert", bookingdate, _branchId, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _UserId, error, errorMesg);
 
                             if (ret == 0)
                             {
@@ -537,10 +531,11 @@ namespace AusNail.Process
                             MessageBox.Show("Register sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             btnRegister.Text = "Pay";
                             EnableBookingInfor(false);
+                            LoadHistory();
                         }
                     }
                 }
-                else if(btnRegister.Text == "Pay")
+                else if (btnRegister.Text == "Pay")
                 {
                     // Get booking id send to form Pay.
                     DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetId", txt_C_PhoneNumber.Text.Trim(), txt_B_Date.Value, _branchId);
@@ -558,7 +553,7 @@ namespace AusNail.Process
                     }
                 }
             }
-            catch 
+            catch
             {
 
             }
@@ -578,7 +573,7 @@ namespace AusNail.Process
                 }
                 lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
             }
-            catch 
+            catch
             {
             }
         }
@@ -636,6 +631,84 @@ namespace AusNail.Process
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void gridRegister_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == 3)
+            {
+                decimal Quantity = decimal.Parse(gridRegister.Rows[e.RowIndex].Cells["ColQuantity"].Value.ToString());
+                decimal Price = decimal.Parse(gridRegister.Rows[e.RowIndex].Cells["col_R_Price"].Value.ToString());
+                // Update row num
+                gridRegister.Rows[e.RowIndex].Cells["col_R_Amount"].Value = Quantity * Price;
+
+                _totalAmount = 0;
+                for (int i = 0; i < gridRegister.Rows.Count; i++)
+                {
+                    _totalAmount += decimal.Parse(gridRegister.Rows[i].Cells["col_R_Amount"].Value.ToString());
+                }
+                lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            }
+
+        }
+
+        private void txt_B_Service_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dgv_B_Service.DataSource = _dtService.Select("Title like '%" + txt_B_Service.Text.Trim() + "%'", "").CopyToDataTable();
+                dgv_B_Service.Columns["ServiceId"].Visible = false;
+                dgv_B_Service.Columns["BranchId"].Visible = false;
+                dgv_B_Service.Columns["Title"].HeaderText = "Service Name";
+                dgv_B_Service.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgv_B_Service.Columns["Title"].ReadOnly = true;
+                dgv_B_Service.Columns["Display"].Visible = false;
+                dgv_B_Service.Columns["Price"].HeaderText = "Price";
+                dgv_B_Service.Columns["Price"].ReadOnly = true;
+                dgv_B_Service.Columns["EstimateTime"].HeaderText = "Estimate Time";
+                dgv_B_Service.Columns["EstimateTime"].ReadOnly = true;
+                dgv_B_Service.Columns["Decriptions"].Visible = false;
+                dgv_B_Service.Columns["is_inactive"].Visible = false;
+                dgv_B_Service.Columns["created_by"].Visible = false;
+                dgv_B_Service.Columns["created_at"].Visible = false;
+                dgv_B_Service.Columns["modified_by"].Visible = false;
+                dgv_B_Service.Columns["modified_at"].Visible = false;
+                dgv_B_Service.Visible = true;
+            }
+            catch
+            {
+                dgv_B_Service.DataSource = null;
+            }
+            
+        }
+
+        private void dgv_B_Service_DoubleClick(object sender, EventArgs e)
+            {
+            try
+            {
+                _serviceId = int.Parse(dgv_B_Service.Rows[dgv_B_Service.CurrentRow.Index].Cells["ServiceId"].Value.ToString());
+                txt_B_Service.Text = dgv_B_Service.Rows[dgv_B_Service.CurrentRow.Index].Cells["Display"].Value.ToString();
+                dgv_B_Service.Visible = false;
+            }
+            catch
+            {
+            }
+        }
+
+        private void dgv_B_Service_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    _serviceId = int.Parse(dgv_B_Service.Rows[dgv_B_Service.CurrentRow.Index].Cells["ServiceId"].Value.ToString());
+                    txt_B_Service.Text = dgv_B_Service.Rows[dgv_B_Service.CurrentRow.Index].Cells["Display"].Value.ToString();
+                    dgv_B_Service.Visible = false; 
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
     }
 }
