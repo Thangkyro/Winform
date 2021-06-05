@@ -127,20 +127,20 @@ namespace AusNail.Login
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        //private void btnCancel_Click(object sender, EventArgs e)
+        //{
+        //    //this.Close();
+        //}
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            if (DialogResult == DialogResult.OK)
-            {
-                frmMain frm = new frmMain();
-                frm.Sender(int.Parse(cboBranch.SelectedValue.ToString()), _userID);
-                this.Close();
-            }
-        }
+        //private void btnOk_Click(object sender, EventArgs e)
+        //{
+        //    //if (DialogResult == DialogResult.OK)
+        //    //{
+        //    //    frmMain frm = new frmMain();
+        //    //    frm.Sender(int.Parse(cboBranch.SelectedValue.ToString()), _userID);
+        //    //    this.Close();
+        //    //}
+        //}
         
     }
 }

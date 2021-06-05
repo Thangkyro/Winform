@@ -26,16 +26,9 @@ namespace AusNail
         //}
 
         public delegate void SendMessage(int branchid, int userid);
-        public SendMessage Sender; public frmMain()
+        public frmMain()
         {
             InitializeComponent();
-            //Tạo con trỏ tới hàm GetMessage
-            Sender = new SendMessage(GetMessage);
-            //Hàm có nhiệm vụ lấy tham số truyền vào
-            //Login.frmLogin frm = new Login.frmLogin();
-            //ShowForm(frm);
-            //LoadMenu();
-            InitCommandOld();
         }
         private void GetMessage(int branchid, int userid)
         {
@@ -329,6 +322,54 @@ namespace AusNail
         {
             Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Bill");
             ShowForm(frm);
+        }
+
+        private void LogoffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are You Sure ?", "Logoff", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (pnlForm.Controls.Count > 0)
+                {
+                    //foreach (var item in pnlForm.Controls.OfType<Form>())
+                    //{
+                    //    item.Close();
+                    //}
+                    pnlForm.Controls.Clear();
+                }
+
+                frmLogin lf = new frmLogin();
+                if (lf.ShowDialog() != DialogResult.OK)
+                {
+                    Application.Exit();
+                    return;
+                }
+                else
+                {
+                    ////Load permisson
+                    NailApp.lstPermission = new List<string>();
+                    NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
+                    InitCommandOld();
+                }
+
+            }
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            frmLogin lf = new frmLogin();
+            if (lf.ShowDialog() != DialogResult.OK)
+            {
+                Application.Exit();
+                return;
+            }
+            else
+            {
+                ////Load permisson
+                NailApp.lstPermission = new List<string>();
+                NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
+                InitCommandOld();
+            }
         }
     }
 }

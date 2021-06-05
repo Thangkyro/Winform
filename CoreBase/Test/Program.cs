@@ -24,22 +24,22 @@ namespace AusNail
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            //Login
-            if (NailApp.MultiUser)
-            {
-                frmLogin lf = new frmLogin();
-                if (lf.ShowDialog() != DialogResult.OK)
-                    return;
-                //Application.Run(lf);
-            }
+            ////Login
+            //if (NailApp.MultiUser)
+            //{
+            //    frmLogin lf = new frmLogin();
+            //    if (lf.ShowDialog() != DialogResult.OK)
+            //        return;
+            //    //Application.Run(lf);
+            //}
 
-            //Load permisson
-            NailApp.lstPermission = new List<string>();
-            NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
+            ////Load permisson
+            //NailApp.lstPermission = new List<string>();
+            //NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
 
 
-            frmMain main = new frmMain();
-            Application.Run(main);
+            //frmMain main = new frmMain();
+            Application.Run(new frmMain());
 
             
         }

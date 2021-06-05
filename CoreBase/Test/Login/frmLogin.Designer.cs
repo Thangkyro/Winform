@@ -51,12 +51,12 @@
             // btnCancel
             // 
             this.btnCancel.TabIndex = 4;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            //this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
             this.btnOk.TabIndex = 3;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+           // this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // imageList
             // 
