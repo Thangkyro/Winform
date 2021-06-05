@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCheckin));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -285,6 +285,7 @@
             this.txt_B_Service.Size = new System.Drawing.Size(415, 20);
             this.txt_B_Service.TabIndex = 2;
             this.txt_B_Service.TextChanged += new System.EventHandler(this.txt_B_Service_TextChanged);
+            this.txt_B_Service.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_B_Service_KeyDown);
             // 
             // txt_B_note
             // 
@@ -301,7 +302,7 @@
             this.label2.Location = new System.Drawing.Point(19, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 16;
             this.label2.Text = "Note:";
             // 
             // txt_B_Date
@@ -339,7 +340,7 @@
             this.label14.Location = new System.Drawing.Point(19, 18);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(33, 13);
-            this.label14.TabIndex = 9;
+            this.label14.TabIndex = 13;
             this.label14.Text = "Date:";
             // 
             // numSL
@@ -399,7 +400,7 @@
             this.lbl_R_Total.Location = new System.Drawing.Point(104, 272);
             this.lbl_R_Total.Name = "lbl_R_Total";
             this.lbl_R_Total.Size = new System.Drawing.Size(252, 43);
-            this.lbl_R_Total.TabIndex = 7;
+            this.lbl_R_Total.TabIndex = 11;
             this.lbl_R_Total.Text = "0";
             this.lbl_R_Total.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -410,7 +411,7 @@
             this.label15.Location = new System.Drawing.Point(19, 289);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 13);
-            this.label15.TabIndex = 7;
+            this.label15.TabIndex = 12;
             this.label15.Text = "Total";
             // 
             // gridRegister
@@ -433,7 +434,7 @@
             this.gridRegister.Location = new System.Drawing.Point(22, 114);
             this.gridRegister.Name = "gridRegister";
             this.gridRegister.Size = new System.Drawing.Size(624, 152);
-            this.gridRegister.TabIndex = 6;
+            this.gridRegister.TabIndex = 7;
             this.gridRegister.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridRegister_CellEndEdit);
             this.gridRegister.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridRegister_RowsRemoved);
             // 
@@ -460,9 +461,9 @@
             // 
             // ColQuantity
             // 
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.ColQuantity.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.ColQuantity.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColQuantity.FillWeight = 70F;
             this.ColQuantity.HeaderText = "Quantity";
             this.ColQuantity.Name = "ColQuantity";
@@ -470,18 +471,18 @@
             // 
             // col_R_Price
             // 
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.col_R_Price.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.col_R_Price.DefaultCellStyle = dataGridViewCellStyle5;
             this.col_R_Price.HeaderText = "Price";
             this.col_R_Price.Name = "col_R_Price";
             this.col_R_Price.ReadOnly = true;
             // 
             // col_R_Amount
             // 
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.col_R_Amount.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.col_R_Amount.DefaultCellStyle = dataGridViewCellStyle6;
             this.col_R_Amount.HeaderText = "Amount";
             this.col_R_Amount.Name = "col_R_Amount";
             this.col_R_Amount.ReadOnly = true;
@@ -533,7 +534,7 @@
             this.label13.Location = new System.Drawing.Point(19, 63);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 13);
-            this.label13.TabIndex = 1;
+            this.label13.TabIndex = 15;
             this.label13.Text = "Service name:";
             // 
             // label12
@@ -542,7 +543,7 @@
             this.label12.Location = new System.Drawing.Point(19, 40);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
-            this.label12.TabIndex = 1;
+            this.label12.TabIndex = 14;
             this.label12.Text = "Staft name:";
             // 
             // groupBox4
