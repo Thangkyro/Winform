@@ -50,6 +50,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPermission = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.btnResetPass = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
@@ -91,7 +93,7 @@
             this.lblTime.Location = new System.Drawing.Point(1149, 15);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "10:56:23";
+            this.lblTime.Text = "11:44:52";
             // 
             // panel2
             // 
@@ -191,6 +193,7 @@
             this.txtUser_name.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser_name.Multiline = true;
             this.txtUser_name.Name = "txtUser_name";
+            this.txtUser_name.ReadOnly = true;
             this.txtUser_name.Size = new System.Drawing.Size(372, 25);
             this.txtUser_name.TabIndex = 2;
             // 
@@ -207,6 +210,7 @@
             // cboBranchId
             // 
             this.cboBranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboBranchId.Enabled = false;
             this.cboBranchId.FormattingEnabled = true;
             this.cboBranchId.Location = new System.Drawing.Point(892, 14);
             this.cboBranchId.Margin = new System.Windows.Forms.Padding(4);
@@ -279,7 +283,8 @@
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(372, 25);
+            this.txtPassword.ReadOnly = true;
+            this.txtPassword.Size = new System.Drawing.Size(217, 25);
             this.txtPassword.TabIndex = 5;
             // 
             // label8
@@ -317,11 +322,37 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Permission";
             // 
+            // txtUserId
+            // 
+            this.txtUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserId.Location = new System.Drawing.Point(892, 456);
+            this.txtUserId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUserId.Multiline = true;
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(168, 25);
+            this.txtUserId.TabIndex = 19;
+            this.txtUserId.Visible = false;
+            // 
+            // btnResetPass
+            // 
+            this.btnResetPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnResetPass.Image = global::AusNail.Properties.Resources.Refresh;
+            this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetPass.Location = new System.Drawing.Point(1116, 143);
+            this.btnResetPass.Name = "btnResetPass";
+            this.btnResetPass.Size = new System.Drawing.Size(148, 25);
+            this.btnResetPass.TabIndex = 20;
+            this.btnResetPass.Text = "&Reset Password";
+            this.btnResetPass.UseVisualStyleBackColor = true;
+            this.btnResetPass.Click += new System.EventHandler(this.BtnResetPass_Click);
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1277, 558);
+            this.Controls.Add(this.btnResetPass);
+            this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.txtPermission);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPassword);
@@ -359,6 +390,8 @@
             this.Controls.SetChildIndex(this.txtPassword, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.txtPermission, 0);
+            this.Controls.SetChildIndex(this.txtUserId, 0);
+            this.Controls.SetChildIndex(this.btnResetPass, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -391,5 +424,7 @@
         private System.Windows.Forms.ContextMenuStrip ctmGridView;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refeshListToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtUserId;
+        private System.Windows.Forms.Button btnResetPass;
     }
 }

@@ -33,7 +33,11 @@ namespace AusNail.Login
             //Kiem tra mat khau cu
             DataRow row = null;
             using (SecurityDAO sDao = new SecurityDAO())
-                row = sDao.GetUserRow(NailApp.CurrentUserRow["user_name"].zToString(), Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(NailApp.BranchID) + Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + Encryptor.MD5Hash(txtPasswordOld.Text.Trim()));
+                row = sDao.GetUserRow(NailApp.CurrentUserRow["user_name"].zToString(), 
+                    Encryptor.MD5Hash("123456Aa") + 
+                    //Encryptor.MD5Hash(NailApp.BranchID) + 
+                    Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + 
+                    Encryptor.MD5Hash(txtPasswordOld.Text.Trim()));
 
             if (row == null)
             {
@@ -70,7 +74,10 @@ namespace AusNail.Login
         private void SaveData()
         {
             //string password = Encryptor.MD5Hash("123456Aa" + NailApp.BranchID + NailApp.CurrentUserId.ToString() + txtPassword.Text);
-            string password = Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(NailApp.BranchID) + Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + Encryptor.MD5Hash(txtPassword.Text.Trim());
+            string password = Encryptor.MD5Hash("123456Aa") + 
+                //Encryptor.MD5Hash(NailApp.BranchID) + 
+                Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + 
+                Encryptor.MD5Hash(txtPassword.Text.Trim());
             using (SecurityDAO sDao = new SecurityDAO())
                 sDao.SetPassword(NailApp.CurrentUserRow["Userid"].zToInt(), password);
 

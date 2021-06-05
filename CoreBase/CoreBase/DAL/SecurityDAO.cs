@@ -65,6 +65,19 @@ namespace CoreBase.DAL
 
         }
 
+        public bool SetPasswordNew(int userId, string password)
+        {
+            bool bResult = false;
+            string sql = string.Format("update zUser set password = '{0}' where Userid = {1}", password, userId);
+            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+            if (ret > 0)
+            {
+                bResult = true;
+            }
+            return bResult;
+
+        }
+
         public void UpdatePermission(int id, string cmdIds)
         {
             string sql = string.Format("update zUser set permission = '{0}' where Userid = {1}", cmdIds, id);
