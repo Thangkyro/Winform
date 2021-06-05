@@ -402,7 +402,11 @@ namespace AusNail.Process
                         _totalAmount += decimal.Parse(gridRegister.Rows[i].Cells["col_R_Amount"].Value.ToString());
                     }
                     lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
-
+                    txt_B_note.Clear();
+                    txt_B_Service.Clear();
+                    numSL.Value = 0;
+                    dgv_B_Service.Visible = false;
+                    txt_B_Service.Focus();
                 }
             }
             catch (Exception ex)
@@ -708,6 +712,18 @@ namespace AusNail.Process
                 catch (Exception ex)
                 {
                 }
+            }
+        }
+
+        private void txt_B_Service_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgv_B_Service.Select();
+            }
+            if (e.KeyCode == Keys.F5)
+            {
+                txt_B_Service_TextChanged(sender, e);
             }
         }
     }
