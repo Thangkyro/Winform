@@ -320,7 +320,7 @@ namespace AusNail
 
         private void Bill_Click(object sender, EventArgs e)
         {
-            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Bill");
+            Process.frmBill frm = new Process.frmBill(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
             ShowForm(frm);
         }
 
