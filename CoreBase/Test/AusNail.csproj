@@ -32,13 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="AltoControls">
+      <HintPath>..\..\..\AltoControls\AltoControls\bin\Debug\AltoControls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -132,6 +128,18 @@
     <Compile Include="Process\frmCheckin.Designer.cs">
       <DependentUpon>frmCheckin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frmCheckPhone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmCheckPhone.Designer.cs">
+      <DependentUpon>frmCheckPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frmCusstomerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmCusstomerAdd.Designer.cs">
+      <DependentUpon>frmCusstomerAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmPay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +192,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmCheckin.resx">
       <DependentUpon>frmCheckin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmCheckPhone.resx">
+      <DependentUpon>frmCheckPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmCusstomerAdd.resx">
+      <DependentUpon>frmCusstomerAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmPay.resx">
       <DependentUpon>frmPay.cs</DependentUpon>
