@@ -28,23 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtPhone = new AltoControls.AltoTextBox();
             this.btnConfirm = new AltoControls.AltoButton();
             this.altoSlidingLabel1 = new AltoControls.AltoSlidingLabel();
             this.btnCancel = new AltoControls.AltoButton();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.BackColor = System.Drawing.Color.Transparent;
-            this.txtPhone.Br = System.Drawing.Color.White;
-            this.txtPhone.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.txtPhone.ForeColor = System.Drawing.Color.DimGray;
-            this.txtPhone.Location = new System.Drawing.Point(129, 28);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(198, 33);
-            this.txtPhone.TabIndex = 3;
-            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // btnConfirm
             // 
@@ -62,7 +50,7 @@
             this.btnConfirm.Size = new System.Drawing.Size(96, 30);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
-            this.btnConfirm.TabIndex = 5;
+            this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -73,7 +61,7 @@
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
             this.altoSlidingLabel1.Size = new System.Drawing.Size(102, 36);
             this.altoSlidingLabel1.Slide = false;
-            this.altoSlidingLabel1.TabIndex = 6;
+            this.altoSlidingLabel1.TabIndex = 0;
             this.altoSlidingLabel1.Text = "Customer Phone:";
             // 
             // btnCancel
@@ -92,10 +80,20 @@
             this.btnCancel.Size = new System.Drawing.Size(96, 30);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Transparency = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(129, 25);
+            this.txtPhone.Multiline = true;
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(198, 36);
+            this.txtPhone.TabIndex = 1;
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // frmCheckPhone
             // 
@@ -103,20 +101,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(367, 148);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.txtPhone);
             this.Name = "frmCheckPhone";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private AltoControls.AltoTextBox txtPhone;
         private AltoControls.AltoButton btnConfirm;
         private AltoControls.AltoSlidingLabel altoSlidingLabel1;
         private AltoControls.AltoButton btnCancel;
+        private System.Windows.Forms.TextBox txtPhone;
     }
 }
