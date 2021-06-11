@@ -112,6 +112,7 @@ namespace CoreBase.DataAccessLayer
         public const string TIMESTAMP_COLUM_NAME = "timestamp";
         public const string VERSION_TRACK_COLUMN_NAME = "version_track";
         public const string INACTIVE_COLUMN_NAME = "inactive";
+        public const string IS_INACTIVE_COLUMN_NAME = "is_inactive";
         public const string IS_DELETED_COLNAME = "is_deleted";
         public const string MA_DVCS_COLUMN_NAME = "ma_dvcs";
         public static string[] excludeColumns = { "created_at", "timestamp", "version_track"}; // "modified_at",
