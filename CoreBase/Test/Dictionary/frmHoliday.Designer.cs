@@ -62,9 +62,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 418);
+            this.panel1.Location = new System.Drawing.Point(0, 410);
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1057, 54);
+            this.panel1.Size = new System.Drawing.Size(1057, 62);
             // 
             // imageList
             // 
@@ -77,16 +77,24 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Location = new System.Drawing.Point(268, 14);
+            this.lblMessInfomation.Location = new System.Drawing.Point(326, 21);
             this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblMessInfomation.Size = new System.Drawing.Size(665, 30);
+            this.lblMessInfomation.Size = new System.Drawing.Size(625, 30);
             // 
             // lblTime
             // 
-            this.lblTime.Location = new System.Drawing.Point(957, 14);
+            this.lblTime.Location = new System.Drawing.Point(957, 22);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 30);
-            this.lblTime.Text = "10:53:03";
+            this.lblTime.Text = "14:12:39";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(13, 11);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(147, 11);
             // 
             // panel2
             // 
@@ -97,7 +105,7 @@
             this.panel2.Location = new System.Drawing.Point(13, 14);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(597, 396);
+            this.panel2.Size = new System.Drawing.Size(597, 387);
             this.panel2.TabIndex = 6;
             // 
             // GridDetail
@@ -110,7 +118,7 @@
             this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
-            this.GridDetail.Size = new System.Drawing.Size(597, 396);
+            this.GridDetail.Size = new System.Drawing.Size(597, 387);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
@@ -254,10 +262,10 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
             this.label11.Location = new System.Drawing.Point(785, 14);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 32);
+            this.label11.Size = new System.Drawing.Size(125, 41);
             this.label11.TabIndex = 15;
             this.label11.Text = "Holiday";
             // 

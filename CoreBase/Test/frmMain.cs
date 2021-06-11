@@ -29,6 +29,7 @@ namespace AusNail
         public frmMain()
         {
             InitializeComponent();
+            splitContainer1.BackColor = NailApp.ColorUser;
         }
         private void GetMessage(int branchid, int userid)
         {
@@ -46,11 +47,7 @@ namespace AusNail
 
         private void LoadMenu()
         {
-            trvMenu.Nodes.Add("Customer");
-            trvMenu.Nodes.Add("Employee");
-            trvMenu.Nodes.Add("Holiday");
-            trvMenu.Nodes.Add("Service");
-            trvMenu.Nodes.Add("WorkShift");
+           
         }
 
         public void ShowForm(Form frm)
@@ -120,20 +117,12 @@ namespace AusNail
 
         private void txtSearchMenu_Leave(object sender, EventArgs e)
         {
-            if (txtSearchMenu.Text == "")
-            {
-                txtSearchMenu.Text = "Please Enter Search Key";
-                txtSearchMenu.ForeColor = Color.Gray;
-            }
+            
         }
 
         private void txtSearchMenu_Enter(object sender, EventArgs e)
         {
-            if (txtSearchMenu.Text == "Please Enter Search Key")
-            {
-                txtSearchMenu.Text = "";
-                txtSearchMenu.ForeColor = Color.Black;
-            }
+           
         }
 
         void InitCommandOld()
@@ -369,6 +358,44 @@ namespace AusNail
                 NailApp.lstPermission = new List<string>();
                 NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
                 InitCommandOld();
+
+                //Load colorList for combobox
+                if (cboColor.Items.Count == 0)
+                {
+                    //foreach (string item in ThemeColor.ColorList)
+                    //{
+                    //    cboColor.Items.Add()
+                    //}
+                    cboColor.DataSource = ThemeColor.ColorList;
+                }
+
+            }
+        }
+
+        private void BtnSetColor_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you wanna change theme color ?", "Change Theme Color", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (cboColor.SelectedValue != null)
+                {
+                    Color color = ColorTranslator.FromHtml(cboColor.SelectedValue.ToString());
+                    splitContainer1.BackColor = color;
+                    txtColor.Br = color;
+                    //Update color for user
+                    string sql = "UPDATE zUser SET ColorUser = '" + cboColor.SelectedValue.ToString() + "' WHERE Userid = " + NailApp.CurrentUserId;
+                    int i = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                }
+            }
+        }
+
+        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboColor.SelectedValue != null)
+            {
+                Color color = ColorTranslator.FromHtml(cboColor.SelectedValue.ToString());
+                //splitContainer1.BackColor = color;
+                txtColor.Br = color;
             }
         }
     }

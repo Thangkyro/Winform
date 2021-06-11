@@ -46,14 +46,6 @@
             this.panel1.Location = new System.Drawing.Point(0, 274);
             this.panel1.Size = new System.Drawing.Size(652, 54);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
-            // 
             // imageList
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
@@ -65,14 +57,22 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Location = new System.Drawing.Point(232, 14);
-            this.lblMessInfomation.Size = new System.Drawing.Size(334, 25);
+            this.lblMessInfomation.Location = new System.Drawing.Point(281, 14);
+            this.lblMessInfomation.Size = new System.Drawing.Size(285, 25);
             // 
             // lblTime
             // 
             this.lblTime.Location = new System.Drawing.Point(574, 14);
             this.lblTime.Size = new System.Drawing.Size(74, 24);
-            this.lblTime.Text = "16:07:46";
+            this.lblTime.Text = "14:21:02";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // panel2
             // 
@@ -95,10 +95,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(229, 37);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(261, 32);
+            this.label4.Size = new System.Drawing.Size(265, 41);
             this.label4.TabIndex = 5;
             this.label4.Text = "Change Password";
             // 

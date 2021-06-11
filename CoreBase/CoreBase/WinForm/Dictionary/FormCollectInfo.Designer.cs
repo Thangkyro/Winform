@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCollectInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new AltoControls.AltoButton();
+            this.btnOK = new AltoControls.AltoButton();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblMessInfomation = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.btnOk = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,21 +44,65 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnOK);
             this.panel1.Controls.Add(this.lblTime);
             this.panel1.Controls.Add(this.lblMessInfomation);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnOk);
-            this.panel1.Location = new System.Drawing.Point(0, 314);
+            this.panel1.Location = new System.Drawing.Point(0, 396);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(567, 54);
+            this.panel1.Size = new System.Drawing.Size(731, 54);
             this.panel1.TabIndex = 4;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnCancel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnCancel.Location = new System.Drawing.Point(146, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Radius = 10;
+            this.btnCancel.Size = new System.Drawing.Size(128, 40);
+            this.btnCancel.Stroke = false;
+            this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
+            this.btnCancel.TabIndex = 10003;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Transparency = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnOK.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOK.BackColor = System.Drawing.Color.Transparent;
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOK.ForeColor = System.Drawing.Color.Black;
+            this.btnOK.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnOK.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnOK.Location = new System.Drawing.Point(12, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Radius = 10;
+            this.btnOK.Size = new System.Drawing.Size(128, 40);
+            this.btnOK.Stroke = false;
+            this.btnOK.StrokeColor = System.Drawing.Color.Gray;
+            this.btnOK.TabIndex = 10002;
+            this.btnOK.Text = "OK";
+            this.btnOK.Transparency = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // lblTime
             // 
             this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTime.Location = new System.Drawing.Point(448, 21);
+            this.lblTime.Location = new System.Drawing.Point(603, 22);
             this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(115, 17);
@@ -72,7 +116,7 @@
             this.lblMessInfomation.Location = new System.Drawing.Point(320, 22);
             this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessInfomation.Name = "lblMessInfomation";
-            this.lblMessInfomation.Size = new System.Drawing.Size(89, 17);
+            this.lblMessInfomation.Size = new System.Drawing.Size(253, 17);
             this.lblMessInfomation.TabIndex = 1;
             // 
             // label1
@@ -82,23 +126,8 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(567, 1);
+            this.label1.Size = new System.Drawing.Size(731, 1);
             this.label1.TabIndex = 2;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.ImageKey = "cancel.png";
-            this.btnCancel.ImageList = this.imageList;
-            this.btnCancel.Location = new System.Drawing.Point(124, 14);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 28);
-            this.btnCancel.TabIndex = 9999;
-            this.btnCancel.Text = "&Close";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // imageList
             // 
@@ -110,26 +139,12 @@
             this.imageList.Images.SetKeyName(3, "Edit.png");
             this.imageList.Images.SetKeyName(4, "cancel.png");
             // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOk.ImageKey = "tick.png";
-            this.btnOk.Location = new System.Drawing.Point(16, 14);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(100, 28);
-            this.btnOk.TabIndex = 9998;
-            this.btnOk.Text = "&OK";
-            this.btnOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOK_Click);
-            // 
             // FormCollectInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(567, 372);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(731, 454);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormCollectInfo";
@@ -142,10 +157,10 @@
         #endregion
         protected System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.Button btnCancel;
-        protected System.Windows.Forms.Button btnOk;
         public System.Windows.Forms.ImageList imageList;
         public System.Windows.Forms.Label lblMessInfomation;
         public System.Windows.Forms.Label lblTime;
+        protected AltoControls.AltoButton btnCancel;
+        protected AltoControls.AltoButton btnOK;
     }
 }

@@ -244,5 +244,6 @@ namespace AusNail.Dictionary
             DialogResult result = MessageBox.Show(message, title, buttons);
             return result;
         }
+
     }
 }
