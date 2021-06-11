@@ -13,10 +13,21 @@ namespace AusNail.Process
 {
     public partial class frmCheckPhone : Form
     {
+        public int _branchId = 0;
+        public int _UserId = 0;
         private DataTable _dtCustomer = null;
         public frmCheckPhone()
         {
             InitializeComponent();
+            txtPhone.Focus();
+        }
+
+        public frmCheckPhone(int branchId, int userId)
+        {
+            InitializeComponent();
+            _branchId = branchId;
+            _UserId = userId;
+            txtPhone.Select();
         }
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -43,12 +54,17 @@ namespace AusNail.Process
                 // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
-                    //Trả dữ liệu customer cho form main
+                    this.WindowState = FormWindowState.Minimized;
+                    frmServiceAdd frm = new frmServiceAdd(_branchId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
+                    frm.ShowDialog();
                 }
                 else
                 {
-                    // Mở form Add customer
+                    this.WindowState = FormWindowState.Minimized;
+                    frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
+                    frm.ShowDialog();
                 }
+                txtPhone.Clear();
             }
         }
         private bool checkExiestCustomer(string phoneNumber)
@@ -65,6 +81,15 @@ namespace AusNail.Process
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Sự kiện bấm Enter
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnConfirm_Click(sender, e);
+            }
         }
     }
 }

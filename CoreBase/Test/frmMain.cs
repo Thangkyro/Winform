@@ -381,6 +381,7 @@ namespace AusNail
                 {
                     Color color = ColorTranslator.FromHtml(cboColor.SelectedValue.ToString());
                     splitContainer1.BackColor = color;
+                    splitContainer2.BackColor = color;
                     txtColor.Br = color;
                     //Update color for user
                     string sql = "UPDATE zUser SET ColorUser = '" + cboColor.SelectedValue.ToString() + "' WHERE Userid = " + NailApp.CurrentUserId;
