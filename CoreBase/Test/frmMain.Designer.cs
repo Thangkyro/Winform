@@ -36,6 +36,8 @@ namespace AusNail
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.trTemporaryBill = new System.Windows.Forms.TreeView();
+            this.cMSReload = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.trHistoryBill = new System.Windows.Forms.TreeView();
             this.btnSetColor = new AltoControls.AltoButton();
@@ -45,6 +47,20 @@ namespace AusNail
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.txtColor = new AltoControls.AltoTextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.btnPrint = new AltoControls.AltoButton();
+            this.butCheckphone = new AltoControls.AltoButton();
+            this.btnPay = new AltoControls.AltoButton();
+            this.btnSave = new AltoControls.AltoButton();
+            this.btnAddCustomer = new AltoControls.AltoButton();
+            this.dgvService = new System.Windows.Forms.DataGridView();
+            this.txtGenden = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtBilDate = new System.Windows.Forms.TextBox();
+            this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.txtBillCode = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.mnsMenu = new System.Windows.Forms.MenuStrip();
             this.zdm = new System.Windows.Forms.ToolStripMenuItem();
             this.Branch = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,23 +81,8 @@ namespace AusNail
             this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.User = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cMSReload = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.butCheckphone = new AltoControls.AltoButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBillCode = new System.Windows.Forms.TextBox();
-            this.txtBilDate = new System.Windows.Forms.TextBox();
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtGenden = new System.Windows.Forms.TextBox();
-            this.dgvService = new System.Windows.Forms.DataGridView();
-            this.btnAddCustomer = new AltoControls.AltoButton();
-            this.btnSave = new AltoControls.AltoButton();
-            this.btnPay = new AltoControls.AltoButton();
-            this.btnPrint = new AltoControls.AltoButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deeteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -92,11 +93,11 @@ namespace AusNail
             this.splitContainer2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.cMSReload.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pnlForm.SuspendLayout();
-            this.mnsMenu.SuspendLayout();
-            this.cMSReload.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
+            this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -186,6 +187,24 @@ namespace AusNail
             this.trTemporaryBill.TabIndex = 0;
             this.trTemporaryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trTemporaryBill_AfterSelect);
             this.trTemporaryBill.Click += new System.EventHandler(this.trTemporaryBill_Click);
+            // 
+            // cMSReload
+            // 
+            this.cMSReload.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cMSReload.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.deeteToolStripMenuItem});
+            this.cMSReload.Name = "contextMenuStrip1";
+            this.cMSReload.Size = new System.Drawing.Size(115, 56);
+            this.cMSReload.Text = "ReLoad";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::AusNail.Properties.Resources.Refresh;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
+            this.toolStripMenuItem1.Text = "Reload";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // tabPage2
             // 
@@ -314,6 +333,214 @@ namespace AusNail
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Size = new System.Drawing.Size(723, 519);
             this.pnlForm.TabIndex = 0;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnPrint.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrint.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnPrint.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.ForeColor = System.Drawing.Color.Black;
+            this.btnPrint.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnPrint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnPrint.Location = new System.Drawing.Point(547, 480);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Radius = 10;
+            this.btnPrint.Size = new System.Drawing.Size(80, 24);
+            this.btnPrint.Stroke = false;
+            this.btnPrint.StrokeColor = System.Drawing.Color.Gray;
+            this.btnPrint.TabIndex = 14;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Transparency = false;
+            this.btnPrint.Click += new System.EventHandler(this.BtnSetColor_Click);
+            // 
+            // butCheckphone
+            // 
+            this.butCheckphone.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.butCheckphone.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.butCheckphone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.butCheckphone.BackColor = System.Drawing.Color.Transparent;
+            this.butCheckphone.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.butCheckphone.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.butCheckphone.ForeColor = System.Drawing.Color.Black;
+            this.butCheckphone.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.butCheckphone.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.butCheckphone.Location = new System.Drawing.Point(19, 482);
+            this.butCheckphone.Margin = new System.Windows.Forms.Padding(2);
+            this.butCheckphone.Name = "butCheckphone";
+            this.butCheckphone.Radius = 10;
+            this.butCheckphone.Size = new System.Drawing.Size(110, 23);
+            this.butCheckphone.Stroke = false;
+            this.butCheckphone.StrokeColor = System.Drawing.Color.Gray;
+            this.butCheckphone.TabIndex = 11;
+            this.butCheckphone.Text = "Check phone";
+            this.butCheckphone.Transparency = false;
+            this.butCheckphone.Click += new System.EventHandler(this.butCheckphone_Click);
+            // 
+            // btnPay
+            // 
+            this.btnPay.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnPay.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPay.BackColor = System.Drawing.Color.Transparent;
+            this.btnPay.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnPay.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPay.ForeColor = System.Drawing.Color.Black;
+            this.btnPay.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnPay.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnPay.Location = new System.Drawing.Point(629, 480);
+            this.btnPay.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay.Name = "btnPay";
+            this.btnPay.Radius = 10;
+            this.btnPay.Size = new System.Drawing.Size(80, 24);
+            this.btnPay.Stroke = false;
+            this.btnPay.StrokeColor = System.Drawing.Color.Gray;
+            this.btnPay.TabIndex = 15;
+            this.btnPay.Text = "Pay";
+            this.btnPay.Transparency = false;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnSave.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSave.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnSave.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnSave.Location = new System.Drawing.Point(463, 480);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Radius = 10;
+            this.btnSave.Size = new System.Drawing.Size(80, 24);
+            this.btnSave.Stroke = false;
+            this.btnSave.StrokeColor = System.Drawing.Color.Gray;
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.Transparency = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnAddCustomer.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnAddCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddCustomer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddCustomer.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAddCustomer.ForeColor = System.Drawing.Color.Black;
+            this.btnAddCustomer.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnAddCustomer.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnAddCustomer.Location = new System.Drawing.Point(131, 482);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Radius = 10;
+            this.btnAddCustomer.Size = new System.Drawing.Size(110, 24);
+            this.btnAddCustomer.Stroke = false;
+            this.btnAddCustomer.StrokeColor = System.Drawing.Color.Gray;
+            this.btnAddCustomer.TabIndex = 12;
+            this.btnAddCustomer.Text = "Add Customer";
+            this.btnAddCustomer.Transparency = false;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
+            // 
+            // dgvService
+            // 
+            this.dgvService.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvService.BackgroundColor = System.Drawing.Color.White;
+            this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvService.Location = new System.Drawing.Point(19, 93);
+            this.dgvService.Name = "dgvService";
+            this.dgvService.Size = new System.Drawing.Size(690, 382);
+            this.dgvService.TabIndex = 10;
+            this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
+            this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
+            // 
+            // txtGenden
+            // 
+            this.txtGenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGenden.Location = new System.Drawing.Point(624, 67);
+            this.txtGenden.Name = "txtGenden";
+            this.txtGenden.ReadOnly = true;
+            this.txtGenden.Size = new System.Drawing.Size(85, 20);
+            this.txtGenden.TabIndex = 8;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(498, 67);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.ReadOnly = true;
+            this.txtPhone.Size = new System.Drawing.Size(124, 20);
+            this.txtPhone.TabIndex = 7;
+            // 
+            // txtBilDate
+            // 
+            this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBilDate.Location = new System.Drawing.Point(498, 45);
+            this.txtBilDate.Name = "txtBilDate";
+            this.txtBilDate.ReadOnly = true;
+            this.txtBilDate.Size = new System.Drawing.Size(211, 20);
+            this.txtBilDate.TabIndex = 5;
+            // 
+            // txtCustomerName
+            // 
+            this.txtCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCustomerName.Location = new System.Drawing.Point(87, 67);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.ReadOnly = true;
+            this.txtCustomerName.Size = new System.Drawing.Size(410, 20);
+            this.txtCustomerName.TabIndex = 6;
+            // 
+            // txtBillCode
+            // 
+            this.txtBillCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBillCode.Location = new System.Drawing.Point(87, 45);
+            this.txtBillCode.Name = "txtBillCode";
+            this.txtBillCode.ReadOnly = true;
+            this.txtBillCode.Size = new System.Drawing.Size(410, 20);
+            this.txtBillCode.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Customer:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Bill:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkGray;
+            this.label3.Location = new System.Drawing.Point(1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(717, 36);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "BILL INFORMATION";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // mnsMenu
             // 
@@ -468,234 +695,19 @@ namespace AusNail
             this.logoffToolStripMenuItem.Text = "Logoff";
             this.logoffToolStripMenuItem.Click += new System.EventHandler(this.LogoffToolStripMenuItem_Click);
             // 
-            // cMSReload
-            // 
-            this.cMSReload.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cMSReload.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cMSReload.Name = "contextMenuStrip1";
-            this.cMSReload.Size = new System.Drawing.Size(115, 30);
-            this.cMSReload.Text = "ReLoad";
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
             // 
-            // butCheckphone
+            // deeteToolStripMenuItem
             // 
-            this.butCheckphone.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.butCheckphone.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.butCheckphone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.butCheckphone.BackColor = System.Drawing.Color.Transparent;
-            this.butCheckphone.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.butCheckphone.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.butCheckphone.ForeColor = System.Drawing.Color.Black;
-            this.butCheckphone.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.butCheckphone.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.butCheckphone.Location = new System.Drawing.Point(19, 482);
-            this.butCheckphone.Margin = new System.Windows.Forms.Padding(2);
-            this.butCheckphone.Name = "butCheckphone";
-            this.butCheckphone.Radius = 10;
-            this.butCheckphone.Size = new System.Drawing.Size(110, 23);
-            this.butCheckphone.Stroke = false;
-            this.butCheckphone.StrokeColor = System.Drawing.Color.Gray;
-            this.butCheckphone.TabIndex = 11;
-            this.butCheckphone.Text = "Check phone";
-            this.butCheckphone.Transparency = false;
-            this.butCheckphone.Click += new System.EventHandler(this.butCheckphone_Click);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkGray;
-            this.label3.Location = new System.Drawing.Point(1, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(717, 36);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "BILL INFORMATION";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Bill:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 70);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Customer:";
-            // 
-            // txtBillCode
-            // 
-            this.txtBillCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBillCode.Location = new System.Drawing.Point(87, 45);
-            this.txtBillCode.Name = "txtBillCode";
-            this.txtBillCode.ReadOnly = true;
-            this.txtBillCode.Size = new System.Drawing.Size(410, 20);
-            this.txtBillCode.TabIndex = 4;
-            // 
-            // txtBilDate
-            // 
-            this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBilDate.Location = new System.Drawing.Point(498, 45);
-            this.txtBilDate.Name = "txtBilDate";
-            this.txtBilDate.ReadOnly = true;
-            this.txtBilDate.Size = new System.Drawing.Size(211, 20);
-            this.txtBilDate.TabIndex = 5;
-            // 
-            // txtCustomerName
-            // 
-            this.txtCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomerName.Location = new System.Drawing.Point(87, 67);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(410, 20);
-            this.txtCustomerName.TabIndex = 6;
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(498, 67);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(124, 20);
-            this.txtPhone.TabIndex = 7;
-            // 
-            // txtGenden
-            // 
-            this.txtGenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGenden.Location = new System.Drawing.Point(624, 67);
-            this.txtGenden.Name = "txtGenden";
-            this.txtGenden.ReadOnly = true;
-            this.txtGenden.Size = new System.Drawing.Size(85, 20);
-            this.txtGenden.TabIndex = 8;
-            // 
-            // dgvService
-            // 
-            this.dgvService.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvService.BackgroundColor = System.Drawing.Color.White;
-            this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvService.Location = new System.Drawing.Point(19, 93);
-            this.dgvService.Name = "dgvService";
-            this.dgvService.Size = new System.Drawing.Size(690, 382);
-            this.dgvService.TabIndex = 10;
-            // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnAddCustomer.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnAddCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddCustomer.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddCustomer.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAddCustomer.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.btnAddCustomer.ForeColor = System.Drawing.Color.Black;
-            this.btnAddCustomer.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnAddCustomer.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnAddCustomer.Location = new System.Drawing.Point(131, 482);
-            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Radius = 10;
-            this.btnAddCustomer.Size = new System.Drawing.Size(110, 24);
-            this.btnAddCustomer.Stroke = false;
-            this.btnAddCustomer.StrokeColor = System.Drawing.Color.Gray;
-            this.btnAddCustomer.TabIndex = 12;
-            this.btnAddCustomer.Text = "Add Customer";
-            this.btnAddCustomer.Transparency = false;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnSave.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnSave.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnSave.Location = new System.Drawing.Point(463, 480);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Radius = 10;
-            this.btnSave.Size = new System.Drawing.Size(80, 24);
-            this.btnSave.Stroke = false;
-            this.btnSave.StrokeColor = System.Drawing.Color.Gray;
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
-            this.btnSave.Transparency = false;
-            this.btnSave.Click += new System.EventHandler(this.BtnSetColor_Click);
-            // 
-            // btnPay
-            // 
-            this.btnPay.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnPay.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPay.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnPay.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.btnPay.ForeColor = System.Drawing.Color.Black;
-            this.btnPay.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnPay.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPay.Location = new System.Drawing.Point(629, 480);
-            this.btnPay.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPay.Name = "btnPay";
-            this.btnPay.Radius = 10;
-            this.btnPay.Size = new System.Drawing.Size(80, 24);
-            this.btnPay.Stroke = false;
-            this.btnPay.StrokeColor = System.Drawing.Color.Gray;
-            this.btnPay.TabIndex = 15;
-            this.btnPay.Text = "Pay";
-            this.btnPay.Transparency = false;
-            this.btnPay.Click += new System.EventHandler(this.BtnSetColor_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnPrint.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnPrint.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.btnPrint.ForeColor = System.Drawing.Color.Black;
-            this.btnPrint.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnPrint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPrint.Location = new System.Drawing.Point(547, 480);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Radius = 10;
-            this.btnPrint.Size = new System.Drawing.Size(80, 24);
-            this.btnPrint.Stroke = false;
-            this.btnPrint.StrokeColor = System.Drawing.Color.Gray;
-            this.btnPrint.TabIndex = 14;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.Transparency = false;
-            this.btnPrint.Click += new System.EventHandler(this.BtnSetColor_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::AusNail.Properties.Resources.Refresh;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
-            this.toolStripMenuItem1.Text = "Reload";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.deeteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
+            this.deeteToolStripMenuItem.Name = "deeteToolStripMenuItem";
+            this.deeteToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.deeteToolStripMenuItem.Text = "Delete";
+            this.deeteToolStripMenuItem.Click += new System.EventHandler(this.deeteToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -723,13 +735,13 @@ namespace AusNail
             this.splitContainer2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.cMSReload.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.pnlForm.ResumeLayout(false);
             this.pnlForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvService)).EndInit();
             this.mnsMenu.ResumeLayout(false);
             this.mnsMenu.PerformLayout();
-            this.cMSReload.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvService)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -788,6 +800,7 @@ namespace AusNail
         private AltoControls.AltoButton btnAddCustomer;
         private System.Windows.Forms.DataGridView dgvService;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deeteToolStripMenuItem;
     }
 }
 
