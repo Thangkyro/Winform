@@ -559,7 +559,7 @@ namespace AusNail.Process
                     {
                         _bookingID = int.Parse(dt.Rows[0][0].ToString());
                         // Send total Amount.
-                        frmPay prn = new frmPay(_branchId, _bookingID, _totalAmount, _UserId);
+                        frmPay prn = new frmPay(_branchId, _bookingID, _billID, _totalAmount, _UserId);
                         prn.Show();
                     }
                     else
@@ -590,7 +590,7 @@ namespace AusNail.Process
                     decimal Price = decimal.Parse(gridRegister.Rows[i].Cells["col_R_Price"].Value.ToString());
                     int StaffId = int.Parse(gridRegister.Rows[i].Cells["Col_R_StaffId"].Value.ToString());
                     decimal discount = decimal.Parse(gridRegister.Rows[i].Cells["co_B_Discount"].Value.ToString());
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, _branchId, Num, ServiceID, Quantity, Price, discount, StaffId, _UserId, error, errorMesg);
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, _branchId, Num, ServiceID, Quantity, Price, discount, StaffId, _UserId, "", error, errorMesg);
                     if (ret == 0)
                     {
                         flag = false;

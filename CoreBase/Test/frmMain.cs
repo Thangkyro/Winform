@@ -20,6 +20,9 @@ namespace AusNail
         private int _billID;
         private int _branchID;
         private int _userID;
+        private DataTable _Service = null;
+        private DataTable _dtService = null;
+        private DataTable _dtStaff = null;
         //public frmMain()
         //{
         //    InitializeComponent();
@@ -433,6 +436,9 @@ namespace AusNail
                 }
 
                 LoadHistory();
+                createTable();
+                loadService();
+                LoadGrid();
 
                 Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
                 frm.TopMost = true;
@@ -517,25 +523,23 @@ namespace AusNail
         }
         private void loadGridDetail_Bill(int billId)
         {
-            dgvService.Rows.Clear();
             DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, int.Parse(NailApp.BranchID));
             if (dt != null)
             {
+                _Service.Rows.Clear();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    int num = i + 1;
-                    string servicename = dt.Rows[i]["ServiceName"].ToString();
-                    string staffName = dt.Rows[i]["StaffName"].ToString();
-                    string staffId = dt.Rows[i]["StaffId"].ToString();
-                    decimal price = decimal.Parse(dt.Rows[i]["Price"].ToString());
-                    decimal quantity = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
-                    decimal Amount = decimal.Parse(dt.Rows[i]["Amout"].ToString());
-                    string serviceId = dt.Rows[i]["ServiceID"].ToString();
-                    string note = dt.Rows[i]["Note"].ToString();
-                    decimal discount = decimal.Parse(dt.Rows[i]["Discount"].ToString());
-                    object[] row = { num, staffName, servicename, quantity, price, Amount, discount, note, serviceId, staffId };
-                    dgvService.Rows.Add(row);
+                    DataRow dr = _Service.NewRow();
+                    dr["StaffId"] = dt.Rows[i]["StaffId"].ToString();
+                    dr["Price"] = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                    dr["Quantity"] = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
+                    dr["Amount"] = decimal.Parse(dt.Rows[i]["Amout"].ToString());
+                    dr["ServiceID"] = dt.Rows[i]["ServiceID"].ToString();
+                    dr["Note"] = dt.Rows[i]["Note"].ToString();
+                    dr["Discount"] = decimal.Parse(dt.Rows[i]["Discount"].ToString());
+                    _Service.Rows.Add(dr);
                 }
+                dgvService.DataSource = _Service;
             }
             //_totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
             //lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
@@ -565,6 +569,252 @@ namespace AusNail
             catch (Exception ex)
             {
             }
+        }
+
+        private void createTable()
+        {
+            _Service = new DataTable();
+            _Service.Columns.Add("staffId", typeof(int));
+            _Service.Columns.Add("serviceId", typeof(int));
+            _Service.Columns.Add("Quantity", typeof(decimal));
+            _Service.Columns.Add("Price", typeof(decimal));
+            _Service.Columns.Add("Discount", typeof(decimal));
+            _Service.Columns.Add("Amount", typeof(decimal));
+            _Service.Columns.Add("Note", typeof(string));
+        }
+
+        private void loadService()
+        {
+            try
+            {
+                _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", int.Parse(NailApp.BranchID));
+                _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", int.Parse(NailApp.BranchID));
+            }
+            catch
+            {
+            }
+        }
+
+        private void LoadGrid()
+        {
+            dgvService.DataSource = _Service;
+            dgvService.Columns.Remove("staffId");
+            DataGridViewComboBoxColumn dgvCmbStaff = new DataGridViewComboBoxColumn();
+            dgvCmbStaff.DataPropertyName = "staffId";
+            dgvCmbStaff.HeaderText = "Staff";
+            dgvCmbStaff.Name = "staffId";
+            dgvCmbStaff.DisplayMember = "Name";
+            dgvCmbStaff.ValueMember = "staffId";
+            dgvCmbStaff.DataSource = _dtStaff;
+            dgvCmbStaff.Width = 180;
+            dgvService.Columns.Add(dgvCmbStaff);
+            dgvService.Columns["staffId"].DisplayIndex = 0;
+
+            dgvService.Columns.Remove("serviceId");
+            DataGridViewComboBoxColumn dgvCmbService = new DataGridViewComboBoxColumn();
+            dgvCmbService.DataPropertyName = "serviceId";
+            dgvCmbService.HeaderText = "Service";
+            dgvCmbService.Name = "serviceId";
+            dgvCmbService.DisplayMember = "Title";
+            dgvCmbService.ValueMember = "serviceId";
+            dgvCmbService.DataSource = _dtService;
+            dgvCmbService.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvService.Columns.Add(dgvCmbService);
+            dgvService.Columns["serviceId"].DisplayIndex = 0;
+
+            dgvService.Columns["Quantity"].HeaderText = "Quantity";
+            dgvService.Columns["Quantity"].Width = 100;
+            dgvService.Columns["Price"].HeaderText = "Price";
+            dgvService.Columns["Price"].Width = 100;
+            dgvService.Columns["Discount"].HeaderText = "Discount";
+            dgvService.Columns["Discount"].Width = 100;
+            dgvService.Columns["Amount"].HeaderText = "Amount";
+            dgvService.Columns["Amount"].ReadOnly = true;
+            dgvService.Columns["Amount"].Width = 120;
+            dgvService.Columns["Note"].HeaderText = "Note";
+            dgvService.Columns["Note"].Width = 180;
+
+
+            DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
+            dataGridViewImange.Name = "Del";
+            dataGridViewImange.HeaderText = "";
+            dataGridViewImange.Width = 20;
+            dataGridViewImange.Image = Properties.Resources.cancel;
+            dgvService.Columns.Add(dataGridViewImange);
+
+            dgvService.AutoGenerateColumns = false;
+        }
+
+        private void dgvService_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                {
+                    return;
+                }
+                else
+                {
+                    if (e.ColumnIndex == 7) //Delete 
+                    {
+                        dgvService.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvService_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex > -1 && (e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))
+                {
+                    decimal Discount = 0;
+                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                    decimal Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
+                    // Update row num
+                    try
+                    {
+                        Discount = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Discount"].Value.ToString());
+                    }
+                    catch
+                    {
+                        Discount = 0;
+                        dgvService.Rows[e.RowIndex].Cells["Discount"].Value = 0;
+                    }
+                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
+                }
+                if (e.RowIndex > -1 && (e.ColumnIndex == 6))
+                {
+                    decimal Discount = 0;
+                    string serviceId = dgvService.Rows[e.RowIndex].Cells["serviceId"].Value.ToString();
+                    decimal Price = decimal.Parse(_dtService.Select("serviceId = " + serviceId, "")[0]["Price"].ToString());
+                    dgvService.Rows[e.RowIndex].Cells["Price"].Value = Price;
+                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                    // Update row num
+                    try
+                    {
+                        Discount = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Discount"].Value.ToString());
+                    }
+                    catch
+                    {
+                        Discount = 0;
+                        dgvService.Rows[e.RowIndex].Cells["Discount"].Value = 0;
+                    }
+                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
+                }
+                
+                
+            }
+            catch
+            {
+                dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+            }
+        }
+
+        private void SaveBill(int billId, string voucherCode)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    {
+                        int Num = i + 1;
+                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
+                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                        int StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
+                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billID, int.Parse(NailApp.BranchID), 0, "");
+                SaveBill(_billID, "");
+            }
+            catch 
+            {
+            }
+            
+        }
+
+        private void deeteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want delete bill?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterDelete", _billID, int.Parse(NailApp.BranchID), 0, "");
+                if (ret > 0)
+                {
+                    LoadHistory();
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+                    dgvService.DataSource = null;
+                }
+            }
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal totalAmount = 0;
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    {
+                        totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                    }
+                }
+                Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billID,  totalAmount, NailApp.CurrentUserId);
+                frm.Activate();
+                frm.Show();
+            }
+            catch (Exception ex) 
+            {
+            }
+            
         }
     }
 }
