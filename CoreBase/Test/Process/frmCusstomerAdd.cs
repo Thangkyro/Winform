@@ -71,9 +71,11 @@ namespace AusNail.Process
                 {
                     string customerName = txtName.Text.Trim();
                     string phoneNumber = txtPhoneNum.Text.Trim();
-                    this.WindowState = FormWindowState.Minimized;
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
                     Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
-                    frm.ShowDialog();
+                    frm.Activate();
+                    frm.Show();
                 }
                 else
                 {
