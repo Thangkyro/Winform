@@ -369,6 +369,10 @@ namespace AusNail
                     cboColor.DataSource = ThemeColor.ColorList;
                 }
 
+                Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+                frm.TopMost = true;
+                frm.Show();
+
             }
         }
 
