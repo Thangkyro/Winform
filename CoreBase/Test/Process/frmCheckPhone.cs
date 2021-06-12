@@ -27,7 +27,7 @@ namespace AusNail.Process
             InitializeComponent();
             _branchId = branchId;
             _UserId = userId;
-            txtPhone.Select();
+            txtPhone.Focus();
         }
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -54,15 +54,19 @@ namespace AusNail.Process
                 // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
-                    this.WindowState = FormWindowState.Minimized;
-                    frmServiceAdd frm = new frmServiceAdd(_branchId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
-                    frm.ShowDialog();
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
+                    frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
+                    frm.Activate();
+                    frm.Show();
                 }
                 else
                 {
-                    this.WindowState = FormWindowState.Minimized;
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
                     frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
-                    frm.ShowDialog();
+                    frm.Activate();
+                    frm.Show();
                 }
                 txtPhone.Clear();
             }
