@@ -163,28 +163,42 @@ namespace AusNail.Process
             if (dgvService.Rows.Count > 0)
             {
                 bool flag = true;
+                // Get billCode
+                string billCode = "";
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
+                if (dt != null)
+                {
+                    billCode = dt.Rows[0][0].ToString();
+                }
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
-                    string CustomerPhone = txtPhoneNumber.Text.Trim();
-                    int Num = i + 1;
-                    int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                    decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
-                    decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                    int StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
-                    string Note = "";
-                    DateTime bookingdate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                    int error = 0;
-                    string errorMesg = "";
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert", bookingdate, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _userID, error, errorMesg);
-
-                    if (ret == 0)
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
                     {
-                        flag = false;
+                        string CustomerPhone = txtPhoneNumber.Text.Trim();
+                        int Num = i + 1;
+                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
+                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                        int StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        string Note = "";
+                        DateTime billdate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                        int error = 0;
+                        string errorMesg = "";
+
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _userID, error, errorMesg);
+
+                        if (ret == 0)
+                        {
+                            flag = false;
+                        }
                     }
                 }
                 if (flag)
                 {
                     MessageBox.Show("Register sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
                 }
             }
         }

@@ -17,6 +17,7 @@ namespace AusNail
 {
     public partial class frmMain : Form
     {
+        private int _billID;
         private int _branchID;
         private int _userID;
         //public frmMain()
@@ -29,7 +30,13 @@ namespace AusNail
         public frmMain()
         {
             InitializeComponent();
-            splitContainer1.BackColor = NailApp.ColorUser;
+            try
+            {
+                splitContainer1.BackColor = NailApp.ColorUser;
+            }
+            catch 
+            {
+            }
         }
         private void GetMessage(int branchid, int userid)
         {
@@ -48,6 +55,62 @@ namespace AusNail
         private void LoadMenu()
         {
            
+        }
+
+        public void LoadHistory()
+        {
+            try
+            {
+                trHistoryBill.Nodes.Clear();
+                DataTable dt = null;
+                // Load booking
+                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        trHistoryBill.ImageList = imageList1;
+                        string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Tag = dr["BookID"].ToString();
+                        trHistoryBill.Nodes.Add(note);
+                    }
+                }
+                else
+                {
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trHistoryBill.Nodes.Add(note);
+                }
+
+                // Load temporary bill
+                trTemporaryBill.Nodes.Clear();
+                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        trTemporaryBill.ImageList = imageList1;
+                        string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Tag = dr["BillID"].ToString();
+                        trTemporaryBill.Nodes.Add(note);
+                    }
+                }
+                else
+                {
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trTemporaryBill.Nodes.Add(note);
+                }
+
+            }
+            catch
+            { }
         }
 
         public void ShowForm(Form frm)
@@ -84,11 +147,11 @@ namespace AusNail
             {
                 if (pnlForm.Controls.Count > 0)
                 {
-                    foreach (Form item in pnlForm.Controls)
-                    {
-                        //item.TopMost = false;
-                        item.WindowState = FormWindowState.Minimized;
-                    }
+                    //foreach (Form item in pnlForm.Controls)
+                    //{
+                    //    //item.TopMost = false;
+                    //    item.WindowState = FormWindowState.Minimized;
+                    //}
                 }
                 pnlForm.Controls.Add(frm);
                 if (formBorToolStripMenuItem.Checked)
@@ -369,6 +432,8 @@ namespace AusNail
                     cboColor.DataSource = ThemeColor.ColorList;
                 }
 
+                LoadHistory();
+
                 Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
                 frm.TopMost = true;
                 frm.Show();
@@ -401,6 +466,104 @@ namespace AusNail
                 Color color = ColorTranslator.FromHtml(cboColor.SelectedValue.ToString());
                 //splitContainer1.BackColor = color;
                 txtColor.Br = color;
+            }
+        }
+
+        private void butCheckphone_Click(object sender, EventArgs e)
+        {
+            Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            frm.TopMost = true;
+            frm.Show();
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+                frm.TopMost = true;
+                frm.Show();
+            }
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            Process.frmCusstomerAdd frm = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
+            frm.Show();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            LoadHistory();
+        }
+
+        private void loadBillInfor(int billID)
+        {
+            try
+            {
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetInfor", billID, int.Parse(NailApp.BranchID));
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    txtBillCode.Text = dt.Rows[0]["BillCode"].ToString();
+                    txtBilDate.Text = DateTime.Parse(dt.Rows[0]["BillDate"].ToString()).ToString("dd/MM/yyyy");
+                    txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
+                    txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
+                    txtGenden.Text = dt.Rows[0]["Gender"].ToString();
+                }
+            }
+            catch
+            {
+            }
+        }
+        private void loadGridDetail_Bill(int billId)
+        {
+            dgvService.Rows.Clear();
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, int.Parse(NailApp.BranchID));
+            if (dt != null)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    int num = i + 1;
+                    string servicename = dt.Rows[i]["ServiceName"].ToString();
+                    string staffName = dt.Rows[i]["StaffName"].ToString();
+                    string staffId = dt.Rows[i]["StaffId"].ToString();
+                    decimal price = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                    decimal quantity = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
+                    decimal Amount = decimal.Parse(dt.Rows[i]["Amout"].ToString());
+                    string serviceId = dt.Rows[i]["ServiceID"].ToString();
+                    string note = dt.Rows[i]["Note"].ToString();
+                    decimal discount = decimal.Parse(dt.Rows[i]["Discount"].ToString());
+                    object[] row = { num, staffName, servicename, quantity, price, Amount, discount, note, serviceId, staffId };
+                    dgvService.Rows.Add(row);
+                }
+            }
+            //_totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
+            //lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            //btnRegister.Text = "Pay";
+        }
+        private void trTemporaryBill_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billID);
+                loadGridDetail_Bill(_billID);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void trTemporaryBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billID);
+                loadGridDetail_Bill(_billID);
+            }
+            catch (Exception ex)
+            {
             }
         }
     }
