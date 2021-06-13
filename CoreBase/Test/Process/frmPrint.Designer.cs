@@ -34,6 +34,7 @@
             // rptBill
             // 
             this.rptBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rptBill.LocalReport.ReportEmbeddedResource = "AusNail.Process.rptBill.rdlc";
             this.rptBill.Location = new System.Drawing.Point(0, 0);
             this.rptBill.Name = "rptBill";
             this.rptBill.ServerReport.BearerToken = null;

@@ -194,6 +194,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qidjefjs_ausNailDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>qidjefjs_ausNailDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Dictionary\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>
@@ -249,6 +254,7 @@
     <EmbeddedResource Include="Process\frmServiceAdd.resx">
       <DependentUpon>frmServiceAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\rptBill.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -282,6 +288,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="qidjefjs_ausNailDataSet.xsc">
+      <DependentUpon>qidjefjs_ausNailDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="qidjefjs_ausNailDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>qidjefjs_ausNailDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="qidjefjs_ausNailDataSet.xss">
+      <DependentUpon>qidjefjs_ausNailDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\package_green.png" />
   </ItemGroup>
   <ItemGroup>
