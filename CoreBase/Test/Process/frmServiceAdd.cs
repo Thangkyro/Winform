@@ -19,6 +19,7 @@ namespace AusNail.Process
         private DataTable _dtStaff = null;
         private DataTable _Service = null;
         public delegate void DelSendMsg(string msg);
+        private int iResult = 0;
 
         //khạ báo biến kiểu delegate
         public DelSendMsg SendMsg;
@@ -177,23 +178,29 @@ namespace AusNail.Process
                 if (flag)
                 {
                     MessageBox.Show("Register sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
+                    //this.DialogResult = DialogResult.OK;
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
 
-                    //Get billID 
-                    //int billID = 0;
-                    //DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select TOP 1 BillID From zBillMaster WITH(NOLOCK) Where BillCode = '" + billCode + "'");
-                    //if (dtBill != null && dtBill.Rows.Count > 0)
-                    //{
-                    //    billID = int.Parse(dtBill.Rows[0][0].ToString());
-                    //    frmMain frmM = new frmMain();
-                    //    frmM.LoadBillFormService(billID);
-                    //    //SendMsg.Invoke(this, new LoadBillFormService());
-                    //}
+                    //Get billID
+                    int billID = 0;
+                    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select TOP 1 BillID From zBillMaster WITH(NOLOCK) Where BillCode = '" + billCode + "'");
+                    if (dtBill != null && dtBill.Rows.Count > 0)
+                    {
+                        iResult = int.Parse(dtBill.Rows[0][0].ToString());
+                        //frmMain frmM = new frmMain();
+                        //frmM.LoadBillFormService(billID);
+                        //SendMsg.Invoke(this, new LoadBillFormService());
+                    }
                     //this.Close();
                 }
             }
+            this.Close();
+        }
+
+        public int SendData()
+        {
+            return iResult;
         }
 
         private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)

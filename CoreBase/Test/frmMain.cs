@@ -37,7 +37,7 @@ namespace AusNail
             {
                 splitContainer1.BackColor = NailApp.ColorUser;
             }
-            catch 
+            catch
             {
             }
         }
@@ -57,7 +57,7 @@ namespace AusNail
 
         private void LoadMenu()
         {
-           
+
         }
 
         public void LoadHistory()
@@ -183,12 +183,12 @@ namespace AusNail
 
         private void txtSearchMenu_Leave(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtSearchMenu_Enter(object sender, EventArgs e)
         {
-           
+
         }
 
         void InitCommandOld()
@@ -440,10 +440,102 @@ namespace AusNail
                 loadService();
                 LoadGrid();
 
-                Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-                frm.TopMost = true;
-                frm.Show();
+                //Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+                //frm.TopMost = true;
+                //frm.Show();
 
+                //Check Phone
+                CheckService(true);
+            }
+        }
+
+        private void LoadAll(int billID)
+        {
+            LoadHistory();
+            createTable();
+            loadService();
+            LoadGrid();
+            loadBillInfor(billID);
+            loadGridDetail_Bill(billID, true);
+            btnPay.Enabled = true;
+            btnSave.Enabled = true;
+        }
+
+        private void CheckService(bool isCheckPhone)
+        {
+            if (isCheckPhone)
+            {
+                Process.frmCheckPhone form = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+                form.ShowDialog();
+                string sResult = form.SendData();
+                List<string> lstResult = new List<string>();
+                if (sResult != null)
+                {
+                    lstResult = sResult.Split('|').ToList();
+                }
+
+                if (lstResult != null && lstResult.Count > 1) // Add Service
+                {
+                    Process.frmServiceAdd frmSerAdd = new Process.frmServiceAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[1].ToString().Trim(), lstResult[0].ToString().Trim());
+                    frmSerAdd.ShowDialog();
+                    int iResult = frmSerAdd.SendData();
+                    if (iResult != 0)
+                    {
+                        LoadAll(iResult);
+                    }
+                }
+                else if (lstResult != null && lstResult.Count == 1) //Add Customer
+                {
+                    Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[0].ToString().Trim());
+                    frmCusAdd.ShowDialog();
+                    string addCusResult = frmCusAdd.SendData();
+                    if (!string.IsNullOrWhiteSpace(addCusResult))
+                    {
+                        List<string> lstaddCusResult = new List<string>();
+                        if (addCusResult != null)
+                        {
+                            lstaddCusResult = addCusResult.Split('|').ToList();
+                        }
+
+                        //Show form AddService
+                        Process.frmServiceAdd frmSerAdd =
+                            new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
+                            NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
+                            lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
+                        frmSerAdd.ShowDialog();
+                        int iResult = frmSerAdd.SendData();
+                        if (iResult != 0)
+                        {
+                            LoadAll(iResult);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
+                frmCusAdd.ShowDialog();
+                string addCusResult = frmCusAdd.SendData();
+                if (!string.IsNullOrWhiteSpace(addCusResult))
+                {
+                    List<string> lstaddCusResult = new List<string>();
+                    if (addCusResult != null)
+                    {
+                        lstaddCusResult = addCusResult.Split('|').ToList();
+                    }
+
+                    //Show form AddService
+                    Process.frmServiceAdd frmSerAdd =
+                        new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
+                        NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
+                        lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
+                    frmSerAdd.ShowDialog();
+                    int iResult = frmSerAdd.SendData();
+                    if (iResult != 0)
+                    {
+                        LoadAll(iResult);
+                    }
+                }
             }
         }
 
@@ -477,9 +569,11 @@ namespace AusNail
 
         private void butCheckphone_Click(object sender, EventArgs e)
         {
-            Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-            frm.TopMost = true;
-            frm.Show();
+            //Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            //frm.TopMost = true;
+            //frm.Show();
+            //Check Phone
+            CheckService(true);
         }
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -494,8 +588,10 @@ namespace AusNail
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            Process.frmCusstomerAdd frm = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
-            frm.Show();
+            //Process.frmCusstomerAdd frm = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
+            //frm.Show();
+
+            CheckService(false);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -565,11 +661,11 @@ namespace AusNail
         {
             try
             {
-                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID, true);
-                btnPay.Enabled = true;
-                btnSave.Enabled = true;
+                //_billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                //loadBillInfor(_billID);
+                //loadGridDetail_Bill(_billID, true);
+                //btnPay.Enabled = true;
+                //btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -712,8 +808,8 @@ namespace AusNail
                     }
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
                 }
-                
-                
+
+
             }
             catch
             {
@@ -775,10 +871,10 @@ namespace AusNail
                 int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billID, int.Parse(NailApp.BranchID), 0, "");
                 SaveBill(_billID, "");
             }
-            catch 
+            catch
             {
             }
-            
+
         }
 
         private void deeteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -812,7 +908,7 @@ namespace AusNail
                         totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
                     }
                 }
-                Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billID,  totalAmount, NailApp.CurrentUserId);
+                Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billID, totalAmount, NailApp.CurrentUserId);
                 frm.Activate();
                 frm.ShowDialog();
 
@@ -821,10 +917,10 @@ namespace AusNail
                     LoadHistory();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
             }
-            
+
         }
 
         private void trHistoryBill_AfterSelect(object sender, TreeViewEventArgs e)
@@ -846,11 +942,11 @@ namespace AusNail
         {
             try
             {
-                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID, false);
-                btnPay.Enabled = false;
-                btnSave.Enabled = false;
+                //_billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                //loadBillInfor(_billID);
+                //loadGridDetail_Bill(_billID, false);
+                //btnPay.Enabled = false;
+                //btnSave.Enabled = false;
             }
             catch (Exception ex)
             {

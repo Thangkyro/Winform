@@ -18,6 +18,7 @@ namespace AusNail.Process
         private int _branchId = 2;
         private int _UserId = 1;
         private string _phoneNumber = "";
+        private string sResult = "";
         public frmCusstomerAdd()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace AusNail.Process
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             zCustomerInsert();
+            this.Close();
         }
         private void zCustomerInsert()
         {
@@ -71,11 +73,13 @@ namespace AusNail.Process
                 {
                     string customerName = txtName.Text.Trim();
                     string phoneNumber = txtPhoneNum.Text.Trim();
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
-                    Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
-                    frm.Activate();
-                    frm.Show();
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
+                    //Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
+                    //frm.Activate();
+                    //frm.Show();
+
+                    sResult = phoneNumber + "|" + customerName;
                 }
                 else
                 {
@@ -87,6 +91,11 @@ namespace AusNail.Process
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public string SendData()
+        {
+            return sResult;
         }
 
         private string GenCustomerCode()

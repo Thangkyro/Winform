@@ -16,6 +16,7 @@ namespace AusNail.Process
         public int _branchId = 0;
         public int _UserId = 0;
         private DataTable _dtCustomer = null;
+        private string sResult = "";
         public frmCheckPhone()
         {
             InitializeComponent();
@@ -43,6 +44,11 @@ namespace AusNail.Process
             }
         }
 
+        public string SendData()
+        {
+            return sResult;
+        }
+
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (txtPhone.Text.Trim() == "")
@@ -51,25 +57,29 @@ namespace AusNail.Process
             }
             else
             {
-                // Kiểm tra tính hợp lệ của số điện thoại
+
+               // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
-                    frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
-                    frm.Activate();
-                    frm.Show();
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
+                    //frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
+                    //frm.Activate();
+                    //frm.Show();
+                    sResult = txtPhone.Text.Trim() + "|" + _dtCustomer.Rows[0]["Name"].ToString();
                 }
                 else
                 {
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
-                    frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
-                    frm.Activate();
-                    frm.Show();
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
+                    //frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
+                    //frm.Activate();
+                    //frm.Show();
+                    sResult = txtPhone.Text.Trim();
                 }
                 txtPhone.Clear();
             }
+            this.Close();
         }
         private bool checkExiestCustomer(string phoneNumber)
         {
