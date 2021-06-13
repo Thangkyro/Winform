@@ -488,8 +488,13 @@ namespace CoreBase.DataAccessLayer
         {
             StringBuilder sb = new StringBuilder();
             //Nếu có sử dụng trường is_deleted để đánh dấu xóa chứ không xóa hẳn
-            if (schemaTable.Columns.Contains(ZenDatabase.IS_DELETED_COLNAME))
-                sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_DELETED_COLNAME);
+            //if (schemaTable.Columns.Contains(ZenDatabase.IS_DELETED_COLNAME))
+            //    sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_DELETED_COLNAME);
+            //else
+            //    sb.AppendFormat("DELETE FROM {0}", tableName);
+
+            if (schemaTable.Columns.Contains(ZenDatabase.IS_INACTIVE_COLUMN_NAME))
+                sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_INACTIVE_COLUMN_NAME);
             else
                 sb.AppendFormat("DELETE FROM {0}", tableName);
 
@@ -567,6 +572,13 @@ namespace CoreBase.DataAccessLayer
 
             foreach (DataColumn col in schemaTable.Columns)
             {
+                //Update for update branchID
+                if (NailApp.IsAdmin() && !(col.AutoIncrement || !string.IsNullOrEmpty(col.Expression) || ZenDatabase.excludeColumns.Contains(col.ColumnName)
+                    || !updateRow.Table.Columns.Contains(col.ColumnName)))
+                {
+
+                }
+                else 
                 if (col.AutoIncrement || !string.IsNullOrEmpty(col.Expression) || schemaTable.PrimaryKey.Contains(col) || ZenDatabase.excludeColumns.Contains(col.ColumnName)
                     || !updateRow.Table.Columns.Contains(col.ColumnName))
                 {
@@ -592,6 +604,10 @@ namespace CoreBase.DataAccessLayer
             isFirst = true;
             foreach (DataColumn col in schemaTable.PrimaryKey)
             {
+                if (NailApp.IsAdmin() && col.ColumnName == "branchId") //Update for update branchID
+                {
+                    continue;
+                }
                 if (!isFirst)
                     sbWhere.Append(" AND");
 

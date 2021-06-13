@@ -21,14 +21,6 @@ namespace AusNail.Login
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (!ValidData())
-                return;
-            SaveData();
-
-            DialogResult = DialogResult.OK;
-        }
         private bool ValidData()
         {
             if (txtPasswordOld.Text == "")
@@ -41,7 +33,11 @@ namespace AusNail.Login
             //Kiem tra mat khau cu
             DataRow row = null;
             using (SecurityDAO sDao = new SecurityDAO())
-                row = sDao.GetUserRow(NailApp.CurrentUserRow["user_name"].zToString(), Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(NailApp.BranchID) + Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + Encryptor.MD5Hash(txtPasswordOld.Text.Trim()));
+                row = sDao.GetUserRow(NailApp.CurrentUserRow["user_name"].zToString(), 
+                    Encryptor.MD5Hash("123456Aa") + 
+                    //Encryptor.MD5Hash(NailApp.BranchID) + 
+                    Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + 
+                    Encryptor.MD5Hash(txtPasswordOld.Text.Trim()));
 
             if (row == null)
             {
@@ -78,10 +74,32 @@ namespace AusNail.Login
         private void SaveData()
         {
             //string password = Encryptor.MD5Hash("123456Aa" + NailApp.BranchID + NailApp.CurrentUserId.ToString() + txtPassword.Text);
-            string password = Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(NailApp.BranchID) + Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + Encryptor.MD5Hash(txtPassword.Text.Trim());
+            string password = Encryptor.MD5Hash("123456Aa") + 
+                //Encryptor.MD5Hash(NailApp.BranchID) + 
+                Encryptor.MD5Hash(NailApp.CurrentUserId.ToString()) + 
+                Encryptor.MD5Hash(txtPassword.Text.Trim());
             using (SecurityDAO sDao = new SecurityDAO())
                 sDao.SetPassword(NailApp.CurrentUserRow["Userid"].zToInt(), password);
 
+        }
+
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            if (!ValidData())
+            {
+                MessageBox.Show("Change Password Failed");
+            }
+            else
+            {
+                SaveData();
+                MessageBox.Show("Change Password Successfully");
+            }
+
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

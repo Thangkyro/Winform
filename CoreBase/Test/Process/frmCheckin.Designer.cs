@@ -39,10 +39,13 @@
             this.gridHolidays = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.treHistory = new System.Windows.Forms.TreeView();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dgv_B_Service = new System.Windows.Forms.DataGridView();
+            this.txt_B_Service = new System.Windows.Forms.TextBox();
             this.txt_B_note = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_B_Date = new System.Windows.Forms.DateTimePicker();
@@ -50,6 +53,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numSL = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.lbl_R_Total = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.gridRegister = new System.Windows.Forms.DataGridView();
@@ -62,7 +68,7 @@
             this.col_R_Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_R_ServiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_R_StaffId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cb_B_ServiceName = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.cb_B_StaftName = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -80,11 +86,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnCheck = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -92,6 +93,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_B_Service)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegister)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -134,9 +136,9 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.gridHolidays);
-            this.groupBox6.Location = new System.Drawing.Point(6, 322);
+            this.groupBox6.Location = new System.Drawing.Point(6, 404);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(289, 181);
+            this.groupBox6.Size = new System.Drawing.Size(289, 99);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Holidays";
@@ -151,7 +153,7 @@
             this.gridHolidays.Location = new System.Drawing.Point(10, 20);
             this.gridHolidays.Name = "gridHolidays";
             this.gridHolidays.RowHeadersVisible = false;
-            this.gridHolidays.Size = new System.Drawing.Size(270, 150);
+            this.gridHolidays.Size = new System.Drawing.Size(270, 68);
             this.gridHolidays.TabIndex = 0;
             // 
             // groupBox3
@@ -162,7 +164,7 @@
             this.groupBox3.Controls.Add(this.treHistory);
             this.groupBox3.Location = new System.Drawing.Point(6, 96);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(289, 220);
+            this.groupBox3.Size = new System.Drawing.Size(289, 302);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "History";
@@ -174,10 +176,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treHistory.Location = new System.Drawing.Point(25, 22);
             this.treHistory.Name = "treHistory";
-            this.treHistory.Size = new System.Drawing.Size(244, 177);
+            this.treHistory.Size = new System.Drawing.Size(244, 259);
             this.treHistory.TabIndex = 0;
             this.treHistory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treHistory_AfterSelect);
             this.treHistory.Click += new System.EventHandler(this.treHistory_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheck.Image = global::AusNail.Properties.Resources.zoom;
+            this.btnCheck.Location = new System.Drawing.Point(209, 41);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(86, 40);
+            this.btnCheck.TabIndex = 1;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // label1
             // 
@@ -218,6 +234,8 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.dgv_B_Service);
+            this.groupBox5.Controls.Add(this.txt_B_Service);
             this.groupBox5.Controls.Add(this.txt_B_note);
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.txt_B_Date);
@@ -232,16 +250,42 @@
             this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Controls.Add(this.gridRegister);
             this.groupBox5.Controls.Add(this.btnAdd);
-            this.groupBox5.Controls.Add(this.cb_B_ServiceName);
             this.groupBox5.Controls.Add(this.cb_B_StaftName);
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Location = new System.Drawing.Point(27, 170);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(657, 325);
-            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Booking information";
+            // 
+            // dgv_B_Service
+            // 
+            this.dgv_B_Service.AllowUserToAddRows = false;
+            this.dgv_B_Service.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_B_Service.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_B_Service.Location = new System.Drawing.Point(104, 81);
+            this.dgv_B_Service.MultiSelect = false;
+            this.dgv_B_Service.Name = "dgv_B_Service";
+            this.dgv_B_Service.RowHeadersVisible = false;
+            this.dgv_B_Service.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_B_Service.Size = new System.Drawing.Size(415, 162);
+            this.dgv_B_Service.TabIndex = 3;
+            this.dgv_B_Service.DoubleClick += new System.EventHandler(this.dgv_B_Service_DoubleClick);
+            this.dgv_B_Service.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_B_Service_KeyDown);
+            // 
+            // txt_B_Service
+            // 
+            this.txt_B_Service.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_B_Service.Location = new System.Drawing.Point(104, 60);
+            this.txt_B_Service.Name = "txt_B_Service";
+            this.txt_B_Service.Size = new System.Drawing.Size(415, 20);
+            this.txt_B_Service.TabIndex = 2;
+            this.txt_B_Service.TextChanged += new System.EventHandler(this.txt_B_Service_TextChanged);
+            this.txt_B_Service.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_B_Service_KeyDown);
             // 
             // txt_B_note
             // 
@@ -250,7 +294,7 @@
             this.txt_B_note.Location = new System.Drawing.Point(104, 83);
             this.txt_B_note.Name = "txt_B_note";
             this.txt_B_note.Size = new System.Drawing.Size(475, 20);
-            this.txt_B_note.TabIndex = 4;
+            this.txt_B_note.TabIndex = 5;
             // 
             // label2
             // 
@@ -258,7 +302,7 @@
             this.label2.Location = new System.Drawing.Point(19, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 16;
             this.label2.Text = "Note:";
             // 
             // txt_B_Date
@@ -296,7 +340,7 @@
             this.label14.Location = new System.Drawing.Point(19, 18);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(33, 13);
-            this.label14.TabIndex = 9;
+            this.label14.TabIndex = 13;
             this.label14.Text = "Date:";
             // 
             // numSL
@@ -305,7 +349,46 @@
             this.numSL.Location = new System.Drawing.Point(523, 60);
             this.numSL.Name = "numSL";
             this.numSL.Size = new System.Drawing.Size(123, 20);
-            this.numSL.TabIndex = 3;
+            this.numSL.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = global::AusNail.Properties.Resources.Print;
+            this.button1.Location = new System.Drawing.Point(436, 272);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 43);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Print Temporary Bill";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Image = global::AusNail.Properties.Resources.cancel;
+            this.button2.Location = new System.Drawing.Point(575, 272);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(71, 43);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Exit";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.Image = global::AusNail.Properties.Resources.Save;
+            this.btnRegister.Location = new System.Drawing.Point(362, 272);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(71, 43);
+            this.btnRegister.TabIndex = 8;
+            this.btnRegister.Text = "Save";
+            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // lbl_R_Total
             // 
@@ -317,7 +400,7 @@
             this.lbl_R_Total.Location = new System.Drawing.Point(104, 272);
             this.lbl_R_Total.Name = "lbl_R_Total";
             this.lbl_R_Total.Size = new System.Drawing.Size(252, 43);
-            this.lbl_R_Total.TabIndex = 8;
+            this.lbl_R_Total.TabIndex = 11;
             this.lbl_R_Total.Text = "0";
             this.lbl_R_Total.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -328,7 +411,7 @@
             this.label15.Location = new System.Drawing.Point(19, 289);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 13);
-            this.label15.TabIndex = 7;
+            this.label15.TabIndex = 12;
             this.label15.Text = "Total";
             // 
             // gridRegister
@@ -351,7 +434,8 @@
             this.gridRegister.Location = new System.Drawing.Point(22, 114);
             this.gridRegister.Name = "gridRegister";
             this.gridRegister.Size = new System.Drawing.Size(624, 152);
-            this.gridRegister.TabIndex = 6;
+            this.gridRegister.TabIndex = 7;
+            this.gridRegister.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridRegister_CellEndEdit);
             this.gridRegister.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridRegister_RowsRemoved);
             // 
             // col_R_Num
@@ -372,6 +456,7 @@
             // 
             this.col_T_ServiceName.HeaderText = "ServiceName";
             this.col_T_ServiceName.Name = "col_T_ServiceName";
+            this.col_T_ServiceName.ReadOnly = true;
             this.col_T_ServiceName.Width = 150;
             // 
             // ColQuantity
@@ -382,7 +467,6 @@
             this.ColQuantity.FillWeight = 70F;
             this.ColQuantity.HeaderText = "Quantity";
             this.ColQuantity.Name = "ColQuantity";
-            this.ColQuantity.ReadOnly = true;
             this.ColQuantity.Width = 70;
             // 
             // col_R_Price
@@ -421,15 +505,18 @@
             this.Col_R_StaffId.Name = "Col_R_StaffId";
             this.Col_R_StaffId.Visible = false;
             // 
-            // cb_B_ServiceName
+            // btnAdd
             // 
-            this.cb_B_ServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cb_B_ServiceName.FormattingEnabled = true;
-            this.cb_B_ServiceName.Location = new System.Drawing.Point(104, 60);
-            this.cb_B_ServiceName.Name = "cb_B_ServiceName";
-            this.cb_B_ServiceName.Size = new System.Drawing.Size(415, 21);
-            this.cb_B_ServiceName.TabIndex = 2;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Image = global::AusNail.Properties.Resources.add;
+            this.btnAdd.Location = new System.Drawing.Point(581, 81);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(65, 23);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cb_B_StaftName
             // 
@@ -447,7 +534,7 @@
             this.label13.Location = new System.Drawing.Point(19, 63);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 13);
-            this.label13.TabIndex = 1;
+            this.label13.TabIndex = 15;
             this.label13.Text = "Service name:";
             // 
             // label12
@@ -456,7 +543,7 @@
             this.label12.Location = new System.Drawing.Point(19, 40);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
-            this.label12.TabIndex = 1;
+            this.label12.TabIndex = 14;
             this.label12.Text = "Staft name:";
             // 
             // groupBox4
@@ -605,72 +692,6 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
             // 
-            // btnCheck
-            // 
-            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheck.Image = global::AusNail.Properties.Resources.zoom;
-            this.btnCheck.Location = new System.Drawing.Point(209, 41);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(86, 40);
-            this.btnCheck.TabIndex = 1;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::AusNail.Properties.Resources.Print;
-            this.button1.Location = new System.Drawing.Point(436, 272);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 43);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Print Temporary Bill";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Image = global::AusNail.Properties.Resources.cancel;
-            this.button2.Location = new System.Drawing.Point(575, 272);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(71, 43);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Exit";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegister.Image = global::AusNail.Properties.Resources.Save;
-            this.btnRegister.Location = new System.Drawing.Point(362, 272);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(71, 43);
-            this.btnRegister.TabIndex = 9;
-            this.btnRegister.Text = "Save";
-            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Image = global::AusNail.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(581, 81);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(65, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // frmCheckin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -689,6 +710,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_B_Service)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegister)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -712,7 +734,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView gridRegister;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ComboBox cb_B_ServiceName;
         private System.Windows.Forms.ComboBox cb_B_StaftName;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -739,6 +760,9 @@
         private System.Windows.Forms.DateTimePicker txt_C_DateofBirth;
         private System.Windows.Forms.TextBox txt_B_note;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Num;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_R_StaffName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_T_ServiceName;
@@ -748,8 +772,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_R_ServiceId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_R_StaffId;
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txt_B_Service;
+        private System.Windows.Forms.DataGridView dgv_B_Service;
     }
 }

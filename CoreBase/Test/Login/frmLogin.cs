@@ -93,7 +93,11 @@ namespace AusNail.Login
 
                     using (SecurityDAO sDAO = new SecurityDAO())
                     {
-                        userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(branchID) + Encryptor.MD5Hash(_userID.ToString()) + Encryptor.MD5Hash(txtPassword.Text.Trim()));
+                        userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, 
+                            Encryptor.MD5Hash("123456Aa") + 
+                            //Encryptor.MD5Hash(branchID) + 
+                            Encryptor.MD5Hash(_userID.ToString()) + 
+                            Encryptor.MD5Hash(txtPassword.Text.Trim()));
                         //userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, txtPassword.Text);
                     }
                     Cursor = Cursors.Default;
@@ -123,20 +127,20 @@ namespace AusNail.Login
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        //private void btnCancel_Click(object sender, EventArgs e)
+        //{
+        //    //this.Close();
+        //}
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            if (DialogResult == DialogResult.OK)
-            {
-                frmMain frm = new frmMain();
-                frm.Sender(int.Parse(cboBranch.SelectedValue.ToString()), _userID);
-                this.Close();
-            }
-        }
+        //private void btnOk_Click(object sender, EventArgs e)
+        //{
+        //    //if (DialogResult == DialogResult.OK)
+        //    //{
+        //    //    frmMain frm = new frmMain();
+        //    //    frm.Sender(int.Parse(cboBranch.SelectedValue.ToString()), _userID);
+        //    //    this.Close();
+        //    //}
+        //}
         
     }
 }

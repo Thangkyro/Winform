@@ -52,6 +52,9 @@ namespace CoreBase.DataAccessLayer
             if (zSchemaTable.Columns.Contains(ZenDatabase.MA_DVCS_COLUMN_NAME))
                 where = string.Format("{0}='{1}'", ZenDatabase.MA_DVCS_COLUMN_NAME, CONFIG.Ma_dvcs);
 
+            //if (zSchemaTable.Columns.Contains(ZenDatabase.IS_INACTIVE_COLUMN_NAME))
+            //    where = string.Format("{0}=0", ZenDatabase.IS_INACTIVE_COLUMN_NAME);
+
             string sql = base.buildSelectCommand("Select", zViewTableName, null, where);//)  string.Format("SELECT * FROM {0}", _tableName);
 
             DataSet ds = MsSqlHelper.ExecuteDataset(ZenDatabase.ConnectionString, CommandType.Text, sql);

@@ -50,6 +50,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPermission = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.btnResetPass = new AltoControls.AltoButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,18 +62,17 @@
             // 
             // chkis_inactive
             // 
-            this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkis_inactive.Location = new System.Drawing.Point(892, 436);
+            this.chkis_inactive.Location = new System.Drawing.Point(846, 436);
             this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
             this.chkis_inactive.TabIndex = 9;
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 505);
+            this.panel1.Location = new System.Drawing.Point(0, 531);
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1277, 54);
+            this.panel1.Size = new System.Drawing.Size(1231, 58);
             // 
             // imageList
             // 
@@ -83,41 +85,48 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Location = new System.Drawing.Point(269, 14);
+            this.lblMessInfomation.Location = new System.Drawing.Point(302, 18);
             this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblMessInfomation.Size = new System.Drawing.Size(840, 30);
+            this.lblMessInfomation.Size = new System.Drawing.Size(825, 30);
             // 
             // lblTime
             // 
-            this.lblTime.Location = new System.Drawing.Point(1149, 15);
+            this.lblTime.Location = new System.Drawing.Point(1133, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "08:22:04";
+            this.lblTime.Text = "14:11:04";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(13, 8);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(147, 8);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
             this.panel2.Location = new System.Drawing.Point(13, 14);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 482);
+            this.panel2.Size = new System.Drawing.Size(738, 508);
             this.panel2.TabIndex = 6;
             // 
             // GridDetail
             // 
-            this.GridDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.GridDetail.BackgroundColor = System.Drawing.Color.White;
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
+            this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
             this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
-            this.GridDetail.Size = new System.Drawing.Size(780, 482);
+            this.GridDetail.Size = new System.Drawing.Size(738, 508);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridDetail_CellFormatting);
@@ -150,11 +159,10 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(805, 47);
+            this.label2.Location = new System.Drawing.Point(759, 105);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 17);
@@ -163,11 +171,10 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(831, 15);
+            this.label3.Location = new System.Drawing.Point(785, 73);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 17);
@@ -176,11 +183,10 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(805, 178);
+            this.label5.Location = new System.Drawing.Point(759, 236);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 17);
@@ -189,20 +195,19 @@
             // 
             // txtUser_name
             // 
-            this.txtUser_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUser_name.Location = new System.Drawing.Point(892, 46);
+            this.txtUser_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUser_name.Location = new System.Drawing.Point(846, 104);
             this.txtUser_name.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser_name.Multiline = true;
             this.txtUser_name.Name = "txtUser_name";
+            this.txtUser_name.ReadOnly = true;
             this.txtUser_name.Size = new System.Drawing.Size(372, 25);
             this.txtUser_name.TabIndex = 2;
             // 
             // txtDecriptions
             // 
-            this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDecriptions.Location = new System.Drawing.Point(892, 176);
+            this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDecriptions.Location = new System.Drawing.Point(846, 234);
             this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecriptions.Multiline = true;
             this.txtDecriptions.Name = "txtDecriptions";
@@ -211,10 +216,10 @@
             // 
             // cboBranchId
             // 
-            this.cboBranchId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboBranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboBranchId.Enabled = false;
             this.cboBranchId.FormattingEnabled = true;
-            this.cboBranchId.Location = new System.Drawing.Point(892, 14);
+            this.cboBranchId.Location = new System.Drawing.Point(846, 72);
             this.cboBranchId.Margin = new System.Windows.Forms.Padding(4);
             this.cboBranchId.Name = "cboBranchId";
             this.cboBranchId.Size = new System.Drawing.Size(372, 24);
@@ -222,9 +227,8 @@
             // 
             // txtFull_Name
             // 
-            this.txtFull_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFull_Name.Location = new System.Drawing.Point(892, 78);
+            this.txtFull_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFull_Name.Location = new System.Drawing.Point(846, 136);
             this.txtFull_Name.Margin = new System.Windows.Forms.Padding(4);
             this.txtFull_Name.Multiline = true;
             this.txtFull_Name.Name = "txtFull_Name";
@@ -233,11 +237,10 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(813, 80);
+            this.label6.Location = new System.Drawing.Point(767, 138);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 17);
@@ -246,11 +249,10 @@
             // 
             // chkIs_Admin
             // 
-            this.chkIs_Admin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkIs_Admin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIs_Admin.AutoSize = true;
             this.chkIs_Admin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIs_Admin.Location = new System.Drawing.Point(892, 406);
+            this.chkIs_Admin.Location = new System.Drawing.Point(846, 406);
             this.chkIs_Admin.Margin = new System.Windows.Forms.Padding(4);
             this.chkIs_Admin.Name = "chkIs_Admin";
             this.chkIs_Admin.Size = new System.Drawing.Size(83, 21);
@@ -260,10 +262,9 @@
             // 
             // cboStaffId
             // 
-            this.cboStaffId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboStaffId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboStaffId.FormattingEnabled = true;
-            this.cboStaffId.Location = new System.Drawing.Point(892, 111);
+            this.cboStaffId.Location = new System.Drawing.Point(846, 169);
             this.cboStaffId.Margin = new System.Windows.Forms.Padding(4);
             this.cboStaffId.Name = "cboStaffId";
             this.cboStaffId.Size = new System.Drawing.Size(372, 24);
@@ -271,11 +272,10 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(847, 113);
+            this.label7.Location = new System.Drawing.Point(801, 171);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 17);
@@ -284,23 +284,22 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(892, 143);
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Location = new System.Drawing.Point(846, 201);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(372, 25);
+            this.txtPassword.ReadOnly = true;
+            this.txtPassword.Size = new System.Drawing.Size(222, 25);
             this.txtPassword.TabIndex = 5;
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(815, 145);
+            this.label8.Location = new System.Drawing.Point(769, 203);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 17);
@@ -309,34 +308,78 @@
             // 
             // txtPermission
             // 
-            this.txtPermission.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPermission.Enabled = false;
-            this.txtPermission.Location = new System.Drawing.Point(892, 209);
+            this.txtPermission.Location = new System.Drawing.Point(846, 267);
             this.txtPermission.Margin = new System.Windows.Forms.Padding(4);
             this.txtPermission.Multiline = true;
             this.txtPermission.Name = "txtPermission";
-            this.txtPermission.Size = new System.Drawing.Size(372, 189);
+            this.txtPermission.Size = new System.Drawing.Size(372, 131);
             this.txtPermission.TabIndex = 7;
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(807, 210);
+            this.label9.Location = new System.Drawing.Point(761, 268);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 17);
             this.label9.TabIndex = 18;
             this.label9.Text = "Permission";
             // 
+            // txtUserId
+            // 
+            this.txtUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserId.Location = new System.Drawing.Point(846, 456);
+            this.txtUserId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUserId.Multiline = true;
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(168, 25);
+            this.txtUserId.TabIndex = 19;
+            this.txtUserId.Visible = false;
+            // 
+            // btnResetPass
+            // 
+            this.btnResetPass.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnResetPass.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnResetPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnResetPass.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetPass.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnResetPass.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnResetPass.ForeColor = System.Drawing.Color.Black;
+            this.btnResetPass.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnResetPass.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnResetPass.Location = new System.Drawing.Point(1076, 197);
+            this.btnResetPass.Name = "btnResetPass";
+            this.btnResetPass.Radius = 10;
+            this.btnResetPass.Size = new System.Drawing.Size(143, 30);
+            this.btnResetPass.Stroke = false;
+            this.btnResetPass.StrokeColor = System.Drawing.Color.Gray;
+            this.btnResetPass.TabIndex = 21;
+            this.btnResetPass.Text = "Reset Password";
+            this.btnResetPass.Transparency = false;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(964, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(86, 41);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "User";
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 558);
+            this.ClientSize = new System.Drawing.Size(1231, 588);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnResetPass);
+            this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.txtPermission);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPassword);
@@ -374,6 +417,9 @@
             this.Controls.SetChildIndex(this.txtPassword, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.txtPermission, 0);
+            this.Controls.SetChildIndex(this.txtUserId, 0);
+            this.Controls.SetChildIndex(this.btnResetPass, 0);
+            this.Controls.SetChildIndex(this.label11, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -406,5 +452,8 @@
         private System.Windows.Forms.ContextMenuStrip ctmGridView;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refeshListToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtUserId;
+        private AltoControls.AltoButton btnResetPass;
+        private System.Windows.Forms.Label label11;
     }
 }

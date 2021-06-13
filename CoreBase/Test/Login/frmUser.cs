@@ -1,4 +1,5 @@
 ﻿using CoreBase;
+using CoreBase.DAL;
 using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
 using System;
@@ -92,6 +93,7 @@ namespace AusNail.Dictionary
         {
             try
             {
+                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -100,7 +102,24 @@ namespace AusNail.Dictionary
                     //    lblMessInfomation.Text = "Unauthorized";
                     //    return false; 
                     //}
-                    return base.InsertData();
+                    isSuccess = base.InsertData();
+                    if (isSuccess) // update lại password
+                    {
+                        int userID = 0;
+                        string sql = "Select UserID FROM  [dbo].[zUser] with(nolock) where user_name = '" + zEditRow["user_name"].ToString() + "'";
+                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                            string passWord = Encryptor.MD5Hash("123456Aa") +
+                                                //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) +
+                                                Encryptor.MD5Hash(userID.ToString()) +
+                                                Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                            sql = string.Format("update zUser set password = '{0}' where Userid = {1}", passWord, userID);
+                            MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+
+                        }
+                    }
                 }
                 else
                 {
@@ -109,7 +128,7 @@ namespace AusNail.Dictionary
                     //    lblMessInfomation.Text = "Unauthorized";
                     //    return false;
                     //}
-                    return base.UpdateData();
+                    isSuccess = base.UpdateData();
                 }
 
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
@@ -130,6 +149,13 @@ namespace AusNail.Dictionary
                 //}
                 //return true;
                 #endregion
+
+                if (isSuccess)
+                {
+                    LoadData();
+
+                }
+                return isSuccess;
             }
             catch
             {
@@ -142,7 +168,7 @@ namespace AusNail.Dictionary
         {
             this.zEditTableName = _tableName;
             this.zViewTableName = _tableName;
-            this.Text += " User"; 
+            this.Text += " User";
             base.InitForm();
         }
 
@@ -221,6 +247,8 @@ namespace AusNail.Dictionary
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
                     chkIs_Admin.Checked = bool.Parse(row.Cells["is_admin"].Value.ToString());
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
+                    txtUserId.Text = row.Cells["userid"].Value.ToString();
+
                 }
             }
             catch (Exception ex)
@@ -235,8 +263,11 @@ namespace AusNail.Dictionary
             if (((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName)).Count() == 1)
             {
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
-                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa") + Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) + Encryptor.MD5Hash(GetMaxUserID().ToString()) + Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
-                    //Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
+                this.zEditRow["Password"] = Encryptor.MD5Hash("123456Aa") +
+                    //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) + 
+                    Encryptor.MD5Hash(GetMaxUserID().ToString()) +
+                    Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                //Encryptor.MD5Hash("123456Aa" + this.zEditRow["branchId"].ToString() + GetMaxUserID() + this.zEditRow["user_name"].ToString());
                 _Mode = "Add";
             }
             else
@@ -280,20 +311,31 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 4 && e.Value != null)
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("password") && e.Value != null)
             {
                 e.Value = new String('*', e.Value.ToString().Length);
             }
         }
 
-        private int CheckExistsUserName(string userName)
+        private int CheckExistsUserName(string userName, int userID)
         {
             int id = 0;
             try
             {
-                string sql = "Select 1 FROM  [dbo].[zUser] with(nolock) where user_name = '" + userName + "'";
+                string sql = "";
+                if (userID == 0)
+                {
+                    sql = "Select 1 FROM  [dbo].[zUser] with(nolock) where user_name = '" + userName + "'";
+
+                }
+                else
+                {
+                    sql = "Select 1 FROM  [dbo].[zUser] with(nolock) where user_name = '" + userName + "' and  Userid <> " + userID;
+
+                }
                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
-                if (dt != null)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     id = 1;
                 }
@@ -308,11 +350,13 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1) // 1 User Name
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("user_name")) // 2 User Name
             {
                 //int i;
-                //string value = Convert.ToString(e.FormattedValue);
-                if (CheckExistsUserName(Convert.ToString(e.FormattedValue)) == 1)
+                int id = int.Parse(GridDetail["Userid", e.RowIndex].Value != DBNull.Value ? GridDetail["Userid", e.RowIndex].Value.ToString() : "0");
+
+                if (CheckExistsUserName(Convert.ToString(e.FormattedValue), id) == 1)
                 {
                     e.Cancel = true;
                     lblMessInfomation.Text = "User Name existed.";
@@ -321,6 +365,7 @@ namespace AusNail.Dictionary
                 {
 
                 }
+
             }
         }
 
@@ -344,5 +389,46 @@ namespace AusNail.Dictionary
             return id;
         }
 
+        private void BtnResetPass_Click(object sender, EventArgs e)
+        {
+            if (!NailApp.IsAdmin())
+            {
+                lblMessInfomation.Text = "Unauthorized";
+                return;
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Do You Want Reset Password ?", "Reset Password", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (txtUserId.Text != "0" && !string.IsNullOrWhiteSpace(txtUserId.Text))
+                    {
+                        int _userID = int.Parse(txtUserId.Text.Trim().ToString());
+                        string _userName = txtUser_name.Text.ToString();
+
+                        string password = Encryptor.MD5Hash("123456Aa") +
+                                //Encryptor.MD5Hash(NailApp.BranchID) + 
+                                Encryptor.MD5Hash(_userID.ToString()) +
+                                Encryptor.MD5Hash(_userName);
+                        using (SecurityDAO sDao = new SecurityDAO())
+                        {
+                            if (sDao.SetPasswordNew(_userID, password))
+                            {
+                                MessageBox.Show("Change Password Successfully");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Change Password Failed");
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Choose User!");
+                    }
+                }
+            }
+        }
     }
 }

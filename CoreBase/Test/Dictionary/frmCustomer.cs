@@ -59,8 +59,8 @@ namespace AusNail.Dictionary
                 lblMessInfomation.Text = "Unauthorized";
                 return;
             }
-           
-                LoadData();
+
+            LoadData();
             base.BeforeFillData();
         }
         protected override void FillData()
@@ -87,9 +87,10 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
-            
+
             try
             {
+                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -98,7 +99,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    return base.InsertData();
+                    isSuccess = base.InsertData();
                 }
                 else
                 {
@@ -107,7 +108,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    return base.UpdateData();
+                    isSuccess = base.UpdateData();
                 }
 
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
@@ -128,6 +129,12 @@ namespace AusNail.Dictionary
                 //}
                 //return true;
                 #endregion
+
+                if (isSuccess)
+                {
+                    LoadData();
+                }
+                return isSuccess;
             }
             catch
             {
@@ -305,12 +312,8 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(CUSTOMER_EDIT_CMDKEY) && !NailApp.IsAdmin())
-            {
-                lblMessInfomation.Text = "Unauthorized";
-                return;
-            }
-            if (e.ColumnIndex == 8) // From - TO
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("DateOfBirth")) // From - TO
             {
                 int rIndex = e.RowIndex;
                 int cIndex = e.ColumnIndex;

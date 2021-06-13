@@ -83,6 +83,7 @@ namespace AusNail.Dictionary
         {
             try
             {
+                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -91,7 +92,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    return base.InsertData();
+                    isSuccess = base.InsertData();
                 }
                 else
                 {
@@ -100,7 +101,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false; 
                     }
-                    return base.UpdateData();
+                    isSuccess = base.UpdateData();
                 }
 
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
@@ -121,6 +122,12 @@ namespace AusNail.Dictionary
                 //}
                 //return true;
                 #endregion
+
+                if (isSuccess)
+                {
+                    LoadData();
+                }
+                return isSuccess;
             }
             catch (Exception ex)
             {
@@ -251,7 +258,8 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1) // 1 Day of week
+            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            if (headerText.Equals("DayOfWeek")) // 1 Day of week
             {
                 int i;
 
@@ -270,7 +278,7 @@ namespace AusNail.Dictionary
 
                 }
             }
-            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3) // From - TO
+            else if (headerText.Equals("BusinessFrom") || headerText.Equals("BusinessTo")) // From - TO
             {
                 int rIndex = e.RowIndex;
                 int cIndex = e.ColumnIndex;

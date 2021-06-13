@@ -3,6 +3,7 @@ using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,7 +101,7 @@ namespace CoreBase
                 if (CurrentUserRow == null)
                     return -1;
 
-                return CurrentUserRow[4].zToInt();
+                return CurrentUserRow["Userid"].zToInt();
             }
         }
 
@@ -153,6 +154,22 @@ namespace CoreBase
                 return NailApp.CurrentUserRow["StaffId"].zToInt();
         }
 
+        public static Color ColorUser
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                {
+
+                    return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0); ;
+                }
+                else
+                {
+                    return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(CurrentUserRow["ColorUser"].zToString()), 0);
+                }
+            }
+        }
+
         //public string Password { get; set; }
 
 
@@ -170,5 +187,6 @@ namespace CoreBase
         //        return Commons.GetNgay_ks(BranchID);
         //    }
         //}
+
     }
 }

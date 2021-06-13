@@ -13,160 +13,92 @@ namespace AusNail.Process
 {
     public partial class frmPay : Form
     {
-        private bool _applyVoucher = false; // Dùng để ràng buộc trường hợp dùng nhiều voucher
+        private decimal _totalVoucher = 0;
+        private int _billId;
         private int _bookingID = -1;
         private decimal _totalAmount = 0;
         private decimal _Receivable = 0;
-        private decimal _voucherAmount = 0;
-        private decimal _discoutAmount = 0;
         private int _branchId = 0;
         private int _userId = 0;
+        private DataTable _dtVoucher = null;
+        private DataTable _dt = null;
         public frmPay()
         {
             InitializeComponent();
         }
 
-        public frmPay(int branchId, int bookingID, decimal totalAmount, int userId)
+        public frmPay(int branchId, int bookingID, int billId, decimal totalAmount, int userId)
         {
             InitializeComponent();
             _branchId = branchId;
             _bookingID = bookingID;
+            _billId = billId;
             _totalAmount = _Receivable = totalAmount;
             _userId = userId;
             lblTotalAmount.Text = string.Format("{0:#,##0.00}", _totalAmount);
-            lblReceivable.Text = string.Format("{0:#,##0.00}", _Receivable);
+            txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+            createTable();
+            loadVoucher();
+            LoadGrid();
+            txtCard.Enabled = false;
+            txtCash.Enabled = false;
         }
 
         private void frmPay_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void btnApply_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtVoucherCode.Text.Trim() == "")
-                {
-                    MessageBox.Show("Voucher code is not empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    if (!_applyVoucher)
-                    {
-                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", txtVoucherCode.Text.Trim(), DateTime.Now.ToString());
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            _voucherAmount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
-                            _Receivable = _totalAmount - _voucherAmount - _discoutAmount;
-                            lblReceivable.Text = string.Format("{0:#,##0.00}", _Receivable);
-                            _applyVoucher = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid voucher code..", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            txtVoucherCode.Clear();
-                            txtVoucherCode.Focus();
-                        }
-                    }
-                    else
-                    {
-                        // trường hợp sử dụng nhiều voucher
-                    }
-                }
-            }
-            catch
-            {
-            }
-        }
-
-        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Chỉ cho phép nhập số và các thao tác xóa, tiến lùi... Không nhập text.
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-                e.Handled = true;
-
-            // Sự kiện bấm Enter
-            if (e.KeyChar == 13)
-            {
-                txtDiscount_Validated(sender, e);
-            }
-        }
-
-        private void txtDiscount_Validated(object sender, EventArgs e)
-        {
-            try
-            {
-                if ( int.Parse(txtDiscount.Text.Trim()) < 0 || int.Parse(txtDiscount.Text.Trim()) > 100)
-                {
-                    MessageBox.Show("Discount must be between 0 and 100.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtDiscount.Text = "0";
-                    txtDiscount.Focus();
-                }
-                else
-                {
-                    _discoutAmount = int.Parse(txtDiscount.Text.Trim()) * _totalAmount / 100;
-                    lblDiscount.Text = string.Format("{0:#,##0.00}", _discoutAmount);
-                    _Receivable = _totalAmount - _voucherAmount - _discoutAmount;
-                    lblReceivable.Text = string.Format("{0:#,##0.00}", _Receivable);
-                }
-            }
-            catch 
-            {
-            }
-        }
-
-        private void checkBox1_Click(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-            {
-                btnCreateBill.Text = "Create Bill and Print";
-            }
-            else
-            {
-                btnCreateBill.Text = "Create Bill";
-            }
-        }
-
-
-        private  void SaveBill(int bookingid, string voucherCode, decimal discountAmount, decimal cardAmount, decimal cashAmount)
-        {
-            try
-            {
-                int error = 0;
-                string errorMesg = "";
-                // Get billCode
-                string billCode = "";
-                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
-                if (dt != null)
-                {
-                    billCode = dt.Rows[0][0].ToString();
-                }  
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert", _branchId, _bookingID, voucherCode, discountAmount, cardAmount, cashAmount, _userId, error, errorMesg);
-                if (ret > 0)
-                {
-                    MessageBox.Show("Pay sucessfull.", "Question", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-            }
-            catch 
-            {
-            }
-            
-        }
+   
 
         private void btnCreateBill_Click(object sender, EventArgs e)
         {
             try
             {
-                decimal cashAmount = _Receivable - decimal.Parse(txtCard.Text.Trim());
-                SaveBill(_bookingID, txtVoucherCode.Text.Trim(), _discoutAmount, decimal.Parse(txtCard.Text.Trim()), cashAmount);
-                if (checkBox1.Checked)
+                bool flag = false;
+                decimal paymentCard = decimal.Parse(txtCard.Text.Trim());
+                decimal paymentCash = decimal.Parse(txtCash.Text.Trim());
+                // Update bill 
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUpdate", _billId, _branchId, paymentCash, paymentCard, _totalVoucher, _userId, 0, "");
+                if (ret > 0)
                 {
-                    // In
+                    //Update voucher
+                    decimal totalAmount = _totalAmount;
+                    decimal voucherAmount = 0;
+                    for (int i = 0; i < dgvVoucher.Rows.Count; i++)
+                    {
+                        if (dgvVoucher.Rows[i].Cells["VoucherCode"].Value != null && dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString() != "")
+                        {
+                            voucherAmount = decimal.Parse(dgvVoucher.Rows[i].Cells["Amount"].Value.ToString());
+                            if (totalAmount < voucherAmount)
+                            {
+                                voucherAmount = totalAmount;
+                            }
+                            int retV = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zVoucherUpdateByBill", dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString(), voucherAmount, _userId, 0, "");
+                            if (retV > 0)
+                            {
+                                totalAmount -= voucherAmount;
+                            }
+                            else
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
                 }
-                if (this.DialogResult == DialogResult.OK)
+                else
                 {
+                    flag = true;
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Pay faill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.No;
+                }
+                else
+                {
+                    MessageBox.Show("Pay sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -190,7 +122,14 @@ namespace AusNail.Process
                 }
                 else
                 {
-                    lblCash.Text = string.Format("{0:#,##0.00}", _Receivable - cardAmount);
+                    if (cardAmount > _Receivable)
+                    {
+                        txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    }
+                    else
+                    {
+                        txtCash.Text = string.Format("{0:#,##0.00}", _Receivable - cardAmount);
+                    }
                 }
             }
             catch 
@@ -198,5 +137,210 @@ namespace AusNail.Process
             }
         }
 
+
+        private void createTable()
+        {
+            _dt = new DataTable();
+            _dt.Columns.Add("VoucherCode", typeof(string));
+            _dt.Columns.Add("Quantity", typeof(decimal));
+            _dt.Columns.Add("Amount", typeof(decimal));
+        }
+
+        private void loadVoucher()
+        {
+            try
+            {
+                _dtVoucher = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherGetListAvailable");
+            }
+            catch
+            {
+            }
+        }
+
+        private void LoadGrid()
+        {
+            dgvVoucher.DataSource = _dt;
+            dgvVoucher.Columns["VoucherCode"].HeaderText = "Voucher Code";
+            dgvVoucher.Columns["VoucherCode"].Width = 100;
+            dgvVoucher.Columns["Quantity"].HeaderText = "Quantity";
+            dgvVoucher.Columns["Quantity"].Width = 100;
+            dgvVoucher.Columns["Amount"].HeaderText = "Amount";
+            dgvVoucher.Columns["Amount"].ReadOnly = true;
+            dgvVoucher.Columns["Amount"].Width = 120;
+
+            DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
+            dataGridViewImange.Name = "Del";
+            dataGridViewImange.HeaderText = "";
+            dataGridViewImange.Width = 20;
+            dataGridViewImange.Image = Properties.Resources.cancel;
+            dgvVoucher.Columns.Add(dataGridViewImange);
+
+            dgvVoucher.AutoGenerateColumns = false;
+        }
+
+        private void chkCard_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void chkCash_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void chkCompire_CheckedChanged(object sender, EventArgs e)
+        {
+            chkCard.Checked = true;
+            txtCard.Enabled = true;
+            chkCash.Checked = true;
+            txtCash.Enabled = true;
+        }
+
+        private void dgvVoucher_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                {
+                    return;
+                }
+                else
+                {
+                    if (e.ColumnIndex == 3) //Delete 
+                    {
+                        dgvVoucher.Rows.RemoveAt(e.RowIndex);
+                        Caculate();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Caculate()
+        {
+            try
+            {
+                // Total voucher
+                for (int i = 0; i < dgvVoucher.Rows.Count; i++)
+                {
+                    if (dgvVoucher.Rows[i].Cells["VoucherCode"].Value != null)
+                    {
+                        _totalVoucher += decimal.Parse(dgvVoucher.Rows[i].Cells["Amount"].Value.ToString());
+                    }
+                }
+                // Phai thanh toan
+                _Receivable = _totalAmount - _totalVoucher;
+                if (_Receivable < 0)
+                {
+                    _Receivable = 0;
+                }
+                if (chkCard.Checked & !chkCash.Checked)
+                {
+                    txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+                }
+                if (!chkCard.Checked & chkCash.Checked)
+                {
+                    txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
+                }
+                if (chkCompire.Checked)
+                {
+                    txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void dgvVoucher_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex > -1 && (e.ColumnIndex == 0 || e.ColumnIndex == 1))
+                {
+                    string VoucherCode = dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value.ToString();
+                    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", VoucherCode, DateTime.Now.ToString());
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        decimal Quantity = decimal.Parse(dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                        decimal voucherAmount = decimal.Parse(dt.Rows[0]["AvailableAmount"].ToString());
+                        dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount * Quantity;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid voucher code.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                        dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+                    }
+                    Caculate();
+                }
+            }
+            catch
+            {
+                dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtCash_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal cashAmount = 0;
+                cashAmount = decimal.Parse(txtCash.Text.Trim());
+                if (cashAmount < 0)
+                {
+                    MessageBox.Show("Cash amount must be greater than or equal to 0.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCash.Text = "0";
+                    txtCash.Focus();
+                }
+                else
+                {
+                    if (cashAmount > _Receivable)
+                    {
+                        txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    }
+                    else
+                    {
+                        txtCard.Text = string.Format("{0:#,##0.00}", _Receivable - cashAmount);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void txtCard_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Chỉ cho phép nhập số và các thao tác xóa, tiến lùi... Không nhập text.
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            // Sự kiện bấm Enter
+            if (e.KeyChar == 13)
+            {
+                txtCard_Validated(sender, e);
+            }
+        }
+
+        private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Chỉ cho phép nhập số và các thao tác xóa, tiến lùi... Không nhập text.
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            // Sự kiện bấm Enter
+            if (e.KeyChar == 13)
+            {
+                txtCash_Validated(sender, e);
+            }
+        }
     }
+
 }

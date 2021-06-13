@@ -28,34 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.rptBill = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // crystalReportViewer1
+            // rptBill
             // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(886, 526);
-            this.crystalReportViewer1.TabIndex = 0;
+            this.rptBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rptBill.Location = new System.Drawing.Point(0, 0);
+            this.rptBill.Name = "rptBill";
+            this.rptBill.ServerReport.BearerToken = null;
+            this.rptBill.Size = new System.Drawing.Size(786, 526);
+            this.rptBill.TabIndex = 0;
             // 
             // frmPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 526);
-            this.Controls.Add(this.crystalReportViewer1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(786, 526);
+            this.Controls.Add(this.rptBill);
             this.Name = "frmPrint";
             this.Text = "Print";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPrint_Load);
             this.ResumeLayout(false);
 
         }
 
+        private Microsoft.Reporting.WinForms.ReportViewer rptBill;
+
         #endregion
 
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        //private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
     }
 }
