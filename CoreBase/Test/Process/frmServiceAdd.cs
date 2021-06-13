@@ -30,7 +30,6 @@ namespace AusNail.Process
             _userID = userId;
             txtName.Text = customerName;
             txtPhoneNumber.Text = phoneNumber;
-            createTable();
             loadService();
             LoadGrid();
         }
@@ -41,6 +40,25 @@ namespace AusNail.Process
             {
                 _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchID);
                 _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", _branchID);
+                if (_dtService != null)
+                {
+                    _Service = _dtService.Copy();
+                    _Service.Columns.Remove("branchId");
+                    _Service.Columns.Remove("Display");
+                    _Service.Columns.Remove("Decriptions");
+                    _Service.Columns.Remove("is_inactive");
+                    _Service.Columns.Remove("created_by");
+                    _Service.Columns.Remove("created_at");
+                    _Service.Columns.Remove("modified_by");
+                    _Service.Columns.Remove("modified_at");
+                    _Service.Columns.Add("Quantity", typeof(decimal));
+                    _Service.Columns.Add("Amount", typeof(decimal));
+                    foreach (DataRow dr in _Service.Rows)
+                    {
+                        dr["Quantity"] = 1;
+                        dr["Amount"] = decimal.Parse(dr["Quantity"].ToString()) * decimal.Parse(dr["Price"].ToString());
+                    }
+                }
             }
             catch 
             {
@@ -51,17 +69,7 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                {
-                    return;
-                }
-                else
-                {
-                    if (e.ColumnIndex == 5) //Delete 
-                    {
-                        dgvService.Rows.RemoveAt(e.RowIndex);
-                    }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -70,43 +78,18 @@ namespace AusNail.Process
             
         }
 
-        private void createTable()
-        {
-            _Service = new DataTable();
-            _Service.Columns.Add("staffId", typeof(int));
-            _Service.Columns.Add("serviceId", typeof(int));
-            _Service.Columns.Add("Quantity", typeof(decimal));
-            _Service.Columns.Add("Price", typeof(decimal));
-            _Service.Columns.Add("Amount", typeof(decimal));
-        }
-
         private void LoadGrid()
         {
+            
+
             dgvService.DataSource = _Service;
-            dgvService.Columns.Remove("staffId");
-            DataGridViewComboBoxColumn dgvCmbStaff = new DataGridViewComboBoxColumn();
-            dgvCmbStaff.DataPropertyName = "staffId";
-            dgvCmbStaff.HeaderText = "Staff";
-            dgvCmbStaff.Name = "staffId";
-            dgvCmbStaff.DisplayMember = "Name";
-            dgvCmbStaff.ValueMember = "staffId";
-            dgvCmbStaff.DataSource = _dtStaff;
-            dgvCmbStaff.Width = 180;
-            dgvService.Columns.Add(dgvCmbStaff);
-            dgvService.Columns["staffId"].DisplayIndex = 0;
-
-            dgvService.Columns.Remove("serviceId");
-            DataGridViewComboBoxColumn dgvCmbService = new DataGridViewComboBoxColumn();
-            dgvCmbService.DataPropertyName = "serviceId";
-            dgvCmbService.HeaderText = "Service";
-            dgvCmbService.Name = "serviceId";
-            dgvCmbService.DisplayMember = "Title";
-            dgvCmbService.ValueMember = "serviceId";
-            dgvCmbService.DataSource = _dtService;
-            dgvCmbService.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvService.Columns.Add(dgvCmbService);
-            dgvService.Columns["serviceId"].DisplayIndex = 0;
-
+            dgvService.Columns["ServiceID"].Visible = false;
+            dgvService.Columns["Title"].HeaderText = "Service Name";
+            dgvService.Columns["Title"].ReadOnly = true;
+            dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
+            dgvService.Columns["EstimateTime"].Width = 100;
+            dgvService.Columns["EstimateTime"].ReadOnly = true;
             dgvService.Columns["Quantity"].HeaderText = "Quantity";
             dgvService.Columns["Quantity"].Width = 100;
             dgvService.Columns["Price"].HeaderText = "Price";
@@ -115,36 +98,29 @@ namespace AusNail.Process
             dgvService.Columns["Amount"].ReadOnly = true;
             dgvService.Columns["Amount"].Width = 120;
 
-            DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
-            dataGridViewImange.Name = "Del";
+            DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
+            dataGridViewImange.Name = "Check";
             dataGridViewImange.HeaderText = "";
             dataGridViewImange.Width = 20;
-            dataGridViewImange.Image = Properties.Resources.cancel;
             dgvService.Columns.Add(dataGridViewImange);
 
             dgvService.AutoGenerateColumns = false;
+            dgvService.AllowUserToAddRows = false;
+            dgvService.AllowUserToDeleteRows = false;
         }
 
         private void dgvService_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (e.RowIndex > -1 && (e.ColumnIndex == 0 || e.ColumnIndex == 1))
+                if (e.RowIndex > -1 && (e.ColumnIndex == 2 || e.ColumnIndex == 4))
                 {
                     decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
                     decimal Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
                     // Update row num
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
                 }
-                if (e.RowIndex > -1 && (e.ColumnIndex == 4))
-                {
-                    string serviceId = dgvService.Rows[e.RowIndex].Cells["serviceId"].Value.ToString();
-                    decimal Price = decimal.Parse(_dtService.Select("serviceId = " + serviceId,"")[0]["Price"].ToString());
-                    dgvService.Rows[e.RowIndex].Cells["Price"].Value = Price;
-                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
-                    // Update row num
-                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
-                }
+                
             }
             catch 
             {
@@ -166,20 +142,20 @@ namespace AusNail.Process
                 // Get billCode
                 string billCode = "";
                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
+                int StaffId = int.Parse(_dtStaff.Rows[0]["StaffId"].ToString());
                 if (dt != null)
                 {
                     billCode = dt.Rows[0][0].ToString();
                 }
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
-                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    if ((bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
                     {
                         string CustomerPhone = txtPhoneNumber.Text.Trim();
                         int Num = i + 1;
                         int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                         decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
                         decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                        int StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
                         string Note = "";
                         DateTime billdate = DateTime.Parse(DateTime.Now.ToShortDateString());
                         int error = 0;

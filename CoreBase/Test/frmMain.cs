@@ -521,7 +521,7 @@ namespace AusNail
             {
             }
         }
-        private void loadGridDetail_Bill(int billId)
+        private void loadGridDetail_Bill(int billId, bool temporarybill)
         {
             DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, int.Parse(NailApp.BranchID));
             if (dt != null)
@@ -541,9 +541,10 @@ namespace AusNail
                 }
                 dgvService.DataSource = _Service;
             }
-            //_totalAmount = decimal.Parse(dt.Compute("Sum(Amout)", string.Empty).ToString());
-            //lbl_R_Total.Text = string.Format("{0:#,##0.00}", _totalAmount);
-            //btnRegister.Text = "Pay";
+            dgvService.AllowUserToAddRows = temporarybill;
+            dgvService.AllowUserToDeleteRows = temporarybill;
+            dgvService.AllowUserToOrderColumns = temporarybill;
+            dgvService.Enabled = temporarybill;
         }
         private void trTemporaryBill_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -551,7 +552,7 @@ namespace AusNail
             {
                 _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID);
+                loadGridDetail_Bill(_billID, true);
                 btnPay.Enabled = true;
                 btnSave.Enabled = true;
             }
@@ -566,7 +567,7 @@ namespace AusNail
             {
                 _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID);
+                loadGridDetail_Bill(_billID, true);
                 btnPay.Enabled = true;
                 btnSave.Enabled = true;
             }
@@ -659,7 +660,7 @@ namespace AusNail
                 }
                 else
                 {
-                    if (e.ColumnIndex == 7) //Delete 
+                    if (e.ColumnIndex == 7 && dgvService.Enabled == true) //Delete 
                     {
                         dgvService.Rows.RemoveAt(e.RowIndex);
                     }
@@ -832,7 +833,7 @@ namespace AusNail
             {
                 _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID);
+                loadGridDetail_Bill(_billID, false);
                 btnPay.Enabled = false;
                 btnSave.Enabled = false;
             }
@@ -847,7 +848,7 @@ namespace AusNail
             {
                 _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID);
+                loadGridDetail_Bill(_billID, false);
                 btnPay.Enabled = false;
                 btnSave.Enabled = false;
             }
