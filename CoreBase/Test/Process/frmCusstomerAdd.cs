@@ -116,5 +116,10 @@ namespace AusNail.Process
         {
             this.Close();
         }
+
+        private void frmCusstomerAdd_Load(object sender, EventArgs e)
+        {
+            txtPhoneNum.Focus();
+        }
     }
 }

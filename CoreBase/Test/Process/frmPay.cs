@@ -36,6 +36,7 @@ namespace AusNail.Process
             _totalAmount = _Receivable = totalAmount;
             _userId = userId;
             lblTotalAmount.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
             createTable();
             loadVoucher();
             LoadGrid();
@@ -47,39 +48,13 @@ namespace AusNail.Process
         {
 
         }
-     
-
-
-        private  void SaveBill(int bookingid, string voucherCode, decimal discountAmount, decimal cardAmount, decimal cashAmount)
-        {
-            try
-            {
-                int error = 0;
-                string errorMesg = "";
-                // Get billCode
-                string billCode = "";
-                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
-                if (dt != null)
-                {
-                    billCode = dt.Rows[0][0].ToString();
-                }  
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert", _branchId, _bookingID, voucherCode, discountAmount, cardAmount, cashAmount, _userId, error, errorMesg);
-                if (ret > 0)
-                {
-                    MessageBox.Show("Pay sucessfull.", "Question", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-            }
-            catch 
-            {
-            }
-            
-        }
+   
 
         private void btnCreateBill_Click(object sender, EventArgs e)
         {
             try
             {
+                bool flag = false;
                 decimal paymentCard = decimal.Parse(txtCard.Text.Trim());
                 decimal paymentCash = decimal.Parse(txtCash.Text.Trim());
                 // Update bill 
@@ -87,10 +62,44 @@ namespace AusNail.Process
                 if (ret > 0)
                 {
                     //Update voucher
+                    decimal totalAmount = _totalAmount;
+                    decimal voucherAmount = 0;
+                    for (int i = 0; i < dgvVoucher.Rows.Count; i++)
+                    {
+                        if (dgvVoucher.Rows[i].Cells["VoucherCode"].Value != null && dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString() != "")
+                        {
+                            voucherAmount = decimal.Parse(dgvVoucher.Rows[i].Cells["Amount"].Value.ToString());
+                            if (totalAmount < voucherAmount)
+                            {
+                                voucherAmount = totalAmount;
+                            }
+                            int retV = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zVoucherUpdateByBill", dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString(), voucherAmount, _userId, 0, "");
+                            if (retV > 0)
+                            {
+                                totalAmount -= voucherAmount;
+                            }
+                            else
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Pay faill.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    flag = true;
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Pay faill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.No;
+                }
+                else
+                {
+                    MessageBox.Show("Pay sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
             }
             catch

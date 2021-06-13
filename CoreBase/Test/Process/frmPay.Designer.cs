@@ -101,6 +101,8 @@
             // chkCard
             // 
             this.chkCard.AutoSize = true;
+            this.chkCard.Checked = true;
+            this.chkCard.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCard.Location = new System.Drawing.Point(88, 50);
             this.chkCard.Name = "chkCard";
             this.chkCard.Size = new System.Drawing.Size(15, 14);
