@@ -34,35 +34,15 @@ namespace AusNail.Process
 
         private void frmPrint_Load(object sender, EventArgs e)
         {
-            // Set the processing mode for the ReportViewer to Remote  
-            rptBill.ProcessingMode = ProcessingMode.Remote;
-
-            ServerReport serverReport = rptBill.ServerReport;
-
-            // Get a reference to the default credentials  
-            System.Net.ICredentials credentials =
-                System.Net.CredentialCache.DefaultCredentials;
-
-            // Get a reference to the report server credentials  
-            ReportServerCredentials rsCredentials =
-                serverReport.ReportServerCredentials;
+            
 
             DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", _billId, _branchId);
 
-            // Set the credentials for the server report  
-            rsCredentials.NetworkCredentials = credentials;
-            ReportDataSource rds = new ReportDataSource("ReportDataSet", dataTable);
+
+            ReportDataSource rds = new ReportDataSource("DataSet1", dataTable);
             rptBill.LocalReport.DataSources.Clear();
             //Add ReportDataSource   
             rptBill.LocalReport.DataSources.Add(rds);
-            if (_temtorarybill == 1)
-            {
-                rptBill.LocalReport.ReportPath = "../../rptBillTemporary.rdlc";
-            }
-            else
-            {
-                rptBill.LocalReport.ReportPath = "../../rptBill.rdlc";
-            }
             
 
             // Refresh the report  
