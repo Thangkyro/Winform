@@ -44,18 +44,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvService.BackgroundColor = System.Drawing.Color.White;
             this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvService.Location = new System.Drawing.Point(13, 60);
+            this.dgvService.Location = new System.Drawing.Point(17, 74);
+            this.dgvService.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvService.Name = "dgvService";
-            this.dgvService.Size = new System.Drawing.Size(808, 353);
+            this.dgvService.RowHeadersWidth = 51;
+            this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvService.Size = new System.Drawing.Size(1077, 434);
             this.dgvService.TabIndex = 0;
+            this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
             // 
             // altoSlidingLabel1
             // 
-            this.altoSlidingLabel1.Location = new System.Drawing.Point(13, 22);
+            this.altoSlidingLabel1.Location = new System.Drawing.Point(17, 27);
+            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
-            this.altoSlidingLabel1.Size = new System.Drawing.Size(64, 23);
+            this.altoSlidingLabel1.Size = new System.Drawing.Size(85, 28);
             this.altoSlidingLabel1.Slide = false;
             this.altoSlidingLabel1.TabIndex = 1;
             this.altoSlidingLabel1.Text = "Customer:";
@@ -65,18 +70,20 @@
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Enabled = false;
-            this.txtName.Location = new System.Drawing.Point(73, 24);
+            this.txtName.Location = new System.Drawing.Point(97, 30);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(570, 20);
+            this.txtName.Size = new System.Drawing.Size(759, 22);
             this.txtName.TabIndex = 2;
             // 
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneNumber.Enabled = false;
-            this.txtPhoneNumber.Location = new System.Drawing.Point(649, 24);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(865, 30);
+            this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(171, 20);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(227, 22);
             this.txtPhoneNumber.TabIndex = 2;
             // 
             // btnCancel
@@ -90,10 +97,11 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(726, 427);
+            this.btnCancel.Location = new System.Drawing.Point(968, 526);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
-            this.btnCancel.Size = new System.Drawing.Size(96, 30);
+            this.btnCancel.Size = new System.Drawing.Size(128, 37);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
             this.btnCancel.TabIndex = 5;
@@ -112,10 +120,11 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(624, 427);
+            this.btnConfirm.Location = new System.Drawing.Point(832, 526);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
-            this.btnConfirm.Size = new System.Drawing.Size(96, 30);
+            this.btnConfirm.Size = new System.Drawing.Size(128, 37);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
             this.btnConfirm.TabIndex = 4;
@@ -125,16 +134,17 @@
             // 
             // frmServiceAdd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(832, 472);
+            this.ClientSize = new System.Drawing.Size(1109, 581);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Controls.Add(this.dgvService);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmServiceAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Service";

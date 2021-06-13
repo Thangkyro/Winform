@@ -18,6 +18,11 @@ namespace AusNail.Process
         private DataTable _dtService = null;
         private DataTable _dtStaff = null;
         private DataTable _Service = null;
+        public delegate void DelSendMsg(string msg);
+
+        //khạ báo biến kiểu delegate
+        public DelSendMsg SendMsg;
+
         public frmServiceAdd()
         {
             InitializeComponent();
@@ -60,7 +65,7 @@ namespace AusNail.Process
                     }
                 }
             }
-            catch 
+            catch
             {
             }
         }
@@ -69,18 +74,18 @@ namespace AusNail.Process
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void LoadGrid()
         {
-            
+
 
             dgvService.DataSource = _Service;
             dgvService.Columns["ServiceID"].Visible = false;
@@ -120,13 +125,13 @@ namespace AusNail.Process
                     // Update row num
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
                 }
-                
+
             }
-            catch 
+            catch
             {
                 dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
             }
-            
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -175,7 +180,38 @@ namespace AusNail.Process
                     this.DialogResult = DialogResult.OK;
                     this.Visible = false;
                     this.ShowInTaskbar = false;
+
+                    //Get billID 
+                    //int billID = 0;
+                    //DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select TOP 1 BillID From zBillMaster WITH(NOLOCK) Where BillCode = '" + billCode + "'");
+                    //if (dtBill != null && dtBill.Rows.Count > 0)
+                    //{
+                    //    billID = int.Parse(dtBill.Rows[0][0].ToString());
+                    //    frmMain frmM = new frmMain();
+                    //    frmM.LoadBillFormService(billID);
+                    //    //SendMsg.Invoke(this, new LoadBillFormService());
+                    //}
+                    //this.Close();
                 }
+            }
+        }
+
+        private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                {
+                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                }
+                else
+                {
+                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }
