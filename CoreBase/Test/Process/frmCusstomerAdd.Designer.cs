@@ -220,6 +220,7 @@
             this.Name = "frmCusstomerAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Customer";
+            this.Load += new System.EventHandler(this.frmCusstomerAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

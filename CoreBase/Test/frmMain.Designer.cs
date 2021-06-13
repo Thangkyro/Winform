@@ -38,6 +38,7 @@ namespace AusNail
             this.trTemporaryBill = new System.Windows.Forms.TreeView();
             this.cMSReload = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deeteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.trHistoryBill = new System.Windows.Forms.TreeView();
             this.btnSetColor = new AltoControls.AltoButton();
@@ -82,7 +83,6 @@ namespace AusNail
             this.User = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.deeteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -206,6 +206,14 @@ namespace AusNail
             this.toolStripMenuItem1.Text = "Reload";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // deeteToolStripMenuItem
+            // 
+            this.deeteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
+            this.deeteToolStripMenuItem.Name = "deeteToolStripMenuItem";
+            this.deeteToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.deeteToolStripMenuItem.Text = "Delete";
+            this.deeteToolStripMenuItem.Click += new System.EventHandler(this.deeteToolStripMenuItem_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.trHistoryBill);
@@ -226,6 +234,8 @@ namespace AusNail
             this.trHistoryBill.Name = "trHistoryBill";
             this.trHistoryBill.Size = new System.Drawing.Size(227, 350);
             this.trHistoryBill.TabIndex = 0;
+            this.trHistoryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trHistoryBill_AfterSelect);
+            this.trHistoryBill.Click += new System.EventHandler(this.trHistoryBill_Click);
             // 
             // btnSetColor
             // 
@@ -355,7 +365,7 @@ namespace AusNail
             this.btnPrint.TabIndex = 14;
             this.btnPrint.Text = "Print";
             this.btnPrint.Transparency = false;
-            this.btnPrint.Click += new System.EventHandler(this.BtnSetColor_Click);
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // butCheckphone
             // 
@@ -700,14 +710,6 @@ namespace AusNail
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
-            // 
-            // deeteToolStripMenuItem
-            // 
-            this.deeteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
-            this.deeteToolStripMenuItem.Name = "deeteToolStripMenuItem";
-            this.deeteToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.deeteToolStripMenuItem.Text = "Delete";
-            this.deeteToolStripMenuItem.Click += new System.EventHandler(this.deeteToolStripMenuItem_Click);
             // 
             // frmMain
             // 

@@ -108,6 +108,7 @@
             this.Name = "frmCheckPhone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
+            this.Load += new System.EventHandler(this.frmCheckPhone_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

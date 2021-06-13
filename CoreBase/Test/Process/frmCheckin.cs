@@ -547,7 +547,7 @@ namespace AusNail.Process
                     {
                         _bookingID = int.Parse(dt.Rows[0][0].ToString());
                         // Send total Amount.
-                        frmPay prn = new frmPay(_branchId, _bookingID, _totalAmount, _UserId);
+                        frmPay prn = new frmPay(_branchId, _bookingID, -1, _totalAmount, _UserId);
                         prn.Show();
                     }
                     else

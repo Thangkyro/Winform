@@ -76,7 +76,7 @@ namespace AusNail
                         string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
                         TreeNode note = new TreeNode();
                         note.Text = infor;
-                        note.Tag = dr["BookID"].ToString();
+                        note.Tag = dr["BillID"].ToString();
                         trHistoryBill.Nodes.Add(note);
                     }
                 }
@@ -552,6 +552,8 @@ namespace AusNail
                 _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
                 loadGridDetail_Bill(_billID);
+                btnPay.Enabled = true;
+                btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -565,6 +567,8 @@ namespace AusNail
                 _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billID);
                 loadGridDetail_Bill(_billID);
+                btnPay.Enabled = true;
+                btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -809,12 +813,58 @@ namespace AusNail
                 }
                 Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billID,  totalAmount, NailApp.CurrentUserId);
                 frm.Activate();
-                frm.Show();
+                frm.ShowDialog();
+
+                if (frm.DialogResult == DialogResult.OK)
+                {
+                    LoadHistory();
+                }
             }
             catch (Exception ex) 
             {
             }
             
+        }
+
+        private void trHistoryBill_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billID);
+                loadGridDetail_Bill(_billID);
+                btnPay.Enabled = false;
+                btnSave.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void trHistoryBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billID);
+                loadGridDetail_Bill(_billID);
+                btnPay.Enabled = false;
+                btnSave.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            int temtorarybill = 0;
+            if (btnSave.Enabled == true)
+            {
+                temtorarybill = 1;
+            }
+            Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), _billID, NailApp.CurrentUserId, temtorarybill);
+            frm.Show();
         }
     }
 }

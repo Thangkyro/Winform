@@ -95,5 +95,10 @@ namespace AusNail.Process
                 btnConfirm_Click(sender, e);
             }
         }
+
+        private void frmCheckPhone_Load(object sender, EventArgs e)
+        {
+            txtPhone.Focus();
+        }
     }
 }
