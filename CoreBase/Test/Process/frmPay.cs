@@ -188,10 +188,18 @@ namespace AusNail.Process
 
         private void chkCompire_CheckedChanged(object sender, EventArgs e)
         {
-            chkCard.Checked = true;
-            txtCard.Enabled = true;
-            chkCash.Checked = true;
-            txtCash.Enabled = true;
+            if (chkCompire.Checked)
+            {
+                txtCard.Enabled = true;
+                txtCash.Enabled = true;
+            }
+            else
+            {
+                txtCard.Enabled = false;
+                txtCash.Enabled = false;
+                txtCard.Text = _Receivable.ToString();
+                txtCash.Text = "0";
+            }
         }
 
         private void dgvVoucher_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -235,11 +243,11 @@ namespace AusNail.Process
                 {
                     _Receivable = 0;
                 }
-                if (chkCard.Checked & !chkCash.Checked)
+                if (radCard.Checked)
                 {
                     txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
                 }
-                if (!chkCard.Checked & chkCash.Checked)
+                if (radCash.Checked)
                 {
                     txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
                 }
@@ -340,6 +348,21 @@ namespace AusNail.Process
             {
                 txtCash_Validated(sender, e);
             }
+        }
+
+        private void radCash_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCard.Text = "0";
+            txtCash.Text = _Receivable.ToString();
+            chkCompire.Checked = false;
+        }
+
+        private void radCard_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCard.Text = _Receivable.ToString();
+            txtCash.Text = "0";
+            chkCompire_CheckedChanged(sender, e);
+            chkCompire.Checked = false;
         }
     }
 
