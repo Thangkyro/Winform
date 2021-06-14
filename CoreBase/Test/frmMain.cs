@@ -23,6 +23,7 @@ namespace AusNail
         private DataTable _Service = null;
         private DataTable _dtService = null;
         private DataTable _dtStaff = null;
+        private decimal _totalAmount = 0;
         //public frmMain()
         //{
         //    InitializeComponent();
@@ -452,9 +453,9 @@ namespace AusNail
         private void LoadAll(int billID)
         {
             LoadHistory();
-            createTable();
-            loadService();
-            LoadGrid();
+            //createTable();
+            //loadService();
+            //LoadGrid();
             loadBillInfor(billID);
             loadGridDetail_Bill(billID, true);
             btnPay.Enabled = true;
@@ -469,7 +470,7 @@ namespace AusNail
                 form.ShowDialog();
                 string sResult = form.SendData();
                 List<string> lstResult = new List<string>();
-                if (sResult != null)
+                if (sResult != null && sResult.ToString() != "")
                 {
                     lstResult = sResult.Split('|').ToList();
                 }
@@ -641,6 +642,7 @@ namespace AusNail
             dgvService.AllowUserToDeleteRows = temporarybill;
             dgvService.AllowUserToOrderColumns = temporarybill;
             dgvService.Enabled = temporarybill;
+            caculateAmount();
         }
         private void trTemporaryBill_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -661,11 +663,11 @@ namespace AusNail
         {
             try
             {
-                //_billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
-                //loadBillInfor(_billID);
-                //loadGridDetail_Bill(_billID, true);
-                //btnPay.Enabled = true;
-                //btnSave.Enabled = true;
+                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billID);
+                loadGridDetail_Bill(_billID, true);
+                btnPay.Enabled = true;
+                btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -759,6 +761,7 @@ namespace AusNail
                     if (e.ColumnIndex == 7 && dgvService.Enabled == true) //Delete 
                     {
                         dgvService.Rows.RemoveAt(e.RowIndex);
+                        caculateAmount();
                     }
                 }
             }
@@ -767,6 +770,8 @@ namespace AusNail
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void dgvService_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -808,12 +813,30 @@ namespace AusNail
                     }
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
                 }
-
-
+                caculateAmount();
             }
             catch
             {
                 dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+            }
+        }
+
+        private void caculateAmount()
+        {
+            try
+            {
+                _totalAmount = 0;
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
+                    {
+                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                    }
+                }
+                lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            }
+            catch 
+            {
             }
         }
 
