@@ -42,6 +42,7 @@ namespace AusNail.Process
             LoadGrid();
             txtCard.Enabled = false;
             txtCash.Enabled = false;
+            dgvVoucher.Enabled = false;
         }
 
         private void frmPay_Load(object sender, EventArgs e)
@@ -192,11 +193,17 @@ namespace AusNail.Process
             {
                 txtCard.Enabled = true;
                 txtCash.Enabled = true;
+                dgvVoucher.Enabled = true;
             }
             else
             {
                 txtCard.Enabled = false;
                 txtCash.Enabled = false;
+                dgvVoucher.Rows.Clear();
+                dgvVoucher.DataSource = null;
+                dgvVoucher.Enabled = false;
+                _totalVoucher = 0;
+                _Receivable = _totalAmount ;
                 txtCard.Text = _Receivable.ToString();
                 txtCash.Text = "0";
             }
@@ -229,6 +236,7 @@ namespace AusNail.Process
         {
             try
             {
+                _totalVoucher = 0;
                 // Total voucher
                 for (int i = 0; i < dgvVoucher.Rows.Count; i++)
                 {
@@ -246,14 +254,17 @@ namespace AusNail.Process
                 if (radCard.Checked)
                 {
                     txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    txtCash.Text = "0";
                 }
                 if (radCash.Checked)
                 {
                     txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    txtCard.Text = "0";
                 }
                 if (chkCompire.Checked)
                 {
                     txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    txtCash.Text = "0";
                 }
             }
             catch (Exception ex)

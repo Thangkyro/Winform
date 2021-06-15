@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,10 +65,12 @@ namespace AusNail.Process
                     Gender = "Order";
                 }
                 string DateOfBirth = this.txtDateofBirth.Text.Trim();
+                string Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                        .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string PostCode = this.txtPostcode.Text.Trim();
                 string CustomerCode = GenCustomerCode();
                 // kiem tra khong được đặt mã trùng
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zCustomerInsert", _branchId, CustomerCode, Name, Gender, PhoneNumber1, "", "", "", DateOfBirth, PostCode, 0, 0, "", 0, _UserId, DateTime.Now.ToString(), _UserId, DateTime.Now.ToString(), 0, "");
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zCustomerInsert", _branchId, CustomerCode, Name, Gender, PhoneNumber1, "", "", "", Date, PostCode, 0, 0, "", 0, _UserId, DateTime.Now.ToString(), _UserId, DateTime.Now.ToString(), 0, "");
 
                 if (ret > 0)
                 {
