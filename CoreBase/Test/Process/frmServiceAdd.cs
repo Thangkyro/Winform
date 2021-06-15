@@ -221,5 +221,23 @@ namespace AusNail.Process
 
             }
         }
+
+        private void dgvService_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 2)
+                {
+                    e.CellStyle.Format = "N0";
+                }
+                if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                {
+                    e.CellStyle.Format = "N2";
+                }
+            }
+            catch
+            {
+            }
+        }
     }
 }
