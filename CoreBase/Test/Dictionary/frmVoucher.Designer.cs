@@ -94,7 +94,7 @@
             // 
             this.lblTime.Location = new System.Drawing.Point(871, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblTime.Text = "14:13:13";
+            this.lblTime.Text = "09:18:54";
             // 
             // btnSave
             // 
