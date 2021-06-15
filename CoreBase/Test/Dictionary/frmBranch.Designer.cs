@@ -94,7 +94,7 @@
             // 
             this.lblTime.Location = new System.Drawing.Point(1173, 24);
             this.lblTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblTime.Text = "15:39:41";
+            this.lblTime.Text = "15:21:37";
             // 
             // btnSave
             // 
@@ -111,7 +111,6 @@
             // txtBranchName
             // 
             this.txtBranchName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBranchName.Enabled = false;
             this.txtBranchName.Location = new System.Drawing.Point(1041, 88);
             this.txtBranchName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBranchName.Name = "txtBranchName";
@@ -132,7 +131,6 @@
             // txtLocated
             // 
             this.txtLocated.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLocated.Enabled = false;
             this.txtLocated.Location = new System.Drawing.Point(1041, 115);
             this.txtLocated.Margin = new System.Windows.Forms.Padding(4);
             this.txtLocated.Name = "txtLocated";
@@ -153,7 +151,6 @@
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneNumber.Enabled = false;
             this.txtPhoneNumber.Location = new System.Drawing.Point(1041, 142);
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
@@ -174,7 +171,6 @@
             // txtFacebook
             // 
             this.txtFacebook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFacebook.Enabled = false;
             this.txtFacebook.Location = new System.Drawing.Point(1041, 169);
             this.txtFacebook.Margin = new System.Windows.Forms.Padding(4);
             this.txtFacebook.Name = "txtFacebook";
@@ -195,7 +191,6 @@
             // txtBranchCode
             // 
             this.txtBranchCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBranchCode.Enabled = false;
             this.txtBranchCode.Location = new System.Drawing.Point(1041, 61);
             this.txtBranchCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBranchCode.Name = "txtBranchCode";
@@ -241,7 +236,6 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Enabled = false;
             this.txtEmail.Location = new System.Drawing.Point(1041, 197);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
@@ -262,7 +256,6 @@
             // txtWebsite
             // 
             this.txtWebsite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWebsite.Enabled = false;
             this.txtWebsite.Location = new System.Drawing.Point(1041, 224);
             this.txtWebsite.Margin = new System.Windows.Forms.Padding(4);
             this.txtWebsite.Name = "txtWebsite";
@@ -284,7 +277,6 @@
             // 
             this.txtSMSText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSMSText.Enabled = false;
             this.txtSMSText.Location = new System.Drawing.Point(1041, 252);
             this.txtSMSText.Margin = new System.Windows.Forms.Padding(4);
             this.txtSMSText.Multiline = true;
@@ -306,7 +298,6 @@
             // txtNumberBill
             // 
             this.txtNumberBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNumberBill.Enabled = false;
             this.txtNumberBill.Location = new System.Drawing.Point(1041, 464);
             this.txtNumberBill.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumberBill.Name = "txtNumberBill";
@@ -327,7 +318,6 @@
             // txtNoontime
             // 
             this.txtNoontime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNoontime.Enabled = false;
             this.txtNoontime.Location = new System.Drawing.Point(1041, 491);
             this.txtNoontime.Margin = new System.Windows.Forms.Padding(4);
             this.txtNoontime.Name = "txtNoontime";

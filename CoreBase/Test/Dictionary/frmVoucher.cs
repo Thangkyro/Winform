@@ -159,26 +159,29 @@ namespace AusNail.Dictionary
         private void LoadGrid()
         {
             GridDetail.DataSource = _Voucher;
-            GridDetail.Columns.Remove("IssueBy");
+            //GridDetail.Columns.Remove("IssueBy");
 
-            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
-            dgvCmb.DataPropertyName = "IssueBy";
-            dgvCmb.HeaderText = "IssueBy";
-            dgvCmb.Name = "IssueBy";
-            dgvCmb.DisplayMember = "full_name";
-            dgvCmb.ValueMember = "Userid";
-            dgvCmb.DataSource = _user;
-            GridDetail.Columns.Add(dgvCmb);
+            //DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            //dgvCmb.DataPropertyName = "IssueBy";
+            //dgvCmb.HeaderText = "IssueBy";
+            //dgvCmb.Name = "IssueBy";
+            //dgvCmb.DisplayMember = "full_name";
+            //dgvCmb.ValueMember = "Userid";
+            //dgvCmb.DataSource = _user;
+            //GridDetail.Columns.Add(dgvCmb);
 
-            GridDetail.Columns["IssueBy"].DisplayIndex = 0;
+            //GridDetail.Columns["IssueBy"].DisplayIndex = 0;
             GridDetail.Columns["VoucherID"].Visible = false;
             GridDetail.Columns["VoucherCode"].HeaderText = "Voucher Code";
             GridDetail.Columns["VoucherCode"].ReadOnly = true;
+            GridDetail.Columns["VoucherCode"].DefaultCellStyle.BackColor = Color.Silver;
             GridDetail.Columns["Amount"].HeaderText = "Amount";
             GridDetail.Columns["AvailableAmount"].HeaderText = "Available Amount";
+            GridDetail.Columns["AvailableAmount"].ReadOnly = true;
+            GridDetail.Columns["AvailableAmount"].DefaultCellStyle.BackColor = Color.Silver;
             GridDetail.Columns["IssueDate"].HeaderText = "Issue Date";
             //GridDetail.Columns["IssueBy"].HeaderText = "Issue By";
-            GridDetail.Columns["IssueBy"].ReadOnly = true;
+            GridDetail.Columns["IssueBy"].Visible = false;
             GridDetail.Columns["VoucherFrom"].HeaderText = "Voucher From";
             GridDetail.Columns["VoucherTo"].HeaderText = "Voucher To";
             GridDetail.Columns["zPrintname"].HeaderText = "Print Name";
@@ -262,6 +265,7 @@ namespace AusNail.Dictionary
                 this.zEditRow = ((DataTable)Bds.DataSource).Select(string.Format("{0} = 0", _idName))[0];
                 this.zEditRow["VoucherCode"] = GenVoucherCode();
                 this.zEditRow["IssueBy"] = NailApp.CurrentUserId;
+                this.zEditRow["AvailableAmount"] = this.zEditRow["Amount"] != DBNull.Value ? this.zEditRow["Amount"] : 0;
                 _Mode = "Add";
             }
             else
@@ -310,5 +314,6 @@ namespace AusNail.Dictionary
                 }
             }
         }
+
     }
 }
