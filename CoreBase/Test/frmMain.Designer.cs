@@ -48,6 +48,8 @@ namespace AusNail
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.txtColor = new AltoControls.AltoTextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.lblTotalAmont = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnPrint = new AltoControls.AltoButton();
             this.butCheckphone = new AltoControls.AltoButton();
             this.btnPay = new AltoControls.AltoButton();
@@ -83,8 +85,7 @@ namespace AusNail
             this.User = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblTotalAmont = new System.Windows.Forms.Label();
+            this.btnDel = new AltoControls.AltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -223,7 +224,7 @@ namespace AusNail
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(230, 361);
+            this.tabPage2.Size = new System.Drawing.Size(277, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "History bill";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -234,7 +235,7 @@ namespace AusNail
             this.trHistoryBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trHistoryBill.Location = new System.Drawing.Point(2, 2);
             this.trHistoryBill.Name = "trHistoryBill";
-            this.trHistoryBill.Size = new System.Drawing.Size(226, 357);
+            this.trHistoryBill.Size = new System.Drawing.Size(273, 348);
             this.trHistoryBill.TabIndex = 0;
             this.trHistoryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trHistoryBill_AfterSelect);
             this.trHistoryBill.Click += new System.EventHandler(this.trHistoryBill_Click);
@@ -326,6 +327,7 @@ namespace AusNail
             // 
             this.pnlForm.BackColor = System.Drawing.Color.Transparent;
             this.pnlForm.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlForm.Controls.Add(this.btnDel);
             this.pnlForm.Controls.Add(this.lblTotalAmont);
             this.pnlForm.Controls.Add(this.label6);
             this.pnlForm.Controls.Add(this.btnPrint);
@@ -347,6 +349,28 @@ namespace AusNail
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Size = new System.Drawing.Size(866, 519);
             this.pnlForm.TabIndex = 0;
+            // 
+            // lblTotalAmont
+            // 
+            this.lblTotalAmont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalAmont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotalAmont.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmont.Location = new System.Drawing.Point(401, 461);
+            this.lblTotalAmont.Name = "lblTotalAmont";
+            this.lblTotalAmont.Size = new System.Drawing.Size(188, 44);
+            this.lblTotalAmont.TabIndex = 16;
+            this.lblTotalAmont.Text = "0";
+            this.lblTotalAmont.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(322, 478);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Total Amount:";
             // 
             // btnPrint
             // 
@@ -477,32 +501,33 @@ namespace AusNail
             this.dgvService.TabIndex = 10;
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
+            this.dgvService.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvService_CellFormatting);
             // 
             // txtGenden
             // 
             this.txtGenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGenden.Location = new System.Drawing.Point(769, 67);
+            this.txtGenden.Location = new System.Drawing.Point(696, 67);
             this.txtGenden.Name = "txtGenden";
             this.txtGenden.ReadOnly = true;
-            this.txtGenden.Size = new System.Drawing.Size(85, 20);
+            this.txtGenden.Size = new System.Drawing.Size(64, 20);
             this.txtGenden.TabIndex = 8;
             // 
             // txtPhone
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(643, 67);
+            this.txtPhone.Location = new System.Drawing.Point(575, 67);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(124, 20);
+            this.txtPhone.Size = new System.Drawing.Size(120, 20);
             this.txtPhone.TabIndex = 7;
             // 
             // txtBilDate
             // 
             this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBilDate.Location = new System.Drawing.Point(643, 45);
+            this.txtBilDate.Location = new System.Drawing.Point(575, 45);
             this.txtBilDate.Name = "txtBilDate";
             this.txtBilDate.ReadOnly = true;
-            this.txtBilDate.Size = new System.Drawing.Size(211, 20);
+            this.txtBilDate.Size = new System.Drawing.Size(275, 20);
             this.txtBilDate.TabIndex = 5;
             // 
             // txtCustomerName
@@ -512,7 +537,7 @@ namespace AusNail
             this.txtCustomerName.Location = new System.Drawing.Point(87, 67);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(555, 20);
+            this.txtCustomerName.Size = new System.Drawing.Size(486, 20);
             this.txtCustomerName.TabIndex = 6;
             // 
             // txtBillCode
@@ -522,7 +547,7 @@ namespace AusNail
             this.txtBillCode.Location = new System.Drawing.Point(87, 45);
             this.txtBillCode.Name = "txtBillCode";
             this.txtBillCode.ReadOnly = true;
-            this.txtBillCode.Size = new System.Drawing.Size(555, 20);
+            this.txtBillCode.Size = new System.Drawing.Size(486, 20);
             this.txtBillCode.TabIndex = 4;
             // 
             // label5
@@ -716,27 +741,28 @@ namespace AusNail
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
             // 
-            // label6
+            // btnDel
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(322, 478);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Total Amount:";
-            // 
-            // lblTotalAmont
-            // 
-            this.lblTotalAmont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotalAmont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotalAmont.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmont.Location = new System.Drawing.Point(401, 461);
-            this.lblTotalAmont.Name = "lblTotalAmont";
-            this.lblTotalAmont.Size = new System.Drawing.Size(188, 44);
-            this.lblTotalAmont.TabIndex = 16;
-            this.lblTotalAmont.Text = "0";
-            this.lblTotalAmont.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDel.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnDel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDel.BackColor = System.Drawing.Color.Transparent;
+            this.btnDel.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDel.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDel.ForeColor = System.Drawing.Color.Black;
+            this.btnDel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnDel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnDel.Location = new System.Drawing.Point(763, 67);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Radius = 10;
+            this.btnDel.Size = new System.Drawing.Size(85, 21);
+            this.btnDel.Stroke = false;
+            this.btnDel.StrokeColor = System.Drawing.Color.Gray;
+            this.btnDel.TabIndex = 17;
+            this.btnDel.Text = "Delete";
+            this.btnDel.Transparency = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // frmMain
             // 
@@ -832,6 +858,7 @@ namespace AusNail
         private System.Windows.Forms.ToolStripMenuItem deeteToolStripMenuItem;
         private System.Windows.Forms.Label lblTotalAmont;
         private System.Windows.Forms.Label label6;
+        private AltoControls.AltoButton btnDel;
     }
 }
 

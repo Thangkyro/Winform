@@ -271,9 +271,9 @@ namespace AusNail.Process
                     DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", VoucherCode, DateTime.Now.ToString());
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        decimal Quantity = decimal.Parse(dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
                         decimal voucherAmount = decimal.Parse(dt.Rows[0]["AvailableAmount"].ToString());
-                        dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount * Quantity;
+                        dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 1;
+                        dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount;
                     }
                     else
                     {
@@ -363,6 +363,24 @@ namespace AusNail.Process
             txtCash.Text = "0";
             chkCompire_CheckedChanged(sender, e);
             chkCompire.Checked = false;
+        }
+
+        private void dgvVoucher_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 1)
+                {
+                    e.CellStyle.Format = "N0";
+                }
+                if (e.ColumnIndex == 2)
+                {
+                    e.CellStyle.Format = "N2";
+                }
+            }
+            catch
+            {
+            }
         }
     }
 

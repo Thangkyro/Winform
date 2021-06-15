@@ -77,6 +77,7 @@ namespace AusNail
                         string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
                         TreeNode note = new TreeNode();
                         note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
                         note.Tag = dr["BillID"].ToString();
                         trHistoryBill.Nodes.Add(note);
                     }
@@ -100,6 +101,7 @@ namespace AusNail
                         string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
                         TreeNode note = new TreeNode();
                         note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
                         note.Tag = dr["BillID"].ToString();
                         trTemporaryBill.Nodes.Add(note);
                     }
@@ -460,6 +462,13 @@ namespace AusNail
             loadGridDetail_Bill(billID, true);
             btnPay.Enabled = true;
             btnSave.Enabled = true;
+            TreeNode[] tns = trTemporaryBill.Nodes.Find(billID.ToString(), true);
+            if (tns.Length > 0)
+            {
+                trTemporaryBill.SelectedNode = tns[0];
+                trTemporaryBill.SelectedNode.EnsureVisible();  //scroll if necessary
+                trTemporaryBill.Focus();
+            }
         }
 
         private void CheckService(bool isCheckPhone)
@@ -800,7 +809,7 @@ namespace AusNail
                     string serviceId = dgvService.Rows[e.RowIndex].Cells["serviceId"].Value.ToString();
                     decimal Price = decimal.Parse(_dtService.Select("serviceId = " + serviceId, "")[0]["Price"].ToString());
                     dgvService.Rows[e.RowIndex].Cells["Price"].Value = Price;
-                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                    dgvService.Rows[e.RowIndex].Cells["Quantity"].Value = 1;
                     // Update row num
                     try
                     {
@@ -811,7 +820,7 @@ namespace AusNail
                         Discount = 0;
                         dgvService.Rows[e.RowIndex].Cells["Discount"].Value = 0;
                     }
-                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
+                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Price - Discount;
                 }
                 caculateAmount();
             }
@@ -938,6 +947,14 @@ namespace AusNail
                 if (frm.DialogResult == DialogResult.OK)
                 {
                     LoadHistory();
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+                    _totalAmount = 0;
+                    lblTotalAmont.Text = "0";
+                    dgvService.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -985,6 +1002,30 @@ namespace AusNail
             }
             Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), _billID, NailApp.CurrentUserId, temtorarybill);
             frm.Show();
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            deeteToolStripMenuItem_Click(sender, e);
+        }
+
+        private void dgvService_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 3 || e.ColumnIndex == 1 || e.ColumnIndex == 2)
+                {
+                    e.CellStyle.Format = "N2";
+                }
+                if (e.ColumnIndex == 0)
+                {
+                    e.CellStyle.Format = "N0";
+                }
+            }
+            catch 
+            {
+            }
+            
         }
     }
 }

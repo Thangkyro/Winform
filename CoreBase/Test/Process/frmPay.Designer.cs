@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radCash = new System.Windows.Forms.RadioButton();
+            this.radCard = new System.Windows.Forms.RadioButton();
             this.chkCompire = new System.Windows.Forms.CheckBox();
             this.dgvVoucher = new System.Windows.Forms.DataGridView();
             this.lblTotalAmount = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
-            this.radCard = new System.Windows.Forms.RadioButton();
-            this.radCash = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVoucher)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Booking information";
             // 
+            // radCash
+            // 
+            this.radCash.AutoSize = true;
+            this.radCash.Location = new System.Drawing.Point(88, 71);
+            this.radCash.Name = "radCash";
+            this.radCash.Size = new System.Drawing.Size(14, 13);
+            this.radCash.TabIndex = 13;
+            this.radCash.UseVisualStyleBackColor = true;
+            this.radCash.CheckedChanged += new System.EventHandler(this.radCash_CheckedChanged);
+            // 
+            // radCard
+            // 
+            this.radCard.AutoSize = true;
+            this.radCard.Checked = true;
+            this.radCard.Location = new System.Drawing.Point(88, 51);
+            this.radCard.Name = "radCard";
+            this.radCard.Size = new System.Drawing.Size(14, 13);
+            this.radCard.TabIndex = 13;
+            this.radCard.TabStop = true;
+            this.radCard.UseVisualStyleBackColor = true;
+            this.radCard.CheckedChanged += new System.EventHandler(this.radCard_CheckedChanged);
+            // 
             // chkCompire
             // 
             this.chkCompire.AutoSize = true;
@@ -101,6 +123,7 @@
             this.dgvVoucher.TabIndex = 11;
             this.dgvVoucher.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoucher_CellContentClick);
             this.dgvVoucher.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoucher_CellEndEdit);
+            this.dgvVoucher.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvVoucher_CellFormatting);
             // 
             // lblTotalAmount
             // 
@@ -120,9 +143,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(16, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Compire:";
+            this.label2.Text = "Compine:";
             // 
             // label7
             // 
@@ -211,28 +234,6 @@
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnCreateBill_Click);
-            // 
-            // radCard
-            // 
-            this.radCard.AutoSize = true;
-            this.radCard.Checked = true;
-            this.radCard.Location = new System.Drawing.Point(88, 51);
-            this.radCard.Name = "radCard";
-            this.radCard.Size = new System.Drawing.Size(14, 13);
-            this.radCard.TabIndex = 13;
-            this.radCard.TabStop = true;
-            this.radCard.UseVisualStyleBackColor = true;
-            this.radCard.CheckedChanged += new System.EventHandler(this.radCard_CheckedChanged);
-            // 
-            // radCash
-            // 
-            this.radCash.AutoSize = true;
-            this.radCash.Location = new System.Drawing.Point(88, 71);
-            this.radCash.Name = "radCash";
-            this.radCash.Size = new System.Drawing.Size(14, 13);
-            this.radCash.TabIndex = 13;
-            this.radCash.UseVisualStyleBackColor = true;
-            this.radCash.CheckedChanged += new System.EventHandler(this.radCash_CheckedChanged);
             // 
             // frmPay
             // 
