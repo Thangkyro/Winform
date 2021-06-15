@@ -662,6 +662,15 @@ namespace AusNail
                 loadGridDetail_Bill(_billID, true);
                 btnPay.Enabled = true;
                 btnSave.Enabled = true;
+                foreach (TreeNode item in trTemporaryBill.Nodes)
+                {
+                    item.BackColor = Color.White;
+                }
+                TreeNode[] tns = trTemporaryBill.Nodes.Find(_billID.ToString(), true);
+                if (tns.Length > 0)
+                {
+                    tns[0].BackColor = Color.LightSkyBlue;
+                }
             }
             catch (Exception ex)
             {
@@ -789,8 +798,27 @@ namespace AusNail
                 if (e.RowIndex > -1 && (e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))
                 {
                     decimal Discount = 0;
-                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
-                    decimal Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
+                    decimal Quantity = 0;
+
+                    decimal Price = 0;
+                    try
+                    {
+                        Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
+                    }
+                    catch
+                    {
+                        Price = 0;
+                        dgvService.Rows[e.RowIndex].Cells["Price"].Value = 0;
+                    }
+                    try
+                    {
+                        Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                    }
+                    catch
+                    {
+                        Quantity = 0;
+                        dgvService.Rows[e.RowIndex].Cells["Quantity"].Value = 0;
+                    }
                     // Update row num
                     try
                     {
