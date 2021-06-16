@@ -148,7 +148,7 @@ namespace AusNail.Process
                 // Get billCode
                 string billCode = "";
                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
-                int StaffId = int.Parse(_dtStaff.Rows[0]["StaffId"].ToString());
+                int StaffId = -1;
                 if (dt != null)
                 {
                     billCode = dt.Rows[0][0].ToString();
