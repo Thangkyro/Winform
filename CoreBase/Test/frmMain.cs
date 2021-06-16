@@ -876,7 +876,7 @@ namespace AusNail
                 {
                     if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
                     {
-                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString()); 
                     }
                 }
                 lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
@@ -896,7 +896,7 @@ namespace AusNail
 
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
-                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
                     {
                         int Num = i + 1;
                         int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
