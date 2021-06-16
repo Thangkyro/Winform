@@ -199,7 +199,13 @@ namespace AusNail.Process
             {
                 txtCard.Enabled = false;
                 txtCash.Enabled = false;
-                dgvVoucher.Rows.Clear();
+                try
+                {
+                    dgvVoucher.Rows.Clear();
+                }
+                catch 
+                {
+                }
                 dgvVoucher.DataSource = null;
                 dgvVoucher.Enabled = false;
                 _totalVoucher = 0;
