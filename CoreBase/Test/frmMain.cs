@@ -876,7 +876,7 @@ namespace AusNail
                 {
                     if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
                     {
-                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString()); 
                     }
                 }
                 lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
