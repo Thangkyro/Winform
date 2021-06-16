@@ -896,7 +896,7 @@ namespace AusNail
 
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
-                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
                     {
                         int Num = i + 1;
                         int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
