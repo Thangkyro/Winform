@@ -113,6 +113,7 @@ namespace AusNail.Login
 
                     NailApp.CurrentUserRow = userRow;
                     NailApp.BranchID = branchID;
+                    NailApp.ColorUser = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(userRow["ColorUser"].zToString()), 0);
 
                 }
                 else

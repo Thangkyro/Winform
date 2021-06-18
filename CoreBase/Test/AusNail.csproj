@@ -162,6 +162,12 @@
     <Compile Include="Process\frmCheckin.Designer.cs">
       <DependentUpon>frmCheckin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frmBookingFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBookingFilter.Designer.cs">
+      <DependentUpon>frmBookingFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmCheckPhone.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,18 @@
     </Compile>
     <Compile Include="Process\frmPrint.Designer.cs">
       <DependentUpon>frmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frmBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBooking.Designer.cs">
+      <DependentUpon>frmBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frmBookingAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBookingAdd.Designer.cs">
+      <DependentUpon>frmBookingAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\frmServiceAdd.cs">
       <SubType>Form</SubType>
@@ -239,6 +257,9 @@
     <EmbeddedResource Include="Process\frmCheckin.resx">
       <DependentUpon>frmCheckin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBookingFilter.resx">
+      <DependentUpon>frmBookingFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\frmCheckPhone.resx">
       <DependentUpon>frmCheckPhone.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmPrint.resx">
       <DependentUpon>frmPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBooking.resx">
+      <DependentUpon>frmBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBookingAdd.resx">
+      <DependentUpon>frmBookingAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmServiceAdd.resx">
       <DependentUpon>frmServiceAdd.cs</DependentUpon>
