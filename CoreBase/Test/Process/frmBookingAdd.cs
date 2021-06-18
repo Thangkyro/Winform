@@ -101,13 +101,14 @@ namespace AusNail.Process
                         dr["OrderNumber"] = 0;
                         dr["Note"] = "";
                         dr["Quantity"] = 1;
-                        dr["IsCheck"] = false;
+                        dr["Check"] = false;
                         dr["Amount"] = decimal.Parse(dr["Quantity"].ToString()) * decimal.Parse(dr["Price"].ToString());
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
+
             }
         }
 
@@ -183,7 +184,7 @@ namespace AusNail.Process
                     //    }
                     //}
                     //caculateAmount();
-                    dgvService_Click(new object(), new EventArgs());
+                    //dgvService_Click(new object(), new EventArgs());
                 }
             }
             catch (Exception ex)

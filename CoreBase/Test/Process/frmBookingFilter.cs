@@ -60,12 +60,17 @@ namespace AusNail.Process
             {
                 MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (dt > DateTime.Now)
+            //else if (dt > DateTime.Now)
+            //{
+            //    if (true)
+            //    {
+            //        MessageBox.Show("Date filter can't more than To Day.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+            else if (dt.Year == 0001)
             {
-                if (true)
-                {
-                    MessageBox.Show("Date filter can't more than To Day.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             else
             {
