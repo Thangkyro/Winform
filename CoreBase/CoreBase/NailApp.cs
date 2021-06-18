@@ -154,21 +154,26 @@ namespace CoreBase
                 return NailApp.CurrentUserRow["StaffId"].zToInt();
         }
 
+        //public static Color ColorUser
+        //{
+        //    get
+        //    {
+        //        if (CurrentUserRow == null)
+        //        {
+
+        //            return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0); ;
+        //        }
+        //        else
+        //        {
+        //            return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(CurrentUserRow["ColorUser"].zToString()), 0);
+        //        }
+        //    }
+        //}
         public static Color ColorUser
         {
-            get
-            {
-                if (CurrentUserRow == null)
-                {
-
-                    return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0); ;
-                }
-                else
-                {
-                    return ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(CurrentUserRow["ColorUser"].zToString()), 0);
-                }
-            }
+            get;set;
         }
+
 
         //public string Password { get; set; }
 

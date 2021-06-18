@@ -12,6 +12,8 @@ using CoreBase.Helpers;
 using CoreBase.DataAccessLayer;
 using AusNail.Dictionary;
 using AusNail.Login;
+using AusNail.Process;
+using System.Globalization;
 
 namespace AusNail
 {
@@ -36,7 +38,8 @@ namespace AusNail
             InitializeComponent();
             try
             {
-                splitContainer1.BackColor = NailApp.ColorUser;
+                splitContainer1.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+                splitContainer2.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
             }
             catch
             {
@@ -46,19 +49,6 @@ namespace AusNail
         {
             _branchID = branchid;
             _userID = userid;
-        }
-
-        //public frmMain()
-        //{
-        //    InitializeComponent();
-        //    _branchID = branchID;
-        //    _userID = userId;
-        //    //LoadMenu();
-        //}
-
-        private void LoadMenu()
-        {
-
         }
 
         public void LoadHistory()
@@ -172,33 +162,12 @@ namespace AusNail
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //AusNail.Dictionary.frmUser frm = new AusNail.Dictionary.frmUser();
-            //ShowForm(frm);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-            ShowForm(frm);
-        }
-
-        private void txtSearchMenu_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSearchMenu_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         void InitCommandOld()
         {
             InitCommandDm();
             //InitCommandCs();
-            //InitCommandPs();
+            InitCommandPS();
             //InitCommandBc();
             //InitCommandSys();
             //InitCommandQuyDinh();
@@ -266,6 +235,11 @@ namespace AusNail
             //    TimeKeeping.Click += (s, e) => { frmTimeKeeping(); };
             //else
             //    TimeKeeping.Visible = false;
+
+            if (NailApp.lstPermission.Contains(Booking.Name) || NailApp.IsAdmin())
+                Booking.Click += (s, e) => { frmBooking(); };
+            else
+                Booking.Visible = false;
         }
 
         void InitCommandST()
@@ -349,6 +323,31 @@ namespace AusNail
             //frmBooking f = new frmBranch();
             //ShowForm(f);
             //f.ShowDialog();
+            frmBookingFilter form = new frmBookingFilter();
+            form.ShowDialog();
+            string sResult = form.SendData();
+
+            List<string> lstResult = new List<string>();
+            if (sResult != null && !string.IsNullOrWhiteSpace(sResult))
+            {
+                lstResult = sResult.Split('|').ToList();
+            }
+
+            if (lstResult != null && lstResult.Count > 1) // Add Service
+            {
+                DateTime dt;
+                //DateTime.TryParse(lstResult[0].ToString().Trim(), out dt);
+                DateTime.TryParseExact(lstResult[0].ToString(), "dd/MM/yyyy",
+                           CultureInfo.InvariantCulture,
+                           DateTimeStyles.None,
+                           out dt);
+                if (dt != null)
+                {
+                    frmBooking frmBook = new frmBooking(dt, int.Parse(lstResult[1].ToString().Trim()));
+                    ShowForm(frmBook);
+                }
+                
+            }
         }
 
         #endregion
@@ -363,6 +362,7 @@ namespace AusNail
 
         #endregion
 
+        #region Event
         private void ChangePassword_Click(object sender, EventArgs e)
         {
             frmChangePassword f = new frmChangePassword();
@@ -408,6 +408,16 @@ namespace AusNail
                     NailApp.lstPermission = new List<string>();
                     NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
                     InitCommandOld();
+                    if (cboColor.Items.Count == 0)
+                    {
+                        //foreach (string item in ThemeColor.ColorList)
+                        //{
+                        //    cboColor.Items.Add()
+                        //}
+                        cboColor.DataSource = ThemeColor.ColorList;
+                    }
+                    splitContainer1.BackColor = NailApp.ColorUser;
+                    splitContainer2.BackColor = NailApp.ColorUser;
                 }
 
             }
@@ -437,6 +447,8 @@ namespace AusNail
                     //}
                     cboColor.DataSource = ThemeColor.ColorList;
                 }
+                splitContainer1.BackColor = NailApp.ColorUser;
+                splitContainer2.BackColor = NailApp.ColorUser;
 
                 LoadHistory();
                 createTable();
@@ -449,103 +461,6 @@ namespace AusNail
 
                 //Check Phone
                 CheckService(true);
-            }
-        }
-
-        private void LoadAll(int billID)
-        {
-            LoadHistory();
-            //createTable();
-            //loadService();
-            //LoadGrid();
-            loadBillInfor(billID);
-            loadGridDetail_Bill(billID, true);
-            btnPay.Enabled = true;
-            btnSave.Enabled = true;
-            TreeNode[] tns = trTemporaryBill.Nodes.Find(billID.ToString(), true);
-            if (tns.Length > 0)
-            {
-                trTemporaryBill.SelectedNode = tns[0];
-                trTemporaryBill.SelectedNode.EnsureVisible();  //scroll if necessary
-                trTemporaryBill.Focus();
-            }
-        }
-
-        private void CheckService(bool isCheckPhone)
-        {
-            if (isCheckPhone)
-            {
-                Process.frmCheckPhone form = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-                form.ShowDialog();
-                string sResult = form.SendData();
-                List<string> lstResult = new List<string>();
-                if (sResult != null && sResult.ToString() != "")
-                {
-                    lstResult = sResult.Split('|').ToList();
-                }
-
-                if (lstResult != null && lstResult.Count > 1) // Add Service
-                {
-                    Process.frmServiceAdd frmSerAdd = new Process.frmServiceAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[1].ToString().Trim(), lstResult[0].ToString().Trim());
-                    frmSerAdd.ShowDialog();
-                    int iResult = frmSerAdd.SendData();
-                    if (iResult != 0)
-                    {
-                        LoadAll(iResult);
-                    }
-                }
-                else if (lstResult != null && lstResult.Count == 1) //Add Customer
-                {
-                    Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[0].ToString().Trim());
-                    frmCusAdd.ShowDialog();
-                    string addCusResult = frmCusAdd.SendData();
-                    if (!string.IsNullOrWhiteSpace(addCusResult))
-                    {
-                        List<string> lstaddCusResult = new List<string>();
-                        if (addCusResult != null)
-                        {
-                            lstaddCusResult = addCusResult.Split('|').ToList();
-                        }
-
-                        //Show form AddService
-                        Process.frmServiceAdd frmSerAdd =
-                            new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
-                            NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
-                            lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
-                        frmSerAdd.ShowDialog();
-                        int iResult = frmSerAdd.SendData();
-                        if (iResult != 0)
-                        {
-                            LoadAll(iResult);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
-                frmCusAdd.ShowDialog();
-                string addCusResult = frmCusAdd.SendData();
-                if (!string.IsNullOrWhiteSpace(addCusResult))
-                {
-                    List<string> lstaddCusResult = new List<string>();
-                    if (addCusResult != null)
-                    {
-                        lstaddCusResult = addCusResult.Split('|').ToList();
-                    }
-
-                    //Show form AddService
-                    Process.frmServiceAdd frmSerAdd =
-                        new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
-                        NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
-                        lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
-                    frmSerAdd.ShowDialog();
-                    int iResult = frmSerAdd.SendData();
-                    if (iResult != 0)
-                    {
-                        LoadAll(iResult);
-                    }
-                }
             }
         }
 
@@ -563,6 +478,7 @@ namespace AusNail
                     //Update color for user
                     string sql = "UPDATE zUser SET ColorUser = '" + cboColor.SelectedValue.ToString() + "' WHERE Userid = " + NailApp.CurrentUserId;
                     int i = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                    NailApp.ColorUser = color;
                 }
             }
         }
@@ -609,50 +525,6 @@ namespace AusNail
             LoadHistory();
         }
 
-        private void loadBillInfor(int billID)
-        {
-            try
-            {
-                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetInfor", billID, int.Parse(NailApp.BranchID));
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    txtBillCode.Text = dt.Rows[0]["BillCode"].ToString();
-                    txtBilDate.Text = DateTime.Parse(dt.Rows[0]["BillDate"].ToString()).ToString("dd/MM/yyyy");
-                    txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
-                    txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
-                    txtGenden.Text = dt.Rows[0]["Gender"].ToString();
-                }
-            }
-            catch
-            {
-            }
-        }
-        private void loadGridDetail_Bill(int billId, bool temporarybill)
-        {
-            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, int.Parse(NailApp.BranchID));
-            if (dt != null)
-            {
-                _Service.Rows.Clear();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    DataRow dr = _Service.NewRow();
-                    dr["StaffId"] = dt.Rows[i]["StaffId"].ToString();
-                    dr["Price"] = decimal.Parse(dt.Rows[i]["Price"].ToString());
-                    dr["Quantity"] = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
-                    dr["Amount"] = decimal.Parse(dt.Rows[i]["Amout"].ToString());
-                    dr["ServiceID"] = dt.Rows[i]["ServiceID"].ToString();
-                    dr["Note"] = dt.Rows[i]["Note"].ToString();
-                    dr["Discount"] = decimal.Parse(dt.Rows[i]["Discount"].ToString());
-                    _Service.Rows.Add(dr);
-                }
-                dgvService.DataSource = _Service;
-            }
-            dgvService.AllowUserToAddRows = temporarybill;
-            dgvService.AllowUserToDeleteRows = temporarybill;
-            dgvService.AllowUserToOrderColumns = temporarybill;
-            dgvService.Enabled = temporarybill;
-            caculateAmount();
-        }
         private void trTemporaryBill_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
@@ -692,88 +564,6 @@ namespace AusNail
             }
         }
 
-        private void createTable()
-        {
-            _Service = new DataTable();
-            _Service.Columns.Add("staffId", typeof(int));
-            _Service.Columns.Add("serviceId", typeof(int));
-            _Service.Columns.Add("Quantity", typeof(decimal));
-            _Service.Columns.Add("Price", typeof(decimal));
-            _Service.Columns.Add("Discount", typeof(decimal));
-            _Service.Columns.Add("Amount", typeof(decimal));
-            _Service.Columns.Add("Note", typeof(string));
-        }
-
-        private void loadService()
-        {
-            try
-            {
-                _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", int.Parse(NailApp.BranchID));
-                _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", int.Parse(NailApp.BranchID));
-                if (_dtStaff != null)
-                {
-                    DataRow dr = _dtStaff.NewRow();
-                    dr["StaffId"] = -1;
-                    dr["StaffCode"] = "";
-                    dr["Name"] = "";
-                    _dtStaff.Rows.Add(dr);
-                }
-            }
-            catch
-            {
-            }
-        }
-
-        private void LoadGrid()
-        {
-            dgvService.DataSource = _Service;
-            dgvService.Columns.Remove("staffId");
-            DataGridViewComboBoxColumn dgvCmbStaff = new DataGridViewComboBoxColumn();
-            dgvCmbStaff.DataPropertyName = "staffId";
-            dgvCmbStaff.HeaderText = "Staff";
-            dgvCmbStaff.Name = "staffId";
-            dgvCmbStaff.DisplayMember = "Name";
-            dgvCmbStaff.ValueMember = "staffId";
-            dgvCmbStaff.DataSource = _dtStaff;
-            dgvCmbStaff.Width = 180;
-            dgvService.Columns.Add(dgvCmbStaff);
-            dgvService.Columns["staffId"].DisplayIndex = 0;
-
-            dgvService.Columns.Remove("serviceId");
-            DataGridViewComboBoxColumn dgvCmbService = new DataGridViewComboBoxColumn();
-            dgvCmbService.DataPropertyName = "serviceId";
-            dgvCmbService.HeaderText = "Service";
-            dgvCmbService.Name = "serviceId";
-            dgvCmbService.DisplayMember = "Title";
-            dgvCmbService.ValueMember = "serviceId";
-            dgvCmbService.DataSource = _dtService;
-            dgvCmbService.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvService.Columns.Add(dgvCmbService);
-            dgvService.Columns["serviceId"].DisplayIndex = 0;
-
-            dgvService.Columns["Quantity"].HeaderText = "Quantity";
-            dgvService.Columns["Quantity"].Width = 100;
-            dgvService.Columns["Price"].HeaderText = "Price";
-            dgvService.Columns["Price"].Width = 100;
-            dgvService.Columns["Discount"].HeaderText = "Discount";
-            dgvService.Columns["Discount"].Width = 100;
-            dgvService.Columns["Amount"].HeaderText = "Amount";
-            dgvService.Columns["Amount"].ReadOnly = true;
-            dgvService.Columns["Amount"].Width = 120;
-            dgvService.Columns["Note"].HeaderText = "Note";
-            dgvService.Columns["Note"].Width = 180;
-
-
-            DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
-            dataGridViewImange.Name = "Del";
-            dataGridViewImange.HeaderText = "";
-            dataGridViewImange.Width = 20;
-            dataGridViewImange.Image = Properties.Resources.cancel;
-            dgvService.Columns.Add(dataGridViewImange);
-
-            dgvService.AutoGenerateColumns = false;
-        }
-
         private void dgvService_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -796,8 +586,6 @@ namespace AusNail
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private void dgvService_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -864,80 +652,6 @@ namespace AusNail
             catch
             {
                 dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
-            }
-        }
-
-        private void caculateAmount()
-        {
-            try
-            {
-                _totalAmount = 0;
-                for (int i = 0; i < dgvService.Rows.Count; i++)
-                {
-                    if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
-                    {
-                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString()); 
-                    }
-                }
-                lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
-            }
-            catch 
-            {
-            }
-        }
-
-        private void SaveBill(int billId, string voucherCode)
-        {
-            try
-            {
-                int error = 0;
-                string errorMesg = "";
-                bool flag = true;
-
-                for (int i = 0; i < dgvService.Rows.Count; i++)
-                {
-                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
-                    {
-                        int Num = i + 1;
-                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
-                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                        int StaffId = -1;
-                        try
-                        {
-                            StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
-                        }
-                        catch 
-                        {
-                        }
-                        
-                        decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
-                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
-                        if (ret == 0)
-                        {
-                            flag = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (flag)
-                {
-                    MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-            }
-            catch (Exception ex)
-            {
-                // call store dell bii moiws tao
-                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
@@ -1068,10 +782,317 @@ namespace AusNail
                     e.CellStyle.Format = "N0";
                 }
             }
-            catch 
+            catch
             {
             }
-            
+
         }
+
+        #endregion
+
+        #region Method
+
+        private void LoadAll(int billID)
+        {
+            LoadHistory();
+            //createTable();
+            //loadService();
+            //LoadGrid();
+            loadBillInfor(billID);
+            loadGridDetail_Bill(billID, true);
+            btnPay.Enabled = true;
+            btnSave.Enabled = true;
+            TreeNode[] tns = trTemporaryBill.Nodes.Find(billID.ToString(), true);
+            if (tns.Length > 0)
+            {
+                trTemporaryBill.SelectedNode = tns[0];
+                trTemporaryBill.SelectedNode.EnsureVisible();  //scroll if necessary
+                trTemporaryBill.Focus();
+            }
+        }
+
+        private void CheckService(bool isCheckPhone)
+        {
+            if (isCheckPhone)
+            {
+                Process.frmCheckPhone form = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+                form.ShowDialog();
+                string sResult = form.SendData();
+                List<string> lstResult = new List<string>();
+                if (sResult != null && sResult.ToString() != "")
+                {
+                    lstResult = sResult.Split('|').ToList();
+                }
+
+                if (lstResult != null && lstResult.Count > 1) // Add Service
+                {
+                    Process.frmServiceAdd frmSerAdd = new Process.frmServiceAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[1].ToString().Trim(), lstResult[0].ToString().Trim());
+                    frmSerAdd.ShowDialog();
+                    int iResult = frmSerAdd.SendData();
+                    if (iResult != 0)
+                    {
+                        LoadAll(iResult);
+                    }
+                }
+                else if (lstResult != null && lstResult.Count == 1) //Add Customer
+                {
+                    Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, lstResult[0].ToString().Trim());
+                    frmCusAdd.ShowDialog();
+                    string addCusResult = frmCusAdd.SendData();
+                    if (!string.IsNullOrWhiteSpace(addCusResult))
+                    {
+                        List<string> lstaddCusResult = new List<string>();
+                        if (addCusResult != null)
+                        {
+                            lstaddCusResult = addCusResult.Split('|').ToList();
+                        }
+
+                        //Show form AddService
+                        Process.frmServiceAdd frmSerAdd =
+                            new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
+                            NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
+                            lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
+                        frmSerAdd.ShowDialog();
+                        int iResult = frmSerAdd.SendData();
+                        if (iResult != 0)
+                        {
+                            LoadAll(iResult);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Process.frmCusstomerAdd frmCusAdd = new Process.frmCusstomerAdd(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "");
+                frmCusAdd.ShowDialog();
+                string addCusResult = frmCusAdd.SendData();
+                if (!string.IsNullOrWhiteSpace(addCusResult))
+                {
+                    List<string> lstaddCusResult = new List<string>();
+                    if (addCusResult != null)
+                    {
+                        lstaddCusResult = addCusResult.Split('|').ToList();
+                    }
+
+                    //Show form AddService
+                    Process.frmServiceAdd frmSerAdd =
+                        new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
+                        NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
+                        lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
+                    frmSerAdd.ShowDialog();
+                    int iResult = frmSerAdd.SendData();
+                    if (iResult != 0)
+                    {
+                        LoadAll(iResult);
+                    }
+                }
+            }
+        }
+
+        private void loadBillInfor(int billID)
+        {
+            try
+            {
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetInfor", billID, int.Parse(NailApp.BranchID));
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    txtBillCode.Text = dt.Rows[0]["BillCode"].ToString();
+                    txtBilDate.Text = DateTime.Parse(dt.Rows[0]["BillDate"].ToString()).ToString("dd/MM/yyyy");
+                    txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
+                    txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
+                    txtGenden.Text = dt.Rows[0]["Gender"].ToString();
+                }
+            }
+            catch
+            {
+            }
+        }
+        private void loadGridDetail_Bill(int billId, bool temporarybill)
+        {
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", billId, int.Parse(NailApp.BranchID));
+            if (dt != null)
+            {
+                _Service.Rows.Clear();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = _Service.NewRow();
+                    dr["StaffId"] = dt.Rows[i]["StaffId"].ToString();
+                    dr["Price"] = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                    dr["Quantity"] = decimal.Parse(dt.Rows[i]["Quantity"].ToString());
+                    dr["Amount"] = decimal.Parse(dt.Rows[i]["Amout"].ToString());
+                    dr["ServiceID"] = dt.Rows[i]["ServiceID"].ToString();
+                    dr["Note"] = dt.Rows[i]["Note"].ToString();
+                    dr["Discount"] = decimal.Parse(dt.Rows[i]["Discount"].ToString());
+                    _Service.Rows.Add(dr);
+                }
+                dgvService.DataSource = _Service;
+            }
+            dgvService.AllowUserToAddRows = temporarybill;
+            dgvService.AllowUserToDeleteRows = temporarybill;
+            dgvService.AllowUserToOrderColumns = temporarybill;
+            dgvService.Enabled = temporarybill;
+            caculateAmount();
+        }
+
+        private void createTable()
+        {
+            _Service = new DataTable();
+            _Service.Columns.Add("staffId", typeof(int));
+            _Service.Columns.Add("serviceId", typeof(int));
+            _Service.Columns.Add("Quantity", typeof(decimal));
+            _Service.Columns.Add("Price", typeof(decimal));
+            _Service.Columns.Add("Discount", typeof(decimal));
+            _Service.Columns.Add("Amount", typeof(decimal));
+            _Service.Columns.Add("Note", typeof(string));
+        }
+
+        private void loadService()
+        {
+            try
+            {
+                _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", int.Parse(NailApp.BranchID));
+                _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", int.Parse(NailApp.BranchID));
+                if (_dtStaff != null)
+                {
+                    DataRow dr = _dtStaff.NewRow();
+                    dr["StaffId"] = -1;
+                    dr["StaffCode"] = "";
+                    dr["Name"] = "";
+                    _dtStaff.Rows.Add(dr);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void LoadGrid()
+        {
+            dgvService.DataSource = _Service;
+            dgvService.Columns.Remove("staffId");
+            DataGridViewComboBoxColumn dgvCmbStaff = new DataGridViewComboBoxColumn();
+            dgvCmbStaff.DataPropertyName = "staffId";
+            dgvCmbStaff.HeaderText = "Staff";
+            dgvCmbStaff.Name = "staffId";
+            dgvCmbStaff.DisplayMember = "Name";
+            dgvCmbStaff.ValueMember = "staffId";
+            dgvCmbStaff.DataSource = _dtStaff;
+            dgvCmbStaff.Width = 180;
+            dgvService.Columns.Add(dgvCmbStaff);
+            dgvService.Columns["staffId"].DisplayIndex = 0;
+
+            dgvService.Columns.Remove("serviceId");
+            DataGridViewComboBoxColumn dgvCmbService = new DataGridViewComboBoxColumn();
+            dgvCmbService.DataPropertyName = "serviceId";
+            dgvCmbService.HeaderText = "Service";
+            dgvCmbService.Name = "serviceId";
+            dgvCmbService.DisplayMember = "Title";
+            dgvCmbService.ValueMember = "serviceId";
+            dgvCmbService.DataSource = _dtService;
+            dgvCmbService.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvService.Columns.Add(dgvCmbService);
+            dgvService.Columns["serviceId"].DisplayIndex = 0;
+
+            dgvService.Columns["Quantity"].HeaderText = "Quantity";
+            dgvService.Columns["Quantity"].Width = 100;
+            dgvService.Columns["Price"].HeaderText = "Price";
+            dgvService.Columns["Price"].Width = 100;
+            dgvService.Columns["Discount"].HeaderText = "Discount";
+            dgvService.Columns["Discount"].Width = 100;
+            dgvService.Columns["Amount"].HeaderText = "Amount";
+            dgvService.Columns["Amount"].ReadOnly = true;
+            dgvService.Columns["Amount"].Width = 120;
+            dgvService.Columns["Note"].HeaderText = "Note";
+            dgvService.Columns["Note"].Width = 180;
+
+
+            DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
+            dataGridViewImange.Name = "Del";
+            dataGridViewImange.HeaderText = "";
+            dataGridViewImange.Width = 20;
+            dataGridViewImange.Image = Properties.Resources.cancel;
+            dgvService.Columns.Add(dataGridViewImange);
+
+            dgvService.AutoGenerateColumns = false;
+        }
+
+        private void caculateAmount()
+        {
+            try
+            {
+                _totalAmount = 0;
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
+                    {
+                        _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                    }
+                }
+                lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            }
+            catch
+            {
+            }
+        }
+
+        private void SaveBill(int billId, string voucherCode)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
+                    {
+                        int Num = i + 1;
+                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
+                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                        int StaffId = -1;
+                        try
+                        {
+                            StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        }
+                        catch
+                        {
+                        }
+
+                        decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
+                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        #endregion
+
+
+
     }
 }
