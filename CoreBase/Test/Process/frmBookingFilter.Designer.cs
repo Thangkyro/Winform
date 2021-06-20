@@ -55,7 +55,7 @@
             this.btnConfirm.Size = new System.Drawing.Size(139, 50);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
-            this.btnConfirm.TabIndex = 2;
+            this.btnConfirm.TabIndex = 3;
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -77,7 +77,7 @@
             this.btnCancel.Size = new System.Drawing.Size(139, 50);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Transparency = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
