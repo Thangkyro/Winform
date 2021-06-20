@@ -29,8 +29,10 @@ namespace AusNail.Process
             _dateFilter = dateFilter;
             _branchIDChoose = branchID;
             lblBookingDate.Text = "Date Booking: " + _dateFilter.ToString("dd/MM/yyyy");
+            //Update Status
+            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, 0, "");
             LoadGridHeader();
-            LoadGridDetail("", _dateFilter, 0);
+            LoadGridDetail("", _dateFilter, -1);
         }
 
         #region Method
@@ -42,12 +44,12 @@ namespace AusNail.Process
                 dgvHeader.DataSource = null;
                 dgvHeader.Rows.Clear();
                 dgvHeader.Columns.Clear();
-               
+
                 _dtHeader = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_GroupByDate", _dateFilter, _branchIDChoose);
 
-                if (_dtHeader != null )
+                if (_dtHeader != null)
                 {
-                   
+
                     dgvHeader.DataSource = _dtHeader;
                     dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     dgvHeader.Columns["Status"].HeaderText = "Status Booking";
@@ -83,6 +85,22 @@ namespace AusNail.Process
                         dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                     }
 
+                    dgvHeader.Columns["OneAM"].Visible = false;
+                    dgvHeader.Columns["TwoAM"].Visible = false;
+                    dgvHeader.Columns["ThreeAM"].Visible = false;
+                    dgvHeader.Columns["FourAM"].Visible = false;
+                    dgvHeader.Columns["FiveAM"].Visible = false;
+                    dgvHeader.Columns["SixAM"].Visible = false;
+                    dgvHeader.Columns["SevenAM"].Visible = false;
+                    dgvHeader.Columns["EightAM"].Visible = false;
+                    dgvHeader.Columns["EighteenPM"].Visible = false;
+                    dgvHeader.Columns["NineteenPM"].Visible = false;
+                    dgvHeader.Columns["TwentyPM"].Visible = false;
+                    dgvHeader.Columns["TwentyOnePM"].Visible = false;
+                    dgvHeader.Columns["TwentyTwoPM"].Visible = false;
+                    dgvHeader.Columns["TwentyThreePM"].Visible = false;
+                    dgvHeader.Columns["TwentyFourPM"].Visible = false;
+                    dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -95,6 +113,11 @@ namespace AusNail.Process
         {
             try
             {
+                if (time != -1)
+                {
+                    grbDetail.Text = "Time: " + time.ToString();
+                }
+
                 //Get data Header
                 dgvDetail.DataSource = null;
                 dgvDetail.Rows.Clear();
@@ -286,6 +309,10 @@ namespace AusNail.Process
                 {
                     LoadGridDetail(status, _dateFilter, time);
                 }
+                else if (colIndex != 0)
+                {
+                    LoadGridDetail("", _dateFilter, 0);
+                }
 
             }
             catch (Exception ex)
@@ -395,6 +422,27 @@ namespace AusNail.Process
             CheckService(true);
         }
 
+
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int error = 0;
+            string errorMesg = "";
+            try
+            {
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, error, errorMesg);
+                if (ret > 0)
+                {
+                    //Load grid
+                    LoadGridHeader();
+                    LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
