@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCheckPhone));
             this.btnConfirm = new AltoControls.AltoButton();
             this.altoSlidingLabel1 = new AltoControls.AltoSlidingLabel();
             this.btnCancel = new AltoControls.AltoButton();
@@ -44,10 +45,11 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(129, 81);
+            this.btnConfirm.Location = new System.Drawing.Point(172, 100);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
-            this.btnConfirm.Size = new System.Drawing.Size(96, 30);
+            this.btnConfirm.Size = new System.Drawing.Size(128, 37);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
             this.btnConfirm.TabIndex = 2;
@@ -57,9 +59,10 @@
             // 
             // altoSlidingLabel1
             // 
-            this.altoSlidingLabel1.Location = new System.Drawing.Point(21, 25);
+            this.altoSlidingLabel1.Location = new System.Drawing.Point(28, 31);
+            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
-            this.altoSlidingLabel1.Size = new System.Drawing.Size(102, 36);
+            this.altoSlidingLabel1.Size = new System.Drawing.Size(136, 44);
             this.altoSlidingLabel1.Slide = false;
             this.altoSlidingLabel1.TabIndex = 0;
             this.altoSlidingLabel1.Text = "Customer Phone:";
@@ -74,10 +77,11 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(231, 81);
+            this.btnCancel.Location = new System.Drawing.Point(308, 100);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
-            this.btnCancel.Size = new System.Drawing.Size(96, 30);
+            this.btnCancel.Size = new System.Drawing.Size(128, 37);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
             this.btnCancel.TabIndex = 3;
@@ -88,23 +92,26 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(129, 25);
+            this.txtPhone.Location = new System.Drawing.Point(172, 31);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhone.Multiline = true;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(198, 36);
+            this.txtPhone.Size = new System.Drawing.Size(263, 43);
             this.txtPhone.TabIndex = 1;
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // frmCheckPhone
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(367, 148);
+            this.ClientSize = new System.Drawing.Size(489, 182);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCheckPhone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";

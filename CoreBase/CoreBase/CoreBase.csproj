@@ -138,6 +138,9 @@
     <EmbeddedResource Include="WinForm\Dictionary\HashKey.resx">
       <DependentUpon>HashKey.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Dictionary\NailForm.resx">
+      <DependentUpon>NailForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -168,6 +171,7 @@
     <Content Include="Resources\FormViewEntry.png" />
     <Content Include="Resources\FormViewList.png" />
     <Content Include="Resources\lightning.png" />
+    <Content Include="Resources\nailsoft.ico" />
     <Content Include="Resources\printer.png" />
     <Content Include="Resources\resultset_first.png" />
     <Content Include="Resources\resultset_last.png" />

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookingAdd));
             this.dgvService = new System.Windows.Forms.DataGridView();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.btnCancel = new AltoControls.AltoButton();
@@ -257,6 +258,7 @@
             this.ClientSize = new System.Drawing.Size(1110, 710);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBookingAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
