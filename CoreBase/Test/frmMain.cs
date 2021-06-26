@@ -583,7 +583,7 @@ namespace AusNail
                 }
                 else
                 {
-                    if (e.ColumnIndex == 7 && dgvService.Enabled == true) //Delete 
+                    if (e.ColumnIndex == 8 && dgvService.Enabled == true) //Delete 
                     {
                         dgvService.Rows.RemoveAt(e.RowIndex);
                         caculateAmount();
@@ -637,7 +637,7 @@ namespace AusNail
                     }
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price - Discount;
                 }
-                if (e.RowIndex > -1 && (e.ColumnIndex == 6))
+                if (e.RowIndex > -1 && (e.ColumnIndex == 7))
                 {
                     decimal Discount = 0;
                     string serviceId = dgvService.Rows[e.RowIndex].Cells["serviceId"].Value.ToString();
@@ -685,9 +685,17 @@ namespace AusNail
         {
             try
             {
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
-                SaveBill(_billIDTemp, "");
-                btnPrint.Enabled = true;
+                if (tabHistory)
+                {
+                    UpdateBill(_billIDHistory);
+                    btnPrint.Enabled = true;
+                }
+                else
+                {
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
+                    SaveBill(_billIDTemp, "");
+                    btnPrint.Enabled = true;
+                }
             }
             catch
             {
@@ -808,7 +816,6 @@ namespace AusNail
                 _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
-                btnSave.Enabled = false;
                 TreeNode[] tns = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
                 if (tns.Length > 0)
                 {
@@ -837,7 +844,6 @@ namespace AusNail
                 _billIDHistoryOld = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
-                btnSave.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1023,6 +1029,7 @@ namespace AusNail
                     dr["ServiceID"] = dt.Rows[i]["ServiceID"].ToString();
                     dr["Note"] = dt.Rows[i]["Note"].ToString();
                     dr["Discount"] = decimal.Parse(dt.Rows[i]["Discount"].ToString());
+                    dr["billDetailID"] = decimal.Parse(dt.Rows[i]["BillDTID"].ToString());
                     _Service.Rows.Add(dr);
                 }
                 dgvService.DataSource = _Service;
@@ -1030,7 +1037,17 @@ namespace AusNail
             dgvService.AllowUserToAddRows = temporarybill;
             dgvService.AllowUserToDeleteRows = temporarybill;
             dgvService.AllowUserToOrderColumns = temporarybill;
-            dgvService.Enabled = temporarybill;
+            if(!temporarybill)
+            {
+                dgvService.Columns["staffId"].ReadOnly = false;
+                dgvService.Columns["serviceId"].ReadOnly = true;
+                dgvService.Columns["Quantity"].ReadOnly = true;
+                dgvService.Columns["Price"].ReadOnly = true;
+                dgvService.Columns["Discount"].ReadOnly = true;
+                dgvService.Columns["Amount"].ReadOnly = true;
+                dgvService.Columns["Note"].ReadOnly = false;
+                dgvService.Columns["Del"].ReadOnly = false;
+            }
             caculateAmount();
         }
 
@@ -1044,6 +1061,7 @@ namespace AusNail
             _Service.Columns.Add("Discount", typeof(decimal));
             _Service.Columns.Add("Amount", typeof(decimal));
             _Service.Columns.Add("Note", typeof(string));
+            _Service.Columns.Add("billDetailID", typeof(string));
         }
 
         private void loadService()
@@ -1104,6 +1122,8 @@ namespace AusNail
             dgvService.Columns["Amount"].Width = 120;
             dgvService.Columns["Note"].HeaderText = "Note";
             dgvService.Columns["Note"].Width = 180;
+
+            dgvService.Columns["billDetailID"].Visible = false;
 
 
             DataGridViewImageColumn dataGridViewImange = new DataGridViewImageColumn();
@@ -1190,6 +1210,56 @@ namespace AusNail
             }
         }
 
+        private void UpdateBill(int billId)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
+                    {
+                        int StaffId = -1;
+                        try
+                        {
+                            StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        }
+                        catch
+                        {
+                        }
+                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+                        int billDetailID = int.Parse(dgvService.Rows[i].Cells["billDetailID"].Value.ToString());
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailUpdate_Ver1", billId, billDetailID, int.Parse(NailApp.BranchID), StaffId, Note, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    MessageBox.Show("Update Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Update Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Update Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
 
 
         #endregion
@@ -1205,7 +1275,6 @@ namespace AusNail
             {
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
-                btnSave.Enabled = false;
                 btnPay.Enabled = true;
                 btnPay.Text = "UnPaid";
                 tabHistory = true;
@@ -1214,7 +1283,6 @@ namespace AusNail
             {
                 loadBillInfor(_billIDTemp);
                 loadGridDetail_Bill(_billIDTemp, true);
-                btnSave.Enabled = true;
                 btnPay.Enabled = true;
                 btnPay.Text = "Pay";
                 tabHistory = false;
