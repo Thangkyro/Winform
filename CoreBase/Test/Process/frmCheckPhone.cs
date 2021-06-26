@@ -109,6 +109,7 @@ namespace AusNail.Process
         private void frmCheckPhone_Load(object sender, EventArgs e)
         {
             txtPhone.Focus();
+            txtPhone.Select();
         }
     }
 }
