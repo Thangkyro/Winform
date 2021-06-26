@@ -50,7 +50,7 @@
             this.radMale.AutoSize = true;
             this.radMale.Checked = true;
             this.radMale.Location = new System.Drawing.Point(185, 170);
-            this.radMale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radMale.Margin = new System.Windows.Forms.Padding(4);
             this.radMale.Name = "radMale";
             this.radMale.Size = new System.Drawing.Size(59, 21);
             this.radMale.TabIndex = 9;
@@ -62,7 +62,7 @@
             // 
             this.radFemale.AutoSize = true;
             this.radFemale.Location = new System.Drawing.Point(185, 193);
-            this.radFemale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radFemale.Margin = new System.Windows.Forms.Padding(4);
             this.radFemale.Name = "radFemale";
             this.radFemale.Size = new System.Drawing.Size(75, 21);
             this.radFemale.TabIndex = 10;
@@ -73,7 +73,7 @@
             // 
             this.radOrder.AutoSize = true;
             this.radOrder.Location = new System.Drawing.Point(185, 218);
-            this.radOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radOrder.Margin = new System.Windows.Forms.Padding(4);
             this.radOrder.Name = "radOrder";
             this.radOrder.Size = new System.Drawing.Size(66, 21);
             this.radOrder.TabIndex = 11;
@@ -91,7 +91,7 @@
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnCancel.Location = new System.Drawing.Point(323, 256);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(160, 37);
@@ -113,7 +113,7 @@
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnConfirm.Location = new System.Drawing.Point(149, 256);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(160, 37);
@@ -127,7 +127,7 @@
             // altoSlidingLabel5
             // 
             this.altoSlidingLabel5.Location = new System.Drawing.Point(16, 110);
-            this.altoSlidingLabel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel5.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel5.Name = "altoSlidingLabel5";
             this.altoSlidingLabel5.Size = new System.Drawing.Size(131, 25);
             this.altoSlidingLabel5.Slide = false;
@@ -137,7 +137,7 @@
             // altoSlidingLabel4
             // 
             this.altoSlidingLabel4.Location = new System.Drawing.Point(16, 76);
-            this.altoSlidingLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel4.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel4.Name = "altoSlidingLabel4";
             this.altoSlidingLabel4.Size = new System.Drawing.Size(131, 25);
             this.altoSlidingLabel4.Slide = false;
@@ -147,7 +147,7 @@
             // altoSlidingLabel3
             // 
             this.altoSlidingLabel3.Location = new System.Drawing.Point(147, 139);
-            this.altoSlidingLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel3.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel3.Name = "altoSlidingLabel3";
             this.altoSlidingLabel3.Size = new System.Drawing.Size(131, 25);
             this.altoSlidingLabel3.Slide = false;
@@ -157,7 +157,7 @@
             // altoSlidingLabel2
             // 
             this.altoSlidingLabel2.Location = new System.Drawing.Point(16, 43);
-            this.altoSlidingLabel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel2.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel2.Name = "altoSlidingLabel2";
             this.altoSlidingLabel2.Size = new System.Drawing.Size(131, 25);
             this.altoSlidingLabel2.Slide = false;
@@ -167,7 +167,7 @@
             // altoSlidingLabel1
             // 
             this.altoSlidingLabel1.Location = new System.Drawing.Point(16, 12);
-            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
             this.altoSlidingLabel1.Size = new System.Drawing.Size(131, 25);
             this.altoSlidingLabel1.Slide = false;
@@ -177,7 +177,7 @@
             // txtPhoneNum
             // 
             this.txtPhoneNum.Location = new System.Drawing.Point(147, 12);
-            this.txtPhoneNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhoneNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNum.Multiline = true;
             this.txtPhoneNum.Name = "txtPhoneNum";
             this.txtPhoneNum.Size = new System.Drawing.Size(335, 24);
@@ -186,7 +186,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(147, 43);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(335, 24);
@@ -195,7 +195,7 @@
             // txtPostcode
             // 
             this.txtPostcode.Location = new System.Drawing.Point(147, 110);
-            this.txtPostcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPostcode.Margin = new System.Windows.Forms.Padding(4);
             this.txtPostcode.Multiline = true;
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.Size = new System.Drawing.Size(335, 24);
@@ -204,7 +204,7 @@
             // txtDateofBirth
             // 
             this.txtDateofBirth.Location = new System.Drawing.Point(147, 76);
-            this.txtDateofBirth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDateofBirth.Margin = new System.Windows.Forms.Padding(4);
             this.txtDateofBirth.Mask = "00/00/0000";
             this.txtDateofBirth.Name = "txtDateofBirth";
             this.txtDateofBirth.Size = new System.Drawing.Size(335, 22);
@@ -232,7 +232,7 @@
             this.Controls.Add(this.altoSlidingLabel2);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmCusstomerAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -64,7 +64,7 @@
             // 
             this.lblTime.Location = new System.Drawing.Point(574, 14);
             this.lblTime.Size = new System.Drawing.Size(74, 24);
-            this.lblTime.Text = "14:21:02";
+            this.lblTime.Text = "20:19:08";
             // 
             // btnCancel
             // 
@@ -171,6 +171,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 332);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmChangePassword";
             this.Text = "Change Password";
             this.Controls.SetChildIndex(this.panel1, 0);

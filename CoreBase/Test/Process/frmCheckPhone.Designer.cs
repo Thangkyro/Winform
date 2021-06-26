@@ -46,7 +46,7 @@
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnConfirm.Location = new System.Drawing.Point(172, 100);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(128, 37);
@@ -60,7 +60,7 @@
             // altoSlidingLabel1
             // 
             this.altoSlidingLabel1.Location = new System.Drawing.Point(28, 31);
-            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altoSlidingLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
             this.altoSlidingLabel1.Size = new System.Drawing.Size(136, 44);
             this.altoSlidingLabel1.Slide = false;
@@ -78,7 +78,7 @@
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnCancel.Location = new System.Drawing.Point(308, 100);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(128, 37);
@@ -93,7 +93,7 @@
             // 
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.Location = new System.Drawing.Point(172, 31);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Multiline = true;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(263, 43);
@@ -111,7 +111,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCheckPhone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";

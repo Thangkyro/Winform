@@ -48,9 +48,9 @@ E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictio
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.FormCollectInfo.resources
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.Dictionary.resources
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.HashKey.resources
+E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.NailForm.resources
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.cache
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CoreCompileInputs.cache
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CopyComplete
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
-E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.NailForm.resources

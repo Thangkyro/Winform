@@ -108,7 +108,8 @@ namespace AusNail
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -122,8 +123,9 @@ namespace AusNail
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.Controls.Add(this.pnlForm);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 519);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.Size = new System.Drawing.Size(1365, 640);
+            this.splitContainer1.SplitterDistance = 339;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -133,6 +135,7 @@ namespace AusNail
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -153,8 +156,9 @@ namespace AusNail
             this.splitContainer2.Panel2.Controls.Add(this.cboColor);
             this.splitContainer2.Panel2.Controls.Add(this.txtColor);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(255, 519);
-            this.splitContainer2.SplitterDistance = 356;
+            this.splitContainer2.Size = new System.Drawing.Size(339, 640);
+            this.splitContainer2.SplitterDistance = 476;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 1;
             // 
             // tabControl1
@@ -163,21 +167,21 @@ namespace AusNail
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(251, 352);
+            this.tabControl1.Size = new System.Drawing.Size(335, 472);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.trTemporaryBill);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(243, 326);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(327, 443);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Temporary bill";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -186,9 +190,10 @@ namespace AusNail
             // 
             this.trTemporaryBill.ContextMenuStrip = this.cMSReload;
             this.trTemporaryBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trTemporaryBill.Location = new System.Drawing.Point(2, 2);
+            this.trTemporaryBill.Location = new System.Drawing.Point(3, 2);
+            this.trTemporaryBill.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trTemporaryBill.Name = "trTemporaryBill";
-            this.trTemporaryBill.Size = new System.Drawing.Size(239, 322);
+            this.trTemporaryBill.Size = new System.Drawing.Size(321, 439);
             this.trTemporaryBill.TabIndex = 0;
             this.trTemporaryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trTemporaryBill_AfterSelect);
             this.trTemporaryBill.Click += new System.EventHandler(this.trTemporaryBill_Click);
@@ -200,14 +205,14 @@ namespace AusNail
             this.toolStripMenuItem1,
             this.deeteToolStripMenuItem});
             this.cMSReload.Name = "contextMenuStrip1";
-            this.cMSReload.Size = new System.Drawing.Size(115, 56);
+            this.cMSReload.Size = new System.Drawing.Size(130, 56);
             this.cMSReload.Text = "ReLoad";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Image = global::AusNail.Properties.Resources.Refresh;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(129, 26);
             this.toolStripMenuItem1.Text = "Reload";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -215,18 +220,18 @@ namespace AusNail
             // 
             this.deeteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
             this.deeteToolStripMenuItem.Name = "deeteToolStripMenuItem";
-            this.deeteToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.deeteToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.deeteToolStripMenuItem.Text = "Delete";
             this.deeteToolStripMenuItem.Click += new System.EventHandler(this.deeteToolStripMenuItem_Click);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.trHistoryBill);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(243, 326);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Size = new System.Drawing.Size(327, 404);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "History bill";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -235,9 +240,10 @@ namespace AusNail
             // 
             this.trHistoryBill.ContextMenuStrip = this.cMSReload;
             this.trHistoryBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trHistoryBill.Location = new System.Drawing.Point(2, 2);
+            this.trHistoryBill.Location = new System.Drawing.Point(3, 2);
+            this.trHistoryBill.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trHistoryBill.Name = "trHistoryBill";
-            this.trHistoryBill.Size = new System.Drawing.Size(239, 322);
+            this.trHistoryBill.Size = new System.Drawing.Size(321, 400);
             this.trHistoryBill.TabIndex = 0;
             this.trHistoryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trHistoryBill_AfterSelect);
             this.trHistoryBill.Click += new System.EventHandler(this.trHistoryBill_Click);
@@ -253,11 +259,11 @@ namespace AusNail
             this.btnSetColor.ForeColor = System.Drawing.Color.Black;
             this.btnSetColor.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnSetColor.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnSetColor.Location = new System.Drawing.Point(48, 117);
-            this.btnSetColor.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetColor.Location = new System.Drawing.Point(64, 108);
+            this.btnSetColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSetColor.Name = "btnSetColor";
             this.btnSetColor.Radius = 10;
-            this.btnSetColor.Size = new System.Drawing.Size(100, 24);
+            this.btnSetColor.Size = new System.Drawing.Size(133, 30);
             this.btnSetColor.Stroke = false;
             this.btnSetColor.StrokeColor = System.Drawing.Color.Gray;
             this.btnSetColor.TabIndex = 14;
@@ -269,10 +275,9 @@ namespace AusNail
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 89);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(61, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(41, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "Color";
             // 
@@ -280,10 +285,9 @@ namespace AusNail
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 58);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(23, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(78, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "Color Code";
             // 
@@ -291,11 +295,11 @@ namespace AusNail
             // 
             this.altoSlidingLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.altoSlidingLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.altoSlidingLabel3.Location = new System.Drawing.Point(20, 32);
-            this.altoSlidingLabel3.Margin = new System.Windows.Forms.Padding(2);
+            this.altoSlidingLabel3.Location = new System.Drawing.Point(27, 3);
+            this.altoSlidingLabel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.altoSlidingLabel3.Name = "altoSlidingLabel3";
             this.altoSlidingLabel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.altoSlidingLabel3.Size = new System.Drawing.Size(158, 22);
+            this.altoSlidingLabel3.Size = new System.Drawing.Size(211, 27);
             this.altoSlidingLabel3.Slide = false;
             this.altoSlidingLabel3.TabIndex = 11;
             this.altoSlidingLabel3.Text = "Change Theme Color";
@@ -304,10 +308,10 @@ namespace AusNail
             // 
             this.cboColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboColor.FormattingEnabled = true;
-            this.cboColor.Location = new System.Drawing.Point(80, 58);
-            this.cboColor.Margin = new System.Windows.Forms.Padding(2);
+            this.cboColor.Location = new System.Drawing.Point(107, 35);
+            this.cboColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboColor.Name = "cboColor";
-            this.cboColor.Size = new System.Drawing.Size(138, 21);
+            this.cboColor.Size = new System.Drawing.Size(183, 24);
             this.cboColor.TabIndex = 9;
             this.cboColor.SelectedIndexChanged += new System.EventHandler(this.CboColor_SelectedIndexChanged);
             // 
@@ -319,10 +323,10 @@ namespace AusNail
             this.txtColor.Enabled = false;
             this.txtColor.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.txtColor.ForeColor = System.Drawing.Color.DimGray;
-            this.txtColor.Location = new System.Drawing.Point(80, 83);
-            this.txtColor.Margin = new System.Windows.Forms.Padding(2);
+            this.txtColor.Location = new System.Drawing.Point(107, 66);
+            this.txtColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtColor.Name = "txtColor";
-            this.txtColor.Size = new System.Drawing.Size(137, 25);
+            this.txtColor.Size = new System.Drawing.Size(183, 31);
             this.txtColor.TabIndex = 6;
             // 
             // pnlForm
@@ -347,8 +351,9 @@ namespace AusNail
             this.pnlForm.Controls.Add(this.label3);
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
+            this.pnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(765, 519);
+            this.pnlForm.Size = new System.Drawing.Size(1021, 640);
             this.pnlForm.TabIndex = 0;
             // 
             // btnDel
@@ -362,11 +367,11 @@ namespace AusNail
             this.btnDel.ForeColor = System.Drawing.Color.Black;
             this.btnDel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnDel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnDel.Location = new System.Drawing.Point(662, 67);
-            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDel.Location = new System.Drawing.Point(885, 82);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDel.Name = "btnDel";
             this.btnDel.Radius = 10;
-            this.btnDel.Size = new System.Drawing.Size(85, 21);
+            this.btnDel.Size = new System.Drawing.Size(113, 26);
             this.btnDel.Stroke = false;
             this.btnDel.StrokeColor = System.Drawing.Color.Gray;
             this.btnDel.TabIndex = 17;
@@ -379,9 +384,10 @@ namespace AusNail
             this.lblTotalAmont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalAmont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTotalAmont.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmont.Location = new System.Drawing.Point(301, 460);
+            this.lblTotalAmont.Location = new System.Drawing.Point(403, 568);
+            this.lblTotalAmont.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalAmont.Name = "lblTotalAmont";
-            this.lblTotalAmont.Size = new System.Drawing.Size(188, 44);
+            this.lblTotalAmont.Size = new System.Drawing.Size(251, 54);
             this.lblTotalAmont.TabIndex = 16;
             this.lblTotalAmont.Text = "0";
             this.lblTotalAmont.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,9 +396,10 @@ namespace AusNail
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(221, 477);
+            this.label6.Location = new System.Drawing.Point(297, 589);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.Size = new System.Drawing.Size(96, 17);
             this.label6.TabIndex = 16;
             this.label6.Text = "Total Amount:";
             // 
@@ -407,11 +414,11 @@ namespace AusNail
             this.btnPrint.ForeColor = System.Drawing.Color.Black;
             this.btnPrint.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnPrint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPrint.Location = new System.Drawing.Point(584, 460);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrint.Location = new System.Drawing.Point(781, 568);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Radius = 10;
-            this.btnPrint.Size = new System.Drawing.Size(80, 44);
+            this.btnPrint.Size = new System.Drawing.Size(107, 54);
             this.btnPrint.Stroke = false;
             this.btnPrint.StrokeColor = System.Drawing.Color.Gray;
             this.btnPrint.TabIndex = 14;
@@ -430,11 +437,11 @@ namespace AusNail
             this.butCheckphone.ForeColor = System.Drawing.Color.Black;
             this.butCheckphone.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.butCheckphone.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.butCheckphone.Location = new System.Drawing.Point(31, 460);
-            this.butCheckphone.Margin = new System.Windows.Forms.Padding(2);
+            this.butCheckphone.Location = new System.Drawing.Point(41, 568);
+            this.butCheckphone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.butCheckphone.Name = "butCheckphone";
             this.butCheckphone.Radius = 10;
-            this.butCheckphone.Size = new System.Drawing.Size(110, 42);
+            this.butCheckphone.Size = new System.Drawing.Size(147, 52);
             this.butCheckphone.Stroke = false;
             this.butCheckphone.StrokeColor = System.Drawing.Color.Gray;
             this.butCheckphone.TabIndex = 11;
@@ -453,11 +460,11 @@ namespace AusNail
             this.btnPay.ForeColor = System.Drawing.Color.Black;
             this.btnPay.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnPay.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPay.Location = new System.Drawing.Point(674, 460);
-            this.btnPay.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay.Location = new System.Drawing.Point(901, 568);
+            this.btnPay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPay.Name = "btnPay";
             this.btnPay.Radius = 10;
-            this.btnPay.Size = new System.Drawing.Size(80, 44);
+            this.btnPay.Size = new System.Drawing.Size(107, 54);
             this.btnPay.Stroke = false;
             this.btnPay.StrokeColor = System.Drawing.Color.Gray;
             this.btnPay.TabIndex = 15;
@@ -476,11 +483,11 @@ namespace AusNail
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnSave.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnSave.Location = new System.Drawing.Point(494, 460);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Location = new System.Drawing.Point(661, 568);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Radius = 10;
-            this.btnSave.Size = new System.Drawing.Size(80, 44);
+            this.btnSave.Size = new System.Drawing.Size(107, 54);
             this.btnSave.Stroke = false;
             this.btnSave.StrokeColor = System.Drawing.Color.Gray;
             this.btnSave.TabIndex = 13;
@@ -511,11 +518,12 @@ namespace AusNail
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvService.Location = new System.Drawing.Point(19, 93);
+            this.dgvService.Location = new System.Drawing.Point(25, 114);
+            this.dgvService.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
-            this.dgvService.Size = new System.Drawing.Size(734, 355);
+            this.dgvService.Size = new System.Drawing.Size(981, 439);
             this.dgvService.TabIndex = 10;
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
@@ -525,65 +533,72 @@ namespace AusNail
             // txtGenden
             // 
             this.txtGenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGenden.Location = new System.Drawing.Point(596, 67);
+            this.txtGenden.Location = new System.Drawing.Point(797, 82);
+            this.txtGenden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtGenden.Name = "txtGenden";
             this.txtGenden.ReadOnly = true;
-            this.txtGenden.Size = new System.Drawing.Size(64, 20);
+            this.txtGenden.Size = new System.Drawing.Size(84, 22);
             this.txtGenden.TabIndex = 8;
             // 
             // txtPhone
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(475, 67);
+            this.txtPhone.Location = new System.Drawing.Point(635, 82);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(120, 20);
+            this.txtPhone.Size = new System.Drawing.Size(159, 22);
             this.txtPhone.TabIndex = 7;
             // 
             // txtBilDate
             // 
             this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBilDate.Location = new System.Drawing.Point(475, 45);
+            this.txtBilDate.Location = new System.Drawing.Point(635, 55);
+            this.txtBilDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBilDate.Name = "txtBilDate";
             this.txtBilDate.ReadOnly = true;
-            this.txtBilDate.Size = new System.Drawing.Size(275, 20);
+            this.txtBilDate.Size = new System.Drawing.Size(365, 22);
             this.txtBilDate.TabIndex = 5;
             // 
             // txtCustomerName
             // 
             this.txtCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomerName.Location = new System.Drawing.Point(87, 67);
+            this.txtCustomerName.Location = new System.Drawing.Point(116, 82);
+            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(386, 20);
+            this.txtCustomerName.Size = new System.Drawing.Size(515, 22);
             this.txtCustomerName.TabIndex = 6;
             // 
             // txtBillCode
             // 
             this.txtBillCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBillCode.Location = new System.Drawing.Point(87, 45);
+            this.txtBillCode.Location = new System.Drawing.Point(116, 55);
+            this.txtBillCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBillCode.Name = "txtBillCode";
             this.txtBillCode.ReadOnly = true;
-            this.txtBillCode.Size = new System.Drawing.Size(386, 20);
+            this.txtBillCode.Size = new System.Drawing.Size(515, 22);
             this.txtBillCode.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 70);
+            this.label5.Location = new System.Drawing.Point(21, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(72, 17);
             this.label5.TabIndex = 2;
             this.label5.Text = "Customer:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 48);
+            this.label4.Location = new System.Drawing.Point(21, 59);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.Size = new System.Drawing.Size(30, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "Bill:";
             // 
@@ -595,8 +610,9 @@ namespace AusNail
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkGray;
             this.label3.Location = new System.Drawing.Point(1, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(763, 36);
+            this.label3.Size = new System.Drawing.Size(1019, 44);
             this.label3.TabIndex = 0;
             this.label3.Text = "BILL INFORMATION";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -613,8 +629,8 @@ namespace AusNail
             this.logoffToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mnsMenu.Size = new System.Drawing.Size(1024, 24);
+            this.mnsMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.mnsMenu.Size = new System.Drawing.Size(1365, 28);
             this.mnsMenu.TabIndex = 6;
             this.mnsMenu.Text = "Menu";
             // 
@@ -629,49 +645,49 @@ namespace AusNail
             this.Voucher,
             this.BusinessHour});
             this.zdm.Name = "zdm";
-            this.zdm.Size = new System.Drawing.Size(67, 20);
+            this.zdm.Size = new System.Drawing.Size(83, 24);
             this.zdm.Text = "Category";
             // 
             // Branch
             // 
             this.Branch.Name = "Branch";
-            this.Branch.Size = new System.Drawing.Size(146, 22);
+            this.Branch.Size = new System.Drawing.Size(180, 26);
             this.Branch.Text = "Branch";
             // 
             // Customer
             // 
             this.Customer.Name = "Customer";
-            this.Customer.Size = new System.Drawing.Size(146, 22);
+            this.Customer.Size = new System.Drawing.Size(180, 26);
             this.Customer.Text = "Customer";
             // 
             // Service
             // 
             this.Service.Name = "Service";
-            this.Service.Size = new System.Drawing.Size(146, 22);
+            this.Service.Size = new System.Drawing.Size(180, 26);
             this.Service.Text = "Service";
             // 
             // Staff
             // 
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(146, 22);
+            this.Staff.Size = new System.Drawing.Size(180, 26);
             this.Staff.Text = "Staff";
             // 
             // Holiday
             // 
             this.Holiday.Name = "Holiday";
-            this.Holiday.Size = new System.Drawing.Size(146, 22);
+            this.Holiday.Size = new System.Drawing.Size(180, 26);
             this.Holiday.Text = "Holiday";
             // 
             // Voucher
             // 
             this.Voucher.Name = "Voucher";
-            this.Voucher.Size = new System.Drawing.Size(146, 22);
+            this.Voucher.Size = new System.Drawing.Size(180, 26);
             this.Voucher.Text = "Voucher";
             // 
             // BusinessHour
             // 
             this.BusinessHour.Name = "BusinessHour";
-            this.BusinessHour.Size = new System.Drawing.Size(146, 22);
+            this.BusinessHour.Size = new System.Drawing.Size(180, 26);
             this.BusinessHour.Text = "BusinessHour";
             // 
             // zps
@@ -681,32 +697,32 @@ namespace AusNail
             this.TimeKeeping,
             this.Booking});
             this.zps.Name = "zps";
-            this.zps.Size = new System.Drawing.Size(59, 20);
+            this.zps.Size = new System.Drawing.Size(72, 24);
             this.zps.Text = "Process";
             // 
             // Bill
             // 
             this.Bill.Name = "Bill";
-            this.Bill.Size = new System.Drawing.Size(143, 22);
+            this.Bill.Size = new System.Drawing.Size(180, 26);
             this.Bill.Text = "Bill";
             this.Bill.Click += new System.EventHandler(this.Bill_Click);
             // 
             // TimeKeeping
             // 
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(143, 22);
+            this.TimeKeeping.Size = new System.Drawing.Size(180, 26);
             this.TimeKeeping.Text = "TimeKeeping";
             // 
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(143, 22);
+            this.Booking.Size = new System.Drawing.Size(180, 26);
             this.Booking.Text = "Booking";
             // 
             // zbc
             // 
             this.zbc.Name = "zbc";
-            this.zbc.Size = new System.Drawing.Size(59, 20);
+            this.zbc.Size = new System.Drawing.Size(74, 24);
             this.zbc.Text = "Reports";
             // 
             // zsys
@@ -714,14 +730,14 @@ namespace AusNail
             this.zsys.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.formBorToolStripMenuItem});
             this.zsys.Name = "zsys";
-            this.zsys.Size = new System.Drawing.Size(57, 20);
+            this.zsys.Size = new System.Drawing.Size(70, 24);
             this.zsys.Text = "System";
             // 
             // formBorToolStripMenuItem
             // 
             this.formBorToolStripMenuItem.CheckOnClick = true;
             this.formBorToolStripMenuItem.Name = "formBorToolStripMenuItem";
-            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.formBorToolStripMenuItem.Text = "Form Border Style";
             // 
             // zst
@@ -730,26 +746,26 @@ namespace AusNail
             this.ChangePassword,
             this.User});
             this.zst.Name = "zst";
-            this.zst.Size = new System.Drawing.Size(56, 20);
+            this.zst.Size = new System.Drawing.Size(70, 24);
             this.zst.Text = "Setting";
             // 
             // ChangePassword
             // 
             this.ChangePassword.Name = "ChangePassword";
-            this.ChangePassword.Size = new System.Drawing.Size(168, 22);
+            this.ChangePassword.Size = new System.Drawing.Size(207, 26);
             this.ChangePassword.Text = "Change Password";
             this.ChangePassword.Click += new System.EventHandler(this.ChangePassword_Click);
             // 
             // User
             // 
             this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(168, 22);
+            this.User.Size = new System.Drawing.Size(207, 26);
             this.User.Text = "User";
             // 
             // logoffToolStripMenuItem
             // 
             this.logoffToolStripMenuItem.Name = "logoffToolStripMenuItem";
-            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.logoffToolStripMenuItem.Text = "Logoff";
             this.logoffToolStripMenuItem.Click += new System.EventHandler(this.LogoffToolStripMenuItem_Click);
             // 
@@ -761,15 +777,17 @@ namespace AusNail
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1024, 543);
+            this.ClientSize = new System.Drawing.Size(1365, 668);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mnsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMenu;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.Text = "Nail";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
