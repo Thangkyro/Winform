@@ -94,7 +94,7 @@
             this.lblTime.Location = new System.Drawing.Point(1133, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "14:11:04";
+            this.lblTime.Text = "19:49:53";
             // 
             // btnSave
             // 
@@ -396,6 +396,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "frmUser";
             this.Text = "User";
