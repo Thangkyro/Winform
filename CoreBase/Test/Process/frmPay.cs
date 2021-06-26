@@ -294,18 +294,23 @@ namespace AusNail.Process
                         {
                             MessageBox.Show("Expired Voucher. ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                            dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 0;
                             dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
                         }
-                        if (dt.Rows[0]["is_inactive"].ToString() == "1")
+                        else if (dt.Rows[0]["is_inactive"].ToString() == "1")
                         {
                             MessageBox.Show("Voucher not active.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                            dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 0;
                             dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
                         }
-                        decimal voucherAmount = decimal.Parse(dt.Rows[0]["AvailableAmount"].ToString());
-                        dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 1;
-                        dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount;
-                        dgvVoucher.AllowUserToAddRows = true;
+                        else
+                        {
+                            decimal voucherAmount = decimal.Parse(dt.Rows[0]["AvailableAmount"].ToString());
+                            dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 1;
+                            dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount;
+                            dgvVoucher.AllowUserToAddRows = true;
+                        }
                     }
                     else
                     {
