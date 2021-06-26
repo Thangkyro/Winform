@@ -68,7 +68,7 @@
             this.lblTime.Location = new System.Drawing.Point(462, 17);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 29);
-            this.lblTime.Text = "19:49:30";
+            this.lblTime.Text = "20:19:16";
             // 
             // btnCancel
             // 
