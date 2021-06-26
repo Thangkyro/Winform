@@ -19,7 +19,11 @@ namespace AusNail
 {
     public partial class frmMain : Form
     {
-        private int _billID;
+        private bool tabHistory = false;
+        private int _billIDTemp = -1;
+        private int _billIDTempOld = -1;
+        private int _billIDHistory = -1;
+        private int _billIDHistoryOld = -1;
         private int _branchID;
         private int _userID;
         private DataTable _Service = null;
@@ -529,19 +533,23 @@ namespace AusNail
         {
             try
             {
-                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID, true);
-                btnPay.Enabled = true;
+                tabHistory = false;
+                _billIDTemp = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billIDTemp);
+                loadGridDetail_Bill(_billIDTemp, true);
                 btnSave.Enabled = true;
-                foreach (TreeNode item in trTemporaryBill.Nodes)
-                {
-                    item.BackColor = Color.White;
-                }
-                TreeNode[] tns = trTemporaryBill.Nodes.Find(_billID.ToString(), true);
+                TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
                 if (tns.Length > 0)
                 {
                     tns[0].BackColor = Color.LightSkyBlue;
+                }
+                if (_billIDTempOld != -1)
+                {
+                    TreeNode[] tnsOld = trTemporaryBill.Nodes.Find(_billIDTempOld.ToString(), true);
+                    if (tnsOld.Length > 0)
+                    {
+                        tnsOld[0].BackColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -553,10 +561,11 @@ namespace AusNail
         {
             try
             {
-                _billID = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID, true);
-                btnPay.Enabled = true;
+                tabHistory = true;
+                _billIDTemp = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                _billIDTempOld = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billIDTemp);
+                loadGridDetail_Bill(_billIDTemp, true);
                 btnSave.Enabled = true;
             }
             catch (Exception ex)
@@ -653,14 +662,31 @@ namespace AusNail
             {
                 dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
             }
+            finally
+            {
+                try
+                {
+                    for (int i = 0; i < dgvService.RowCount - 1; i++)
+                    {
+                        if (dgvService.Rows[i].Cells["serviceId"].Value.ToString() == "")
+                        {
+                            dgvService.Rows.RemoveAt(i);
+                        }
+                    }
+                    caculateAmount();
+                }
+                catch
+                {
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billID, int.Parse(NailApp.BranchID), 0, "");
-                SaveBill(_billID, "");
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
+                SaveBill(_billIDTemp, "");
                 btnPrint.Enabled = true;
             }
             catch
@@ -674,7 +700,7 @@ namespace AusNail
             DialogResult dialogResult = MessageBox.Show("Do you want delete bill?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterDelete", _billID, int.Parse(NailApp.BranchID), 0, "");
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterDelete", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
                 if (ret > 0)
                 {
                     LoadHistory();
@@ -692,29 +718,80 @@ namespace AusNail
         {
             try
             {
-                decimal totalAmount = 0;
-                for (int i = 0; i < dgvService.Rows.Count; i++)
+                if (btnPay.Text == "Pay")
                 {
-                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                    decimal totalAmount = 0;
+                    for (int i = 0; i < dgvService.Rows.Count; i++)
                     {
-                        totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                        if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                        {
+                            totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                        }
+                    }
+                    Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billIDTemp, totalAmount, NailApp.CurrentUserId);
+                    frm.Activate();
+                    frm.ShowDialog();
+
+                    if (frm.DialogResult == DialogResult.OK)
+                    {
+                        LoadHistory();
+                        txtBilDate.Clear();
+                        txtBillCode.Clear();
+                        txtCustomerName.Clear();
+                        txtPhone.Clear();
+                        txtGenden.Clear();
+                        _totalAmount = 0;
+                        lblTotalAmont.Text = "0";
+                        dgvService.DataSource = null;
+
+                        _billIDHistory = _billIDHistoryOld = _billIDTemp;
+                        TreeNode[] tns = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
+                        if (tns.Length > 0)
+                        {
+                            tns[0].BackColor = Color.LightSkyBlue;
+                        }
+                        trTemporaryBill.SelectedNode = trTemporaryBill.Nodes[0];
+                        _billIDTempOld = _billIDTemp;
+                        TreeNode[] tns1 = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
+                        if (tns1.Length > 0)
+                        {
+                            tns1[0].BackColor = Color.LightSkyBlue;
+                        }
                     }
                 }
-                Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billID, totalAmount, NailApp.CurrentUserId);
-                frm.Activate();
-                frm.ShowDialog();
-
-                if (frm.DialogResult == DialogResult.OK)
+                else // UnPaid
                 {
-                    LoadHistory();
-                    txtBilDate.Clear();
-                    txtBillCode.Clear();
-                    txtCustomerName.Clear();
-                    txtPhone.Clear();
-                    txtGenden.Clear();
-                    _totalAmount = 0;
-                    lblTotalAmont.Text = "0";
-                    dgvService.DataSource = null;
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUnPaidUpdate", _billIDHistory, int.Parse(NailApp.BranchID), NailApp.CurrentUserId, 0, "");
+                    if (ret > 0)
+                    {
+                        LoadHistory();
+                        txtBilDate.Clear();
+                        txtBillCode.Clear();
+                        txtCustomerName.Clear();
+                        txtPhone.Clear();
+                        txtGenden.Clear();
+                        _totalAmount = 0;
+                        lblTotalAmont.Text = "0";
+                        dgvService.DataSource = null;
+                        
+                        _billIDTemp = _billIDTempOld = _billIDHistory;
+                        TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
+                        if (tns.Length > 0)
+                        {
+                            tns[0].BackColor = Color.LightSkyBlue;
+                        }
+                        trHistoryBill.SelectedNode = trHistoryBill.Nodes[0];
+                        _billIDHistoryOld = _billIDHistory;
+                        TreeNode[] tns1 = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
+                        if (tns1.Length > 0)
+                        {
+                            tns1[0].BackColor = Color.LightSkyBlue;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("UnPaid faill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -727,11 +804,24 @@ namespace AusNail
         {
             try
             {
-                _billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billID);
-                loadGridDetail_Bill(_billID, false);
-                btnPay.Enabled = false;
+                tabHistory = true;
+                _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billIDHistory);
+                loadGridDetail_Bill(_billIDHistory, false);
                 btnSave.Enabled = false;
+                TreeNode[] tns = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
+                if (tns.Length > 0)
+                {
+                    tns[0].BackColor = Color.LightSkyBlue;
+                }
+                if (_billIDHistoryOld != -1)
+                {
+                    TreeNode[] tnsOld = trHistoryBill.Nodes.Find(_billIDHistoryOld.ToString(), true);
+                    if (tnsOld.Length > 0)
+                    {
+                        tnsOld[0].BackColor = Color.White;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -742,11 +832,12 @@ namespace AusNail
         {
             try
             {
-                //_billID = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
-                //loadBillInfor(_billID);
-                //loadGridDetail_Bill(_billID, false);
-                //btnPay.Enabled = false;
-                //btnSave.Enabled = false;
+                tabHistory = true;
+                _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                _billIDHistoryOld = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
+                loadBillInfor(_billIDHistory);
+                loadGridDetail_Bill(_billIDHistory, false);
+                btnSave.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -756,11 +847,20 @@ namespace AusNail
         private void btnPrint_Click(object sender, EventArgs e)
         {
             int temtorarybill = 0;
+            int billID = -1;
+            if (tabHistory)
+            {
+                billID = _billIDHistory;
+            }
+            else
+            {
+                billID = _billIDTemp;
+            }
             if (btnSave.Enabled == true)
             {
                 temtorarybill = 1;
             }
-            Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), _billID, NailApp.CurrentUserId, temtorarybill);
+            Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), billID, NailApp.CurrentUserId, temtorarybill);
             frm.Show();
         }
 
@@ -1062,7 +1162,7 @@ namespace AusNail
 
                         decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
                         string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billID, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
                         if (ret == 0)
                         {
                             flag = false;
@@ -1090,9 +1190,35 @@ namespace AusNail
             }
         }
 
+
+
         #endregion
 
+        private void dgvService_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
 
+        }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                loadBillInfor(_billIDHistory);
+                loadGridDetail_Bill(_billIDHistory, false);
+                btnSave.Enabled = false;
+                btnPay.Enabled = true;
+                btnPay.Text = "UnPaid";
+                tabHistory = true;
+            }
+            if (tabControl1.SelectedIndex == 0)
+            {
+                loadBillInfor(_billIDTemp);
+                loadGridDetail_Bill(_billIDTemp, true);
+                btnSave.Enabled = true;
+                btnPay.Enabled = true;
+                btnPay.Text = "Pay";
+                tabHistory = false;
+            }
+        }
     }
 }

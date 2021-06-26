@@ -193,6 +193,7 @@ namespace AusNail.Process
             {
                 txtCard.Enabled = true;
                 txtCash.Enabled = true;
+                radCash.Checked = radCard.Checked = false;
                 dgvVoucher.Enabled = true;
             }
             else
@@ -210,9 +211,10 @@ namespace AusNail.Process
                 dgvVoucher.Enabled = false;
                 _totalVoucher = 0;
                 _Receivable = _totalAmount ;
-                txtCard.Text = _Receivable.ToString();
-                txtCash.Text = "0";
+                radCard.Checked = true;
             }
+            txtCard.Text = _Receivable.ToString();
+            txtCash.Text = "0";
         }
 
         private void dgvVoucher_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -288,15 +290,30 @@ namespace AusNail.Process
                     DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", VoucherCode, DateTime.Now.ToString());
                     if (dt != null && dt.Rows.Count > 0)
                     {
+                        if (int.Parse(DateTime.Parse(dt.Rows[0]["VoucherFrom"].ToString()).ToString("yyyyMMdd")) > int.Parse(DateTime.Now.ToString("yyyyMMdd")) || int.Parse(DateTime.Parse(dt.Rows[0]["VoucherTo"].ToString()).ToString("yyyyMMdd")) < int.Parse(DateTime.Now.ToString("yyyyMMdd")))
+                        {
+                            MessageBox.Show("Expired Voucher. ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                            dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+                        }
+                        if (dt.Rows[0]["is_inactive"].ToString() == "1")
+                        {
+                            MessageBox.Show("Voucher not active.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                            dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+                        }
                         decimal voucherAmount = decimal.Parse(dt.Rows[0]["AvailableAmount"].ToString());
                         dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 1;
                         dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = voucherAmount;
+                        dgvVoucher.AllowUserToAddRows = true;
                     }
                     else
                     {
                         MessageBox.Show("Invalid voucher code.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";
+                        dgvVoucher.Rows[e.RowIndex].Cells["Quantity"].Value = 0;
                         dgvVoucher.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+                        dgvVoucher.AllowUserToAddRows = false;
                     }
                     Caculate();
                 }
@@ -369,17 +386,24 @@ namespace AusNail.Process
 
         private void radCash_CheckedChanged(object sender, EventArgs e)
         {
-            txtCard.Text = "0";
-            txtCash.Text = _Receivable.ToString();
-            chkCompire.Checked = false;
+            if (radCash.Checked)
+            {
+                txtCard.Text = "0";
+                txtCash.Text = _Receivable.ToString();
+                chkCompire.Checked = false;
+                radCash.Checked = true;
+            }
         }
 
         private void radCard_CheckedChanged(object sender, EventArgs e)
         {
-            txtCard.Text = _Receivable.ToString();
-            txtCash.Text = "0";
-            chkCompire_CheckedChanged(sender, e);
-            chkCompire.Checked = false;
+            if (radCard.Checked)
+            {
+                txtCard.Text = _Receivable.ToString();
+                txtCash.Text = "0";
+                //chkCompire_CheckedChanged(sender, e);
+                chkCompire.Checked = false;
+            }
         }
 
         private void dgvVoucher_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
