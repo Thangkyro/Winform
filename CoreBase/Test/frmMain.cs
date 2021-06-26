@@ -42,7 +42,7 @@ namespace AusNail
             InitializeComponent();
             try
             {
-                splitContainer1.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+                splCMain.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
                 splitContainer2.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
             }
             catch
@@ -420,7 +420,7 @@ namespace AusNail
                         //}
                         cboColor.DataSource = ThemeColor.ColorList;
                     }
-                    splitContainer1.BackColor = NailApp.ColorUser;
+                    splCMain.BackColor = NailApp.ColorUser;
                     splitContainer2.BackColor = NailApp.ColorUser;
                 }
 
@@ -451,7 +451,7 @@ namespace AusNail
                     //}
                     cboColor.DataSource = ThemeColor.ColorList;
                 }
-                splitContainer1.BackColor = NailApp.ColorUser;
+                splCMain.BackColor = NailApp.ColorUser;
                 splitContainer2.BackColor = NailApp.ColorUser;
 
                 LoadHistory();
@@ -466,7 +466,7 @@ namespace AusNail
                 //Check Phone
                 CheckService(true);
                 lb1.Visible = lb2.Visible = lb3.Visible = false;
-                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;                
             }
         }
 
@@ -478,7 +478,7 @@ namespace AusNail
                 if (cboColor.SelectedValue != null)
                 {
                     Color color = ColorTranslator.FromHtml(cboColor.SelectedValue.ToString());
-                    splitContainer1.BackColor = color;
+                    splCMain.BackColor = color;
                     splitContainer2.BackColor = color;
                     txtColor.Br = color;
                     //Update color for user
@@ -566,9 +566,9 @@ namespace AusNail
                 tabHistory = true;
                 _billIDTemp = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 _billIDTempOld = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billIDTemp);
-                loadGridDetail_Bill(_billIDTemp, true);
-                btnSave.Enabled = true;
+                //loadBillInfor(_billIDTemp);
+                //loadGridDetail_Bill(_billIDTemp, true);
+                //btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -844,8 +844,8 @@ namespace AusNail
                 tabHistory = true;
                 _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 _billIDHistoryOld = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
-                loadBillInfor(_billIDHistory);
-                loadGridDetail_Bill(_billIDHistory, false);
+                //loadBillInfor(_billIDHistory);
+                //loadGridDetail_Bill(_billIDHistory, false);
             }
             catch (Exception ex)
             {
@@ -1298,6 +1298,20 @@ namespace AusNail
                 btnPay.Text = "Pay";
                 lb1.Visible = lb2.Visible = lb3.Visible = false;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+            }
+        }
+
+        private void tsmHide_Click(object sender, EventArgs e)
+        {
+            if (tsmHide.Text == "<<")
+            {
+                splCMain.Panel1Collapsed = true;
+                tsmHide.Text = ">>";
+            }
+            else
+            {
+                splCMain.Panel1Collapsed = false;
+                tsmHide.Text = "<<";
             }
         }
     }

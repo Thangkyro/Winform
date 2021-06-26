@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServiceAdd));
             this.dgvService = new System.Windows.Forms.DataGridView();
             this.altoSlidingLabel1 = new AltoControls.AltoSlidingLabel();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -139,6 +140,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Controls.Add(this.dgvService);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmServiceAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Service";
