@@ -465,6 +465,8 @@ namespace AusNail
 
                 //Check Phone
                 CheckService(true);
+                lb1.Visible = lb2.Visible = lb3.Visible = false;
+                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
             }
         }
 
@@ -1007,6 +1009,12 @@ namespace AusNail
                     txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
                     txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
                     txtGenden.Text = dt.Rows[0]["Gender"].ToString();
+                    if (tabHistory)
+                    {
+                        lblCard.Text = string.Format("{0:#,##0.00}", decimal.Parse(dt.Rows[0]["PaymentCard"].ToString()));
+                        lblCash.Text = string.Format("{0:#,##0.00}", decimal.Parse(dt.Rows[0]["PaymentCash"].ToString()));
+                        lblVoucher.Text = string.Format("{0:#,##0.00}", decimal.Parse(dt.Rows[0]["PaymentVoucher"].ToString()));
+                    }
                 }
             }
             catch
@@ -1273,19 +1281,23 @@ namespace AusNail
         {
             if (tabControl1.SelectedIndex == 1)
             {
+                tabHistory = true;
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
                 btnPay.Enabled = true;
                 btnPay.Text = "UnPaid";
-                tabHistory = true;
+                lb1.Visible = lb2.Visible = lb3.Visible = true;
+                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = true;
             }
             if (tabControl1.SelectedIndex == 0)
             {
+                tabHistory = false;
                 loadBillInfor(_billIDTemp);
                 loadGridDetail_Bill(_billIDTemp, true);
                 btnPay.Enabled = true;
                 btnPay.Text = "Pay";
-                tabHistory = false;
+                lb1.Visible = lb2.Visible = lb3.Visible = false;
+                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
             }
         }
     }
