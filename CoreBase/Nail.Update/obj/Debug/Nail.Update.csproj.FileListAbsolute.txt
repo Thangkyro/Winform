@@ -12,3 +12,4 @@ E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.Form1.re
 E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe.config
 E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe
 E:\Code\Nail\Winform\Winform\_Output\Nail.Update.pdb
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.AssemblyReference.cache
