@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace AusNail
 {
@@ -36,26 +37,38 @@ namespace AusNail
                     return;
                 }
             }
+
+            // Check database setting
+            try
+            {
+                Configuration conf = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings["DefaultConnectionString"];
+
+                if (css != null)
+                {
+                    string connString = StringCipher.Decrypt(css.ConnectionString, ZenDatabase.DbCfgPassEncrypt);
+
+                    ZenDbInfo dbinfo = ZenDatabase.GetDbInfo(connString);
+                    if (ZenDatabase.TestConnection(ZenDatabase.GetConnectionString(dbinfo.ServerName, dbinfo.DatabaseName, dbinfo.UserName, dbinfo.Password)))
+                    {
+                        Application.Run(new frmMain());
+                    }
+                    else
+                    {
+                        Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
+                    }
+                }
+                else
+                {
+                    Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
+                }
+            }
+            catch 
+            {
+                Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
+            }
             
-
-
-            ////Login
-            //if (NailApp.MultiUser)
-            //{
-            //    frmLogin lf = new frmLogin();
-            //    if (lf.ShowDialog() != DialogResult.OK)
-            //        return;
-            //    //Application.Run(lf);
-            //}
-
-            ////Load permisson
-            //NailApp.lstPermission = new List<string>();
-            //NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
-
-
-            //frmMain main = new frmMain();
-            Application.Run(new frmMain());
-
+            
             
         }
     }
