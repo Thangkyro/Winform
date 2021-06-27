@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1267
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBase", "CoreBase\CoreBase.csproj", "{D1E61851-8093-4B8C-9BE7-6516516E9AE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AusNail", "Test\AusNail.csproj", "{F8E4C24A-C35D-45E7-A120-B2543E8FB6E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nail.Update", "Nail.Update\Nail.Update.csproj", "{49B32DA2-44AB-4B84-B28B-8D40A06F93A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F8E4C24A-C35D-45E7-A120-B2543E8FB6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8E4C24A-C35D-45E7-A120-B2543E8FB6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8E4C24A-C35D-45E7-A120-B2543E8FB6E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B32DA2-44AB-4B84-B28B-8D40A06F93A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B32DA2-44AB-4B84-B28B-8D40A06F93A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B32DA2-44AB-4B84-B28B-8D40A06F93A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B32DA2-44AB-4B84-B28B-8D40A06F93A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
