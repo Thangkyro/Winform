@@ -1314,5 +1314,11 @@ namespace AusNail
                 tsmHide.Text = "<<";
             }
         }
+
+        private void dBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CoreBase.WinForm.frmDataBaseSetting frm = new CoreBase.WinForm.frmDataBaseSetting();
+            frm.ShowDialog();
+        }
     }
 }
