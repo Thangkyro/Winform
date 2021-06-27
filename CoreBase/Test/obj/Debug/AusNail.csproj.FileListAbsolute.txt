@@ -179,3 +179,4 @@ E:\Code\Nail\Winform\Winform\CoreBase\Test\obj\Debug\AusNail.exe
 E:\Code\Nail\Winform\Winform\CoreBase\Test\obj\Debug\AusNail.pdb
 E:\Code\Nail\Winform\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmBooking.resources
 E:\Code\Nail\Winform\Winform\CoreBase\Test\obj\Debug\AusNail.Process.frmBookingAdd.resources
+E:\Code\Nail\Winform\Winform\CoreBase\Test\bin\Debug\Ionic.Zip.dll

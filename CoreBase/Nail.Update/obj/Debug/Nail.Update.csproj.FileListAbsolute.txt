@@ -1,0 +1,14 @@
+E:\Code\Nail\Winform\_Output\Nail.Update.exe.config
+E:\Code\Nail\Winform\_Output\Nail.Update.exe
+E:\Code\Nail\Winform\_Output\Nail.Update.pdb
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Zen.Update.Form2.resources
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.Properties.Resources.resources
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.GenerateResource.cache
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.CoreCompileInputs.cache
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.CopyComplete
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.exe
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.pdb
+E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.Form1.resources
+E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe.config
+E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe
+E:\Code\Nail\Winform\Winform\_Output\Nail.Update.pdb

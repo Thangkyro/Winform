@@ -33,6 +33,9 @@
     <Reference Include="AltoControls">
       <HintPath>..\Test\bin\Debug\AltoControls.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -74,6 +77,8 @@
     <Compile Include="Helpers\ThemeColor.cs" />
     <Compile Include="NailApp.cs" />
     <Compile Include="NailCaching.cs" />
+    <Compile Include="Net\Fetch.cs" />
+    <Compile Include="Net\FetchStream.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +86,10 @@
     </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Update\Log.cs" />
+    <Compile Include="Update\LogEventArgs.cs" />
+    <Compile Include="Update\Manifest.cs" />
+    <Compile Include="Update\Updater.cs" />
     <Compile Include="WinForm\Dictionary\DicBase.cs">
       <SubType>Form</SubType>
     </Compile>

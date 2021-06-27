@@ -54,3 +54,5 @@ E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CoreCom
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.CopyComplete
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\bin\Debug\Ionic.Zip.dll
+E:\Code\Nail\Winform\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.AssemblyReference.cache

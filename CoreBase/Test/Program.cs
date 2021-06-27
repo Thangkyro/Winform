@@ -3,12 +3,14 @@ using AusNail.Login;
 using CoreBase;
 using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
+using Nail.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace AusNail
 {
@@ -22,6 +24,19 @@ namespace AusNail
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Updater u = new Updater();
+            //u.StartMonitoring();
+            if (u.LocalConfig != null)
+            {
+                if (u.ZCheckUpdate())
+                {
+                    System.Windows.Forms.MessageBox.Show("Has new version. The program will perform an update before proceeding further.", "Infomation");
+                    System.Diagnostics.Process.Start("Nail.Update.exe");
+                    return;
+                }
+            }
+            
 
 
             ////Login

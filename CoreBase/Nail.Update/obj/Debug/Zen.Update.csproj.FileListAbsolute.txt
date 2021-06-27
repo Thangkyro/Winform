@@ -1,0 +1,11 @@
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\_Output\Zen.Update.exe
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\_Output\Zen.Update.pdb
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.Properties.Resources.resources
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.csproj.GenerateResource.Cache
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.exe
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.pdb
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.Form1.resources
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.csprojResolveAssemblyReference.cache
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\Src\NaBiz\Zen.Update\obj\Debug\Zen.Update.Form2.resources
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\SrcV2\NaBiz\Zen.Update\obj\Debug\Zen.Update.exe
+C:\_Works\WrkBee\KimAn\NguyenAn\Biz\SrcV2\NaBiz\Zen.Update\obj\Debug\Zen.Update.pdb
