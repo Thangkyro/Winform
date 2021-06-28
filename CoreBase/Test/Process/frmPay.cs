@@ -74,10 +74,19 @@ namespace AusNail.Process
                             {
                                 voucherAmount = totalAmount;
                             }
-                            int retV = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zVoucherUpdateByBill", dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString(), voucherAmount, _userId, 0, "");
-                            if (retV > 0)
+                            int retIns = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zSaveVoucherBill", _billId, _branchId, i+1, dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString(), voucherAmount, _userId, 0, "");
+                            if (retIns > 0)
                             {
-                                totalAmount -= voucherAmount;
+                                int retV = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zVoucherUpdateByBill", dgvVoucher.Rows[i].Cells["VoucherCode"].Value.ToString(), voucherAmount, _userId, 0, "");
+                                if (retV > 0)
+                                {
+                                    totalAmount -= voucherAmount;
+                                }
+                                else
+                                {
+                                    flag = true;
+                                    break;
+                                }
                             }
                             else
                             {
@@ -103,7 +112,7 @@ namespace AusNail.Process
                     this.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
             }
             
