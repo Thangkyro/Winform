@@ -126,6 +126,12 @@
     <Compile Include="WinForm\Dictionary\NailForm.Designer.cs">
       <DependentUpon>NailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\frmDataBaseSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frmDataBaseSetting.Designer.cs">
+      <DependentUpon>frmDataBaseSetting.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Dictionary\NailForm.resx">
       <DependentUpon>NailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\frmDataBaseSetting.resx">
+      <DependentUpon>frmDataBaseSetting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

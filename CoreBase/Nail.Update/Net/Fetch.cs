@@ -82,13 +82,20 @@ namespace Nail.Core.Net
             {
                 try
                 {
+                    //var req = HttpWebRequest.Create(url) as HttpWebRequest;
+                    //req.AllowAutoRedirect = true;
+                    ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
+                    // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12|SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+                    ServicePointManager.Expect100Continue = true;
                     var req = HttpWebRequest.Create(url) as HttpWebRequest;
                     req.AllowAutoRedirect = true;
-                    ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
+                    req.Method = WebRequestMethods.Http.Get;
                     if (Credential != null)
                         req.Credentials = Credential;
                     req.Headers = Headers;
                     req.Timeout = Timeout;
+                    req.KeepAlive = false;
 
                     Response = req.GetResponse() as HttpWebResponse;
                     switch (Response.StatusCode)

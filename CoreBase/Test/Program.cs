@@ -32,7 +32,7 @@ namespace AusNail
             {
                 if (u.ZCheckUpdate())
                 {
-                    System.Windows.Forms.MessageBox.Show("Has new version. The program will perform an update before proceeding further.", "Infomation");
+                    System.Windows.Forms.MessageBox.Show("Has a new version. The program will perform an update before proceeding further.", "Infomation");
                     System.Diagnostics.Process.Start("Nail.Update.exe");
                     return;
                 }
