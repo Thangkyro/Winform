@@ -771,36 +771,41 @@ namespace AusNail
                 }
                 else // UnPaid
                 {
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUnPaidUpdate", _billIDHistory, int.Parse(NailApp.BranchID), NailApp.CurrentUserId, 0, "");
-                    if (ret > 0)
+                    DialogResult dialogResult = MessageBox.Show("Do you want unpaid Bill " + _billIDHistory.ToString(), "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        LoadHistory();
-                        txtBilDate.Clear();
-                        txtBillCode.Clear();
-                        txtCustomerName.Clear();
-                        txtPhone.Clear();
-                        txtGenden.Clear();
-                        _totalAmount = 0;
-                        lblTotalAmont.Text = "0";
-                        dgvService.DataSource = null;
-                        
-                        _billIDTemp = _billIDTempOld = _billIDHistory;
-                        TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
-                        if (tns.Length > 0)
+
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUnPaidUpdate", _billIDHistory, int.Parse(NailApp.BranchID), NailApp.CurrentUserId, 0, "");
+                        if (ret > 0)
                         {
-                            tns[0].BackColor = Color.LightSkyBlue;
+                            LoadHistory();
+                            txtBilDate.Clear();
+                            txtBillCode.Clear();
+                            txtCustomerName.Clear();
+                            txtPhone.Clear();
+                            txtGenden.Clear();
+                            _totalAmount = 0;
+                            lblTotalAmont.Text = "0";
+                            dgvService.DataSource = null;
+
+                            _billIDTemp = _billIDTempOld = _billIDHistory;
+                            TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
+                            if (tns.Length > 0)
+                            {
+                                tns[0].BackColor = Color.LightSkyBlue;
+                            }
+                            trHistoryBill.SelectedNode = trHistoryBill.Nodes[0];
+                            _billIDHistoryOld = _billIDHistory;
+                            TreeNode[] tns1 = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
+                            if (tns1.Length > 0)
+                            {
+                                tns1[0].BackColor = Color.LightSkyBlue;
+                            }
                         }
-                        trHistoryBill.SelectedNode = trHistoryBill.Nodes[0];
-                        _billIDHistoryOld = _billIDHistory;
-                        TreeNode[] tns1 = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
-                        if (tns1.Length > 0)
+                        else
                         {
-                            tns1[0].BackColor = Color.LightSkyBlue;
+                            MessageBox.Show("UnPaid faill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("UnPaid faill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -1053,6 +1058,17 @@ namespace AusNail
                 dgvService.Columns["Price"].ReadOnly = true;
                 dgvService.Columns["Discount"].ReadOnly = true;
                 dgvService.Columns["Amount"].ReadOnly = true;
+                dgvService.Columns["Note"].ReadOnly = false;
+                dgvService.Columns["Del"].ReadOnly = false;
+            }
+            else
+            {
+                dgvService.Columns["staffId"].ReadOnly = false;
+                dgvService.Columns["serviceId"].ReadOnly = false;
+                dgvService.Columns["Quantity"].ReadOnly = false;
+                dgvService.Columns["Price"].ReadOnly = false;
+                dgvService.Columns["Discount"].ReadOnly = false;
+                dgvService.Columns["Amount"].ReadOnly = false;
                 dgvService.Columns["Note"].ReadOnly = false;
                 dgvService.Columns["Del"].ReadOnly = false;
             }
