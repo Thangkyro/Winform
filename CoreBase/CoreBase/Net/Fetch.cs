@@ -83,73 +83,45 @@ namespace Nail.Core.Net
             {
                 try
                 {
-                    string certName = @"C:\test.pfx";
-                    string password = @"1%c9sC3DWm8Al$";
-                    X509Certificate2 certificate = new X509Certificate2(certName, password);
-
-                    ServicePointManager.CheckCertificateRevocationList = false;
-                    ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
-                    ServicePointManager.Expect100Continue = true;
-                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                    req.PreAuthenticate = true;
-                    req.AllowAutoRedirect = true;
-                    req.ClientCertificates.Add(certificate);
-                    req.Method = "POST";
-                    req.ContentType = "application/x-www-form-urlencoded";
-                    string postData = "login-form-type=cert";
-                    byte[] postBytes = Encoding.UTF8.GetBytes(postData);
-                    req.ContentLength = postBytes.Length;
-
-                    Stream postStream = req.GetRequestStream();
-                    postStream.Write(postBytes, 0, postBytes.Length);
-                    postStream.Flush();
-                    postStream.Close();
-                    WebResponse resp = req.GetResponse();
-
-                    Stream stream = resp.GetResponseStream();
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        string line = reader.ReadLine();
-                        while (line != null)
-                        {
-                            Console.WriteLine(line);
-                            line = reader.ReadLine();
-                        }
-                    }
-
-                    stream.Close();
                     //var req = HttpWebRequest.Create(url) as HttpWebRequest;
                     //req.AllowAutoRedirect = true;
-                    //ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
-                    //if (Credential != null)
-                    //    req.Credentials = Credential;
-                    //req.Headers = Headers;
-                    //req.Timeout = Timeout;
+                    ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
+                    // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12|SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+                    ServicePointManager.Expect100Continue = true;
+                    var req = HttpWebRequest.Create(url) as HttpWebRequest;
+                    req.AllowAutoRedirect = true;
+                    req.Method = WebRequestMethods.Http.Get;
+                    if (Credential != null)
+                        req.Credentials = Credential;
+                    req.Headers = Headers;
+                    req.Timeout = Timeout;
+                    req.KeepAlive = false;
 
-                    //Response = req.GetResponse() as HttpWebResponse;
-                    //switch (Response.StatusCode)
-                    //{
-                    //    case HttpStatusCode.Found:
-                    //        // This is a redirect to an error page, so ignore.
-                    //        Console.WriteLine("Found (302), ignoring ");
-                    //        break;
+                    Response = req.GetResponse() as HttpWebResponse;
+                    switch (Response.StatusCode)
+                    {
+                        case HttpStatusCode.Found:
+                            // This is a redirect to an error page, so ignore.
+                            Console.WriteLine("Found (302), ignoring ");
+                            break;
 
-                    //    case HttpStatusCode.OK:
-                    //        // This is a valid page.
-                    //        using (var sr = Response.GetResponseStream())
-                    //        using (var ms = new MemoryStream())
-                    //        {
-                    //            for (int b; (b = sr.ReadByte()) != -1;)
-                    //                ms.WriteByte((byte) b);
-                    //            ResponseData = ms.ToArray();
-                    //        }
-                    //        break;
+                        case HttpStatusCode.OK:
+                            // This is a valid page.
+                            using (var sr = Response.GetResponseStream())
+                            using (var ms = new MemoryStream())
+                            {
+                                for (int b; (b = sr.ReadByte()) != -1;)
+                                    ms.WriteByte((byte)b);
+                                ResponseData = ms.ToArray();
+                            }
+                            break;
 
-                    //    default:
-                    //        // This is unexpected.
-                    //        Console.WriteLine(Response.StatusCode);
-                    //        break;
-                    //}
+                        default:
+                            // This is unexpected.
+                            Console.WriteLine(Response.StatusCode);
+                            break;
+                    }
                     Success = true;
                     break;
                 }
