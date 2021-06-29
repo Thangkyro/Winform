@@ -1333,8 +1333,18 @@ namespace AusNail
 
         private void dBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoreBase.WinForm.frmDataBaseSetting frm = new CoreBase.WinForm.frmDataBaseSetting();
-            frm.ShowDialog();
+            CoreBase.WinForm.DevopsAuth devopsAuth = new CoreBase.WinForm.DevopsAuth();
+            devopsAuth.ShowDialog();
+            if (devopsAuth.DialogResult == DialogResult.OK)
+            {
+                CoreBase.WinForm.frmDataBaseSetting frm = new CoreBase.WinForm.frmDataBaseSetting();
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You are not Devops.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
     }
 }

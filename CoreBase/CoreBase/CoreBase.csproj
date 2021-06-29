@@ -90,6 +90,12 @@
     <Compile Include="Update\LogEventArgs.cs" />
     <Compile Include="Update\Manifest.cs" />
     <Compile Include="Update\Updater.cs" />
+    <Compile Include="WinForm\DevopsAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\DevopsAuth.Designer.cs">
+      <DependentUpon>DevopsAuth.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\Dictionary\DicBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\DevopsAuth.resx">
+      <DependentUpon>DevopsAuth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Dictionary\DicBase.resx">
       <DependentUpon>DicBase.cs</DependentUpon>

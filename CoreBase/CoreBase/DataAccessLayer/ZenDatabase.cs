@@ -233,8 +233,9 @@ namespace CoreBase.DataAccessLayer
         {
 
             Configuration conf = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            string connStringName = conf.AppSettings.Settings["ConnectionString"].Value;
-            ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings[connStringName];
+            ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings["DefaultConnectionString"];
+            //string connStringName = conf.AppSettings.Settings["ConnectionString"].Value;
+            //ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings[connStringName];
             _connectionString = "Persist Security Info = True;" + StringCipher.Decrypt(css.ConnectionString, ZenDatabase.DbCfgPassEncrypt);
             CurrentDbInfo = GetDbInfo(_connectionString);
 
