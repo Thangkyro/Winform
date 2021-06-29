@@ -19,7 +19,7 @@ namespace CoreBase.WinForm
 
         private void DevopsAuth_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.DialogResult = DialogResult.No;
+            //this.DialogResult = DialogResult.No;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
