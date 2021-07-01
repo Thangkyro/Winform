@@ -64,9 +64,15 @@ namespace AusNail.Process
                 {
                     Gender = "Order";
                 }
+                string sysUIFormat = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern;
                 string DateOfBirth = this.txtDateofBirth.Text.Trim();
-                string Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
-                        .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string Date = DateOfBirth;
+                if (sysUIFormat != "dd/MM/yyyy")
+                {
+                     Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                       .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                }
+               
                 string PostCode = this.txtPostcode.Text.Trim();
                 string CustomerCode = GenCustomerCode();
                 // kiem tra khong được đặt mã trùng
@@ -133,6 +139,14 @@ namespace AusNail.Process
         {
             txtPhoneNum.Focus();
             txtPhoneNum.Select();
+        }
+
+        private void txtPhoneNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }
