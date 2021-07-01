@@ -85,6 +85,7 @@
             this.txtPassword.Size = new System.Drawing.Size(152, 20);
             this.txtPassword.TabIndex = 7;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtServerName_KeyDown);
             // 
             // txtUserName
             // 
@@ -92,6 +93,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(152, 20);
             this.txtUserName.TabIndex = 6;
+            this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtServerName_KeyDown);
             // 
             // txtDatabaseName
             // 
@@ -99,6 +101,7 @@
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.Size = new System.Drawing.Size(291, 20);
             this.txtDatabaseName.TabIndex = 5;
+            this.txtDatabaseName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtServerName_KeyDown);
             // 
             // txtServerName
             // 
@@ -106,6 +109,7 @@
             this.txtServerName.Name = "txtServerName";
             this.txtServerName.Size = new System.Drawing.Size(291, 20);
             this.txtServerName.TabIndex = 4;
+            this.txtServerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtServerName_KeyDown);
             // 
             // btnCancel
             // 

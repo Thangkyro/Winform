@@ -437,6 +437,14 @@ namespace AusNail.Process
             {
             }
         }
+
+        private void txtCard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 
 }

@@ -51,5 +51,13 @@ namespace CoreBase.WinForm
                 this.DialogResult = DialogResult.No;
             }
         }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

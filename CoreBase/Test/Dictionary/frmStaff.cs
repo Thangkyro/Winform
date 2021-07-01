@@ -462,5 +462,13 @@ namespace AusNail.Dictionary
             //string id = GridDetail[cIndex, rIndex].Value.ToString();
             //lblMessInfomation.Text = id;
         }
+
+        private void cbobranchId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

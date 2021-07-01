@@ -85,7 +85,7 @@
             this.radCash.Location = new System.Drawing.Point(88, 71);
             this.radCash.Name = "radCash";
             this.radCash.Size = new System.Drawing.Size(14, 13);
-            this.radCash.TabIndex = 13;
+            this.radCash.TabIndex = 8;
             this.radCash.UseVisualStyleBackColor = true;
             this.radCash.CheckedChanged += new System.EventHandler(this.radCash_CheckedChanged);
             // 
@@ -96,7 +96,7 @@
             this.radCard.Location = new System.Drawing.Point(88, 51);
             this.radCard.Name = "radCard";
             this.radCard.Size = new System.Drawing.Size(14, 13);
-            this.radCard.TabIndex = 13;
+            this.radCard.TabIndex = 5;
             this.radCard.TabStop = true;
             this.radCard.UseVisualStyleBackColor = true;
             this.radCard.CheckedChanged += new System.EventHandler(this.radCard_CheckedChanged);
@@ -107,7 +107,7 @@
             this.chkCompire.Location = new System.Drawing.Point(88, 93);
             this.chkCompire.Name = "chkCompire";
             this.chkCompire.Size = new System.Drawing.Size(15, 14);
-            this.chkCompire.TabIndex = 12;
+            this.chkCompire.TabIndex = 9;
             this.chkCompire.UseVisualStyleBackColor = true;
             this.chkCompire.CheckedChanged += new System.EventHandler(this.chkCompire_CheckedChanged);
             // 
@@ -121,7 +121,7 @@
             this.dgvVoucher.Location = new System.Drawing.Point(19, 114);
             this.dgvVoucher.Name = "dgvVoucher";
             this.dgvVoucher.Size = new System.Drawing.Size(401, 184);
-            this.dgvVoucher.TabIndex = 11;
+            this.dgvVoucher.TabIndex = 10;
             this.dgvVoucher.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoucher_CellContentClick);
             this.dgvVoucher.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoucher_CellEndEdit);
             this.dgvVoucher.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvVoucher_CellFormatting);
@@ -135,7 +135,7 @@
             this.lblTotalAmount.Location = new System.Drawing.Point(88, 18);
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.Size = new System.Drawing.Size(332, 26);
-            this.lblTotalAmount.TabIndex = 0;
+            this.lblTotalAmount.TabIndex = 4;
             this.lblTotalAmount.Text = "0";
             this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -145,7 +145,7 @@
             this.label2.Location = new System.Drawing.Point(16, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Compine:";
             // 
             // label7
@@ -164,9 +164,10 @@
             this.txtCash.Location = new System.Drawing.Point(105, 68);
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(315, 20);
-            this.txtCash.TabIndex = 6;
+            this.txtCash.TabIndex = 7;
             this.txtCash.Text = "0";
             this.txtCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
             this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_KeyPress);
             this.txtCash.Validated += new System.EventHandler(this.txtCash_Validated);
             // 
@@ -180,6 +181,7 @@
             this.txtCard.TabIndex = 6;
             this.txtCard.Text = "0";
             this.txtCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCard.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
             this.txtCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCard_KeyPress);
             this.txtCard.Validated += new System.EventHandler(this.txtCard_Validated);
             // 
@@ -189,7 +191,7 @@
             this.label8.Location = new System.Drawing.Point(16, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 2;
+            this.label8.TabIndex = 1;
             this.label8.Text = "Card:";
             // 
             // btnCancel
@@ -209,7 +211,7 @@
             this.btnCancel.Size = new System.Drawing.Size(96, 30);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Transparency = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -231,7 +233,7 @@
             this.btnConfirm.Size = new System.Drawing.Size(96, 30);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
-            this.btnConfirm.TabIndex = 6;
+            this.btnConfirm.TabIndex = 1;
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnCreateBill_Click);
