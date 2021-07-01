@@ -295,6 +295,20 @@ namespace AusNail.Dictionary
             }
         }
 
+        private void cbobranchId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
 
+        private void txtDayOfWeek_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

@@ -123,13 +123,25 @@ namespace CoreBase.WinForm
 
         private void btnTestConnect_Click(object sender, EventArgs e)
         {
-            if (!zValidInfo())
-                return;
-
-            if (ZenDatabase.TestConnection(ZenDatabase.GetConnectionString(txtServerName.Text, txtDatabaseName.Text, txtUserName.Text, txtPassword.Text)))
+            try
             {
-                MessageBox.Show("Connect success!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!zValidInfo())
+                    return;
+
+                if (ZenDatabase.TestConnection(ZenDatabase.GetConnectionString(txtServerName.Text, txtDatabaseName.Text, txtUserName.Text, txtPassword.Text)))
+                {
+                    MessageBox.Show("Connect success!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Connect faill!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            catch 
+            {
+                MessageBox.Show("Connect faill!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -138,6 +150,14 @@ namespace CoreBase.WinForm
             if (flag)
             {
                 MessageBox.Show("Update success!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtServerName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
             }
         }
     }

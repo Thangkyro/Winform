@@ -72,16 +72,16 @@
             // chkis_inactive
             // 
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkis_inactive.Location = new System.Drawing.Point(765, 394);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
+            this.chkis_inactive.Location = new System.Drawing.Point(574, 320);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkis_inactive.TabIndex = 13;
             this.chkis_inactive.Visible = false;
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 535);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1199, 62);
+            this.panel1.Location = new System.Drawing.Point(0, 435);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Size = new System.Drawing.Size(899, 50);
             // 
             // imageList
             // 
@@ -94,24 +94,24 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Location = new System.Drawing.Point(323, 25);
-            this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblMessInfomation.Size = new System.Drawing.Size(768, 25);
+            this.lblMessInfomation.Location = new System.Drawing.Point(242, 20);
+            this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMessInfomation.Size = new System.Drawing.Size(576, 20);
             // 
             // lblTime
             // 
-            this.lblTime.Location = new System.Drawing.Point(1097, 24);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblTime.Size = new System.Drawing.Size(85, 21);
-            this.lblTime.Text = "14:12:33";
+            this.lblTime.Location = new System.Drawing.Point(823, 20);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTime.Size = new System.Drawing.Size(64, 17);
+            this.lblTime.Text = "21:57:50";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(13, 10);
+            this.btnSave.Location = new System.Drawing.Point(10, 8);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(147, 10);
+            this.btnCancel.Location = new System.Drawing.Point(110, 8);
             // 
             // GridDetail
             // 
@@ -121,11 +121,10 @@
             this.GridDetail.BackgroundColor = System.Drawing.Color.White;
             this.GridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
-            this.GridDetail.Location = new System.Drawing.Point(13, 14);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.GridDetail.Location = new System.Drawing.Point(10, 11);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
-            this.GridDetail.Size = new System.Drawing.Size(624, 508);
+            this.GridDetail.Size = new System.Drawing.Size(468, 413);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
@@ -137,13 +136,13 @@
             this.deleteToolStripMenuItem,
             this.refeshListToolStripMenuItem});
             this.ctmGridView.Name = "ctmGridView";
-            this.ctmGridView.Size = new System.Drawing.Size(153, 56);
+            this.ctmGridView.Size = new System.Drawing.Size(135, 56);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
@@ -151,7 +150,7 @@
             // 
             this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
             this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
-            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.refeshListToolStripMenuItem.Text = "Refesh List";
             this.refeshListToolStripMenuItem.Click += new System.EventHandler(this.RefeshListToolStripMenuItem_Click);
             // 
@@ -160,11 +159,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.treHistory);
-            this.groupBox1.Location = new System.Drawing.Point(765, 424);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(574, 344);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(421, 102);
+            this.groupBox1.Size = new System.Drawing.Size(316, 83);
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "History";
@@ -172,63 +169,60 @@
             // treHistory
             // 
             this.treHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treHistory.Location = new System.Drawing.Point(4, 19);
-            this.treHistory.Margin = new System.Windows.Forms.Padding(4);
+            this.treHistory.Location = new System.Drawing.Point(3, 16);
             this.treHistory.Name = "treHistory";
-            this.treHistory.Size = new System.Drawing.Size(413, 79);
+            this.treHistory.Size = new System.Drawing.Size(310, 64);
             this.treHistory.TabIndex = 14;
             // 
             // txtDecriptions
             // 
             this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDecriptions.Location = new System.Drawing.Point(765, 364);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDecriptions.Location = new System.Drawing.Point(574, 296);
             this.txtDecriptions.Multiline = true;
             this.txtDecriptions.Name = "txtDecriptions";
-            this.txtDecriptions.Size = new System.Drawing.Size(421, 25);
+            this.txtDecriptions.Size = new System.Drawing.Size(317, 21);
             this.txtDecriptions.TabIndex = 12;
+            this.txtDecriptions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // label14
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(679, 366);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(509, 297);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 17);
+            this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 53;
             this.label14.Text = "Decriptions";
             // 
             // txtPostCode
             // 
             this.txtPostCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPostCode.Location = new System.Drawing.Point(765, 273);
-            this.txtPostCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPostCode.Location = new System.Drawing.Point(574, 222);
             this.txtPostCode.Multiline = true;
             this.txtPostCode.Name = "txtPostCode";
-            this.txtPostCode.Size = new System.Drawing.Size(421, 25);
+            this.txtPostCode.Size = new System.Drawing.Size(317, 21);
             this.txtPostCode.TabIndex = 10;
+            this.txtPostCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtPhoneSimple2
             // 
             this.txtPhoneSimple2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneSimple2.Location = new System.Drawing.Point(1030, 240);
-            this.txtPhoneSimple2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhoneSimple2.Location = new System.Drawing.Point(772, 195);
             this.txtPhoneSimple2.Multiline = true;
             this.txtPhoneSimple2.Name = "txtPhoneSimple2";
-            this.txtPhoneSimple2.Size = new System.Drawing.Size(155, 25);
+            this.txtPhoneSimple2.Size = new System.Drawing.Size(117, 21);
             this.txtPhoneSimple2.TabIndex = 9;
+            this.txtPhoneSimple2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(932, 176);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(699, 143);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 17);
+            this.label9.Size = new System.Drawing.Size(68, 13);
             this.label9.TabIndex = 45;
             this.label9.Text = "Date Of Birth";
             // 
@@ -237,10 +231,9 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(684, 275);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(513, 223);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 17);
+            this.label10.Size = new System.Drawing.Size(56, 13);
             this.label10.TabIndex = 46;
             this.label10.Text = "Post Code";
             // 
@@ -249,52 +242,50 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(920, 241);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(690, 196);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(107, 17);
+            this.label11.Size = new System.Drawing.Size(81, 13);
             this.label11.TabIndex = 47;
             this.label11.Text = "Phone Simple 2";
             // 
             // txtPhoneSimple1
             // 
             this.txtPhoneSimple1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneSimple1.Location = new System.Drawing.Point(1030, 207);
-            this.txtPhoneSimple1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhoneSimple1.Location = new System.Drawing.Point(772, 168);
             this.txtPhoneSimple1.Multiline = true;
             this.txtPhoneSimple1.Name = "txtPhoneSimple1";
-            this.txtPhoneSimple1.Size = new System.Drawing.Size(155, 25);
+            this.txtPhoneSimple1.Size = new System.Drawing.Size(117, 21);
             this.txtPhoneSimple1.TabIndex = 7;
+            this.txtPhoneSimple1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtPhoneNumber2
             // 
             this.txtPhoneNumber2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneNumber2.Location = new System.Drawing.Point(765, 240);
-            this.txtPhoneNumber2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhoneNumber2.Location = new System.Drawing.Point(574, 195);
             this.txtPhoneNumber2.Multiline = true;
             this.txtPhoneNumber2.Name = "txtPhoneNumber2";
-            this.txtPhoneNumber2.Size = new System.Drawing.Size(129, 25);
+            this.txtPhoneNumber2.Size = new System.Drawing.Size(98, 21);
             this.txtPhoneNumber2.TabIndex = 8;
+            this.txtPhoneNumber2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtPhoneNumber1
             // 
             this.txtPhoneNumber1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneNumber1.Location = new System.Drawing.Point(765, 207);
-            this.txtPhoneNumber1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhoneNumber1.Location = new System.Drawing.Point(574, 168);
             this.txtPhoneNumber1.Multiline = true;
             this.txtPhoneNumber1.Name = "txtPhoneNumber1";
-            this.txtPhoneNumber1.Size = new System.Drawing.Size(129, 25);
+            this.txtPhoneNumber1.Size = new System.Drawing.Size(98, 21);
             this.txtPhoneNumber1.TabIndex = 6;
+            this.txtPhoneNumber1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(920, 209);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(690, 170);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 17);
+            this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 40;
             this.label6.Text = "Phone Simple 1";
             // 
@@ -303,10 +294,9 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(642, 241);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(482, 196);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 17);
+            this.label7.Size = new System.Drawing.Size(87, 13);
             this.label7.TabIndex = 41;
             this.label7.Text = "Phone Number 2";
             // 
@@ -315,10 +305,9 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(642, 209);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(482, 170);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 17);
+            this.label8.Size = new System.Drawing.Size(87, 13);
             this.label8.TabIndex = 42;
             this.label8.Text = "Phone Number 1";
             // 
@@ -326,51 +315,50 @@
             // 
             this.cbobranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobranchId.FormattingEnabled = true;
-            this.cbobranchId.Location = new System.Drawing.Point(765, 77);
-            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4);
+            this.cbobranchId.Location = new System.Drawing.Point(574, 63);
             this.cbobranchId.Name = "cbobranchId";
-            this.cbobranchId.Size = new System.Drawing.Size(421, 24);
+            this.cbobranchId.Size = new System.Drawing.Size(317, 21);
             this.cbobranchId.TabIndex = 1;
+            this.cbobranchId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(765, 141);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Location = new System.Drawing.Point(574, 115);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(421, 25);
+            this.txtName.Size = new System.Drawing.Size(317, 21);
             this.txtName.TabIndex = 3;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtGender
             // 
             this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGender.Location = new System.Drawing.Point(765, 174);
-            this.txtGender.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGender.Location = new System.Drawing.Point(574, 141);
             this.txtGender.Multiline = true;
             this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(129, 25);
+            this.txtGender.Size = new System.Drawing.Size(98, 21);
             this.txtGender.TabIndex = 4;
+            this.txtGender.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtCustomerCode
             // 
             this.txtCustomerCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomerCode.Location = new System.Drawing.Point(765, 109);
-            this.txtCustomerCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCustomerCode.Location = new System.Drawing.Point(574, 89);
             this.txtCustomerCode.Multiline = true;
             this.txtCustomerCode.Name = "txtCustomerCode";
-            this.txtCustomerCode.Size = new System.Drawing.Size(421, 25);
+            this.txtCustomerCode.Size = new System.Drawing.Size(317, 21);
             this.txtCustomerCode.TabIndex = 2;
+            this.txtCustomerCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(705, 78);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(529, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 35;
             this.label3.Text = "Branch";
             // 
@@ -379,10 +367,9 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(713, 143);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(535, 116);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 17);
+            this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 33;
             this.label5.Text = "Name";
             // 
@@ -391,10 +378,9 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(702, 176);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(526, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 17);
+            this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 34;
             this.label4.Text = "Gender";
             // 
@@ -403,54 +389,53 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(652, 110);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(489, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 17);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 32;
             this.label2.Text = "Customer Code";
             // 
             // txtDateOfBirth
             // 
             this.txtDateOfBirth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDateOfBirth.Location = new System.Drawing.Point(1030, 173);
-            this.txtDateOfBirth.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDateOfBirth.Location = new System.Drawing.Point(772, 141);
             this.txtDateOfBirth.Multiline = true;
             this.txtDateOfBirth.Name = "txtDateOfBirth";
-            this.txtDateOfBirth.Size = new System.Drawing.Size(155, 25);
+            this.txtDateOfBirth.Size = new System.Drawing.Size(117, 21);
             this.txtDateOfBirth.TabIndex = 5;
+            this.txtDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // chkIsMerge
             // 
             this.chkIsMerge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIsMerge.AutoSize = true;
-            this.chkIsMerge.Location = new System.Drawing.Point(769, 305);
-            this.chkIsMerge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIsMerge.Location = new System.Drawing.Point(574, 248);
+            this.chkIsMerge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkIsMerge.Name = "chkIsMerge";
-            this.chkIsMerge.Size = new System.Drawing.Size(84, 21);
+            this.chkIsMerge.Size = new System.Drawing.Size(66, 17);
             this.chkIsMerge.TabIndex = 11;
             this.chkIsMerge.Text = "Is merge";
             this.chkIsMerge.UseVisualStyleBackColor = true;
+            this.chkIsMerge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // txtCustIdMerge
             // 
             this.txtCustIdMerge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustIdMerge.Location = new System.Drawing.Point(765, 333);
-            this.txtCustIdMerge.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCustIdMerge.Location = new System.Drawing.Point(574, 271);
             this.txtCustIdMerge.Multiline = true;
             this.txtCustIdMerge.Name = "txtCustIdMerge";
-            this.txtCustIdMerge.Size = new System.Drawing.Size(421, 25);
+            this.txtCustIdMerge.Size = new System.Drawing.Size(317, 21);
             this.txtCustIdMerge.TabIndex = 55;
+            this.txtCustIdMerge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(662, 336);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(496, 273);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(95, 17);
+            this.label12.Size = new System.Drawing.Size(73, 13);
             this.label12.TabIndex = 56;
             this.label12.Text = "Cust Id Merge";
             // 
@@ -459,17 +444,18 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(853, 14);
+            this.label13.Location = new System.Drawing.Point(640, 11);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(152, 41);
+            this.label13.Size = new System.Drawing.Size(122, 35);
             this.label13.TabIndex = 57;
             this.label13.Text = "Customer";
             // 
             // frmCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1199, 597);
+            this.ClientSize = new System.Drawing.Size(899, 485);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtCustIdMerge);
             this.Controls.Add(this.label12);
@@ -498,7 +484,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GridDetail);
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmCustomer";
             this.Text = "Customer";
             this.Controls.SetChildIndex(this.GridDetail, 0);

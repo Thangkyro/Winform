@@ -245,5 +245,12 @@ namespace AusNail.Dictionary
             return result;
         }
 
+        private void txtBranchCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }
