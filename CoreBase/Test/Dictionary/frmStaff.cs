@@ -92,9 +92,9 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
+            bool isSuccess = false;
             try
             {
-                bool isSuccess = false;
                 LoadEditRow();
                 if (_Mode == "Add")
                 {
@@ -103,28 +103,28 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    isSuccess = base.InsertData();
-                    if (isSuccess)
-                    {
-                        // Insert Image
-                        int staffID = 0;
-                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            staffID = int.Parse(dt.Rows[0][0].ToString());
-                        }
-                        byte[] image = null;
-                        if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
-                        {
-                            image = dicImage[zEditRow["StaffCode"].ToString()];
-                        }
-                        if (staffID != 0)
-                        {
-                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+                    //isSuccess = base.InsertData();
+                    //if (isSuccess)
+                    //{
+                    //    // Insert Image
+                    //    int staffID = 0;
+                    //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
+                    //    if (dt != null && dt.Rows.Count > 0)
+                    //    {
+                    //        staffID = int.Parse(dt.Rows[0][0].ToString());
+                    //    }
+                    //    byte[] image = null;
+                    //    if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
+                    //    {
+                    //        image = dicImage[zEditRow["StaffCode"].ToString()];
+                    //    }
+                    //    if (staffID != 0)
+                    //    {
+                    //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
 
-                        }
+                    //    }
                         
-                    }
+                    //}
                     
                 }
                 else
@@ -134,9 +134,54 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    if (isSuccess = base.UpdateData())
+                    //if (isSuccess = base.UpdateData())
+                    //{
+                    //    // Insert Image
+                    //    int staffID = 0;
+                    //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
+                    //    if (dt != null && dt.Rows.Count > 0)
+                    //    {
+                    //        staffID = int.Parse(dt.Rows[0][0].ToString());
+                    //    }
+                    //    byte[] image = null;
+                    //    if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
+                    //    {
+                    //        image = dicImage[zEditRow["StaffCode"].ToString()];
+                    //    }
+                    //    if (staffID != 0)
+                    //    {
+                    //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+
+                    //    }
+                    //}
+                    //return base.UpdateData();
+                }
+
+                string listError = "";
+                #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
+                DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
+
+                foreach (DataRow dr in changedRows.Rows)
+                {
+                    dr["created_by"] = NailApp.CurrentUserId;
+                    dr["modified_by"] = NailApp.CurrentUserId;
+                    if (dr[_idName].ToString() == "0")
                     {
-                        // Insert Image
+                        this.zEditRow = dr;
+                        isSuccess = base.InsertData();
+                    }
+                    else
+                    {
+                        this.zEditRow = dr;
+                        isSuccess = base.UpdateData();
+                    }
+
+                    if (!isSuccess)
+                    {
+                        listError += "Save error staff: " + dr["Name"].ToString() + ". \n";
+                    }
+                    else
+                    {
                         int staffID = 0;
                         DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
                         if (dt != null && dt.Rows.Count > 0)
@@ -154,38 +199,25 @@ namespace AusNail.Dictionary
 
                         }
                     }
-                    //return base.UpdateData();
                 }
-
-                #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
-                //DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
-
-                //foreach (DataRow dr in changedRows.Rows)
-                //{
-                //    if (dr[_idName].ToString() == "0")
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.InsertData();
-                //    }
-                //    else
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.UpdateData();
-                //    }
-                //}
-                //return true;
                 #endregion
+
                 if (isSuccess)
                 {
                     LoadData();
                 }
-                return isSuccess;
+                else
+                {
+                    LoadData();
+                    lblMessInfomation.Text = listError;
+                }
+                
             }
             catch (Exception ex)
             {
 
             }
-            return true;
+            return isSuccess;
         }
 
 
