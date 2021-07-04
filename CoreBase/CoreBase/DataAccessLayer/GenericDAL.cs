@@ -604,10 +604,10 @@ namespace CoreBase.DataAccessLayer
             isFirst = true;
             foreach (DataColumn col in schemaTable.PrimaryKey)
             {
-                if (NailApp.IsAdmin() && col.ColumnName == "branchId") //Update for update branchID
-                {
-                    continue;
-                }
+                //if (NailApp.IsAdmin() && col.ColumnName == "branchId") //Update for update branchID
+                //{
+                //    continue;
+                //}
                 if (!isFirst)
                     sbWhere.Append(" AND");
 

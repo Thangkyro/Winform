@@ -84,10 +84,10 @@ namespace AusNail.Dictionary
         }
         protected override bool InsertData()
         {
+            bool isSuccess = false;
             try
             {
-                bool isSuccess = false;
-                LoadEditRow();
+                //LoadEditRow();
                 if (_Mode == "Add")
                 {
                     if (!NailApp.lstPermission.Contains(VOUCHER_ADD_CMDKEY) && !NailApp.IsAdmin())
@@ -95,7 +95,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    isSuccess = base.InsertData();
+                    ///isSuccess = base.InsertData();
                 }
                 else
                 {
@@ -104,39 +104,50 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    isSuccess = base.UpdateData();
+                    //isSuccess = base.UpdateData();
                 }
 
+                string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
-                //DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
+                DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                //foreach (DataRow dr in changedRows.Rows)
-                //{
-                //    if (dr[_idName].ToString() == "0")
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.InsertData();
-                //    }
-                //    else
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.UpdateData();
-                //    }
-                //}
-                //return true;
+                foreach (DataRow dr in changedRows.Rows)
+                {
+                    dr["created_by"] = NailApp.CurrentUserId;
+                    dr["modified_by"] = NailApp.CurrentUserId;
+                    if (dr[_idName].ToString() == "0")
+                    {
+                        this.zEditRow = dr;
+                        isSuccess = base.InsertData();
+                    }
+                    else
+                    {
+                        this.zEditRow = dr;
+                        isSuccess = base.UpdateData();
+                    }
+
+                    if (!isSuccess)
+                    {
+                        listError += "Save error voucher: " + dr["VoucherCode"].ToString() + ". \n";
+                    }
+                }
                 #endregion
 
                 if (isSuccess)
                 {
                     LoadData();
                 }
-                return isSuccess;
+                else
+                {
+                    LoadData();
+                    lblMessInfomation.Text = listError;
+                }
             }
             catch
             {
 
             }
-            return true;
+            return isSuccess;
         }
 
         protected override void InitForm()
