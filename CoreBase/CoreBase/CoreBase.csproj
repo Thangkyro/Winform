@@ -65,6 +65,7 @@
     <Compile Include="DataAccessLayer\TransactionDAL.cs" />
     <Compile Include="DataAccessLayer\ZenDatabase.cs" />
     <Compile Include="DataAccessLayer\ZenIncorrectSchemaException.cs" />
+    <Compile Include="DataAccessLayer\ZenSqlNotification.cs" />
     <Compile Include="FormMode.cs" />
     <Compile Include="Helpers\Commons.cs" />
     <Compile Include="Helpers\DateTimeLibrary.cs" />

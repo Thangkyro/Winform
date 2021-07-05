@@ -13,3 +13,13 @@ E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe.config
 E:\Code\Nail\Winform\Winform\_Output\Nail.Update.exe
 E:\Code\Nail\Winform\Winform\_Output\Nail.Update.pdb
 E:\Code\Nail\Winform\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.AssemblyReference.cache
+D:\Aug\Git\Winform\_Output\Nail.Update.exe.config
+D:\Aug\Git\Winform\_Output\Nail.Update.exe
+D:\Aug\Git\Winform\_Output\Nail.Update.pdb
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csprojResolveAssemblyReference.cache
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.Form1.resources
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Zen.Update.Form2.resources
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.Properties.Resources.resources
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.csproj.GenerateResource.Cache
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.exe
+D:\Aug\Git\Winform\CoreBase\Nail.Update\obj\Debug\Nail.Update.pdb
