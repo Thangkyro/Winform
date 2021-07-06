@@ -43,27 +43,29 @@
             this.txtPhoneNum = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPostcode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // radMale
             // 
             this.radMale.AutoSize = true;
-            this.radMale.Checked = true;
             this.radMale.Location = new System.Drawing.Point(139, 138);
             this.radMale.Name = "radMale";
             this.radMale.Size = new System.Drawing.Size(48, 17);
             this.radMale.TabIndex = 9;
-            this.radMale.TabStop = true;
             this.radMale.Text = "Male";
             this.radMale.UseVisualStyleBackColor = true;
             // 
             // radFemale
             // 
             this.radFemale.AutoSize = true;
+            this.radFemale.Checked = true;
             this.radFemale.Location = new System.Drawing.Point(139, 157);
             this.radFemale.Name = "radFemale";
             this.radFemale.Size = new System.Drawing.Size(59, 17);
             this.radFemale.TabIndex = 10;
+            this.radFemale.TabStop = true;
             this.radFemale.Text = "Female";
             this.radFemale.UseVisualStyleBackColor = true;
             // 
@@ -198,12 +200,36 @@
             this.txtPostcode.TabIndex = 7;
             this.txtPostcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNum_KeyDown);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(91, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 16);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "*";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(48, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 16);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "*";
+            // 
             // frmCusstomerAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(374, 256);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPostcode);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtPhoneNum);
@@ -245,5 +271,7 @@
         private System.Windows.Forms.TextBox txtPhoneNum;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtPostcode;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

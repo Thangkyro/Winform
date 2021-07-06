@@ -64,16 +64,17 @@ namespace AusNail
             {
                
             
-            DataTable dt = null;
+            DataTable dtH = null;
+                DataTable dtT = null;
                 // Load booking
-                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
-                if (dt != null && dt.Rows.Count > 0)
+                dtH = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
+                if (dtH != null && dtH.Rows.Count > 0)
                 {
 
                     trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
                     {
                         trHistoryBill.Nodes.Clear();
-                        foreach (DataRow dr in dt.Rows)
+                        foreach (DataRow dr in dtH.Rows)
                         {
                       
                             trHistoryBill.ImageList = imageList1;
@@ -104,13 +105,13 @@ namespace AusNail
             // Load temporary bill
            
                // trTemporaryBill.Nodes.Clear();
-                dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
-                if (dt != null && dt.Rows.Count > 0)
+                dtT = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
+                if (dtT != null && dtT.Rows.Count > 0)
                 {
                     trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
                     {
                         trTemporaryBill.Nodes.Clear();
-                        foreach (DataRow dr in dt.Rows)
+                        foreach (DataRow dr in dtT.Rows)
                         {
                             trTemporaryBill.ImageList = imageList1;
                             string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
@@ -489,7 +490,7 @@ namespace AusNail
                 splCMain.BackColor = NailApp.ColorUser;
                 splitContainer2.BackColor = NailApp.ColorUser;
 
-                LoadHistory();
+                //LoadHistory();
                 createTable();
                 loadService();
                 LoadGrid();
@@ -568,14 +569,35 @@ namespace AusNail
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LoadHistory();
+            //LoadHistory();
+            if (tabHistory)
+            {
+                loadBillInfor(_billIDHistory);
+                loadGridDetail_Bill(_billIDHistory, false);
+                TreeNode[] tns = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
+                if (tns.Length > 0)
+                {
+                    tns[0].BackColor = Color.LightSkyBlue;
+                }
+            }
+            else
+            {
+                loadBillInfor(_billIDTemp);
+                loadGridDetail_Bill(_billIDTemp, true);
+                TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
+                if (tns.Length > 0)
+                {
+                    tns[0].BackColor = Color.LightSkyBlue;
+                }
+            }
+            btnPrint.Enabled = true;
         }
 
         private void trTemporaryBill_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
             {
-                tabHistory = false;
+                //tabHistory = false;
                 _billIDTemp = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billIDTemp);
                 loadGridDetail_Bill(_billIDTemp, true);
@@ -603,7 +625,7 @@ namespace AusNail
         {
             try
             {
-                tabHistory = true;
+                //tabHistory = false;
                 _billIDTemp = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 _billIDTempOld = int.Parse(trTemporaryBill.SelectedNode.Tag.ToString());
                 //loadBillInfor(_billIDTemp);
@@ -753,7 +775,7 @@ namespace AusNail
                 int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterDelete", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
                 if (ret > 0)
                 {
-                    LoadHistory();
+                    //LoadHistory();
                     txtBilDate.Clear();
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
@@ -784,7 +806,7 @@ namespace AusNail
 
                     if (frm.DialogResult == DialogResult.OK)
                     {
-                        LoadHistory();
+                        //LoadHistory();
                         txtBilDate.Clear();
                         txtBillCode.Clear();
                         txtCustomerName.Clear();
@@ -818,7 +840,7 @@ namespace AusNail
                         int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUnPaidUpdate", _billIDHistory, int.Parse(NailApp.BranchID), NailApp.CurrentUserId, 0, "");
                         if (ret > 0)
                         {
-                            LoadHistory();
+                            //LoadHistory();
                             txtBilDate.Clear();
                             txtBillCode.Clear();
                             txtCustomerName.Clear();
@@ -859,7 +881,7 @@ namespace AusNail
         {
             try
             {
-                tabHistory = true;
+                //tabHistory = true;
                 _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
@@ -886,7 +908,7 @@ namespace AusNail
         {
             try
             {
-                tabHistory = true;
+                //tabHistory = true;
                 _billIDHistory = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 _billIDHistoryOld = int.Parse(trHistoryBill.SelectedNode.Tag.ToString());
                 //loadBillInfor(_billIDHistory);
@@ -971,10 +993,6 @@ namespace AusNail
 
         private void LoadAll(int billID)
         {
-            LoadHistory();
-            //createTable();
-            //loadService();
-            //LoadGrid();
             loadBillInfor(billID);
             loadGridDetail_Bill(billID, true);
             btnPay.Enabled = true;
@@ -985,6 +1003,7 @@ namespace AusNail
                 trTemporaryBill.SelectedNode = tns[0];
                 trTemporaryBill.SelectedNode.EnsureVisible();  //scroll if necessary
                 trTemporaryBill.Focus();
+                tns[0].BackColor = Color.LightSkyBlue;
             }
         }
 
