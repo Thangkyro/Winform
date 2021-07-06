@@ -46,8 +46,16 @@ namespace AusNail.Process
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            zCustomerInsert();
-            this.Close();
+            if (txtPhoneNum.Text.Trim() == "" || txtName.Text.Trim() == "")
+            {
+                MessageBox.Show("Phone number and Name is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                zCustomerInsert();
+                //this.Close();
+            }
         }
         private void zCustomerInsert()
         {
@@ -66,6 +74,10 @@ namespace AusNail.Process
                 }
                 string sysUIFormat = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern;
                 string DateOfBirth = this.txtDateofBirth.Text.Trim();
+                if (DateOfBirth == "/  /")
+                {
+                    DateOfBirth = "01/01/1900";
+                }
                 string Date = DateOfBirth;
                 if (sysUIFormat != "dd/MM/yyyy")
                 {
@@ -89,6 +101,7 @@ namespace AusNail.Process
                     //frm.Show();
 
                     sResult = phoneNumber + "|" + customerName;
+                    this.Close();
                 }
                 else
                 {
@@ -99,6 +112,7 @@ namespace AusNail.Process
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
