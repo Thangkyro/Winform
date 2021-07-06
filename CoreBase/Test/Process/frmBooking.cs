@@ -1,4 +1,5 @@
-﻿using CoreBase;
+﻿using AusNail.Class;
+using CoreBase;
 using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -368,8 +369,16 @@ namespace AusNail.Process
                                 DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
                                 if (dtBill != null && dtBill.Rows.Count > 0)
                                 {
-                                    Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
-                                    frm.ShowDialog();
+                                    //Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
+                                    //frm.ShowDialog();
+
+                                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                                    DataSet dsData = new DataSet();
+                                    dsData.Tables.Add(dataTable);
+                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true);
+                                    f.ShowDialog();
+                                    //Print print = new Print();
+                                    //print.Printer(dsData, "rpt_bill.rpt");
                                 }
 
                             }
