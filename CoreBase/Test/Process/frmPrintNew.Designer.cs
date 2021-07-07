@@ -45,11 +45,11 @@ namespace AusNail.Process
             this.rptReport.Location = new System.Drawing.Point(0, 0);
             this.rptReport.Name = "rptReport";
             this.rptReport.ShowGroupTreeButton = false;
-            this.rptReport.ShowLogo = false;
-            this.rptReport.ShowParameterPanelButton = false;
+            //this.rptReport.ShowLogo = false;
+            //this.rptReport.ShowParameterPanelButton = false;
             this.rptReport.Size = new System.Drawing.Size(1069, 672);
             this.rptReport.TabIndex = 21;
-            this.rptReport.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            //this.rptReport.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // panel1
             // 

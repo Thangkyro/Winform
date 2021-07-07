@@ -43,6 +43,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.grbDetail = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnReLoad = new AltoControls.AltoButton();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.lblBookingDate = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -83,7 +85,7 @@
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.RowHeadersWidth = 51;
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvDetail.Size = new System.Drawing.Size(1227, 406);
+            this.dgvDetail.Size = new System.Drawing.Size(1263, 358);
             this.dgvDetail.TabIndex = 2;
             this.dgvDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellContentClick);
             // 
@@ -98,7 +100,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(1072, 15);
+            this.btnCancel.Location = new System.Drawing.Point(1108, 15);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
@@ -121,7 +123,7 @@
             this.btnNewCustomer.ForeColor = System.Drawing.Color.Black;
             this.btnNewCustomer.Inactive1 = System.Drawing.Color.Cyan;
             this.btnNewCustomer.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnNewCustomer.Location = new System.Drawing.Point(883, 15);
+            this.btnNewCustomer.Location = new System.Drawing.Point(919, 15);
             this.btnNewCustomer.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewCustomer.Name = "btnNewCustomer";
             this.btnNewCustomer.Radius = 10;
@@ -144,7 +146,7 @@
             this.btnNewBooking.ForeColor = System.Drawing.Color.Black;
             this.btnNewBooking.Inactive1 = System.Drawing.Color.Cyan;
             this.btnNewBooking.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnNewBooking.Location = new System.Drawing.Point(692, 15);
+            this.btnNewBooking.Location = new System.Drawing.Point(728, 15);
             this.btnNewBooking.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewBooking.Name = "btnNewBooking";
             this.btnNewBooking.Radius = 10;
@@ -164,7 +166,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1256, 173);
+            this.panel1.Size = new System.Drawing.Size(1292, 173);
             this.panel1.TabIndex = 7;
             // 
             // dgvHeader
@@ -196,7 +198,7 @@
             this.dgvHeader.ReadOnly = true;
             this.dgvHeader.RowHeadersWidth = 51;
             this.dgvHeader.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvHeader.Size = new System.Drawing.Size(1236, 153);
+            this.dgvHeader.Size = new System.Drawing.Size(1272, 153);
             this.dgvHeader.TabIndex = 1;
             this.dgvHeader.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHeader_CellClick);
             // 
@@ -210,7 +212,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 170);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(1253, 447);
+            this.panel2.Size = new System.Drawing.Size(1289, 399);
             this.panel2.TabIndex = 8;
             // 
             // grbDetail
@@ -219,32 +221,70 @@
             this.grbDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbDetail.Location = new System.Drawing.Point(10, 10);
             this.grbDetail.Name = "grbDetail";
-            this.grbDetail.Size = new System.Drawing.Size(1233, 427);
+            this.grbDetail.Size = new System.Drawing.Size(1269, 379);
             this.grbDetail.TabIndex = 9;
             this.grbDetail.TabStop = false;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnReLoad);
+            this.panel3.Controls.Add(this.dtpDate);
             this.panel3.Controls.Add(this.lblBookingDate);
             this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnNewCustomer);
             this.panel3.Controls.Add(this.btnNewBooking);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 617);
+            this.panel3.Location = new System.Drawing.Point(0, 569);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1256, 82);
+            this.panel3.Size = new System.Drawing.Size(1292, 82);
             this.panel3.TabIndex = 9;
+            // 
+            // btnReLoad
+            // 
+            this.btnReLoad.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnReLoad.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnReLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReLoad.BackColor = System.Drawing.Color.Transparent;
+            this.btnReLoad.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnReLoad.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReLoad.ForeColor = System.Drawing.Color.Black;
+            this.btnReLoad.Inactive1 = System.Drawing.Color.Cyan;
+            this.btnReLoad.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnReLoad.Location = new System.Drawing.Point(394, 15);
+            this.btnReLoad.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReLoad.Name = "btnReLoad";
+            this.btnReLoad.Radius = 10;
+            this.btnReLoad.Size = new System.Drawing.Size(140, 50);
+            this.btnReLoad.Stroke = false;
+            this.btnReLoad.StrokeColor = System.Drawing.Color.Gray;
+            this.btnReLoad.TabIndex = 9;
+            this.btnReLoad.Text = "Re-Load";
+            this.btnReLoad.Transparency = false;
+            this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(162, 18);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(216, 45);
+            this.dtpDate.TabIndex = 8;
+            this.dtpDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
             // 
             // lblBookingDate
             // 
+            this.lblBookingDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblBookingDate.AutoSize = true;
             this.lblBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookingDate.Location = new System.Drawing.Point(21, 40);
+            this.lblBookingDate.Location = new System.Drawing.Point(21, 28);
             this.lblBookingDate.Name = "lblBookingDate";
-            this.lblBookingDate.Size = new System.Drawing.Size(64, 25);
+            this.lblBookingDate.Size = new System.Drawing.Size(135, 25);
             this.lblBookingDate.TabIndex = 7;
-            this.lblBookingDate.Text = "label1";
+            this.lblBookingDate.Text = "Date Booking:";
             // 
             // panel4
             // 
@@ -255,7 +295,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1256, 699);
+            this.panel4.Size = new System.Drawing.Size(1292, 651);
             this.panel4.TabIndex = 10;
             // 
             // timer1
@@ -269,7 +309,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1256, 699);
+            this.ClientSize = new System.Drawing.Size(1292, 651);
             this.Controls.Add(this.panel4);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -302,5 +342,7 @@
         private System.Windows.Forms.Label lblBookingDate;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox grbDetail;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private AltoControls.AltoButton btnReLoad;
     }
 }
