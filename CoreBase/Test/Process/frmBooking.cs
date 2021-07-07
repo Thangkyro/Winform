@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,8 @@ namespace AusNail.Process
             panel4.BackColor = NailApp.ColorUser;
             _dateFilter = dateFilter;
             _branchIDChoose = branchID;
-            lblBookingDate.Text = "Date Booking: " + _dateFilter.ToString("dd/MM/yyyy");
+            //lblBookingDate.Text = "Date Booking: " + _dateFilter.ToString("dd/MM/yyyy");
+            dtpDate.Value = _dateFilter;
             //Update Status
             int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, 0, "");
             LoadGridHeader();
@@ -136,7 +138,7 @@ namespace AusNail.Process
                     dgvDetail.Columns["No"].ReadOnly = true;
                     dgvDetail.Columns["No"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-                    dgvDetail.Columns["BillNumber"].HeaderText = "Bill Number - Phone Number";
+                    dgvDetail.Columns["BillNumber"].HeaderText = "Bill Number - Customer - Phone Number";
                     dgvDetail.Columns["BillNumber"].ReadOnly = true;
                     dgvDetail.Columns["BillNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -224,14 +226,33 @@ namespace AusNail.Process
 
                 if (lstResult != null && lstResult.Count > 1) // Add Service
                 {
-                    Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), lstResult[1].ToString().Trim(), lstResult[0].ToString().Trim(), 0, "Add");
-                    frmSerAdd.ShowDialog();
-                    int iResult = frmSerAdd.SendData();
-                    if (iResult != 0)
+                    DateTime dt;
+                    DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dt);
+                    if (dt == null)
                     {
-                        LoadGridHeader();
-                        LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+                        MessageBox.Show("Please choose date.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
+                    else if (dt.Year == 0001)
+                    {
+                        MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), lstResult[1].ToString().Trim(), lstResult[0].ToString().Trim(), 0, "Add", dt);
+                        frmSerAdd.ShowDialog();
+                        int iResult = frmSerAdd.SendData();
+                        if (iResult != 0)
+                        {
+                            LoadGridHeader();
+                            LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+                        }
+                    }
+
                 }
                 else if (lstResult != null && lstResult.Count == 1) //Add Customer
                 {
@@ -246,16 +267,31 @@ namespace AusNail.Process
                             lstaddCusResult = addCusResult.Split('|').ToList();
                         }
 
-                        //Show form AddService
-                        Process.frmServiceAdd frmSerAdd =
-                            new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
-                            NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
-                            lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
-                        frmSerAdd.ShowDialog();
-                        int iResult = frmSerAdd.SendData();
-                        if (iResult != 0)
+                        DateTime dt;
+                        DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                                       CultureInfo.InvariantCulture,
+                                       DateTimeStyles.None,
+                                       out dt);
+                        if (dt == null)
                         {
-                            //LoadAll(iResult);
+                            MessageBox.Show("Please choose date.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else if (dt.Year == 0001)
+                        {
+                            MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), lstaddCusResult[1].ToString().Trim(), lstaddCusResult[0].ToString().Trim(), 0, "Add", dt);
+                            frmSerAdd.ShowDialog();
+                            int iResult = frmSerAdd.SendData();
+                            if (iResult != 0)
+                            {
+                                LoadGridHeader();
+                                LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+                            }
                         }
                     }
                 }
@@ -273,16 +309,31 @@ namespace AusNail.Process
                         lstaddCusResult = addCusResult.Split('|').ToList();
                     }
 
-                    //Show form AddService
-                    Process.frmServiceAdd frmSerAdd =
-                        new Process.frmServiceAdd(int.Parse(NailApp.BranchID),
-                        NailApp.CurrentUserId, lstaddCusResult[1] != null ? lstaddCusResult[1].ToString().Trim() : "",
-                        lstaddCusResult[0] != null ? lstaddCusResult[0].ToString().Trim() : "");
-                    frmSerAdd.ShowDialog();
-                    int iResult = frmSerAdd.SendData();
-                    if (iResult != 0)
+                    DateTime dt;
+                    DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dt);
+                    if (dt == null)
                     {
-                        //LoadAll(iResult);
+                        MessageBox.Show("Please choose date.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else if (dt.Year == 0001)
+                    {
+                        MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), lstaddCusResult[1].ToString().Trim(), lstaddCusResult[0].ToString().Trim(), 0, "Add", dt);
+                        frmSerAdd.ShowDialog();
+                        int iResult = frmSerAdd.SendData();
+                        if (iResult != 0)
+                        {
+                            LoadGridHeader();
+                            LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+                        }
                     }
                 }
             }
@@ -331,7 +382,7 @@ namespace AusNail.Process
                 string headerText = senderGrid.Columns[e.ColumnIndex].Name;
                 if (senderGrid.Columns["Edit"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "Edit")
                 {
-                    Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), "", "", int.Parse(dgvDetail["BookID", e.RowIndex].Value.ToString()), "Edit");
+                    Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), "", "", int.Parse(dgvDetail["BookID", e.RowIndex].Value.ToString()), "Edit", null);
                     frmSerAdd.ShowDialog();
                     int iResult = frmSerAdd.SendData();
                     if (iResult != 0)
@@ -355,11 +406,11 @@ namespace AusNail.Process
                         }
                         int error = 0;
                         string errorMesg = "";
-                        //Insert Bill
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, _dateFilter, billCode, error, errorMesg);
+                        //Insert Bill for getdate
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, error, errorMesg);
                         if (ret > 0)
                         {
-                            //Update Status = Cancel
+                            //Update Status = ToBill
                             int ret1 = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMasterCancel", bookID, _branchIDChoose, "ToBill", NailApp.CurrentUserId, error, errorMesg);
                             LoadGridHeader();
                             LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
@@ -380,9 +431,7 @@ namespace AusNail.Process
                                     //Print print = new Print();
                                     //print.Printer(dsData, "rpt_bill.rpt");
                                 }
-
                             }
-
                         }
                         else if (!string.IsNullOrEmpty(errorMesg))
                         {
@@ -452,6 +501,40 @@ namespace AusNail.Process
             {
 
             }
+        }
+
+        private void btnReLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt;
+                DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                               CultureInfo.InvariantCulture,
+                               DateTimeStyles.None,
+                               out dt);
+                if (dt == null)
+                {
+                    MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (dt.Year == 0001)
+                {
+                    MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    _dateFilter = dt;
+                }
+                //Load grid
+                LoadGridHeader();
+                LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
     }
 }

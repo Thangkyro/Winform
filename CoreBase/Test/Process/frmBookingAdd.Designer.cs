@@ -72,12 +72,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvService.Location = new System.Drawing.Point(13, 179);
+            this.dgvService.Location = new System.Drawing.Point(13, 202);
             this.dgvService.Margin = new System.Windows.Forms.Padding(4);
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
             this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvService.Size = new System.Drawing.Size(1080, 424);
+            this.dgvService.Size = new System.Drawing.Size(1080, 401);
             this.dgvService.TabIndex = 4;
             this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
@@ -90,7 +90,7 @@
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(286, 28);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(305, 28);
             this.txtPhoneNumber.TabIndex = 1;
             // 
             // btnCancel
@@ -173,21 +173,21 @@
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(498, 94);
+            this.txtName.Location = new System.Drawing.Point(515, 94);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(595, 28);
+            this.txtName.Size = new System.Drawing.Size(578, 28);
             this.txtName.TabIndex = 2;
             // 
             // dtpBookingDate
             // 
             this.dtpBookingDate.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpBookingDate.Location = new System.Drawing.Point(204, 126);
             this.dtpBookingDate.Name = "dtpBookingDate";
-            this.dtpBookingDate.Size = new System.Drawing.Size(286, 28);
+            this.dtpBookingDate.Size = new System.Drawing.Size(305, 45);
             this.dtpBookingDate.TabIndex = 3;
             // 
             // label2

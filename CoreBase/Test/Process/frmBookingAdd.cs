@@ -25,13 +25,14 @@ namespace AusNail.Process
         private DataTable _dtBookingDetail = null;
         private int iResult = 0;
         private string _action = "";
+        private DateTime _dateChoose;
 
         public frmBookingAdd()
         {
             InitializeComponent();
         }
 
-        public frmBookingAdd(int branchId, string customerName, string phoneNumber, int bookID, string action)
+        public frmBookingAdd(int branchId, string customerName, string phoneNumber, int bookID, string action, DateTime? dateChoose)
         {
             InitializeComponent();
             try
@@ -47,6 +48,19 @@ namespace AusNail.Process
             _userID = NailApp.CurrentUserId;
             txtName.Text = customerName;
             txtPhoneNumber.Text = phoneNumber;
+            //_dateChoose = dateChoose ?? DateTime.Now;
+            if (dateChoose.HasValue)
+            {
+                DateTime dt;
+                DateTime.TryParseExact(dateChoose.Value.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("HH:mm"), "dd/MM/yyyy HH:mm",
+                               CultureInfo.InvariantCulture,
+                               DateTimeStyles.None,
+                               out dt);
+
+                dtpBookingDate.Value = dt;
+                _dateChoose = dt;
+
+            }
             LoadMaster();
             loadService();
             LoadGrid();
@@ -151,7 +165,7 @@ namespace AusNail.Process
                 dgvService.Columns["Price"].Width = 100;
                 dgvService.Columns["Price"].ReadOnly = true;
                 dgvService.Columns["Amount"].HeaderText = "Amount";
-                dgvService.Columns["Amount"].ReadOnly = true;
+                dgvService.Columns["Amount"].Visible = false;
                 dgvService.Columns["Amount"].Width = 120;
                 dgvService.Columns["Note"].HeaderText = "Note";
                 dgvService.Columns["Note"].Width = 120;
@@ -249,10 +263,18 @@ namespace AusNail.Process
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Create Bill", MessageBoxButtons.YesNo);
+                DialogResult dialogResult;
+                if (_action == "Add")
+                {
+                    dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    dialogResult = MessageBox.Show("Are you confirm ?", "Edit Booking", MessageBoxButtons.YesNo);
+                }
+                //dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     DateTime dtBook;

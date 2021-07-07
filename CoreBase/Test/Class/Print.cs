@@ -23,7 +23,7 @@ namespace AusNail.Class
                 oRpt.Load("..//..//Report//" + tenfile, OpenReportMethod.OpenReportByTempCopy);
                 oRpt.SetDataSource(ds);
 
-                oRpt.PrintOptions.PaperSize = PaperSize.DefaultPaperSize;//.PaperA4;
+                //oRpt.PrintOptions.PaperSize = PaperSize.DefaultPaperSize;//.PaperA4;
                 //oRpt.PrintOptions.PaperOrientation = (kieu == 1) ? PaperOrientation.Portrait : PaperOrientation.Landscape;
 
                 oRpt.PrintToPrinter(1, false, 0, 0);

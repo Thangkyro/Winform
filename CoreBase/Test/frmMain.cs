@@ -408,14 +408,14 @@ namespace AusNail
         private void checkingToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Book");
-            ShowForm(frm);
+            //Process.frmCheckin frm = new Process.frmCheckin(int.Parse(NailApp.BranchID), NailApp.CurrentUserId, "Book");
+            //ShowForm(frm);
         }
 
         private void Bill_Click(object sender, EventArgs e)
         {
-            Process.frmBill frm = new Process.frmBill(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-            ShowForm(frm);
+            //Process.frmBill frm = new Process.frmBill(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            //ShowForm(frm);
         }
 
         private void LogoffToolStripMenuItem_Click(object sender, EventArgs e)
