@@ -110,29 +110,37 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
+                txtCustomerCode.Focus();
+
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                foreach (DataRow dr in changedRows.Rows)
+                if (changedRows != null)
                 {
-                    dr["created_by"] = NailApp.CurrentUserId;
-                    dr["modified_by"] = NailApp.CurrentUserId;
-                    if (dr[_idName].ToString() == "0")
+                    foreach (DataRow dr in changedRows.Rows)
                     {
-                        this.zEditRow = dr;
-                        isSuccess = base.InsertData();
-                    }
-                    else
-                    {
-                        this.zEditRow = dr;
-                        isSuccess = base.UpdateData();
+                        this.zEditRow = null;
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
+                        if (dr[_idName].ToString() == "0")
+                        {
+                            this.zEditRow = dr;
+                            this.zEditRow["CustomerCode"] = GenCustomerCode();
+                            isSuccess = base.InsertData();
+                        }
+                        else
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.UpdateData();
+                        }
+
+                        if (!isSuccess)
+                        {
+                            listError += "Save error customer: " + dr["Name"].ToString() + ". \n";
+                        }
                     }
 
-                    if (!isSuccess)
-                    {
-                        listError += "Save error customer: " + dr["Name"].ToString() + ". \n";
-                    }
                 }
                 #endregion
 
@@ -348,6 +356,19 @@ namespace AusNail.Dictionary
             if (e.KeyData == (Keys.Enter))
             {
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells["BranchId"].Value = NailApp.BranchID;
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

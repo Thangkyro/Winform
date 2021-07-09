@@ -84,6 +84,7 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
+                txtBranchCode.Focus();
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();

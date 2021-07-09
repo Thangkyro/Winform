@@ -107,30 +107,36 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
+                txtVoucherCode.Focus();
+
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                foreach (DataRow dr in changedRows.Rows)
+                if (changedRows != null)
                 {
-                    dr["created_by"] = NailApp.CurrentUserId;
-                    dr["modified_by"] = NailApp.CurrentUserId;
-                    if (dr[_idName].ToString() == "0")
+                    foreach (DataRow dr in changedRows.Rows)
                     {
-                        this.zEditRow = dr;
-                        isSuccess = base.InsertData();
-                    }
-                    else
-                    {
-                        this.zEditRow = dr;
-                        isSuccess = base.UpdateData();
-                    }
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
+                        if (dr[_idName].ToString() == "0")
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.InsertData();
+                        }
+                        else
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.UpdateData();
+                        }
 
-                    if (!isSuccess)
-                    {
-                        listError += "Save error voucher: " + dr["VoucherCode"].ToString() + ". \n";
+                        if (!isSuccess)
+                        {
+                            listError += "Save error voucher: " + dr["VoucherCode"].ToString() + ". \n";
+                        }
                     }
                 }
+                
                 #endregion
 
                 if (isSuccess)
@@ -332,6 +338,11 @@ namespace AusNail.Dictionary
             {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+
         }
     }
 }
