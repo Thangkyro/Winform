@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.panel2 = new System.Windows.Forms.Panel();
             this.GridDetail = new System.Windows.Forms.DataGridView();
-            this.ctmGridView = new System.Windows.Forms.ContextMenuStrip();
+            this.ctmGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refeshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -93,7 +94,7 @@
             this.lblTime.Location = new System.Drawing.Point(1133, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "20:18:01";
+            this.lblTime.Text = "23:31:49";
             // 
             // btnSave
             // 
@@ -130,6 +131,7 @@
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridDetail_CellFormatting);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridDetail_DefaultValuesNeeded);
             // 
             // ctmGridView
             // 

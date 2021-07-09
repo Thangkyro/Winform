@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,7 @@ namespace AusNail.Dictionary
                 return;
             }
             base.FillData();
+            CreateBinding(txtStaffID);
             CreateBinding(cbobranchId);
             CreateBinding(txtStaffCode);
             CreateBinding(txtName);
@@ -95,7 +97,7 @@ namespace AusNail.Dictionary
             bool isSuccess = false;
             try
             {
-                LoadEditRow();
+                //LoadEditRow();
                 if (_Mode == "Add")
                 {
                     if (!NailApp.lstPermission.Contains(STAFF_ADD_CMDKEY) && !NailApp.IsAdmin())
@@ -103,29 +105,6 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    //isSuccess = base.InsertData();
-                    //if (isSuccess)
-                    //{
-                    //    // Insert Image
-                    //    int staffID = 0;
-                    //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
-                    //    if (dt != null && dt.Rows.Count > 0)
-                    //    {
-                    //        staffID = int.Parse(dt.Rows[0][0].ToString());
-                    //    }
-                    //    byte[] image = null;
-                    //    if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
-                    //    {
-                    //        image = dicImage[zEditRow["StaffCode"].ToString()];
-                    //    }
-                    //    if (staffID != 0)
-                    //    {
-                    //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
-
-                    //    }
-                        
-                    //}
-                    
                 }
                 else
                 {
@@ -134,71 +113,57 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                    //if (isSuccess = base.UpdateData())
-                    //{
-                    //    // Insert Image
-                    //    int staffID = 0;
-                    //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
-                    //    if (dt != null && dt.Rows.Count > 0)
-                    //    {
-                    //        staffID = int.Parse(dt.Rows[0][0].ToString());
-                    //    }
-                    //    byte[] image = null;
-                    //    if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
-                    //    {
-                    //        image = dicImage[zEditRow["StaffCode"].ToString()];
-                    //    }
-                    //    if (staffID != 0)
-                    //    {
-                    //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
-
-                    //    }
-                    //}
-                    //return base.UpdateData();
                 }
+
+                txtName.Focus();
 
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                foreach (DataRow dr in changedRows.Rows)
+                if (changedRows != null)
                 {
-                    dr["created_by"] = NailApp.CurrentUserId;
-                    dr["modified_by"] = NailApp.CurrentUserId;
-                    if (dr[_idName].ToString() == "0")
+                    foreach (DataRow dr in changedRows.Rows)
                     {
-                        this.zEditRow = dr;
-                        isSuccess = base.InsertData();
-                    }
-                    else
-                    {
-                        this.zEditRow = dr;
-                        isSuccess = base.UpdateData();
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
+                        if (dr[_idName].ToString() == "0")
+                        {
+                            this.zEditRow = dr;
+                            this.zEditRow["StaffCode"] = GenStaffCode();
+                            isSuccess = base.InsertData();
+                        }
+                        else
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.UpdateData();
+                        }
+
+                        if (!isSuccess)
+                        {
+                            listError += "Save error staff: " + dr["Name"].ToString() + ". \n";
+                        }
+                        //else
+                        //{
+                        //    int staffID = 0;
+                        //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
+                        //    if (dt != null && dt.Rows.Count > 0)
+                        //    {
+                        //        staffID = int.Parse(dt.Rows[0][0].ToString());
+                        //    }
+                        //    byte[] image = null;
+                        //    if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
+                        //    {
+                        //        image = dicImage[zEditRow["StaffCode"].ToString()];
+                        //    }
+                        //    if (staffID != 0)
+                        //    {
+                        //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+
+                        //    }
+                        //}
                     }
 
-                    if (!isSuccess)
-                    {
-                        listError += "Save error staff: " + dr["Name"].ToString() + ". \n";
-                    }
-                    else
-                    {
-                        int staffID = 0;
-                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select StaffID From zStaff WITH(NOLOCK) Where StaffCode = '" + zEditRow["StaffCode"].ToString() + "'");
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            staffID = int.Parse(dt.Rows[0][0].ToString());
-                        }
-                        byte[] image = null;
-                        if (dicImage.Where(d => d.Key == zEditRow["StaffCode"].ToString()).ToList().Count > 0)
-                        {
-                            image = dicImage[zEditRow["StaffCode"].ToString()];
-                        }
-                        if (staffID != 0)
-                        {
-                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
-
-                        }
-                    }
                 }
                 #endregion
 
@@ -211,7 +176,7 @@ namespace AusNail.Dictionary
                     LoadData();
                     lblMessInfomation.Text = listError;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -225,7 +190,7 @@ namespace AusNail.Dictionary
         {
             this.zEditTableName = _tableName;
             this.zViewTableName = _tableName;
-            this.Text += " Staff"; 
+            this.Text += " Staff";
             base.InitForm();
         }
 
@@ -270,34 +235,18 @@ namespace AusNail.Dictionary
 
 
 
-            DataGridViewButtonColumn dgvC = new DataGridViewButtonColumn();
-            dgvC.DataPropertyName = "UploadImage";
-            dgvC.HeaderText = "UploadImage";
-            dgvC.Name = "UploadImage";
-            dgvC.Text = "Upload Image";
-            dgvC.UseColumnTextForButtonValue = true;
-            var DataGridViewButtonColumn = GridDetail.Columns["UploadImage"];
-            if (DataGridViewButtonColumn == null)
-            {
-                GridDetail.Columns.Add(dgvC);
-                GridDetail.Columns["UploadImage"].DisplayIndex = 2;
-            }
-            
-
-            //Image
-            //DataGridViewImageColumn dgvIm = new DataGridViewImageColumn();
-            //dgvIm.DataPropertyName = "ImageName";
-            //dgvIm.HeaderText = "ImageName";
-            //dgvIm.Name = "ImageName";
-            //GridDetail.Columns.Add(dgvIm);
-            //GridDetail.Columns["ImageName"].DisplayIndex = 20;
-
-
-            //DataGridViewTextBoxColumn dgvT = new DataGridViewTextBoxColumn();
-            //dgvT.DataPropertyName = "ImageName";
-            //dgvT.HeaderText = "ImageName";
-            //dgvT.Name = "ImageName";
-            //GridDetail.Columns.Add(dgvT);
+            //DataGridViewButtonColumn dgvC = new DataGridViewButtonColumn();
+            //dgvC.DataPropertyName = "UploadImage";
+            //dgvC.HeaderText = "UploadImage";
+            //dgvC.Name = "UploadImage";
+            //dgvC.Text = "Upload Image";
+            //dgvC.UseColumnTextForButtonValue = true;
+            //var DataGridViewButtonColumn = GridDetail.Columns["UploadImage"];
+            //if (DataGridViewButtonColumn == null)
+            //{
+            //    GridDetail.Columns.Add(dgvC);
+            //    GridDetail.Columns["UploadImage"].DisplayIndex = 2;
+            //}
 
             ///GridDetail.Columns["ImageName"].ReadOnly = true;
             GridDetail.Columns["StaffId"].Visible = false;
@@ -320,17 +269,18 @@ namespace AusNail.Dictionary
             GridDetail.Columns["created_at"].HeaderText = "Create at";
             GridDetail.Columns["modified_by"].HeaderText = "Modified by";
             GridDetail.Columns["modified_at"].HeaderText = "Modified at";
-            
+
         }
 
         private void GridDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (e.RowIndex >= 0 )//&& e.ColumnIndex != 19) // #Button Upload Image
+                if (e.RowIndex >= 0)//&& e.ColumnIndex != 19) // #Button Upload Image
                 {
                     _postion = e.RowIndex;
                     DataGridViewRow row = this.GridDetail.Rows[e.RowIndex];
+                    txtStaffID.Text = row.Cells["StaffId"].Value.ToString();
                     cbobranchId.SelectedValue = row.Cells["branchId"].Value.ToString();
                     txtStaffCode.Text = row.Cells["StaffCode"].Value.ToString();
                     txtName.Text = row.Cells["Name"].Value.ToString();
@@ -356,7 +306,11 @@ namespace AusNail.Dictionary
                             var stream = new MemoryStream(data);
                             pbImage.Image = Image.FromStream(stream);
                         }
-                        
+                        else
+                        {
+                            pbImage.Image = null;
+                        }
+
                     }
                     else
                     {
@@ -474,17 +428,17 @@ namespace AusNail.Dictionary
 
         private void GridDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            string headerText = GridDetail.Columns[e.ColumnIndex].Name;
-            if (headerText.Equals("Name") && Convert.ToString(e.FormattedValue) != "") // 1 Name
-            {
-                int id = int.Parse(GridDetail["StaffId", e.RowIndex].Value != DBNull.Value ? GridDetail["StaffId", e.RowIndex].Value.ToString() : "0");
-                if (id == 0) // add new
-                {
-                    int rIndex = e.RowIndex;
-                    GridDetail["StaffCode", rIndex].Value = GenStaffCode();
-                }
-                
-            }
+            //string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+            //if (headerText.Equals("Name") && Convert.ToString(e.FormattedValue) != "") // 1 Name
+            //{
+            //    int id = int.Parse(GridDetail["StaffId", e.RowIndex].Value != DBNull.Value ? GridDetail["StaffId", e.RowIndex].Value.ToString() : "0");
+            //    if (id == 0) // add new
+            //    {
+            //        int rIndex = e.RowIndex;
+            //        GridDetail["StaffCode", rIndex].Value = GenStaffCode();
+            //    }
+
+            //}
         }
 
         private void GridDetail_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -500,6 +454,91 @@ namespace AusNail.Dictionary
             if (e.KeyData == (Keys.Enter))
             {
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells["BranchId"].Value = NailApp.BranchID;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Upload Image", MessageBoxButtons.YesNo);
+                //if (dialogResult == DialogResult.Yes)
+                //{
+                //TODO - Button Clicked - Execute Code Here
+                OpenFileDialog opnfd = new OpenFileDialog();
+                opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                if (opnfd.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = opnfd.FileName;
+                    byte[] bytes = File.ReadAllBytes(fileName);
+                    //pbImage.Image = new Bitmap(opnfd.FileName);
+                    //pbImage.ImageLocation = opnfd.FileName;
+                    //System.Drawing.Image imm = pbImage.Image;
+                    //int checkImage = 1;
+                    string staffID = txtStaffID.Text;
+                    if (bytes != null)
+                    {
+                        if (!string.IsNullOrEmpty(staffID) && staffID != "0")
+                        {
+                            if (dicImage.ContainsKey(staffID))
+                            {
+                                dicImage.Remove(staffID);
+                                dicImage.Add(staffID, bytes);
+                            }
+                            else
+                            {
+                                dicImage.Add(staffID, bytes);
+                            }
+                        }
+                        
+                        pbImage.Image = new Bitmap(opnfd.FileName);
+                    }
+                }
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnSaveImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Upload Image", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string staffID = txtStaffID.Text;
+
+                    byte[] image = null;
+                    if (dicImage.Where(d => d.Key == staffID).ToList().Count > 0)
+                    {
+                        image = dicImage[staffID];
+                    }
+                    if (!string.IsNullOrEmpty(staffID) && staffID != "0")
+                    {
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }
