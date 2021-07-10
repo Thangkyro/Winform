@@ -352,14 +352,13 @@ namespace AusNail.Process
 
         private void SetDependencyBooking()
         {
-            DateTime _zDate = DateTime.Now;
-            if (_zDate.Day != _dateFilter.Day  || _zDate.Month != _dateFilter.Month || _zDate.Year != _dateFilter.Year)
-            {
-                _zDate = _dateFilter;
-            }
-            string cmdNewBooking = "select BookID, branchId, BookingDate, Status from dbo.zBookingMaster where branchid " +
-                    "= " + NailApp.BranchID + " ";// AND CAST('" + _zDate + "' AS Date ) = CAST( BookingDate AS Date )";
-            notificationNewBooking = new ZenSqlNotification(LoadDataBoking, cmdNewBooking);
+            DateTime _zDateMax = new DateTime(_dateFilter.Year, _dateFilter.Month, _dateFilter.Day,23,59,59);
+            DateTime _zDateMin = new DateTime(_dateFilter.Year, _dateFilter.Month, _dateFilter.Day, 0, 0, 0);
+            //";//
+
+            string cmdNewBooking = "select BookID, branchId, BookingDate, Status from dbo.zBookingMaster where zBookingMaster.branchid " +
+                    "= " + NailApp.BranchID + "  AND zBookingMaster.BookingDate BETWEEN @begin AND @End ";
+            notificationNewBooking = new ZenSqlNotification(LoadDataBoking, cmdNewBooking, _zDateMin, _zDateMax);
             notificationNewBooking.LoadData();
         }
         private void LoadDataBoking()
