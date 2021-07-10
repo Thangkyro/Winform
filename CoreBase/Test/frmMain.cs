@@ -412,12 +412,6 @@ namespace AusNail
             //ShowForm(frm);
         }
 
-        private void Bill_Click(object sender, EventArgs e)
-        {
-            //Process.frmBill frm = new Process.frmBill(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-            //ShowForm(frm);
-        }
-
         private void LogoffToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are You Sure ?", "Logoff", MessageBoxButtons.YesNo);
@@ -1428,6 +1422,11 @@ namespace AusNail
                 MessageBox.Show("You are not Devops.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+        }
+
+        private void TimeKeeping_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
