@@ -51,7 +51,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cbobranchId = new System.Windows.Forms.ComboBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtGender = new System.Windows.Forms.TextBox();
             this.txtCustomerCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,6 +61,7 @@
             this.txtCustIdMerge = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtGender = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).BeginInit();
@@ -73,14 +73,14 @@
             // 
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Location = new System.Drawing.Point(574, 320);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 13;
             this.chkis_inactive.Visible = false;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 435);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(899, 50);
             // 
             // imageList
@@ -103,7 +103,7 @@
             this.lblTime.Location = new System.Drawing.Point(823, 20);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 17);
-            this.lblTime.Text = "21:57:50";
+            this.lblTime.Text = "10:46:20";
             // 
             // btnSave
             // 
@@ -128,6 +128,7 @@
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             // 
             // ctmGridView
             // 
@@ -331,16 +332,6 @@
             this.txtName.TabIndex = 3;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
-            // txtGender
-            // 
-            this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGender.Location = new System.Drawing.Point(574, 141);
-            this.txtGender.Multiline = true;
-            this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(98, 21);
-            this.txtGender.TabIndex = 4;
-            this.txtGender.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
-            // 
             // txtCustomerCode
             // 
             this.txtCustomerCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -410,7 +401,7 @@
             this.chkIsMerge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIsMerge.AutoSize = true;
             this.chkIsMerge.Location = new System.Drawing.Point(574, 248);
-            this.chkIsMerge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkIsMerge.Margin = new System.Windows.Forms.Padding(2);
             this.chkIsMerge.Name = "chkIsMerge";
             this.chkIsMerge.Size = new System.Drawing.Size(66, 17);
             this.chkIsMerge.TabIndex = 11;
@@ -451,6 +442,16 @@
             this.label13.TabIndex = 57;
             this.label13.Text = "Customer";
             // 
+            // txtGender
+            // 
+            this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGender.Location = new System.Drawing.Point(574, 141);
+            this.txtGender.Multiline = true;
+            this.txtGender.Name = "txtGender";
+            this.txtGender.Size = new System.Drawing.Size(98, 21);
+            this.txtGender.TabIndex = 4;
+            this.txtGender.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,12 +485,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GridDetail);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmCustomer";
             this.Text = "Customer";
             this.Controls.SetChildIndex(this.GridDetail, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.chkis_inactive, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
@@ -517,6 +516,8 @@
             this.Controls.SetChildIndex(this.label12, 0);
             this.Controls.SetChildIndex(this.txtCustIdMerge, 0);
             this.Controls.SetChildIndex(this.label13, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.chkis_inactive, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridDetail)).EndInit();
@@ -547,7 +548,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbobranchId;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtGender;
         private System.Windows.Forms.TextBox txtCustomerCode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
@@ -561,5 +561,6 @@
         private System.Windows.Forms.TextBox txtCustIdMerge;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtGender;
     }
 }
