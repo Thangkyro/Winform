@@ -316,6 +316,7 @@
             this.Name = "frmBooking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Booking";
+            this.Load += new System.EventHandler(this.frmBooking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHeader)).EndInit();

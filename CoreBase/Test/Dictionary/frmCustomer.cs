@@ -239,14 +239,14 @@ namespace AusNail.Dictionary
             GridDetail.Columns["CustIdMerge"].HeaderText = "Cust Id Merge";
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
             GridDetail.Columns["Decriptions"].Visible = false;
-            GridDetail.Columns["created_by"].HeaderText = "Create by";
-            GridDetail.Columns["created_by"].ReadOnly = true;
-            GridDetail.Columns["created_at"].HeaderText = "Create at";
-            GridDetail.Columns["created_at"].ReadOnly = true;
-            GridDetail.Columns["modified_by"].HeaderText = "Modified by";
-            GridDetail.Columns["modified_by"].ReadOnly = true;
-            GridDetail.Columns["modified_at"].HeaderText = "Modified at";
-            GridDetail.Columns["modified_at"].ReadOnly = true;
+            //GridDetail.Columns["created_by"].HeaderText = "Create by";
+            GridDetail.Columns["created_by"].Visible = false;
+            //GridDetail.Columns["created_at"].HeaderText = "Create at";
+            GridDetail.Columns["created_at"].Visible = false;
+            //GridDetail.Columns["modified_by"].HeaderText = "Modified by";
+            GridDetail.Columns["modified_by"].Visible = false;
+            //GridDetail.Columns["modified_at"].HeaderText = "Modified at";
+            GridDetail.Columns["modified_at"].Visible = false;
 
         }
 

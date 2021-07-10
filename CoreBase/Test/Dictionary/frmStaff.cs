@@ -281,12 +281,16 @@ namespace AusNail.Dictionary
             GridDetail.Columns["DateOfBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
             GridDetail.Columns["TFN"].HeaderText = "Tax Number";
             GridDetail.Columns["BSB"].HeaderText = "BSB";
-            GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
-            GridDetail.Columns["created_by"].HeaderText = "Create by";
-            GridDetail.Columns["created_at"].HeaderText = "Create at";
-            GridDetail.Columns["modified_by"].HeaderText = "Modified by";
-            GridDetail.Columns["modified_at"].HeaderText = "Modified at";
+            //GridDetail.Columns["Decriptions"].Visible = false;
+            //GridDetail.Columns["created_by"].HeaderText = "Create by";
+            GridDetail.Columns["created_by"].Visible = false;
+            //GridDetail.Columns["created_at"].HeaderText = "Create at";
+            GridDetail.Columns["created_at"].Visible = false;
+            //GridDetail.Columns["modified_by"].HeaderText = "Modified by";
+            GridDetail.Columns["modified_by"].Visible = false;
+            //GridDetail.Columns["modified_at"].HeaderText = "Modified at";
+            GridDetail.Columns["modified_at"].Visible = false;
 
         }
 

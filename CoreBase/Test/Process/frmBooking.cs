@@ -23,6 +23,7 @@ namespace AusNail.Process
         private DataTable _dtDetail = new DataTable();
         private string _statusDetail = "";
         private int _timeDetail = -1;
+        private ZenSqlNotification notificationNewBill;
 
         public frmBooking(DateTime dateFilter, int branchID)
         {
@@ -34,8 +35,8 @@ namespace AusNail.Process
             dtpDate.Value = _dateFilter;
             //Update Status
             int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, 0, "");
-            LoadGridHeader();
-            LoadGridDetail("", _dateFilter, -1);
+            //LoadGridHeader();
+            //LoadGridDetail("", _dateFilter, -1);
         }
 
         #region Method
@@ -52,63 +53,66 @@ namespace AusNail.Process
 
                 if (_dtHeader != null)
                 {
+                    //dgvHeader.BeginInvoke((MethodInvoker)delegate ()
+                    //{
+                        dgvHeader.DataSource = _dtHeader;
+                        dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvHeader.Columns["Status"].HeaderText = "Status Booking";
 
-                    dgvHeader.DataSource = _dtHeader;
-                    dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    dgvHeader.Columns["Status"].HeaderText = "Status Booking";
+                        dgvHeader.Columns["OneAM"].HeaderText = "1 AM";
+                        dgvHeader.Columns["TwoAM"].HeaderText = "2 AM";
+                        dgvHeader.Columns["ThreeAM"].HeaderText = "3 AM";
+                        dgvHeader.Columns["FourAM"].HeaderText = "4 AM";
+                        dgvHeader.Columns["FiveAM"].HeaderText = "5 AM";
+                        dgvHeader.Columns["SixAM"].HeaderText = "6 AM";
+                        dgvHeader.Columns["SevenAM"].HeaderText = "7 AM";
+                        dgvHeader.Columns["EightAM"].HeaderText = "8 AM";
+                        dgvHeader.Columns["NineAM"].HeaderText = "9 AM";
+                        dgvHeader.Columns["TenAM"].HeaderText = "10 AM";
+                        dgvHeader.Columns["ElevenAM"].HeaderText = "11 AM";
+                        dgvHeader.Columns["TwelvePM"].HeaderText = "12 PM";
+                        dgvHeader.Columns["ThirteenPM"].HeaderText = "13 AM";
+                        dgvHeader.Columns["FourteenPM"].HeaderText = "14 PM";
+                        dgvHeader.Columns["FifteenPM"].HeaderText = "15 PM";
+                        dgvHeader.Columns["SixteenPM"].HeaderText = "16 PM";
+                        dgvHeader.Columns["SeventeenPM"].HeaderText = "17 PM";
+                        dgvHeader.Columns["EighteenPM"].HeaderText = "18 PM";
+                        dgvHeader.Columns["NineteenPM"].HeaderText = "19 PM";
+                        dgvHeader.Columns["TwentyPM"].HeaderText = "20 PM";
+                        dgvHeader.Columns["TwentyOnePM"].HeaderText = "21 PM";
+                        dgvHeader.Columns["TwentyTwoPM"].HeaderText = "22 PM";
+                        dgvHeader.Columns["TwentyThreePM"].HeaderText = "23 PM";
+                        dgvHeader.Columns["TwentyFourPM"].HeaderText = "24 AM";
+                        dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
 
-                    dgvHeader.Columns["OneAM"].HeaderText = "1 AM";
-                    dgvHeader.Columns["TwoAM"].HeaderText = "2 AM";
-                    dgvHeader.Columns["ThreeAM"].HeaderText = "3 AM";
-                    dgvHeader.Columns["FourAM"].HeaderText = "4 AM";
-                    dgvHeader.Columns["FiveAM"].HeaderText = "5 AM";
-                    dgvHeader.Columns["SixAM"].HeaderText = "6 AM";
-                    dgvHeader.Columns["SevenAM"].HeaderText = "7 AM";
-                    dgvHeader.Columns["EightAM"].HeaderText = "8 AM";
-                    dgvHeader.Columns["NineAM"].HeaderText = "9 AM";
-                    dgvHeader.Columns["TenAM"].HeaderText = "10 AM";
-                    dgvHeader.Columns["ElevenAM"].HeaderText = "11 AM";
-                    dgvHeader.Columns["TwelvePM"].HeaderText = "12 PM";
-                    dgvHeader.Columns["ThirteenPM"].HeaderText = "13 AM";
-                    dgvHeader.Columns["FourteenPM"].HeaderText = "14 PM";
-                    dgvHeader.Columns["FifteenPM"].HeaderText = "15 PM";
-                    dgvHeader.Columns["SixteenPM"].HeaderText = "16 PM";
-                    dgvHeader.Columns["SeventeenPM"].HeaderText = "17 PM";
-                    dgvHeader.Columns["EighteenPM"].HeaderText = "18 PM";
-                    dgvHeader.Columns["NineteenPM"].HeaderText = "19 PM";
-                    dgvHeader.Columns["TwentyPM"].HeaderText = "20 PM";
-                    dgvHeader.Columns["TwentyOnePM"].HeaderText = "21 PM";
-                    dgvHeader.Columns["TwentyTwoPM"].HeaderText = "22 PM";
-                    dgvHeader.Columns["TwentyThreePM"].HeaderText = "23 PM";
-                    dgvHeader.Columns["TwentyFourPM"].HeaderText = "24 AM";
-                    dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                        if (_dtHeader.Rows.Count > 0)
+                        {
+                            dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                        }
 
-                    if (_dtHeader.Rows.Count > 0)
-                    {
-                        dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                    }
-
-                    dgvHeader.Columns["OneAM"].Visible = false;
-                    dgvHeader.Columns["TwoAM"].Visible = false;
-                    dgvHeader.Columns["ThreeAM"].Visible = false;
-                    dgvHeader.Columns["FourAM"].Visible = false;
-                    dgvHeader.Columns["FiveAM"].Visible = false;
-                    dgvHeader.Columns["SixAM"].Visible = false;
-                    dgvHeader.Columns["SevenAM"].Visible = false;
-                    dgvHeader.Columns["EightAM"].Visible = false;
-                    dgvHeader.Columns["EighteenPM"].Visible = false;
-                    dgvHeader.Columns["NineteenPM"].Visible = false;
-                    dgvHeader.Columns["TwentyPM"].Visible = false;
-                    dgvHeader.Columns["TwentyOnePM"].Visible = false;
-                    dgvHeader.Columns["TwentyTwoPM"].Visible = false;
-                    dgvHeader.Columns["TwentyThreePM"].Visible = false;
-                    dgvHeader.Columns["TwentyFourPM"].Visible = false;
-                    dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvHeader.Columns["OneAM"].Visible = false;
+                        dgvHeader.Columns["TwoAM"].Visible = false;
+                        dgvHeader.Columns["ThreeAM"].Visible = false;
+                        dgvHeader.Columns["FourAM"].Visible = false;
+                        dgvHeader.Columns["FiveAM"].Visible = false;
+                        dgvHeader.Columns["SixAM"].Visible = false;
+                        dgvHeader.Columns["SevenAM"].Visible = false;
+                        dgvHeader.Columns["EightAM"].Visible = false;
+                        dgvHeader.Columns["EighteenPM"].Visible = false;
+                        dgvHeader.Columns["NineteenPM"].Visible = false;
+                        dgvHeader.Columns["TwentyPM"].Visible = false;
+                        dgvHeader.Columns["TwentyOnePM"].Visible = false;
+                        dgvHeader.Columns["TwentyTwoPM"].Visible = false;
+                        dgvHeader.Columns["TwentyThreePM"].Visible = false;
+                        dgvHeader.Columns["TwentyFourPM"].Visible = false;
+                        dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    //});
+                    //LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                //MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -131,78 +135,78 @@ namespace AusNail.Process
 
                 if (_dtDetail != null)
                 {
-                    dgvDetail.DataSource = _dtDetail;
-                    //dgvDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    dgvDetail.Columns["BookID"].Visible = false;
-                    dgvDetail.Columns["No"].HeaderText = "No.";
-                    dgvDetail.Columns["No"].ReadOnly = true;
-                    dgvDetail.Columns["No"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                        dgvDetail.DataSource = _dtDetail;
+                        //dgvDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvDetail.Columns["BookID"].Visible = false;
+                        dgvDetail.Columns["No"].HeaderText = "No.";
+                        dgvDetail.Columns["No"].ReadOnly = true;
+                        dgvDetail.Columns["No"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-                    dgvDetail.Columns["BillNumber"].HeaderText = "Bill Number - Customer - Phone Number";
-                    dgvDetail.Columns["BillNumber"].ReadOnly = true;
-                    dgvDetail.Columns["BillNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgvDetail.Columns["BillNumber"].HeaderText = "Bill Number - Customer - Phone Number";
+                        dgvDetail.Columns["BillNumber"].ReadOnly = true;
+                        dgvDetail.Columns["BillNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                    dgvDetail.Columns["TimeBooking"].HeaderText = "Time Booking";
-                    dgvDetail.Columns["TimeBooking"].ReadOnly = true;
-                    dgvDetail.Columns["TimeBooking"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                        dgvDetail.Columns["TimeBooking"].HeaderText = "Time Booking";
+                        dgvDetail.Columns["TimeBooking"].ReadOnly = true;
+                        dgvDetail.Columns["TimeBooking"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
-                    dgvDetail.Columns["TimeService"].HeaderText = "Time Service";
-                    dgvDetail.Columns["TimeService"].ReadOnly = true;
-                    dgvDetail.Columns["TimeService"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                    if (statusBook == "Temporary")
-                    {
-                        DataGridViewButtonColumn dgvE = new DataGridViewButtonColumn();
-                        dgvE.HeaderText = "Edit";
-                        dgvE.Name = "Edit";
-                        dgvE.Text = "Edit";
-                        dgvE.UseColumnTextForButtonValue = true;
-                        dgvE.Width = 50;
-                        dgvE.DefaultCellStyle.Padding = new Padding(1);
-                        dgvE.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                        //dgvE.Image = Properties.Resources.cancel;
-                        var DataGridViewButtonColumn = dgvDetail.Columns["Edit"];
-                        if (DataGridViewButtonColumn == null)
+                        dgvDetail.Columns["TimeService"].HeaderText = "Time Service";
+                        dgvDetail.Columns["TimeService"].ReadOnly = true;
+                        dgvDetail.Columns["TimeService"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                        if (statusBook == "Temporary")
                         {
-                            dgvDetail.Columns.Add(dgvE);
-                        }
+                            DataGridViewButtonColumn dgvE = new DataGridViewButtonColumn();
+                            dgvE.HeaderText = "Edit";
+                            dgvE.Name = "Edit";
+                            dgvE.Text = "Edit";
+                            dgvE.UseColumnTextForButtonValue = true;
+                            dgvE.Width = 50;
+                            dgvE.DefaultCellStyle.Padding = new Padding(1);
+                            dgvE.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                            //dgvE.Image = Properties.Resources.cancel;
+                            var DataGridViewButtonColumn = dgvDetail.Columns["Edit"];
+                            if (DataGridViewButtonColumn == null)
+                            {
+                                dgvDetail.Columns.Add(dgvE);
+                            }
 
-                        DataGridViewButtonColumn dgvT = new DataGridViewButtonColumn();
-                        dgvT.HeaderText = "ToBill";
-                        dgvT.Name = "ToBill";
-                        dgvT.Text = "ToBill";
-                        dgvT.UseColumnTextForButtonValue = true;
-                        dgvT.Width = 50;
-                        dgvT.DefaultCellStyle.Padding = new Padding(1);
-                        dgvT.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                        var dgvT1 = dgvDetail.Columns["ToBill"];
-                        if (dgvT1 == null)
-                        {
-                            dgvDetail.Columns.Add(dgvT);
-                        }
+                            DataGridViewButtonColumn dgvT = new DataGridViewButtonColumn();
+                            dgvT.HeaderText = "ToBill";
+                            dgvT.Name = "ToBill";
+                            dgvT.Text = "ToBill";
+                            dgvT.UseColumnTextForButtonValue = true;
+                            dgvT.Width = 50;
+                            dgvT.DefaultCellStyle.Padding = new Padding(1);
+                            dgvT.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                            var dgvT1 = dgvDetail.Columns["ToBill"];
+                            if (dgvT1 == null)
+                            {
+                                dgvDetail.Columns.Add(dgvT);
+                            }
 
-                        DataGridViewButtonColumn dgvR = new DataGridViewButtonColumn();
-                        dgvR.HeaderText = "Remove";
-                        dgvR.Name = "Remove";
-                        dgvR.Text = "Remove";
-                        dgvR.UseColumnTextForButtonValue = true;
-                        dgvR.Width = 50;
-                        dgvR.DefaultCellStyle.Padding = new Padding(1);
-                        dgvR.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                        var dgvR1 = dgvDetail.Columns["Remove"];
-                        if (dgvR1 == null)
-                        {
-                            dgvDetail.Columns.Add(dgvR);
+                            DataGridViewButtonColumn dgvR = new DataGridViewButtonColumn();
+                            dgvR.HeaderText = "Remove";
+                            dgvR.Name = "Remove";
+                            dgvR.Text = "Remove";
+                            dgvR.UseColumnTextForButtonValue = true;
+                            dgvR.Width = 50;
+                            dgvR.DefaultCellStyle.Padding = new Padding(1);
+                            dgvR.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                            var dgvR1 = dgvDetail.Columns["Remove"];
+                            if (dgvR1 == null)
+                            {
+                                dgvDetail.Columns.Add(dgvR);
+                            }
                         }
-                    }
-
                 }
 
                 _statusDetail = statusBook;
                 _timeDetail = time;
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                //MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -529,6 +533,25 @@ namespace AusNail.Process
                 //Load grid
                 LoadGridHeader();
                 LoadGridDetail(_statusDetail, _dateFilter, _timeDetail);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        private void frmBooking_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                //string cmdNewBill = "select BookID, branchId, BookingDate, Status from dbo.zBookingMaster where branchid " +
+                //    "= " + NailApp.BranchID + " AND CAST('" + _dateFilter + "' AS Date ) = CAST( BookingDate AS Date )";
+                //notificationNewBill = new ZenSqlNotification(LoadGridHeader, cmdNewBill);
+                //notificationNewBill.LoadData();
+
+                LoadGridHeader();
+                LoadGridDetail("", _dateFilter, -1);
             }
             catch (Exception ex)
             {
