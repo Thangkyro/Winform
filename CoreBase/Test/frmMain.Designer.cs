@@ -30,8 +30,8 @@ namespace AusNail
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.splCMain = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -84,7 +84,6 @@ namespace AusNail
             this.Voucher = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessHour = new System.Windows.Forms.ToolStripMenuItem();
             this.zps = new System.Windows.Forms.ToolStripMenuItem();
-            this.Bill = new System.Windows.Forms.ToolStripMenuItem();
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
             this.zbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -572,23 +571,23 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvService.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvService.Location = new System.Drawing.Point(19, 93);
             this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
@@ -771,30 +770,24 @@ namespace AusNail
             // zps
             // 
             this.zps.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Bill,
             this.TimeKeeping,
             this.Booking});
             this.zps.Name = "zps";
             this.zps.Size = new System.Drawing.Size(59, 24);
             this.zps.Text = "Process";
             // 
-            // Bill
-            // 
-            this.Bill.Name = "Bill";
-            this.Bill.Size = new System.Drawing.Size(143, 22);
-            this.Bill.Text = "Bill";
-            this.Bill.Click += new System.EventHandler(this.Bill_Click);
-            // 
             // TimeKeeping
             // 
+            this.TimeKeeping.Enabled = false;
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(143, 22);
+            this.TimeKeeping.Size = new System.Drawing.Size(152, 22);
             this.TimeKeeping.Text = "TimeKeeping";
+            this.TimeKeeping.Click += new System.EventHandler(this.TimeKeeping_Click);
             // 
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(143, 22);
+            this.Booking.Size = new System.Drawing.Size(152, 22);
             this.Booking.Text = "Booking";
             // 
             // zbc
@@ -919,7 +912,6 @@ namespace AusNail
         private System.Windows.Forms.ToolStripMenuItem Holiday;
         private System.Windows.Forms.ToolStripMenuItem Voucher;
         private System.Windows.Forms.ToolStripMenuItem BusinessHour;
-        private System.Windows.Forms.ToolStripMenuItem Bill;
         private System.Windows.Forms.ToolStripMenuItem TimeKeeping;
         private System.Windows.Forms.ToolStripMenuItem zst;
         private System.Windows.Forms.ToolStripMenuItem ChangePassword;
