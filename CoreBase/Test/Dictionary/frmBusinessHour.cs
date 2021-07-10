@@ -48,8 +48,6 @@ namespace AusNail.Dictionary
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
             cbobranchId.DataSource = _branch.DefaultView;
-
-          
         }
 
 
@@ -104,29 +102,35 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
+                txtDayOfWeek.Focus();
+
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                foreach (DataRow dr in changedRows.Rows)
+                if (changedRows != null)
                 {
-                    dr["created_by"] = NailApp.CurrentUserId;
-                    dr["modified_by"] = NailApp.CurrentUserId;
-                    if (dr[_idName].ToString() == "0")
+                    foreach (DataRow dr in changedRows.Rows)
                     {
-                        this.zEditRow = dr;
-                        isSuccess = base.InsertData();
-                    }
-                    else
-                    {
-                        this.zEditRow = dr;
-                        isSuccess = base.UpdateData();
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
+                        if (dr[_idName].ToString() == "0")
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.InsertData();
+                        }
+                        else
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.UpdateData();
+                        }
+
+                        if (!isSuccess)
+                        {
+                            listError += "Save error BusinessID: " + dr["BusinessID"].ToString() + ". \n";
+                        }
                     }
 
-                    if (!isSuccess)
-                    {
-                        listError += "Save error BusinessID: " + dr["BusinessID"].ToString() + ". \n";
-                    }
                 }
                 #endregion
 
@@ -180,9 +184,9 @@ namespace AusNail.Dictionary
             GridDetail.Columns["BusinessID"].Visible = false;
             //GridDetail.Columns["branchId"].HeaderText = "Branch";
             GridDetail.Columns["DayOfWeek"].HeaderText = "Day Of Week";
-            GridDetail.Columns["BusinessFrom"].HeaderText = "Business From";
+            GridDetail.Columns["BusinessFrom"].HeaderText = "Business From(HH:mm:ss)";
             GridDetail.Columns["BusinessFrom"].DefaultCellStyle.Format = "HH:mm:ss";
-            GridDetail.Columns["BusinessTo"].HeaderText = "Business To";
+            GridDetail.Columns["BusinessTo"].HeaderText = "Business To(HH:mm:ss)";
             GridDetail.Columns["BusinessTo"].DefaultCellStyle.Format = "HH:mm:ss";
             GridDetail.Columns["Decriptions"].Visible = false;
             GridDetail.Columns["is_inactive"].HeaderText = "Inactive";
@@ -216,7 +220,6 @@ namespace AusNail.Dictionary
             catch (Exception)
             {
 
-                throw;
             }
         }
 
@@ -319,6 +322,19 @@ namespace AusNail.Dictionary
             if (e.KeyData == (Keys.Enter))
             {
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells["BranchId"].Value = NailApp.BranchID;
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

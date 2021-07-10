@@ -26,7 +26,6 @@ namespace AusNail.Dictionary
         string _tableName = "zCustomer";
         int _postion = 0;
         DataTable _branch = new DataTable();
-        DataTable _dtGender = new DataTable();
         public frmCustomer()
         {
             InitializeComponent();
@@ -49,13 +48,6 @@ namespace AusNail.Dictionary
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
             cbobranchId.DataSource = _branch.DefaultView;
-
-            _dtGender.Columns.Add("key", typeof(string));
-            _dtGender.Columns.Add("value", typeof(string));
-            _dtGender.Rows.Add(new object[] { "Male" , "Male" });
-            _dtGender.Rows.Add(new object[] { "Female", "Female" });
-            _dtGender.Rows.Add(new object[] { "Order", "Order" });
-
 
 
         }
@@ -118,24 +110,23 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
+                txtCustomerCode.Focus();
+
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
                 DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                foreach (DataRow dr in changedRows.Rows)
+                if (changedRows != null)
                 {
-                    dr["created_by"] = NailApp.CurrentUserId;
-                    dr["modified_by"] = NailApp.CurrentUserId;
-                    if (dr["branchID"].ToString() == "0")
+                    foreach (DataRow dr in changedRows.Rows)
                     {
-                        MessageBox.Show("Branch is not empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                    else
-                    {
+                        this.zEditRow = null;
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
                         if (dr[_idName].ToString() == "0")
                         {
                             this.zEditRow = dr;
+                            this.zEditRow["CustomerCode"] = GenCustomerCode();
                             isSuccess = base.InsertData();
                         }
                         else
@@ -143,12 +134,13 @@ namespace AusNail.Dictionary
                             this.zEditRow = dr;
                             isSuccess = base.UpdateData();
                         }
+
+                        if (!isSuccess)
+                        {
+                            listError += "Save error customer: " + dr["Name"].ToString() + ". \n";
+                        }
                     }
 
-                    if (!isSuccess)
-                    {
-                        listError += "Save error customer: " + dr["Name"].ToString() + ". \n";
-                    }
                 }
                 #endregion
 
@@ -219,18 +211,7 @@ namespace AusNail.Dictionary
             GridDetail.Columns["CustomerCode"].HeaderText = "Customer Code";
             GridDetail.Columns["CustomerCode"].ReadOnly = true;
             GridDetail.Columns["Name"].HeaderText = "Name";
-
-            GridDetail.Columns.Remove("Gender");
-            DataGridViewComboBoxColumn dgvCmbG = new DataGridViewComboBoxColumn();
-            dgvCmbG.DataPropertyName = "Gender";
-            dgvCmbG.HeaderText = "Gender";
-            dgvCmbG.Name = "Gender";
-            dgvCmbG.DisplayMember = "value";
-            dgvCmbG.ValueMember = "key";
-            dgvCmbG.DataSource = _dtGender;
-            GridDetail.Columns.Add(dgvCmbG);
-            GridDetail.Columns["Gender"].DisplayIndex = 5;
-
+            GridDetail.Columns["Gender"].HeaderText = "Gender";
             GridDetail.Columns["PhoneNumber1"].HeaderText = "Phone Number 1";
             GridDetail.Columns["PhoneSimple1"].HeaderText = "Phone Simple 1";
             GridDetail.Columns["PhoneNumber2"].HeaderText = "Phone Number 2";
@@ -311,17 +292,7 @@ namespace AusNail.Dictionary
             if (result == DialogResult.Yes)
             {
                 this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
-                // Check use for bill or booking.
-                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckCustomerExists", int.Parse(zDeleteRow["CustId"].ToString()));
-                if (dataTable != null && dataTable.Rows.Count > 0)
-                {
-                    MessageBox.Show("Customer is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    bool flag = base.DeleteData();
-                }
+                bool flag = base.DeleteData();
                 LoadData();
             }
             else
@@ -388,9 +359,17 @@ namespace AusNail.Dictionary
             }
         }
 
-        private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
+            try
+            {
+                e.Row.Cells["BranchId"].Value = NailApp.BranchID;
 
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

@@ -102,24 +102,24 @@ namespace AusNail.Dictionary
                     //    lblMessInfomation.Text = "Unauthorized";
                     //    return false; 
                     //}
-                    isSuccess = base.InsertData();
-                    if (isSuccess) // update lại password
-                    {
-                        int userID = 0;
-                        string sql = "Select UserID FROM  [dbo].[zUser] with(nolock) where user_name = '" + zEditRow["user_name"].ToString() + "'";
-                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
-                            string passWord = Encryptor.MD5Hash("123456Aa") +
-                                                //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) +
-                                                Encryptor.MD5Hash(userID.ToString()) +
-                                                Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
-                            sql = string.Format("update zUser set password = '{0}' where Userid = {1}", passWord, userID);
-                            MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                    //isSuccess = base.InsertData();
+                    //if (isSuccess) // update lại password
+                    //{
+                    //    int userID = 0;
+                    //    string sql = "Select UserID FROM  [dbo].[zUser] with(nolock) where user_name = '" + zEditRow["user_name"].ToString() + "'";
+                    //    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                    //    if (dt != null && dt.Rows.Count > 0)
+                    //    {
+                    //        userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                    //        string passWord = Encryptor.MD5Hash("123456Aa") +
+                    //                            //Encryptor.MD5Hash(this.zEditRow["branchId"].ToString()) +
+                    //                            Encryptor.MD5Hash(userID.ToString()) +
+                    //                            Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                    //        sql = string.Format("update zUser set password = '{0}' where Userid = {1}", passWord, userID);
+                    //        MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
 
-                        }
-                    }
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -128,34 +128,65 @@ namespace AusNail.Dictionary
                     //    lblMessInfomation.Text = "Unauthorized";
                     //    return false;
                     //}
-                    isSuccess = base.UpdateData();
+                    //isSuccess = base.UpdateData();
                 }
 
+                txtFull_Name.Focus();
+                string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
-                //DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
+                DataTable changedRows = ((DataTable)(Bds.DataSource)).GetChanges();
 
-                //foreach (DataRow dr in changedRows.Rows)
-                //{
-                //    if (dr[_idName].ToString() == "0")
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.InsertData();
-                //    }
-                //    else
-                //    {
-                //        this.zEditRow = dr;
-                //        return base.UpdateData();
-                //    }
-                //}
-                //return true;
+                if (changedRows != null)
+                {
+                    foreach (DataRow dr in changedRows.Rows)
+                    {
+                        dr["created_by"] = NailApp.CurrentUserId;
+                        dr["modified_by"] = NailApp.CurrentUserId;
+                        if (dr[_idName].ToString() == "0")
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.InsertData();
+                            if (isSuccess) // update lại password
+                            {
+                                int userID = 0;
+                                string sql = "Select UserID FROM  [dbo].[zUser] with(nolock) where user_name = '" + zEditRow["user_name"].ToString() + "'";
+                                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+                                if (dt != null && dt.Rows.Count > 0)
+                                {
+                                    userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                                    string passWord = Encryptor.MD5Hash("123456Aa") +
+                                                        Encryptor.MD5Hash(userID.ToString()) +
+                                                        Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
+                                    sql = string.Format("update zUser set password = '{0}' where Userid = {1}", passWord, userID);
+                                    MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, sql);
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.zEditRow = dr;
+                            isSuccess = base.UpdateData();
+                        }
+
+                        if (!isSuccess)
+                        {
+                            listError += "Save error User: " + dr["user_name"].ToString() + ". \n";
+                        }
+                    }
+
+                }
                 #endregion
 
                 if (isSuccess)
                 {
                     LoadData();
-
                 }
-                return isSuccess;
+                else
+                {
+                    LoadData();
+                    lblMessInfomation.Text = listError;
+                }
             }
             catch
             {
@@ -428,6 +459,19 @@ namespace AusNail.Dictionary
                         MessageBox.Show("Please Choose User!");
                     }
                 }
+            }
+        }
+
+        private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells["BranchId"].Value = NailApp.BranchID;
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

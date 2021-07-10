@@ -1,5 +1,4 @@
-USE [qidjefjs_ausNail]
-GO
+
 /****** Object:  StoredProcedure [dbo].[zBillMasterGetList_AllComplete]    Script Date: 6/16/2021 3:10:15 PM ******/
 SET ANSI_NULLS ON
 GO

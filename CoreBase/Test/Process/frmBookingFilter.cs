@@ -51,7 +51,6 @@ namespace AusNail.Process
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             DateTime dt;
-            //DateTime.TryParse(dtpDate.Text.Trim().ToString(), out dt);
             DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
                            CultureInfo.InvariantCulture,
                            DateTimeStyles.None,
@@ -59,6 +58,7 @@ namespace AusNail.Process
             if (dt == null)
             {
                 MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             //else if (dt > DateTime.Now)
             //{
