@@ -22,6 +22,7 @@ namespace AusNail.Process
         private int _userId = 0;
         private DataTable _dtVoucher = null;
         private DataTable _dt = null;
+        private decimal _PercenPay = 0;
         public frmPay()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace AusNail.Process
             _billId = billId;
             _totalAmount = _Receivable = totalAmount;
             _userId = userId;
+            _PercenPay = loadPercenPay();
             lblTotalAmount.Text = string.Format("{0:#,##0.00}", _totalAmount);
             txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
             createTable();
@@ -138,7 +140,7 @@ namespace AusNail.Process
                     }
                     else
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", _Receivable - cardAmount);
+                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - cardAmount) * _PercenPay));
                     }
                 }
             }
@@ -165,6 +167,24 @@ namespace AusNail.Process
             catch
             {
             }
+        }
+
+        private decimal loadPercenPay()
+        {
+            decimal result = 0;
+            try
+            {
+                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetPercenPay", _branchId);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    result = decimal.Parse(dataTable.Rows[0][0].ToString());
+                }
+            }
+            catch
+            {
+                result = 0;
+            }
+            return result;
         }
 
         private void LoadGrid()
@@ -275,7 +295,7 @@ namespace AusNail.Process
                 }
                 if (radCash.Checked)
                 {
-                    txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
+                    txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable * _PercenPay));
                     txtCard.Text = "0";
                 }
                 if (chkCompire.Checked)
@@ -359,7 +379,7 @@ namespace AusNail.Process
                 {
                     if (cashAmount > _Receivable)
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", _Receivable);
+                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable * _PercenPay));
                     }
                     else
                     {
@@ -403,7 +423,7 @@ namespace AusNail.Process
             if (radCash.Checked)
             {
                 txtCard.Text = "0";
-                txtCash.Text = _Receivable.ToString();
+                txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable * _PercenPay));
                 chkCompire.Checked = false;
                 radCash.Checked = true;
             }
@@ -413,7 +433,7 @@ namespace AusNail.Process
         {
             if (radCard.Checked)
             {
-                txtCard.Text = _Receivable.ToString();
+                txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
                 txtCash.Text = "0";
                 //chkCompire_CheckedChanged(sender, e);
                 chkCompire.Checked = false;

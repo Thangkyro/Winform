@@ -29,6 +29,7 @@ namespace AusNail.Dictionary
         string _idName = "StaffId";
         int _postion = 0;
         DataTable _branch = new DataTable();
+        DataTable _dtGender = new DataTable();
         Dictionary<string, byte[]> dicImage = new Dictionary<string, byte[]>();
         public frmStaff()
         {
@@ -52,6 +53,12 @@ namespace AusNail.Dictionary
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
             cbobranchId.DataSource = _branch.DefaultView;
+
+            _dtGender.Columns.Add("key", typeof(string));
+            _dtGender.Columns.Add("value", typeof(string));
+            _dtGender.Rows.Add(new object[] { "Male", "Male" });
+            _dtGender.Rows.Add(new object[] { "Female", "Female" });
+            _dtGender.Rows.Add(new object[] { "Order", "Order" });
 
 
         }
@@ -254,7 +261,18 @@ namespace AusNail.Dictionary
             GridDetail.Columns["StaffCode"].HeaderText = "Staff Code";
             GridDetail.Columns["StaffCode"].ReadOnly = true;
             GridDetail.Columns["Name"].HeaderText = "Name";
-            GridDetail.Columns["Gender"].HeaderText = "Gender";
+
+            GridDetail.Columns.Remove("Gender");
+            DataGridViewComboBoxColumn dgvCmbG = new DataGridViewComboBoxColumn();
+            dgvCmbG.DataPropertyName = "Gender";
+            dgvCmbG.HeaderText = "Gender";
+            dgvCmbG.Name = "Gender";
+            dgvCmbG.DisplayMember = "value";
+            dgvCmbG.ValueMember = "key";
+            dgvCmbG.DataSource = _dtGender;
+            GridDetail.Columns.Add(dgvCmbG);
+            GridDetail.Columns["Gender"].DisplayIndex = 5;
+
             GridDetail.Columns["PhoneNumber1"].HeaderText = "Phone Number 1";
             GridDetail.Columns["PhoneSimple1"].HeaderText = "Phone Simple 1";
             GridDetail.Columns["PhoneNumber2"].HeaderText = "Phone Number 2";
@@ -336,7 +354,17 @@ namespace AusNail.Dictionary
             if (result == DialogResult.Yes)
             {
                 this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
-                bool flag = base.DeleteData();
+                // Check use for bill or booking.
+                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckStaffExists", int.Parse(zDeleteRow["StaffId"].ToString()));
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    MessageBox.Show("Staff is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    bool flag = base.DeleteData();
+                }
                 LoadData();
             }
             else

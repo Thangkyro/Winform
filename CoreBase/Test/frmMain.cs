@@ -647,7 +647,7 @@ namespace AusNail
                 }
                 else
                 {
-                    if (e.ColumnIndex == 8 && dgvService.Enabled == true) //Delete 
+                    if (e.ColumnIndex == 8 && !tabHistory) //Delete 
                     {
                         dgvService.Rows.RemoveAt(e.RowIndex);
                         caculateAmount();
@@ -1142,7 +1142,7 @@ namespace AusNail
                 dgvService.Columns["Discount"].ReadOnly = true;
                 dgvService.Columns["Amount"].ReadOnly = true;
                 dgvService.Columns["Note"].ReadOnly = false;
-                dgvService.Columns["Del"].ReadOnly = false;
+                dgvService.Columns["Del"].ReadOnly = true;
             }
             else
             {
