@@ -52,7 +52,11 @@ namespace CoreBase.DataAccessLayer
 
                 cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
 
-                _action?.Invoke();
+                if (_action != null)
+                {
+                    _action.Invoke();
+                }
+
             }
         }
 
@@ -96,7 +100,10 @@ namespace CoreBase.DataAccessLayer
 
         protected virtual void OnDependencyChanged(SqlNotificationEventArgs e)
         {
-            _action?.Invoke();
+            if (_action != null)
+            {
+                _action.Invoke();
+            }
         }
         public void Dispose()
         {
