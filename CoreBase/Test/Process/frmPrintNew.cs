@@ -49,29 +49,32 @@ namespace AusNail.Process
 
         private void frmPrintNew_Load(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
                 //string curFile = "..//..//Report//" + _reportFile;
                 //string hehe = File.Exists(curFile) ? "File exists." : "File does not exist.";
 
                 oRpt = new ReportDocument();
-                oRpt.Load("..//..//Report//" + _reportFile, OpenReportMethod.OpenReportByTempCopy);
-                oRpt.SetParameterValue("@BillId", _billId);
-                oRpt.SetParameterValue("@BranchId", _branchId);
-                oRpt.SetDataSource(_dsReport);
+                oRpt.Load("..//..//Report//" + _reportFile, OpenReportMethod.OpenReportByDefault);
+                oRpt.SetParameterValue("@BillId", _billId.ToString());
+                oRpt.SetParameterValue("@BranchId", _branchId.ToString());
+                oRpt.SetDataSource(_dsReport.Tables[0]);
                 rptReport.ReportSource = oRpt;
                 if (!_view)
                 {
                     this.Cursor = Cursors.WaitCursor;
                     oRpt.PrintToPrinter(1, false, 0, 0);
                     this.Cursor = Cursors.Default;
+                    this.Visible = false;
+                    this.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Warning");
-            }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString(), "Warning");
+            //}
         }
     }
 }

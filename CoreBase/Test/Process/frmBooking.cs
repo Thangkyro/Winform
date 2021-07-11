@@ -456,7 +456,7 @@ namespace AusNail.Process
                                     DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
                                     DataSet dsData = new DataSet();
                                     dsData.Tables.Add(dataTable);
-                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true);
+                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
                                     f.ShowDialog();
                                     //Print print = new Print();
                                     //print.Printer(dsData, "rpt_bill.rpt");
