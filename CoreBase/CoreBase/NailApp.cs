@@ -182,6 +182,50 @@ namespace CoreBase
             get;set;
         }
 
+        public static decimal MaxPercen
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return 0;
+
+                return CurrentUserRow["MaxPercen"].zToInt();
+            }
+        }
+
+        public static decimal MinApprovePercen
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return 0;
+
+                return CurrentUserRow["MinApprovePercen"].zToInt();
+            }
+        }
+
+        public static decimal PercenPay
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return 0;
+
+                return CurrentUserRow["PercenPay"].zToInt();
+            }
+        }
+
+        public static string website
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return "";
+
+                return CurrentUserRow["website"].zToString();
+            }
+        }
+
 
         //public string Password { get; set; }
 
