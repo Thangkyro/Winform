@@ -37,6 +37,16 @@ namespace AusNail.Process
             _view = view;
         }
 
+        public frmPrintNew(DataSet ds, string reportFile, bool view, int branchId, int billID)
+        {
+            InitializeComponent();
+            _reportFile = reportFile;
+            _dsReport = ds;
+            _view = view;
+            _branchId = branchId;
+            _billId = billID;
+        }
+
         private void frmPrintNew_Load(object sender, EventArgs e)
         {
             try
@@ -47,6 +57,8 @@ namespace AusNail.Process
 
                 oRpt = new ReportDocument();
                 oRpt.Load("..//..//Report//" + _reportFile, OpenReportMethod.OpenReportByTempCopy);
+                oRpt.SetParameterValue("@BillId", _billId);
+                oRpt.SetParameterValue("@BranchId", _branchId);
                 oRpt.SetDataSource(_dsReport);
                 rptReport.ReportSource = oRpt;
                 if (!_view)

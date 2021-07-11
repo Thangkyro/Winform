@@ -942,7 +942,7 @@ namespace AusNail
                 //dsData.WriteXml(filePath);
 
 
-                frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true);
+                frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), billID);
                 f.ShowDialog();
             }
             else
