@@ -488,15 +488,15 @@ namespace CoreBase.DataAccessLayer
         {
             StringBuilder sb = new StringBuilder();
             //Nếu có sử dụng trường is_deleted để đánh dấu xóa chứ không xóa hẳn
-            //if (schemaTable.Columns.Contains(ZenDatabase.IS_DELETED_COLNAME))
-            //    sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_DELETED_COLNAME);
-            //else
-            //    sb.AppendFormat("DELETE FROM {0}", tableName);
-
-            if (schemaTable.Columns.Contains(ZenDatabase.IS_INACTIVE_COLUMN_NAME))
-                sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_INACTIVE_COLUMN_NAME);
+            if (schemaTable.Columns.Contains(ZenDatabase.IS_DELETED_COLNAME))
+                sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_DELETED_COLNAME);
             else
                 sb.AppendFormat("DELETE FROM {0}", tableName);
+
+            //if (schemaTable.Columns.Contains(ZenDatabase.IS_INACTIVE_COLUMN_NAME))
+            //    sb.AppendFormat("UPDATE {0} SET {1}=1", tableName, ZenDatabase.IS_INACTIVE_COLUMN_NAME);
+            //else
+            //    sb.AppendFormat("DELETE FROM {0}", tableName);
 
             bool isFirst = true;
 
