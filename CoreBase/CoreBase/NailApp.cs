@@ -135,6 +135,14 @@ namespace CoreBase
                 return NailApp.CurrentUserRow["is_admin"].zToBool();
         }
 
+        public static bool IsAutoPrint()
+        {
+            if (CurrentUserRow == null)
+                return false;
+            else
+                return NailApp.CurrentUserRow["IsAutoPrint"].zToBool();
+        }
+
         public static string PermissionUser
         {
             get

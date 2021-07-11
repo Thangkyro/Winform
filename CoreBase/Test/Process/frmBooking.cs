@@ -444,22 +444,49 @@ namespace AusNail.Process
                             //Update Status = ToBill
                             int ret1 = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMasterCancel", bookID, _branchIDChoose, "ToBill", NailApp.CurrentUserId, error, errorMesg);
                             LoadDataBoking();
-                            DialogResult dialogResultPrint = MessageBox.Show("Do you want to print bill ?", "Print Bill", MessageBoxButtons.YesNo);
-                            if (dialogResultPrint == DialogResult.Yes)
+                            if (NailApp.IsAutoPrint())
                             {
                                 DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
                                 if (dtBill != null && dtBill.Rows.Count > 0)
                                 {
-                                    //Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
-                                    //frm.ShowDialog();
-
                                     DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
                                     DataSet dsData = new DataSet();
                                     dsData.Tables.Add(dataTable);
-                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
                                     f.ShowDialog();
-                                    //Print print = new Print();
-                                    //print.Printer(dsData, "rpt_bill.rpt");
+                                }
+                            }
+                            else
+                            {
+                                DialogResult dialogResultPrint = MessageBox.Show("Do you want to print bill ?", "Print Bill", MessageBoxButtons.YesNo);
+                                if (dialogResultPrint == DialogResult.Yes)
+                                {
+                                    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
+                                    if (dtBill != null && dtBill.Rows.Count > 0)
+                                    {
+                                        //Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
+                                        //frm.ShowDialog();
+
+                                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                                        DataSet dsData = new DataSet();
+                                        dsData.Tables.Add(dataTable);
+                                        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                        f.ShowDialog();
+                                        //Print print = new Print();
+                                        //print.Printer(dsData, "rpt_bill.rpt");
+                                    }
+                                }
+                                else
+                                {
+                                    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
+                                    if (dtBill != null && dtBill.Rows.Count > 0)
+                                    {
+                                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                                        DataSet dsData = new DataSet();
+                                        dsData.Tables.Add(dataTable);
+                                        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                        f.ShowDialog();
+                                    }
                                 }
                             }
                         }

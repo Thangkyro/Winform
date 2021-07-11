@@ -62,7 +62,6 @@ D:\Aug\Git\Winform\CoreBase\CoreBase\bin\Debug\AltoControls.dll
 D:\Aug\Git\Winform\CoreBase\CoreBase\bin\Debug\Ionic.Zip.dll
 D:\Aug\Git\Winform\CoreBase\CoreBase\bin\Debug\log4net.dll
 D:\Aug\Git\Winform\CoreBase\CoreBase\bin\Debug\log4net.xml
-D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csprojResolveAssemblyReference.cache
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.Properties.Resources.resources
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.DevopsAuth.resources
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.Dictionary.DicBase.resources
@@ -75,3 +74,4 @@ D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.WinForm.frmDataBaseSetti
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csproj.GenerateResource.Cache
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.dll
 D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.pdb
+D:\Aug\Git\Winform\CoreBase\CoreBase\obj\Debug\CoreBase.csprojResolveAssemblyReference.cache

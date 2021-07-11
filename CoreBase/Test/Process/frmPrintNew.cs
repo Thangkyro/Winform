@@ -49,14 +49,21 @@ namespace AusNail.Process
 
         private void frmPrintNew_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-
-                //string curFile = "..//..//Report//" + _reportFile;
-                //string hehe = File.Exists(curFile) ? "File exists." : "File does not exist.";
-
+            try
+            {
+                string zcurFile = "Report//" + _reportFile;
+                string curFile = "..//..//Report//" + _reportFile;
+                if (File.Exists(zcurFile))
+                {
+                    curFile = zcurFile;
+                }
+                if (!File.Exists(curFile))
+                {
+                    MessageBox.Show("File does not exist.", "Warning");
+                    return;
+                }
                 oRpt = new ReportDocument();
-                oRpt.Load("..//..//Report//" + _reportFile, OpenReportMethod.OpenReportByDefault);
+                oRpt.Load(curFile, OpenReportMethod.OpenReportByTempCopy);
                 oRpt.SetParameterValue("@BillId", _billId.ToString());
                 oRpt.SetParameterValue("@BranchId", _branchId.ToString());
                 oRpt.SetDataSource(_dsReport.Tables[0]);
@@ -69,12 +76,18 @@ namespace AusNail.Process
                     this.Visible = false;
                     this.Close();
                 }
+                else
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    //oRpt.PrintToPrinter(1, false, 0, 0);
+                    this.Cursor = Cursors.Default;
+                }
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString(), "Warning");
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Warning");
+            }
         }
     }
 }
