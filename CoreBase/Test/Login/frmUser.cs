@@ -319,8 +319,18 @@ namespace AusNail.Dictionary
             if (result == DialogResult.Yes)
             {
                 this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
-                bool flag = base.DeleteData();
-                LoadData();
+                // Check use for bill or booking.
+                //DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUserCheckUse", int.Parse(zDeleteRow["UserId"].ToString()));
+                //if (dataTable != null && dataTable.Rows.Count > 0)
+                //{
+                //    MessageBox.Show("User is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
+                //else
+                //{
+                //    bool flag = base.DeleteData();
+                //    LoadData();
+                //}
             }
             else
             {
