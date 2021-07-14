@@ -156,13 +156,13 @@ namespace AusNail.Process
                 dgvService.Columns["Title"].ReadOnly = true;
                 dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
-                dgvService.Columns["EstimateTime"].Width = 100;
+                dgvService.Columns["EstimateTime"].Width = 75;
                 dgvService.Columns["EstimateTime"].ReadOnly = true;
                 dgvService.Columns["Quantity"].HeaderText = "Quantity";
-                dgvService.Columns["Quantity"].Width = 100;
+                dgvService.Columns["Quantity"].Width = 75;
                 dgvService.Columns["Quantity"].ReadOnly = false;
                 dgvService.Columns["Price"].HeaderText = "Price";
-                dgvService.Columns["Price"].Width = 100;
+                dgvService.Columns["Price"].Width = 70;
                 dgvService.Columns["Price"].ReadOnly = true;
                 dgvService.Columns["Amount"].HeaderText = "Amount";
                 dgvService.Columns["Amount"].Visible = false;
@@ -173,7 +173,8 @@ namespace AusNail.Process
                 DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
                 dataGridViewImange.Name = "Check";
                 dataGridViewImange.HeaderText = "Choose";
-                dataGridViewImange.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                dataGridViewImange.Width = 20;
+                //dataGridViewImange.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
                 var dgvC = dgvService.Columns["Check"];
                 if (dgvC == null)
                 {

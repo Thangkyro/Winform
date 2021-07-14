@@ -94,12 +94,12 @@ namespace AusNail.Process
             dgvService.Columns["Title"].ReadOnly = true;
             dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
-            dgvService.Columns["EstimateTime"].Width = 100;
+            dgvService.Columns["EstimateTime"].Width = 75;
             dgvService.Columns["EstimateTime"].ReadOnly = true;
             dgvService.Columns["Quantity"].HeaderText = "Quantity";
-            dgvService.Columns["Quantity"].Width = 100;
+            dgvService.Columns["Quantity"].Width = 75;
             dgvService.Columns["Price"].HeaderText = "Price";
-            dgvService.Columns["Price"].Width = 100;
+            dgvService.Columns["Price"].Width = 70;
             dgvService.Columns["Amount"].HeaderText = "Amount";
             dgvService.Columns["Amount"].ReadOnly = true;
             dgvService.Columns["Amount"].Width = 120;

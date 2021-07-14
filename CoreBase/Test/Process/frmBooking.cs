@@ -476,18 +476,18 @@ namespace AusNail.Process
                                         //print.Printer(dsData, "rpt_bill.rpt");
                                     }
                                 }
-                                else
-                                {
-                                    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
-                                    if (dtBill != null && dtBill.Rows.Count > 0)
-                                    {
-                                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
-                                        DataSet dsData = new DataSet();
-                                        dsData.Tables.Add(dataTable);
-                                        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
-                                        f.ShowDialog();
-                                    }
-                                }
+                                //else
+                                //{
+                                //    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
+                                //    if (dtBill != null && dtBill.Rows.Count > 0)
+                                //    {
+                                //        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                                //        DataSet dsData = new DataSet();
+                                //        dsData.Tables.Add(dataTable);
+                                //        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                //        f.ShowDialog();
+                                //    }
+                                //}
                             }
                         }
                         else if (!string.IsNullOrEmpty(errorMesg))
