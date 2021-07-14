@@ -15,6 +15,7 @@ namespace CoreBase.WinForm
 {
     public partial class frmDataBaseSetting : Form
     {
+        private string _rptConfig = "";
         public frmDataBaseSetting()
         {
             InitializeComponent();
@@ -105,6 +106,8 @@ namespace CoreBase.WinForm
                 conf.ConnectionStrings.ConnectionStrings.Add(css);
                 conf.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("connectionStrings");
+
+
                 return true;
             }
             catch (Exception ex)
@@ -150,6 +153,7 @@ namespace CoreBase.WinForm
             if (flag)
             {
                 MessageBox.Show("Update success!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
 
