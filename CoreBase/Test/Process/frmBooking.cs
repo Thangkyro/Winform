@@ -162,7 +162,7 @@ namespace AusNail.Process
                     dgvDetail.Columns["TimeService"].HeaderText = "Time Service";
                     dgvDetail.Columns["TimeService"].ReadOnly = true;
                     dgvDetail.Columns["TimeService"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-                    if (statusBook == "Temporary")
+                    if (statusBook == "Temporary" || statusBook == "Cancel")
                     {
                         DataGridViewButtonColumn dgvE = new DataGridViewButtonColumn();
                         dgvE.HeaderText = "Edit";

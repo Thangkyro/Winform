@@ -160,7 +160,7 @@ namespace AusNail.Process
                 dgvService.Columns["EstimateTime"].ReadOnly = true;
                 dgvService.Columns["Quantity"].HeaderText = "Quantity";
                 dgvService.Columns["Quantity"].Width = 100;
-                dgvService.Columns["Quantity"].ReadOnly = true;
+                dgvService.Columns["Quantity"].ReadOnly = false;
                 dgvService.Columns["Price"].HeaderText = "Price";
                 dgvService.Columns["Price"].Width = 100;
                 dgvService.Columns["Price"].ReadOnly = true;
