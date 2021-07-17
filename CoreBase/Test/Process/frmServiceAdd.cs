@@ -153,6 +153,15 @@ namespace AusNail.Process
                 {
                     billCode = dt.Rows[0][0].ToString();
                 }
+
+                // Get bill number
+                int billnumber = 1;
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID);
+                if (dt1 != null)
+                {
+                    billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
+                }
+
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
                     if ((bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
@@ -167,7 +176,7 @@ namespace AusNail.Process
                         int error = 0;
                         string errorMesg = "";
 
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _userID, error, errorMesg);
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _userID, billnumber, error, errorMesg);
 
                         if (ret == 0)
                         {
@@ -183,7 +192,7 @@ namespace AusNail.Process
                     //this.ShowInTaskbar = false;
 
                     //Get billID
-                    int billID = 0;
+                    //int billID = 0;
                     DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select TOP 1 BillID From zBillMaster WITH(NOLOCK) Where BillCode = '" + billCode + "'");
                     if (dtBill != null && dtBill.Rows.Count > 0)
                     {
