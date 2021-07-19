@@ -437,8 +437,18 @@ namespace AusNail.Process
                         }
                         int error = 0;
                         string errorMesg = "";
+
+                        // Get bill number
+                        int billnumber = 1;
+                        DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose);
+                        if (dt1 != null)
+                        {
+                            billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
+                        }
+
+
                         //Insert Bill for getdate
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, error, errorMesg);
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, billnumber, error, errorMesg);
                         if (ret > 0)
                         {
                             //Update Status = ToBill
