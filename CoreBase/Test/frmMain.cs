@@ -60,8 +60,8 @@ namespace AusNail
         }
         public void LoadHistory()
         {
-            try
-            {
+            //try
+            //{
                
             
             DataTable dtH = null;
@@ -78,7 +78,7 @@ namespace AusNail
                         {
                       
                             trHistoryBill.ImageList = imageList1;
-                            string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                            string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
                             TreeNode note = new TreeNode();
                             note.Text = infor;
                             note.Name = dr["BillID"].ToString();
@@ -114,7 +114,7 @@ namespace AusNail
                         foreach (DataRow dr in dtT.Rows)
                         {
                             trTemporaryBill.ImageList = imageList1;
-                            string infor = dr["BillCode"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                            string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
                             TreeNode note = new TreeNode();
                             note.Text = infor;
                             note.Name = dr["BillID"].ToString();
@@ -136,11 +136,11 @@ namespace AusNail
                         });
                 }
 
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
 
-            }
+            //}
         }
 
         public void ShowForm(Form frm)
