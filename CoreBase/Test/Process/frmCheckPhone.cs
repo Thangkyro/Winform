@@ -21,6 +21,10 @@ namespace AusNail.Process
         {
             InitializeComponent();
             txtPhone.Focus();
+            this.Width = 370;
+            this.Height = 400;
+            this.pnSDT.Visible = true;
+            lbSize.Text = "<<";
         }
 
         public frmCheckPhone(int branchId, int userId)
@@ -110,10 +114,14 @@ namespace AusNail.Process
         {
             txtPhone.Focus();
             txtPhone.Select();
+            //this.Width = 370;
+            //this.Height = 170;
+            //this.pnSDT.Visible = false;
+            //this.pnSDT.Visible = false;
             this.Width = 370;
-            this.Height = 170;
-            this.pnSDT.Visible = false;
-            this.pnSDT.Visible = false;
+            this.Height = 400;
+            this.pnSDT.Visible = true;
+            lbSize.Text = "<<";
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -39,8 +39,8 @@ namespace AusNail
             }
 
             // Check database setting
-            try
-            {
+            //try
+            //{
                 Configuration conf = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
                 ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings["DefaultConnectionString"];
 
@@ -62,11 +62,11 @@ namespace AusNail
                 {
                     Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
                 }
-            }
-            catch 
-            {
-                Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
-            }
+            //}
+            //catch 
+            //{
+            //    Application.Run(new CoreBase.WinForm.frmDataBaseSetting());
+            //}
             
             
             
