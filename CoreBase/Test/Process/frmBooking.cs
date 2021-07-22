@@ -424,87 +424,87 @@ namespace AusNail.Process
                 }
                 else if (senderGrid.Columns["ToBill"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "ToBill")
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Create Bill", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    //DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Create Bill", MessageBoxButtons.YesNo);
+                    //if (dialogResult == DialogResult.Yes)
+                    //{
+                    int bookID = int.Parse(dgvDetail["BookID", e.RowIndex].Value.ToString());
+                    // Gen billCode
+                    string billCode = "";
+                    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
+                    if (dt != null)
                     {
-                        int bookID = int.Parse(dgvDetail["BookID", e.RowIndex].Value.ToString());
-                        // Gen billCode
-                        string billCode = "";
-                        DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetNewCode", "zBillMaster", "BL", "BillID", 8);
-                        if (dt != null)
+                        billCode = dt.Rows[0][0].ToString();
+                    }
+                    int error = 0;
+                    string errorMesg = "";
+
+                    // Get bill number
+                    int billnumber = 1;
+                    DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose);
+                    if (dt1 != null)
+                    {
+                        billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
+                    }
+
+
+                    //Insert Bill for getdate
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, billnumber, error, errorMesg);
+                    if (ret > 0)
+                    {
+                        //Update Status = ToBill
+                        int ret1 = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMasterCancel", bookID, _branchIDChoose, "ToBill", NailApp.CurrentUserId, error, errorMesg);
+                        LoadDataBoking();
+                        if (NailApp.IsAutoPrint())
                         {
-                            billCode = dt.Rows[0][0].ToString();
+                            DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
+                            if (dtBill != null && dtBill.Rows.Count > 0)
+                            {
+                                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                                DataSet dsData = new DataSet();
+                                dsData.Tables.Add(dataTable);
+                                frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                f.ShowDialog();
+                            }
                         }
-                        int error = 0;
-                        string errorMesg = "";
-
-                        // Get bill number
-                        int billnumber = 1;
-                        DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose);
-                        if (dt1 != null)
+                        else
                         {
-                            billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
-                        }
-
-
-                        //Insert Bill for getdate
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, billnumber, error, errorMesg);
-                        if (ret > 0)
-                        {
-                            //Update Status = ToBill
-                            int ret1 = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMasterCancel", bookID, _branchIDChoose, "ToBill", NailApp.CurrentUserId, error, errorMesg);
-                            LoadDataBoking();
-                            if (NailApp.IsAutoPrint())
+                            DialogResult dialogResultPrint = MessageBox.Show("Do you want to print bill ?", "Print Bill", MessageBoxButtons.YesNo);
+                            if (dialogResultPrint == DialogResult.Yes)
                             {
                                 DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
                                 if (dtBill != null && dtBill.Rows.Count > 0)
                                 {
+                                    //Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
+                                    //frm.ShowDialog();
+
                                     DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
                                     DataSet dsData = new DataSet();
                                     dsData.Tables.Add(dataTable);
-                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", NailApp.IsAutoPrint(), int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
                                     f.ShowDialog();
+                                    //Print print = new Print();
+                                    //print.Printer(dsData, "rpt_bill.rpt");
                                 }
                             }
-                            else
-                            {
-                                DialogResult dialogResultPrint = MessageBox.Show("Do you want to print bill ?", "Print Bill", MessageBoxButtons.YesNo);
-                                if (dialogResultPrint == DialogResult.Yes)
-                                {
-                                    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
-                                    if (dtBill != null && dtBill.Rows.Count > 0)
-                                    {
-                                        //Process.frmPrint frm = new Process.frmPrint(int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()), NailApp.CurrentUserId, 0);
-                                        //frm.ShowDialog();
-
-                                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
-                                        DataSet dsData = new DataSet();
-                                        dsData.Tables.Add(dataTable);
-                                        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
-                                        f.ShowDialog();
-                                        //Print print = new Print();
-                                        //print.Printer(dsData, "rpt_bill.rpt");
-                                    }
-                                }
-                                //else
-                                //{
-                                //    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
-                                //    if (dtBill != null && dtBill.Rows.Count > 0)
-                                //    {
-                                //        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
-                                //        DataSet dsData = new DataSet();
-                                //        dsData.Tables.Add(dataTable);
-                                //        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
-                                //        f.ShowDialog();
-                                //    }
-                                //}
-                            }
-                        }
-                        else if (!string.IsNullOrEmpty(errorMesg))
-                        {
-                            MessageBox.Show(errorMesg, "Error");
+                            //else
+                            //{
+                            //    DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select BillID From zBillMaster with(nolock) Where BookID = " + bookID);
+                            //    if (dtBill != null && dtBill.Rows.Count > 0)
+                            //    {
+                            //        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", int.Parse(dtBill.Rows[0][0].ToString()), int.Parse(NailApp.BranchID));
+                            //        DataSet dsData = new DataSet();
+                            //        dsData.Tables.Add(dataTable);
+                            //        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), int.Parse(dtBill.Rows[0][0].ToString()));
+                            //        f.ShowDialog();
+                            //    }
+                            //}
                         }
                     }
+                    else if (!string.IsNullOrEmpty(errorMesg))
+                    {
+                        MessageBox.Show(errorMesg, "Error");
+                    }
+                    //}
                 }
                 else if (senderGrid.Columns["Remove"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "Remove")
                 {

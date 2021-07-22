@@ -39,12 +39,12 @@
             this.altoSlidingLabel3 = new AltoControls.AltoSlidingLabel();
             this.altoSlidingLabel2 = new AltoControls.AltoSlidingLabel();
             this.altoSlidingLabel1 = new AltoControls.AltoSlidingLabel();
-            this.txtDateofBirth = new System.Windows.Forms.MaskedTextBox();
             this.txtPhoneNum = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPostcode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtDateofBirth = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // radMale
@@ -166,16 +166,6 @@
             this.altoSlidingLabel1.TabIndex = 0;
             this.altoSlidingLabel1.Text = "Phone number:";
             // 
-            // txtDateofBirth
-            // 
-            this.txtDateofBirth.Location = new System.Drawing.Point(110, 62);
-            this.txtDateofBirth.Mask = "00/00/0000";
-            this.txtDateofBirth.Name = "txtDateofBirth";
-            this.txtDateofBirth.Size = new System.Drawing.Size(252, 20);
-            this.txtDateofBirth.TabIndex = 6;
-            this.txtDateofBirth.ValidatingType = typeof(System.DateTime);
-            this.txtDateofBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNum_KeyDown);
-            // 
             // txtPhoneNum
             // 
             this.txtPhoneNum.Location = new System.Drawing.Point(110, 10);
@@ -222,18 +212,26 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "*";
             // 
+            // txtDateofBirth
+            // 
+            this.txtDateofBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtDateofBirth.Location = new System.Drawing.Point(110, 62);
+            this.txtDateofBirth.Name = "txtDateofBirth";
+            this.txtDateofBirth.Size = new System.Drawing.Size(252, 20);
+            this.txtDateofBirth.TabIndex = 6;
+            // 
             // frmCusstomerAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(374, 256);
+            this.Controls.Add(this.txtDateofBirth);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPostcode);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtPhoneNum);
-            this.Controls.Add(this.txtDateofBirth);
             this.Controls.Add(this.radOrder);
             this.Controls.Add(this.radFemale);
             this.Controls.Add(this.radMale);
@@ -267,11 +265,11 @@
         private System.Windows.Forms.RadioButton radMale;
         private System.Windows.Forms.RadioButton radFemale;
         private System.Windows.Forms.RadioButton radOrder;
-        private System.Windows.Forms.MaskedTextBox txtDateofBirth;
         private System.Windows.Forms.TextBox txtPhoneNum;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtPostcode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker txtDateofBirth;
     }
 }

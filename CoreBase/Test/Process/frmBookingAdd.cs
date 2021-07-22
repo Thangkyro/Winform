@@ -266,18 +266,18 @@ namespace AusNail.Process
         {
             try
             {
-                DialogResult dialogResult;
-                if (_action == "Add")
-                {
-                    dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
-                }
-                else
-                {
-                    dialogResult = MessageBox.Show("Are you confirm ?", "Edit Booking", MessageBoxButtons.YesNo);
-                }
-                //dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult;
+                //if (_action == "Add")
+                //{
+                //    dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
+                //}
+                //else
+                //{
+                //    dialogResult = MessageBox.Show("Are you confirm ?", "Edit Booking", MessageBoxButtons.YesNo);
+                //}
+                ////dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     DateTime dtBook;
                     //DateTime.TryParse(dtpBookingDate.Text.Trim().ToString(), out dtBook);
                     DateTime.TryParseExact(dtpBookingDate.Text.Trim().ToString(), "dd/MM/yyyy HH:mm",
@@ -383,7 +383,7 @@ namespace AusNail.Process
                             MessageBox.Show("There was an error in processing", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {
