@@ -151,8 +151,8 @@ namespace AusNail.Process
 
         private void frmCusstomerAdd_Load(object sender, EventArgs e)
         {
-            txtPhoneNum.Focus();
-            txtPhoneNum.Select();
+            txtName.Focus();
+            txtName.Select();
         }
 
         private void txtPhoneNum_KeyDown(object sender, KeyEventArgs e)
