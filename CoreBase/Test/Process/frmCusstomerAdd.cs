@@ -74,14 +74,10 @@ namespace AusNail.Process
                 }
                 string sysUIFormat = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern;
                 string DateOfBirth = this.txtDateofBirth.Text.Trim();
-                if (DateOfBirth == "/  /")
-                {
-                    DateOfBirth = "01/01/1900";
-                }
                 string Date = DateOfBirth;
-                if (sysUIFormat != "dd/MM/yyyy")
+                if (sysUIFormat == "dd/MM/yyyy")
                 {
-                     Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                    Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
                        .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 }
                
