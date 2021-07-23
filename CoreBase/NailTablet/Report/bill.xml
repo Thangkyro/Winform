@@ -1,0 +1,79 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <BillDate>2021-06-14T00:00:00+07:00</BillDate>
+    <BillCode>BL00000057CAC</BillCode>
+    <CustomerName>donz</CustomerName>
+    <CustomerPhone>0666666666</CustomerPhone>
+    <OrderNumber>1</OrderNumber>
+    <ServiceName>Service name 2</ServiceName>
+    <Quantity>1</Quantity>
+    <Price>1.00</Price>
+    <Amount>1.00</Amount>
+    <StaffName>Staff name 1</StaffName>
+    <Note />
+    <EstimateTime>1.5000</EstimateTime>
+    <Status>Temporary bill</Status>
+    <TotalDiscount>0.00</TotalDiscount>
+    <PaymentCash>0.00</PaymentCash>
+    <PaymentCard>0.00</PaymentCard>
+    <PaymentVoucher>0.00</PaymentVoucher>
+  </Table1>
+  <Table1>
+    <BillDate>2021-06-14T00:00:00+07:00</BillDate>
+    <BillCode>BL00000057CAC</BillCode>
+    <CustomerName>donz</CustomerName>
+    <CustomerPhone>0666666666</CustomerPhone>
+    <OrderNumber>2</OrderNumber>
+    <ServiceName>Service Name 22</ServiceName>
+    <Quantity>1</Quantity>
+    <Price>2423432.00</Price>
+    <Amount>2423432.00</Amount>
+    <StaffName />
+    <Note />
+    <EstimateTime>0.0000</EstimateTime>
+    <Status>Temporary bill</Status>
+    <TotalDiscount>0.00</TotalDiscount>
+    <PaymentCash>0.00</PaymentCash>
+    <PaymentCard>0.00</PaymentCard>
+    <PaymentVoucher>0.00</PaymentVoucher>
+  </Table1>
+  <Table1>
+    <BillDate>2021-06-14T00:00:00+07:00</BillDate>
+    <BillCode>BL00000057CAC</BillCode>
+    <CustomerName>donz</CustomerName>
+    <CustomerPhone>0666666666</CustomerPhone>
+    <OrderNumber>3</OrderNumber>
+    <ServiceName>Service name 1</ServiceName>
+    <Quantity>1</Quantity>
+    <Price>34234234.00</Price>
+    <Amount>34234234.00</Amount>
+    <StaffName />
+    <Note />
+    <EstimateTime>2.5000</EstimateTime>
+    <Status>Temporary bill</Status>
+    <TotalDiscount>0.00</TotalDiscount>
+    <PaymentCash>0.00</PaymentCash>
+    <PaymentCard>0.00</PaymentCard>
+    <PaymentVoucher>0.00</PaymentVoucher>
+  </Table1>
+  <Table1>
+    <BillDate>2021-06-14T00:00:00+07:00</BillDate>
+    <BillCode>BL00000057CAC</BillCode>
+    <CustomerName>donz</CustomerName>
+    <CustomerPhone>0666666666</CustomerPhone>
+    <OrderNumber>4</OrderNumber>
+    <ServiceName>Service name 3</ServiceName>
+    <Quantity>1</Quantity>
+    <Price>30000.00</Price>
+    <Amount>30000.00</Amount>
+    <StaffName />
+    <Note />
+    <EstimateTime>1.0000</EstimateTime>
+    <Status>Temporary bill</Status>
+    <TotalDiscount>0.00</TotalDiscount>
+    <PaymentCash>0.00</PaymentCash>
+    <PaymentCard>0.00</PaymentCard>
+    <PaymentVoucher>0.00</PaymentVoucher>
+  </Table1>
+</NewDataSet>
