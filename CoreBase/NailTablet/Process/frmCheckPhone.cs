@@ -1,4 +1,6 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using AusNail.Login;
+using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +19,7 @@ namespace AusNail.Process
         public int _UserId = 0;
         private DataTable _dtCustomer = null;
         private string sResult = "";
+        private bool _firtRun = false;
         public frmCheckPhone()
         {
             InitializeComponent();
@@ -25,6 +28,17 @@ namespace AusNail.Process
             this.Height = 400;
             this.pnSDT.Visible = true;
             lbSize.Text = "<<";
+        }
+
+        public frmCheckPhone(bool firtRun)
+        {
+            InitializeComponent();
+            txtPhone.Focus();
+            this.Width = 370;
+            this.Height = 400;
+            this.pnSDT.Visible = true;
+            lbSize.Text = "<<";
+            _firtRun = firtRun;
         }
 
         public frmCheckPhone(int branchId, int userId)
@@ -65,21 +79,21 @@ namespace AusNail.Process
                // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
-                    //this.Visible = false;
-                    //this.ShowInTaskbar = false;
-                    //frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
-                    //frm.Activate();
-                    //frm.Show();
-                    sResult = txtPhone.Text.Trim() + "|" + _dtCustomer.Rows[0]["Name"].ToString();
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
+                    frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
+                    frm.Activate();
+                    frm.ShowDialog();
+                    //sResult = txtPhone.Text.Trim() + "|" + _dtCustomer.Rows[0]["Name"].ToString();
                 }
                 else
                 {
-                    //this.Visible = false;
-                    //this.ShowInTaskbar = false;
-                    //frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
-                    //frm.Activate();
-                    //frm.Show();
-                    sResult = txtPhone.Text.Trim();
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
+                    frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
+                    frm.Activate();
+                    frm.ShowDialog();
+                    //sResult = txtPhone.Text.Trim();
                 }
                 txtPhone.Clear();
             }
@@ -112,16 +126,51 @@ namespace AusNail.Process
 
         private void frmCheckPhone_Load(object sender, EventArgs e)
         {
-            txtPhone.Focus();
-            txtPhone.Select();
-            //this.Width = 370;
-            //this.Height = 170;
-            //this.pnSDT.Visible = false;
-            //this.pnSDT.Visible = false;
-            this.Width = 370;
-            this.Height = 400;
-            this.pnSDT.Visible = true;
-            lbSize.Text = "<<";
+            if (_firtRun)
+            {
+                frmLogin lf = new frmLogin();
+                if (lf.ShowDialog() != DialogResult.OK)
+                {
+                    Application.Exit();
+                    return;
+                }
+                else
+                {
+                    _branchId = int.Parse(NailApp.BranchID);
+                    _UserId = NailApp.CurrentUserId;
+
+                    txtPhone.Focus();
+                    txtPhone.Select();
+                    //this.Width = 370;
+                    //this.Height = 170;
+                    //this.pnSDT.Visible = false;
+                    //this.pnSDT.Visible = false;
+                    this.Width = 370;
+                    this.Height = 400;
+                    this.pnSDT.Visible = true;
+                    lbSize.Text = "<<";
+
+                    ////Load permisson
+                    NailApp.lstPermission = new List<string>();
+                    NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
+                }
+            }
+            else
+            {
+                _branchId = int.Parse(NailApp.BranchID);
+                _UserId = NailApp.CurrentUserId;
+
+                txtPhone.Focus();
+                txtPhone.Select();
+                //this.Width = 370;
+                //this.Height = 170;
+                //this.pnSDT.Visible = false;
+                //this.pnSDT.Visible = false;
+                this.Width = 370;
+                this.Height = 400;
+                this.pnSDT.Visible = true;
+                lbSize.Text = "<<";
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
