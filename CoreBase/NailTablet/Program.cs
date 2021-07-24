@@ -26,17 +26,17 @@ namespace AusNail
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Updater u = new Updater();
-            //u.StartMonitoring();
-            if (u.LocalConfig != null)
-            {
-                if (u.ZCheckUpdate())
-                {
-                    System.Windows.Forms.MessageBox.Show("Has a new version. The program will perform an update before proceeding further.", "Infomation");
-                    System.Diagnostics.Process.Start("Nail.Update.exe");
-                    return;
-                }
-            }
+            //Updater u = new Updater();
+            ////u.StartMonitoring();
+            //if (u.LocalConfig != null)
+            //{
+            //    if (u.ZCheckUpdate())
+            //    {
+            //        System.Windows.Forms.MessageBox.Show("Has a new version. The program will perform an update before proceeding further.", "Infomation");
+            //        System.Diagnostics.Process.Start("Nail.Update.exe");
+            //        return;
+            //    }
+            //}
 
             // Check database setting
             //try
@@ -51,7 +51,7 @@ namespace AusNail
                     ZenDbInfo dbinfo = ZenDatabase.GetDbInfo(connString);
                     if (ZenDatabase.TestConnection(ZenDatabase.GetConnectionString(dbinfo.ServerName, dbinfo.DatabaseName, dbinfo.UserName, dbinfo.Password)))
                     {
-                        Application.Run(new frmMain());
+                        Application.Run(new Process.frmCheckPhone(true));
                     }
                     else
                     {
