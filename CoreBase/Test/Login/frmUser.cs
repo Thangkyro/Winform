@@ -280,11 +280,19 @@ namespace AusNail.Dictionary
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
                     txtUserId.Text = row.Cells["userid"].Value.ToString();
 
+                    if (!string.IsNullOrWhiteSpace(txtUserId.Text) && txtUserId.Text != "0")
+                    {
+                        btnSetPermission.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSetPermission.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                //throw;
             }
         }
 
@@ -478,6 +486,23 @@ namespace AusNail.Dictionary
             {
                 e.Row.Cells["BranchId"].Value = NailApp.BranchID;
 
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnSetPermission_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Login.frmSetPermission form = new Login.frmSetPermission(int.Parse(txtUserId.Text),txtUser_name.Text, txtFull_Name.Text);
+                form.ShowDialog();
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    LoadData();
+                }
             }
             catch (Exception ex)
             {
