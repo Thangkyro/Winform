@@ -53,6 +53,7 @@
             this.txtUserId = new System.Windows.Forms.TextBox();
             this.btnResetPass = new AltoControls.AltoButton();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnSetPermission = new AltoControls.AltoButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
@@ -94,7 +95,7 @@
             this.lblTime.Location = new System.Drawing.Point(1133, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "23:31:49";
+            this.lblTime.Text = "20:40:51";
             // 
             // btnSave
             // 
@@ -333,7 +334,7 @@
             // txtUserId
             // 
             this.txtUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUserId.Location = new System.Drawing.Point(846, 456);
+            this.txtUserId.Location = new System.Drawing.Point(1015, 406);
             this.txtUserId.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserId.Multiline = true;
             this.txtUserId.Name = "txtUserId";
@@ -373,11 +374,35 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "User";
             // 
+            // btnSetPermission
+            // 
+            this.btnSetPermission.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnSetPermission.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnSetPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetPermission.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetPermission.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSetPermission.Enabled = false;
+            this.btnSetPermission.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSetPermission.ForeColor = System.Drawing.Color.Black;
+            this.btnSetPermission.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnSetPermission.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnSetPermission.Location = new System.Drawing.Point(846, 465);
+            this.btnSetPermission.Name = "btnSetPermission";
+            this.btnSetPermission.Radius = 10;
+            this.btnSetPermission.Size = new System.Drawing.Size(143, 40);
+            this.btnSetPermission.Stroke = false;
+            this.btnSetPermission.StrokeColor = System.Drawing.Color.Gray;
+            this.btnSetPermission.TabIndex = 23;
+            this.btnSetPermission.Text = "Set Permission";
+            this.btnSetPermission.Transparency = false;
+            this.btnSetPermission.Click += new System.EventHandler(this.btnSetPermission_Click);
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 588);
+            this.Controls.Add(this.btnSetPermission);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnResetPass);
             this.Controls.Add(this.txtUserId);
@@ -422,6 +447,7 @@
             this.Controls.SetChildIndex(this.txtUserId, 0);
             this.Controls.SetChildIndex(this.btnResetPass, 0);
             this.Controls.SetChildIndex(this.label11, 0);
+            this.Controls.SetChildIndex(this.btnSetPermission, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -457,5 +483,6 @@
         private System.Windows.Forms.TextBox txtUserId;
         private AltoControls.AltoButton btnResetPass;
         private System.Windows.Forms.Label label11;
+        private AltoControls.AltoButton btnSetPermission;
     }
 }
