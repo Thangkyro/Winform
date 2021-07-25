@@ -195,9 +195,17 @@ namespace AusNail.Login
         {
             if (node.Nodes.Count == 0 && node.Checked)
                 return "," + node.Name;
-            else
+            else if (node.Checked == false)
             {
                 string ret = "";
+                foreach (TreeNode n in node.Nodes)
+                    ret += GetIds(n);
+
+                return ret;
+            }
+            else
+            {
+                string ret = "," + node.Name;
                 foreach (TreeNode n in node.Nodes)
                     ret += GetIds(n);
 
