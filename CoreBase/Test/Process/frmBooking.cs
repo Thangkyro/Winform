@@ -11,6 +11,13 @@ namespace AusNail.Process
 {
     public partial class frmBooking : Form
     {
+        const string BOOKING_CMDKEY = "Booking";
+        const string BOOKING_ADD_CMDKEY = "Booking_add";
+        const string BOOKING_DEL_CMDKEY = "Booking_del";
+        const string BOOKING_EDIT_CMDKEY = "Booking_edit";
+        const string BOOKING_LIST_CMDKEY = "Booking_list";
+        const string BILL_ADD_CMDKEY = "Bill_add";
+
         private int iResult = 0;
         private int _branchIDChoose = 0;
         private DateTime _dateFilter;
@@ -414,6 +421,11 @@ namespace AusNail.Process
                 string headerText = senderGrid.Columns[e.ColumnIndex].Name;
                 if (senderGrid.Columns["Edit"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "Edit")
                 {
+                    if (!NailApp.lstPermission.Contains(BOOKING_EDIT_CMDKEY) && !NailApp.IsAdmin())
+                    {
+                        MessageBox.Show("Unauthorized", "Information");
+                        return;
+                    }
                     Process.frmBookingAdd frmSerAdd = new Process.frmBookingAdd(int.Parse(NailApp.BranchID), "", "", int.Parse(dgvDetail["BookID", e.RowIndex].Value.ToString()), "Edit", null);
                     frmSerAdd.ShowDialog();
                     int iResult = frmSerAdd.SendData();
@@ -424,6 +436,11 @@ namespace AusNail.Process
                 }
                 else if (senderGrid.Columns["ToBill"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "ToBill")
                 {
+                    if (!NailApp.lstPermission.Contains(BILL_ADD_CMDKEY) && !NailApp.IsAdmin())
+                    {
+                        MessageBox.Show("Unauthorized", "Information");
+                        return;
+                    }
                     //DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Create Bill", MessageBoxButtons.YesNo);
                     //if (dialogResult == DialogResult.Yes)
                     //{
@@ -508,6 +525,11 @@ namespace AusNail.Process
                 }
                 else if (senderGrid.Columns["Remove"] is DataGridViewButtonColumn && dgvDetail["BookID", e.RowIndex].Value != DBNull.Value && headerText == "Remove")
                 {
+                    if (!NailApp.lstPermission.Contains(BOOKING_DEL_CMDKEY) && !NailApp.IsAdmin())
+                    {
+                        MessageBox.Show("Unauthorized", "Information");
+                        return;
+                    }
                     DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Remove Booking", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -538,11 +560,21 @@ namespace AusNail.Process
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(BOOKING_ADD_CMDKEY) && !NailApp.IsAdmin())
+            {
+                MessageBox.Show("Unauthorized", "Information");
+                return;
+            }
             CheckService(false);
         }
 
         private void btnNewBooking_Click(object sender, EventArgs e)
         {
+            if (!NailApp.lstPermission.Contains(BOOKING_ADD_CMDKEY) && !NailApp.IsAdmin())
+            {
+                MessageBox.Show("Unauthorized", "Information");
+                return;
+            }
             CheckService(true);
         }
 
@@ -606,6 +638,12 @@ namespace AusNail.Process
         {
             try
             {
+                //if (!NailApp.lstPermission.Contains(BOOKING_LIST_CMDKEY) && !NailApp.IsAdmin())
+                //{
+                //    MessageBox.Show("Unauthorized", "Information");
+                //    this.Close();
+                //}
+
                 LoadGridHeader();
                 LoadGridDetail("", _dateFilter, -1);
                 SetDependencyBooking();

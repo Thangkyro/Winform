@@ -94,7 +94,7 @@ namespace AusNail.Dictionary
             try
             {
                 bool isSuccess = false;
-                LoadEditRow();
+                //LoadEditRow();
                 if (_Mode == "Add")
                 {
                     //if (!NailApp.lstPermission.Contains(USER_ADD_CMDKEY))
@@ -153,7 +153,7 @@ namespace AusNail.Dictionary
                                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
                                 if (dt != null && dt.Rows.Count > 0)
                                 {
-                                    userID = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                                    userID = int.Parse(dt.Rows[0][0].ToString());
                                     string passWord = Encryptor.MD5Hash("123456Aa") +
                                                         Encryptor.MD5Hash(userID.ToString()) +
                                                         Encryptor.MD5Hash(this.zEditRow["user_name"].ToString());
@@ -280,7 +280,7 @@ namespace AusNail.Dictionary
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
                     txtUserId.Text = row.Cells["userid"].Value.ToString();
 
-                    if (!string.IsNullOrWhiteSpace(txtUserId.Text) && txtUserId.Text != "0")
+                    if (!string.IsNullOrWhiteSpace(txtUserId.Text) && txtUserId.Text != "0" && chkIs_Admin.Checked == false)
                     {
                         btnSetPermission.Enabled = true;
                     }
@@ -327,18 +327,19 @@ namespace AusNail.Dictionary
             if (result == DialogResult.Yes)
             {
                 this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
-                // Check use for bill or booking.
-                //DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUserCheckUse", int.Parse(zDeleteRow["UserId"].ToString()));
-                //if (dataTable != null && dataTable.Rows.Count > 0)
-                //{
-                //    MessageBox.Show("User is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
-                //else
-                //{
-                //    bool flag = base.DeleteData();
-                //    LoadData();
-                //}
+               // Check use for bill or booking.
+
+               DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zUserCheckUse", int.Parse(zDeleteRow["UserId"].ToString()));
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    MessageBox.Show("User is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    bool flag = base.DeleteData();
+                    LoadData();
+                }
             }
             else
             {
@@ -464,6 +465,7 @@ namespace AusNail.Dictionary
                             if (sDao.SetPasswordNew(_userID, password))
                             {
                                 MessageBox.Show("Change Password Successfully");
+                                LoadData();
                             }
                             else
                             {

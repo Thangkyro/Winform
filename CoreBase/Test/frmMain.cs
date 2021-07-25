@@ -20,6 +20,9 @@ namespace AusNail
 {
     public partial class frmMain : Form
     {
+        const string BOOKING_LIST_CMDKEY = "Booking_list";
+        const string USER_LIST_CMDKEY = "User_list";
+
         private bool tabHistory = false;
         private int _billIDTemp = -1;
         private int _billIDTempOld = -1;
@@ -368,6 +371,11 @@ namespace AusNail
             //frmBooking f = new frmBranch();
             //ShowForm(f);
             //f.ShowDialog();
+            if (!NailApp.lstPermission.Contains(BOOKING_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                MessageBox.Show("Unauthorized", "Information");
+                return;
+            }
             frmBookingFilter form = new frmBookingFilter();
             form.ShowDialog();
             string sResult = form.SendData();
@@ -400,6 +408,11 @@ namespace AusNail
         #region Setting
         void frmUser()
         {
+            if (!NailApp.lstPermission.Contains(USER_LIST_CMDKEY) && !NailApp.IsAdmin())
+            {
+                MessageBox.Show("Unauthorized", "Information");
+                return;
+            }
             frmUser f = new frmUser();
             ShowForm(f);
             //f.ShowDialog();
