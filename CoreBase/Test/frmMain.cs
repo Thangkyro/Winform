@@ -155,20 +155,30 @@ namespace AusNail
                 //pnlForm.Controls.Clear();
                 if (pnlForm.Controls.Count > 0)
                 {
-                    foreach (Form item in pnlForm.Controls)
-                    {
-                        if (!item.Name.Equals(frm.Name))
-                        {
-                            item.WindowState = FormWindowState.Minimized;
 
-                        }
-                        else
+                    foreach (var item in pnlForm.Controls)
+                    {
+                        try
                         {
-                            item.WindowState = FormWindowState.Maximized;
-                            item.Dock = DockStyle.Fill;
-                            item.TopMost = true;
-                            item.Show();
+                            Form form = (Form)item;
+                            if (!form.Name.Equals(frm.Name))
+                            {
+                                form.WindowState = FormWindowState.Minimized;
+
+                            }
+                            else
+                            {
+                                form.WindowState = FormWindowState.Maximized;
+                                form.Dock = DockStyle.Fill;
+                                form.TopMost = true;
+                                form.Show();
+                            }
                         }
+                        catch 
+                        {
+                            continue;
+                        }
+                        
                     }
                     //frm.Show();
                 }
