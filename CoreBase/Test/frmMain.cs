@@ -227,42 +227,75 @@ namespace AusNail
         {
             //category
             if (NailApp.lstPermission.Contains(Branch.Name) || NailApp.IsAdmin())
+            {
+                Branch.Visible = true;
                 Branch.Click += (s, e) => { frmBranch(); };
+            }
             else
+            {
                 Branch.Visible = false;
+            }
 
             if (NailApp.lstPermission.Contains(Customer.Name) || NailApp.IsAdmin())
+            {
+                Customer.Visible = true;
                 Customer.Click += (s, e) => { frmCustomer(); };
+            }
             else
+            {    
                 Customer.Visible = false;
-
+            }
 
             if (NailApp.lstPermission.Contains(Service.Name) || NailApp.IsAdmin())
+            {
+                Service.Visible = true;
                 Service.Click += (s, e) => { frmService(); };
+            }
             else
+            { 
                 Service.Visible = false;
-
+            }
 
             if (NailApp.lstPermission.Contains(Staff.Name) || NailApp.IsAdmin())
+            {
+                Staff.Visible = true;
                 Staff.Click += (s, e) => { frmStaff(); };
+            }
             else
+            {
                 Staff.Visible = false;
+            }
 
 
             if (NailApp.lstPermission.Contains(Holiday.Name) || NailApp.IsAdmin())
+            {
+                Holiday.Visible = true;
                 Holiday.Click += (s, e) => { frmHoliday(); };
+            }
             else
+            {
                 Holiday.Visible = false;
+            }
 
             if (NailApp.lstPermission.Contains(Voucher.Name) || NailApp.IsAdmin())
+            {
+                Voucher.Visible = true;
                 Voucher.Click += (s, e) => { frmVoucher(); };
+            }
             else
+            {
                 Voucher.Visible = false;
+            }
 
             if (NailApp.lstPermission.Contains(BusinessHour.Name) || NailApp.IsAdmin())
+            {
+                BusinessHour.Visible = true;
                 BusinessHour.Click += (s, e) => { frmBusinessHour(); };
+            }
             else
+            {
                 BusinessHour.Visible = false;
+            }
 
         }
 
@@ -285,18 +318,28 @@ namespace AusNail
             //    TimeKeeping.Visible = false;
 
             if (NailApp.lstPermission.Contains(Booking.Name) || NailApp.IsAdmin())
+            {
+                Booking.Visible = true;
                 Booking.Click += (s, e) => { frmBooking(); };
+            }
             else
+            {
                 Booking.Visible = false;
+            }
         }
 
         void InitCommandST()
         {
             //category
             if (NailApp.IsAdmin())
+            {
+                User.Visible = true;
                 User.Click += (s, e) => { frmUser(); };
+            }
             else
+            {
                 User.Visible = false;
+            }
 
         }
 
