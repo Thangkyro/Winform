@@ -90,11 +90,11 @@ namespace AusNail.Process
                 {
                     string customerName = txtName.Text.Trim();
                     string phoneNumber = txtPhoneNum.Text.Trim();
-                    //this.Visible = false;
-                    //this.ShowInTaskbar = false;
-                    //Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
-                    //frm.Activate();
-                    //frm.Show();
+                    this.Visible = false;
+                    this.ShowInTaskbar = false;
+                    Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
+                    frm.Activate();
+                    frm.ShowDialog();
 
                     sResult = phoneNumber + "|" + customerName;
                     this.Close();
