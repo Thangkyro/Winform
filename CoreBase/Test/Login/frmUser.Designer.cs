@@ -95,7 +95,7 @@
             this.lblTime.Location = new System.Drawing.Point(1133, 21);
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 27);
-            this.lblTime.Text = "20:40:51";
+            this.lblTime.Text = "13:16:40";
             // 
             // btnSave
             // 
@@ -360,8 +360,9 @@
             this.btnResetPass.Stroke = false;
             this.btnResetPass.StrokeColor = System.Drawing.Color.Gray;
             this.btnResetPass.TabIndex = 21;
-            this.btnResetPass.Text = "Reset Password";
+            this.btnResetPass.Text = "Reset";
             this.btnResetPass.Transparency = false;
+            this.btnResetPass.Click += new System.EventHandler(this.BtnResetPass_Click);
             // 
             // label11
             // 
