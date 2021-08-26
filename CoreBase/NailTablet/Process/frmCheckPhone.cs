@@ -25,7 +25,7 @@ namespace AusNail.Process
             InitializeComponent();
             txtPhone.Focus();
             this.Width = 370;
-            this.Height = 400;
+            this.Height = 500;
             this.pnSDT.Visible = true;
             lbSize.Text = "<<";
         }
@@ -35,7 +35,7 @@ namespace AusNail.Process
             InitializeComponent();
             txtPhone.Focus();
             this.Width = 370;
-            this.Height = 400;
+            this.Height = 500;
             this.pnSDT.Visible = true;
             lbSize.Text = "<<";
             _firtRun = firtRun;
@@ -146,7 +146,7 @@ namespace AusNail.Process
                     //this.pnSDT.Visible = false;
                     //this.pnSDT.Visible = false;
                     this.Width = 370;
-                    this.Height = 400;
+                    this.Height = 500;
                     this.pnSDT.Visible = true;
                     lbSize.Text = "<<";
 
@@ -167,7 +167,7 @@ namespace AusNail.Process
                 //this.pnSDT.Visible = false;
                 //this.pnSDT.Visible = false;
                 this.Width = 370;
-                this.Height = 400;
+                this.Height = 500;
                 this.pnSDT.Visible = true;
                 lbSize.Text = "<<";
             }
@@ -178,7 +178,7 @@ namespace AusNail.Process
             if (lbSize.Text == ">>")
             {
                 this.Width = 370;
-                this.Height = 400;
+                this.Height = 500;
                 this.pnSDT.Visible = true;
                 lbSize.Text = "<<";
             }
@@ -193,90 +193,130 @@ namespace AusNail.Process
 
         private void btn1_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "1";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "1" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "2";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "2" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "3";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "3" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "4";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "4" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "5";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "5" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "6";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "6" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "7";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "7" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "8";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "8" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "9";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "9" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }
 
         private void btn0_Click(object sender, EventArgs e)
         {
+            string strleft = "";
+            string strright = "";
             int lastControl = txtPhone.SelectionStart;
             string strPhone = txtPhone.Text.Trim();
-            strPhone += "0";
+            strleft = strPhone.Substring(0, lastControl);
+            strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
+            strPhone = strleft + "0" + strright;
             txtPhone.Text = strPhone;
             txtPhone.SelectionStart = lastControl + 1;
         }

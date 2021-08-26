@@ -97,6 +97,7 @@ namespace AusNail.Process
             dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
             dgvService.Columns["EstimateTime"].Width = 75;
             dgvService.Columns["EstimateTime"].ReadOnly = true;
+            dgvService.Columns["EstimateTime"].Visible = false;
             //dgvService.Columns["Quantity"].HeaderText = "Quantity";
             //dgvService.Columns["Quantity"].Width = 75;
             dgvService.Columns.Remove("Quantity");
@@ -109,15 +110,17 @@ namespace AusNail.Process
             dgvService.Columns["Quantity"].DisplayIndex = 3;
 
             dgvService.Columns["Price"].HeaderText = "Price";
-            dgvService.Columns["Price"].Width = 70;
+            dgvService.Columns["Price"].Width = 100;
+            dgvService.Columns["Price"].Visible = false;
             dgvService.Columns["Amount"].HeaderText = "Amount";
             dgvService.Columns["Amount"].ReadOnly = true;
             dgvService.Columns["Amount"].Width = 120;
+            dgvService.Columns["Amount"].Visible = false;
 
             DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
             dataGridViewImange.Name = "Check";
             dataGridViewImange.HeaderText = "";
-            dataGridViewImange.Width = 20;
+            dataGridViewImange.Width = 50;
             dgvService.Columns.Add(dataGridViewImange);
 
             
@@ -258,15 +261,17 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.ColumnIndex != 5) // Quantity
+                if (e.ColumnIndex == 6) // Check
                 {
                     if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
                     {
                         dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                     }
                     else
                     {
                         dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
                     }
                 }
             }

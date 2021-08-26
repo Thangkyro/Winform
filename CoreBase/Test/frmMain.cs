@@ -674,6 +674,7 @@ namespace AusNail
                         tnsOld[0].BackColor = Color.White;
                     }
                 }
+                btnPrint.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -957,6 +958,7 @@ namespace AusNail
                         tnsOld[0].BackColor = Color.White;
                     }
                 }
+                btnPrint.Enabled = true;
             }
             catch (Exception ex)
             {

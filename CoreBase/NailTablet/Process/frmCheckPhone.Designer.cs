@@ -38,6 +38,8 @@
             this.btn9 = new AltoControls.AltoButton();
             this.btn6 = new AltoControls.AltoButton();
             this.btn3 = new AltoControls.AltoButton();
+            this.altoButton2 = new AltoControls.AltoButton();
+            this.btnDel = new AltoControls.AltoButton();
             this.btn0 = new AltoControls.AltoButton();
             this.btn8 = new AltoControls.AltoButton();
             this.btn7 = new AltoControls.AltoButton();
@@ -45,8 +47,6 @@
             this.btn4 = new AltoControls.AltoButton();
             this.btn2 = new AltoControls.AltoButton();
             this.btn1 = new AltoControls.AltoButton();
-            this.btnDel = new AltoControls.AltoButton();
-            this.altoButton2 = new AltoControls.AltoButton();
             this.pnSDT.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(129, 311);
+            this.btnConfirm.Location = new System.Drawing.Point(129, 422);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(96, 30);
@@ -74,9 +74,9 @@
             // 
             // altoSlidingLabel1
             // 
-            this.altoSlidingLabel1.Location = new System.Drawing.Point(21, 25);
+            this.altoSlidingLabel1.Location = new System.Drawing.Point(20, 11);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
-            this.altoSlidingLabel1.Size = new System.Drawing.Size(102, 36);
+            this.altoSlidingLabel1.Size = new System.Drawing.Size(102, 23);
             this.altoSlidingLabel1.Slide = false;
             this.altoSlidingLabel1.TabIndex = 0;
             this.altoSlidingLabel1.Text = "Customer Phone:";
@@ -92,7 +92,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(231, 311);
+            this.btnCancel.Location = new System.Drawing.Point(231, 422);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(96, 30);
@@ -106,11 +106,12 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(129, 25);
+            this.txtPhone.Location = new System.Drawing.Point(20, 36);
             this.txtPhone.Multiline = true;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(198, 36);
+            this.txtPhone.Size = new System.Drawing.Size(307, 36);
             this.txtPhone.TabIndex = 1;
+            this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // lbSize
@@ -139,9 +140,9 @@
             this.pnSDT.Controls.Add(this.btn4);
             this.pnSDT.Controls.Add(this.btn2);
             this.pnSDT.Controls.Add(this.btn1);
-            this.pnSDT.Location = new System.Drawing.Point(129, 67);
+            this.pnSDT.Location = new System.Drawing.Point(20, 78);
             this.pnSDT.Name = "pnSDT";
-            this.pnSDT.Size = new System.Drawing.Size(198, 238);
+            this.pnSDT.Size = new System.Drawing.Size(307, 338);
             this.pnSDT.TabIndex = 5;
             // 
             // btn9
@@ -155,10 +156,10 @@
             this.btn9.ForeColor = System.Drawing.Color.Black;
             this.btn9.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn9.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn9.Location = new System.Drawing.Point(132, 123);
+            this.btn9.Location = new System.Drawing.Point(199, 166);
             this.btn9.Name = "btn9";
             this.btn9.Radius = 10;
-            this.btn9.Size = new System.Drawing.Size(55, 45);
+            this.btn9.Size = new System.Drawing.Size(80, 75);
             this.btn9.Stroke = false;
             this.btn9.StrokeColor = System.Drawing.Color.Gray;
             this.btn9.TabIndex = 3;
@@ -177,10 +178,10 @@
             this.btn6.ForeColor = System.Drawing.Color.Black;
             this.btn6.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn6.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn6.Location = new System.Drawing.Point(132, 72);
+            this.btn6.Location = new System.Drawing.Point(199, 87);
             this.btn6.Name = "btn6";
             this.btn6.Radius = 10;
-            this.btn6.Size = new System.Drawing.Size(55, 45);
+            this.btn6.Size = new System.Drawing.Size(80, 75);
             this.btn6.Stroke = false;
             this.btn6.StrokeColor = System.Drawing.Color.Gray;
             this.btn6.TabIndex = 3;
@@ -199,16 +200,60 @@
             this.btn3.ForeColor = System.Drawing.Color.Black;
             this.btn3.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn3.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn3.Location = new System.Drawing.Point(132, 21);
+            this.btn3.Location = new System.Drawing.Point(199, 8);
             this.btn3.Name = "btn3";
             this.btn3.Radius = 10;
-            this.btn3.Size = new System.Drawing.Size(55, 45);
+            this.btn3.Size = new System.Drawing.Size(80, 75);
             this.btn3.Stroke = false;
             this.btn3.StrokeColor = System.Drawing.Color.Gray;
             this.btn3.TabIndex = 3;
             this.btn3.Text = "3";
             this.btn3.Transparency = false;
             this.btn3.Click += new System.EventHandler(this.btn3_Click);
+            // 
+            // altoButton2
+            // 
+            this.altoButton2.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.altoButton2.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.altoButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.altoButton2.BackColor = System.Drawing.Color.Transparent;
+            this.altoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.altoButton2.Enabled = false;
+            this.altoButton2.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoButton2.ForeColor = System.Drawing.Color.Black;
+            this.altoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.altoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.altoButton2.Location = new System.Drawing.Point(21, 247);
+            this.altoButton2.Name = "altoButton2";
+            this.altoButton2.Radius = 10;
+            this.altoButton2.Size = new System.Drawing.Size(80, 75);
+            this.altoButton2.Stroke = false;
+            this.altoButton2.StrokeColor = System.Drawing.Color.Gray;
+            this.altoButton2.TabIndex = 3;
+            this.altoButton2.Transparency = false;
+            this.altoButton2.Click += new System.EventHandler(this.btn0_Click);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnDel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDel.BackColor = System.Drawing.Color.Transparent;
+            this.btnDel.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDel.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDel.ForeColor = System.Drawing.Color.Black;
+            this.btnDel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnDel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDel.Location = new System.Drawing.Point(199, 247);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Radius = 10;
+            this.btnDel.Size = new System.Drawing.Size(80, 75);
+            this.btnDel.Stroke = false;
+            this.btnDel.StrokeColor = System.Drawing.Color.Gray;
+            this.btnDel.TabIndex = 3;
+            this.btnDel.Text = "Del";
+            this.btnDel.Transparency = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btn0
             // 
@@ -221,10 +266,10 @@
             this.btn0.ForeColor = System.Drawing.Color.Black;
             this.btn0.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn0.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn0.Location = new System.Drawing.Point(70, 174);
+            this.btn0.Location = new System.Drawing.Point(110, 247);
             this.btn0.Name = "btn0";
             this.btn0.Radius = 10;
-            this.btn0.Size = new System.Drawing.Size(55, 45);
+            this.btn0.Size = new System.Drawing.Size(80, 75);
             this.btn0.Stroke = false;
             this.btn0.StrokeColor = System.Drawing.Color.Gray;
             this.btn0.TabIndex = 3;
@@ -243,10 +288,10 @@
             this.btn8.ForeColor = System.Drawing.Color.Black;
             this.btn8.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn8.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn8.Location = new System.Drawing.Point(70, 123);
+            this.btn8.Location = new System.Drawing.Point(110, 166);
             this.btn8.Name = "btn8";
             this.btn8.Radius = 10;
-            this.btn8.Size = new System.Drawing.Size(55, 45);
+            this.btn8.Size = new System.Drawing.Size(80, 75);
             this.btn8.Stroke = false;
             this.btn8.StrokeColor = System.Drawing.Color.Gray;
             this.btn8.TabIndex = 3;
@@ -265,10 +310,10 @@
             this.btn7.ForeColor = System.Drawing.Color.Black;
             this.btn7.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn7.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn7.Location = new System.Drawing.Point(9, 123);
+            this.btn7.Location = new System.Drawing.Point(21, 166);
             this.btn7.Name = "btn7";
             this.btn7.Radius = 10;
-            this.btn7.Size = new System.Drawing.Size(55, 45);
+            this.btn7.Size = new System.Drawing.Size(80, 75);
             this.btn7.Stroke = false;
             this.btn7.StrokeColor = System.Drawing.Color.Gray;
             this.btn7.TabIndex = 3;
@@ -287,10 +332,10 @@
             this.btn5.ForeColor = System.Drawing.Color.Black;
             this.btn5.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn5.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn5.Location = new System.Drawing.Point(70, 72);
+            this.btn5.Location = new System.Drawing.Point(110, 87);
             this.btn5.Name = "btn5";
             this.btn5.Radius = 10;
-            this.btn5.Size = new System.Drawing.Size(55, 45);
+            this.btn5.Size = new System.Drawing.Size(80, 75);
             this.btn5.Stroke = false;
             this.btn5.StrokeColor = System.Drawing.Color.Gray;
             this.btn5.TabIndex = 3;
@@ -309,10 +354,10 @@
             this.btn4.ForeColor = System.Drawing.Color.Black;
             this.btn4.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn4.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn4.Location = new System.Drawing.Point(9, 72);
+            this.btn4.Location = new System.Drawing.Point(21, 87);
             this.btn4.Name = "btn4";
             this.btn4.Radius = 10;
-            this.btn4.Size = new System.Drawing.Size(55, 45);
+            this.btn4.Size = new System.Drawing.Size(80, 75);
             this.btn4.Stroke = false;
             this.btn4.StrokeColor = System.Drawing.Color.Gray;
             this.btn4.TabIndex = 3;
@@ -331,10 +376,10 @@
             this.btn2.ForeColor = System.Drawing.Color.Black;
             this.btn2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn2.Location = new System.Drawing.Point(70, 21);
+            this.btn2.Location = new System.Drawing.Point(110, 8);
             this.btn2.Name = "btn2";
             this.btn2.Radius = 10;
-            this.btn2.Size = new System.Drawing.Size(55, 45);
+            this.btn2.Size = new System.Drawing.Size(80, 75);
             this.btn2.Stroke = false;
             this.btn2.StrokeColor = System.Drawing.Color.Gray;
             this.btn2.TabIndex = 3;
@@ -353,10 +398,10 @@
             this.btn1.ForeColor = System.Drawing.Color.Black;
             this.btn1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn1.Location = new System.Drawing.Point(9, 21);
+            this.btn1.Location = new System.Drawing.Point(21, 8);
             this.btn1.Name = "btn1";
             this.btn1.Radius = 10;
-            this.btn1.Size = new System.Drawing.Size(55, 45);
+            this.btn1.Size = new System.Drawing.Size(80, 75);
             this.btn1.Stroke = false;
             this.btn1.StrokeColor = System.Drawing.Color.Gray;
             this.btn1.TabIndex = 3;
@@ -364,56 +409,12 @@
             this.btn1.Transparency = false;
             this.btn1.Click += new System.EventHandler(this.btn1_Click);
             // 
-            // btnDel
-            // 
-            this.btnDel.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnDel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDel.BackColor = System.Drawing.Color.Transparent;
-            this.btnDel.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnDel.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.ForeColor = System.Drawing.Color.Black;
-            this.btnDel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnDel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDel.Location = new System.Drawing.Point(132, 174);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Radius = 10;
-            this.btnDel.Size = new System.Drawing.Size(55, 45);
-            this.btnDel.Stroke = false;
-            this.btnDel.StrokeColor = System.Drawing.Color.Gray;
-            this.btnDel.TabIndex = 3;
-            this.btnDel.Text = "Del";
-            this.btnDel.Transparency = false;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // altoButton2
-            // 
-            this.altoButton2.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.altoButton2.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.altoButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.altoButton2.BackColor = System.Drawing.Color.Transparent;
-            this.altoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.altoButton2.Enabled = false;
-            this.altoButton2.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.altoButton2.ForeColor = System.Drawing.Color.Black;
-            this.altoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.altoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.altoButton2.Location = new System.Drawing.Point(9, 174);
-            this.altoButton2.Name = "altoButton2";
-            this.altoButton2.Radius = 10;
-            this.altoButton2.Size = new System.Drawing.Size(55, 45);
-            this.altoButton2.Stroke = false;
-            this.altoButton2.StrokeColor = System.Drawing.Color.Gray;
-            this.altoButton2.TabIndex = 3;
-            this.altoButton2.Transparency = false;
-            this.altoButton2.Click += new System.EventHandler(this.btn0_Click);
-            // 
             // frmCheckPhone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(354, 361);
+            this.ClientSize = new System.Drawing.Size(354, 461);
             this.Controls.Add(this.pnSDT);
             this.Controls.Add(this.lbSize);
             this.Controls.Add(this.txtPhone);
