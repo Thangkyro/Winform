@@ -162,6 +162,10 @@ namespace AusNail.Process
                     dgvDetail.Columns["BillNumber"].ReadOnly = true;
                     dgvDetail.Columns["BillNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+                    dgvDetail.Columns["Decriptions"].HeaderText = "Descriptions";
+                    dgvDetail.Columns["Decriptions"].ReadOnly = true;
+                    dgvDetail.Columns["Decriptions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+
                     dgvDetail.Columns["TimeBooking"].HeaderText = "Time Booking";
                     dgvDetail.Columns["TimeBooking"].ReadOnly = true;
                     dgvDetail.Columns["TimeBooking"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
