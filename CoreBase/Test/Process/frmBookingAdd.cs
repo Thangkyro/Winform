@@ -67,6 +67,7 @@ namespace AusNail.Process
             lblHeader.Text = action + " Booking";
             _action = action;
             dtpBookingDate.Focus();
+            //dtpBookingDate.Select();
 
         }
 
@@ -82,6 +83,7 @@ namespace AusNail.Process
                     txtPhoneNumber.Text = _dtBookingMaster.Rows[0]["CustomerPhone"].ToString();
                     lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
                     dtpBookingDate.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
+                    txtDes.Text = _dtBookingMaster.Rows[0]["Decriptions"].ToString();
                     //dtpBookingDate.Enabled = false;
                     _dtBookingDetail = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingDetail_byBookID", _bookID);
                 }
@@ -120,7 +122,7 @@ namespace AusNail.Process
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -186,21 +188,21 @@ namespace AusNail.Process
                 dgvService.AllowUserToDeleteRows = false;
 
                 //Check if bookID != 0 then load detail from bookingdetail for grid
-                if (_bookID != 0 && _dtBookingDetail != null && _dtBookingDetail.Rows.Count > 0)
-                {
-                    //for (int i = 0; i < dgvService.Rows.Count; i++)
-                    //{
-                    //    int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                    //    DataRow dr = _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID)).Count() == 1 ? _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID))[0] : null;
-                    //    if (dr != null)
-                    //    {
-                    //        //dgvService.Rows[i].Cells["Check"].Value = true;
-                    //        //dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Cyan;
-                    //    }
-                    //}
-                    //caculateAmount();
-                    //dgvService_Click(new object(), new EventArgs());
-                }
+                //if (_bookID != 0 && _dtBookingDetail != null && _dtBookingDetail.Rows.Count > 0)
+                //{
+                //    //for (int i = 0; i < dgvService.Rows.Count; i++)
+                //    //{
+                //    //    int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                //    //    DataRow dr = _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID)).Count() == 1 ? _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID))[0] : null;
+                //    //    if (dr != null)
+                //    //    {
+                //    //        dgvService.Rows[i].Cells["Check"].Value = true;
+                //    //        dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                //    //    }
+                //    //}
+                //    //caculateAmount();
+                //    //dgvService_Click(new object(), new EventArgs());
+                //}
             }
             catch (Exception ex)
             {
@@ -249,6 +251,18 @@ namespace AusNail.Process
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
                 }
 
+                DataGridViewCheckBoxCell chkchecking = dgvService.Rows[e.RowIndex].Cells["Check"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(chkchecking.Value) == true)
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+
             }
             catch
             {
@@ -278,111 +292,112 @@ namespace AusNail.Process
                 ////dialogResult = MessageBox.Show("Are you confirm ?", "Create Booking", MessageBoxButtons.YesNo);
                 //if (dialogResult == DialogResult.Yes)
                 //{
-                    DateTime dtBook;
-                    //DateTime.TryParse(dtpBookingDate.Text.Trim().ToString(), out dtBook);
-                    DateTime.TryParseExact(dtpBookingDate.Text.Trim().ToString(), "dd/MM/yyyy HH:mm",
-                                   CultureInfo.InvariantCulture,
-                                   DateTimeStyles.None,
-                                   out dtBook);
-                    if (dtBook == null || dtBook <= DateTime.Now)
+                DateTime dtBook;
+                //DateTime.TryParse(dtpBookingDate.Text.Trim().ToString(), out dtBook);
+                DateTime.TryParseExact(dtpBookingDate.Text.Trim().ToString(), "dd/MM/yyyy HH:mm",
+                               CultureInfo.InvariantCulture,
+                               DateTimeStyles.None,
+                               out dtBook);
+                if (dtBook == null || dtBook <= DateTime.Now)
+                {
+                    MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (dtBook.Year == 0001)
+                {
+                    MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (dgvService.Rows.Count > 0)
+                {
+                    string descriptions = txtDes.Text.Trim();
+                    int error = 0;
+                    string errorMesg = "";
+                    bool flag = true;
+                    if (_bookID != 0) //Edit
                     {
-                        MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    else if (dtBook.Year == 0001)
-                    {
-                        MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    if (dgvService.Rows.Count > 0)
-                    {
-                        int error = 0;
-                        string errorMesg = "";
-                        bool flag = true;
-                        if (_bookID != 0) //Edit
+                        //Delete detail
+                        int retDelete = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingDetailDeleteByBookID", _bookID, _branchID, error, errorMesg);
+                        if (retDelete > 0)
                         {
-                            //Delete detail
-                            int retDelete = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingDetailDeleteByBookID", _bookID, _branchID, error, errorMesg);
-                            if (retDelete > 0)
-                            {
-                                int k = 0;
-                                for (int i = 0; i < dgvService.Rows.Count; i++)
-                                {
-                                    if ((bool)(dgvService.Rows[i].Cells["Check"].Value == DBNull.Value ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
-                                    {
-                                        string CustomerPhone = txtPhoneNumber.Text.Trim();
-                                        int Num = k + 1;
-                                        k++;
-                                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
-                                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
-
-
-                                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, 1, error, errorMesg);
-
-                                        if (ret == 0)
-                                        {
-                                            flag = false;
-                                        }
-                                    }
-                                }
-
-                            }
-                            else
-                            {
-                                flag = false;
-                            }
-                        }
-                        else //Add
-                        {
-                            //Check exists
-                            DataTable dtCheckExistsBook = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMaster_CheckByDate", _branchID, "Temporary", txtPhoneNumber.Text.Trim(), dtBook, error, errorMesg);
-                            if (dtCheckExistsBook != null && dtCheckExistsBook.Rows.Count > 0)
-                            {
-                                MessageBox.Show("Exists Booking of Customer Phone at: " + dtBook.ToString("dd/MM/yyyy HH:mm"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
-                            }
-                            int isCheck = 0;
-                            int j = 0;
+                            int k = 0;
                             for (int i = 0; i < dgvService.Rows.Count; i++)
                             {
                                 if ((bool)(dgvService.Rows[i].Cells["Check"].Value == DBNull.Value ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
                                 {
                                     string CustomerPhone = txtPhoneNumber.Text.Trim();
-                                    int Num = j + 1;
-                                    j++;
+                                    int Num = k + 1;
+                                    k++;
                                     int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                                     decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
                                     decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                                     string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
 
 
-                                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, isCheck, error, errorMesg);
+                                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, 1, descriptions, error, errorMesg);
 
                                     if (ret == 0)
                                     {
                                         flag = false;
                                     }
-                                    else
-                                    {
-                                        isCheck = 1;
-                                    }
                                 }
                             }
-                        }
 
-                        if (flag)
-                        {
-                            MessageBox.Show(_action + " Booking sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            iResult = 1;
-                            this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("There was an error in processing", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            flag = false;
                         }
                     }
+                    else //Add
+                    {
+                        //Check exists
+                        DataTable dtCheckExistsBook = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMaster_CheckByDate", _branchID, "Temporary", txtPhoneNumber.Text.Trim(), dtBook, error, errorMesg);
+                        if (dtCheckExistsBook != null && dtCheckExistsBook.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Exists Booking of Customer Phone at: " + dtBook.ToString("dd/MM/yyyy HH:mm"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        int isCheck = 0;
+                        int j = 0;
+                        for (int i = 0; i < dgvService.Rows.Count; i++)
+                        {
+                            if ((bool)(dgvService.Rows[i].Cells["Check"].Value == DBNull.Value ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
+                            {
+                                string CustomerPhone = txtPhoneNumber.Text.Trim();
+                                int Num = j + 1;
+                                j++;
+                                int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                                decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
+                                decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                                string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+
+
+                                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, isCheck, descriptions, error, errorMesg);
+
+                                if (ret == 0)
+                                {
+                                    flag = false;
+                                }
+                                else
+                                {
+                                    isCheck = 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if (flag)
+                    {
+                        MessageBox.Show(_action + " Booking sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        iResult = 1;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("There was an error in processing", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
                 //}
             }
             catch (Exception ex)
@@ -394,24 +409,30 @@ namespace AusNail.Process
 
         private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == DBNull.Value ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
-                {
-                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
-                    //dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                }
-                else
-                {
-                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
-                    //dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Cyan;
-                }
-                caculateAmount();
-            }
-            catch (Exception ex)
-            {
+            //try
+            //{
+            //    var senderGrid = (DataGridView)sender;
+            //    string headerText = senderGrid.Columns[e.ColumnIndex].Name;
+            //    if (senderGrid.Columns["Check"] is DataGridViewCheckBoxColumn && headerText == "Check")
+            //    {
+            //        //DataGridViewCheckBoxCell chkchecking = dgvService.Rows[e.RowIndex].Cells["Check"] as DataGridViewCheckBoxCell;
+            //        //if (Convert.ToBoolean(chkchecking.Value) == true)
+            //        //{
+            //        //    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+            //        //    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+            //        //}
+            //        //else
+            //        //{
+            //        //    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+            //        //    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            //        //}
+            //        caculateAmount();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
         }
 
         private void dgvService_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -426,6 +447,20 @@ namespace AusNail.Process
                 {
                     e.CellStyle.Format = "N2";
                 }
+
+                if (_bookID != 0 && _dtBookingDetail != null && _dtBookingDetail.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dgvService.Rows.Count; i++)
+                    {
+                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                        DataRow dr = _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID)).Count() == 1 ? _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID))[0] : null;
+                        if (dr != null)
+                        {
+                            //dgvService.Rows[i].Cells["Check"].Value = true;
+                            dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                    }
+                }
             }
             catch
             {
@@ -434,26 +469,52 @@ namespace AusNail.Process
 
         #endregion
 
-        private void dgvService_Click(object sender, EventArgs e)
+        private void dgvService_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
-                for (int i = 0; i < dgvService.Rows.Count; i++)
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                    DataRow dr = _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID)).Count() == 1 ? _dtBookingDetail.Select(string.Format("ServiceId = {0}", ServiceID))[0] : null;
-                    if (dr != null)
+                    DataGridView dgv = (DataGridView)sender;
+                    if (dgv.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
                     {
-                        //dgvService.Rows[i].Cells["Check"].Value = true;
-                        dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Cyan;
+                        e.PaintBackground(e.CellBounds, true);
+                        ControlPaint.DrawCheckBox(e.Graphics, e.CellBounds.X + 1, e.CellBounds.Y + 1,
+                            e.CellBounds.Width - 2, e.CellBounds.Height - 2,
+                            (bool)e.FormattedValue ? ButtonState.Checked : ButtonState.Normal);
+                        e.Handled = true;
                     }
                 }
-                caculateAmount();
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+        private void dgvService_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //We make DataGridCheckBoxColumn commit changes with single click
+                //use index of logout column
+                if (e.ColumnIndex == 8 && e.RowIndex >= 0)
+                    this.dgvService.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                caculateAmount();
+                ////Check the value of cell
+                //if ((bool)this.dgvService.CurrentCell.Value == true)
+                //{
+                   
+                //}
+                //else
+                //{
+                    
+                //}
+            }
+            catch (Exception)
+            {
+            }
+            
         }
     }
 }

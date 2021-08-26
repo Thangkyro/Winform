@@ -36,7 +36,6 @@
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblHeader = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.dtpBookingDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +43,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalAmont = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblHeader = new System.Windows.Forms.Label();
+            this.txtDes = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -72,26 +74,27 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvService.Location = new System.Drawing.Point(13, 202);
+            this.dgvService.Location = new System.Drawing.Point(13, 257);
             this.dgvService.Margin = new System.Windows.Forms.Padding(4);
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
             this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvService.Size = new System.Drawing.Size(1080, 401);
+            this.dgvService.Size = new System.Drawing.Size(1108, 326);
             this.dgvService.TabIndex = 4;
-            this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
+            this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
             this.dgvService.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvService_CellFormatting);
+            this.dgvService.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvService_CellPainting);
             // 
             // txtPhoneNumber
             // 
-            this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhoneNumber.Location = new System.Drawing.Point(204, 94);
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(305, 28);
-            this.txtPhoneNumber.TabIndex = 1;
+            this.txtPhoneNumber.Size = new System.Drawing.Size(314, 38);
+            this.txtPhoneNumber.TabIndex = 999;
             // 
             // btnCancel
             // 
@@ -100,11 +103,11 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(935, 16);
+            this.btnCancel.Location = new System.Drawing.Point(963, 16);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
@@ -123,11 +126,11 @@
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
             this.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnConfirm.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.btnConfirm.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(760, 16);
+            this.btnConfirm.Location = new System.Drawing.Point(788, 16);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
@@ -142,6 +145,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtDes);
             this.panel1.Controls.Add(this.lblHeader);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.dtpBookingDate);
@@ -152,49 +157,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1110, 710);
+            this.panel1.Size = new System.Drawing.Size(1138, 690);
             this.panel1.TabIndex = 6;
-            // 
-            // lblHeader
-            // 
-            this.lblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(437, 32);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(0, 36);
-            this.lblHeader.TabIndex = 19;
             // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(515, 94);
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(526, 94);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(578, 28);
-            this.txtName.TabIndex = 2;
+            this.txtName.Size = new System.Drawing.Size(595, 38);
+            this.txtName.TabIndex = 9999;
             // 
             // dtpBookingDate
             // 
             this.dtpBookingDate.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBookingDate.Location = new System.Drawing.Point(204, 126);
+            this.dtpBookingDate.Location = new System.Drawing.Point(204, 140);
             this.dtpBookingDate.Name = "dtpBookingDate";
-            this.dtpBookingDate.Size = new System.Drawing.Size(305, 45);
-            this.dtpBookingDate.TabIndex = 3;
+            this.dtpBookingDate.Size = new System.Drawing.Size(314, 45);
+            this.dtpBookingDate.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 131);
+            this.label2.Location = new System.Drawing.Point(70, 150);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 24);
             this.label2.TabIndex = 4;
@@ -204,7 +196,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 94);
+            this.label1.Location = new System.Drawing.Point(40, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 3;
@@ -219,9 +211,9 @@
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnConfirm);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 631);
+            this.panel2.Location = new System.Drawing.Point(0, 611);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1110, 79);
+            this.panel2.Size = new System.Drawing.Size(1138, 79);
             this.panel2.TabIndex = 7;
             // 
             // lblTotalAmont
@@ -233,7 +225,7 @@
             this.lblTotalAmont.Location = new System.Drawing.Point(145, 16);
             this.lblTotalAmont.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalAmont.Name = "lblTotalAmont";
-            this.lblTotalAmont.Size = new System.Drawing.Size(551, 50);
+            this.lblTotalAmont.Size = new System.Drawing.Size(579, 50);
             this.lblTotalAmont.TabIndex = 17;
             this.lblTotalAmont.Text = "0";
             this.lblTotalAmont.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,12 +242,46 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Total Amount:";
             // 
+            // lblHeader
+            // 
+            this.lblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Location = new System.Drawing.Point(499, 28);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(125, 41);
+            this.lblHeader.TabIndex = 20;
+            this.lblHeader.Text = "Booking";
+            // 
+            // txtDes
+            // 
+            this.txtDes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDes.Location = new System.Drawing.Point(204, 192);
+            this.txtDes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDes.Name = "txtDes";
+            this.txtDes.Size = new System.Drawing.Size(917, 38);
+            this.txtDes.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(79, 203);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 24);
+            this.label3.TabIndex = 10001;
+            this.label3.Text = "Descriptions";
+            // 
             // frmBookingAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1110, 710);
+            this.ClientSize = new System.Drawing.Size(1138, 690);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -287,5 +313,7 @@
         private System.Windows.Forms.Label lblTotalAmont;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.TextBox txtDes;
+        private System.Windows.Forms.Label label3;
     }
 }
