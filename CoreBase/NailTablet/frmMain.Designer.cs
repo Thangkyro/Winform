@@ -234,7 +234,7 @@ namespace AusNail
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(291, 321);
+            this.tabPage2.Size = new System.Drawing.Size(291, 349);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "History bill";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@ namespace AusNail
             this.trHistoryBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trHistoryBill.Location = new System.Drawing.Point(2, 2);
             this.trHistoryBill.Name = "trHistoryBill";
-            this.trHistoryBill.Size = new System.Drawing.Size(287, 317);
+            this.trHistoryBill.Size = new System.Drawing.Size(287, 345);
             this.trHistoryBill.TabIndex = 0;
             this.trHistoryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trHistoryBill_AfterSelect);
             this.trHistoryBill.Click += new System.EventHandler(this.trHistoryBill_Click);
@@ -809,7 +809,7 @@ namespace AusNail
             // 
             this.formBorToolStripMenuItem.CheckOnClick = true;
             this.formBorToolStripMenuItem.Name = "formBorToolStripMenuItem";
-            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.formBorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.formBorToolStripMenuItem.Text = "Form Border Style";
             // 
             // zst
@@ -865,7 +865,6 @@ namespace AusNail
             this.Controls.Add(this.mnsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMenu;
             this.Name = "frmMain";
             this.Text = "Nail";

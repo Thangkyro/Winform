@@ -524,14 +524,7 @@ namespace AusNail
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            frmLogin lf = new frmLogin();
-            if (lf.ShowDialog() != DialogResult.OK)
-            {
-                Application.Exit();
-                return;
-            }
-            else
-            {
+
                 ////Load permisson
                 NailApp.lstPermission = new List<string>();
                 NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
@@ -566,8 +559,7 @@ namespace AusNail
                 string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
                 notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
                 notificationNewBill.LoadData();
-
-            }
+            
         }
 
         private void BtnSetColor_Click(object sender, EventArgs e)

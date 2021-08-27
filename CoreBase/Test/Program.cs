@@ -51,7 +51,7 @@ namespace AusNail
                     ZenDbInfo dbinfo = ZenDatabase.GetDbInfo(connString);
                     if (ZenDatabase.TestConnection(ZenDatabase.GetConnectionString(dbinfo.ServerName, dbinfo.DatabaseName, dbinfo.UserName, dbinfo.Password)))
                     {
-                        Application.Run(new frmMain());
+                        Application.Run(new frmMainParent());
                     }
                     else
                     {

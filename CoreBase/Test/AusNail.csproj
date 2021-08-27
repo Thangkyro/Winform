@@ -142,6 +142,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMainParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainParent.Designer.cs">
+      <DependentUpon>frmMainParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmSetPermission.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainParent.resx">
+      <DependentUpon>frmMainParent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmSetPermission.resx">
       <DependentUpon>frmSetPermission.cs</DependentUpon>
