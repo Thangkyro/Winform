@@ -458,14 +458,7 @@ namespace AusNail
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            frmLogin lf = new frmLogin();
-            if (lf.ShowDialog() != DialogResult.OK)
-            {
-                Application.Exit();
-                return;
-            }
-            else
-            {
+
                 ////Load permisson
                 NailApp.lstPermission = new List<string>();
                 NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
@@ -501,7 +494,7 @@ namespace AusNail
                 notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
                 notificationNewBill.LoadData();
 
-            }
+            
         }
 
         private void BtnSetColor_Click(object sender, EventArgs e)

@@ -63,16 +63,16 @@
             // 
             // chkis_inactive
             // 
-            this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Enabled = false;
             this.chkis_inactive.Location = new System.Drawing.Point(781, 425);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 10;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 460);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(979, 50);
             // 
             // imageList
@@ -95,18 +95,18 @@
             this.lblTime.Location = new System.Drawing.Point(880, 20);
             this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 16);
-            this.lblTime.Text = "21:55:50";
+            this.lblTime.Text = "21:35:45";
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(12, 7);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(116, 8);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.TabIndex = 1;
             // 
             // txtBranchName
@@ -270,8 +270,7 @@
             // 
             // txtSMSText
             // 
-            this.txtSMSText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSMSText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSMSText.Location = new System.Drawing.Point(781, 205);
             this.txtSMSText.Multiline = true;
             this.txtSMSText.Name = "txtSMSText";
@@ -291,7 +290,7 @@
             // 
             // txtNumberBill
             // 
-            this.txtNumberBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNumberBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumberBill.Location = new System.Drawing.Point(781, 377);
             this.txtNumberBill.Name = "txtNumberBill";
             this.txtNumberBill.Size = new System.Drawing.Size(186, 20);
@@ -300,7 +299,7 @@
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(698, 380);
             this.label9.Name = "label9";
@@ -310,7 +309,7 @@
             // 
             // txtNoontime
             // 
-            this.txtNoontime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNoontime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNoontime.Location = new System.Drawing.Point(781, 399);
             this.txtNoontime.Name = "txtNoontime";
             this.txtNoontime.Size = new System.Drawing.Size(186, 20);
@@ -319,7 +318,7 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(698, 402);
             this.label10.Name = "label10";
@@ -381,7 +380,7 @@
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtLocated);
             this.Controls.Add(this.txtBranchName);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmBranch";
             this.Text = "Branch";
             this.Controls.SetChildIndex(this.txtBranchName, 0);
