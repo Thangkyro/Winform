@@ -95,6 +95,8 @@ namespace AusNail
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtDesc = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splCMain)).BeginInit();
             this.splCMain.Panel1.SuspendLayout();
             this.splCMain.Panel2.SuspendLayout();
@@ -234,7 +236,7 @@ namespace AusNail
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(291, 321);
+            this.tabPage2.Size = new System.Drawing.Size(291, 349);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "History bill";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -245,7 +247,7 @@ namespace AusNail
             this.trHistoryBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trHistoryBill.Location = new System.Drawing.Point(2, 2);
             this.trHistoryBill.Name = "trHistoryBill";
-            this.trHistoryBill.Size = new System.Drawing.Size(287, 317);
+            this.trHistoryBill.Size = new System.Drawing.Size(287, 345);
             this.trHistoryBill.TabIndex = 0;
             this.trHistoryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trHistoryBill_AfterSelect);
             this.trHistoryBill.Click += new System.EventHandler(this.trHistoryBill_Click);
@@ -337,6 +339,8 @@ namespace AusNail
             // 
             this.pnlForm.BackColor = System.Drawing.Color.Transparent;
             this.pnlForm.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlForm.Controls.Add(this.txtDesc);
+            this.pnlForm.Controls.Add(this.label8);
             this.pnlForm.Controls.Add(this.btnDel);
             this.pnlForm.Controls.Add(this.lblTotalAmont);
             this.pnlForm.Controls.Add(this.lblVoucher);
@@ -588,11 +592,11 @@ namespace AusNail
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvService.Location = new System.Drawing.Point(19, 93);
+            this.dgvService.Location = new System.Drawing.Point(19, 118);
             this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
-            this.dgvService.Size = new System.Drawing.Size(877, 379);
+            this.dgvService.Size = new System.Drawing.Size(877, 354);
             this.dgvService.TabIndex = 10;
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
@@ -855,6 +859,22 @@ namespace AusNail
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 94);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 13);
+            this.label8.TabIndex = 10003;
+            this.label8.Text = "Descriptions:";
+            // 
+            // txtDesc
+            // 
+            this.txtDesc.Location = new System.Drawing.Point(87, 92);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(807, 20);
+            this.txtDesc.TabIndex = 10004;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -958,6 +978,8 @@ namespace AusNail
         private System.Windows.Forms.ToolStripMenuItem tsmHide;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem dBToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtDesc;
+        private System.Windows.Forms.Label label8;
     }
 }
 
