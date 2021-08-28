@@ -801,19 +801,24 @@ namespace AusNail
         {
             try
             {
+                int billID = -1;
                 if (tabHistory)
                 {
+                    billID = _billIDHistory;
                     UpdateBill(_billIDHistory);
                     btnPrint.Enabled = true;
                 }
                 else
                 {
+                    billID = _billIDTemp;
                     int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
                     SaveBill(_billIDTemp, "");
                     btnPrint.Enabled = true;
                 }
+                // Update decscriptions header.
+                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID),  txtDesc.Text, 0, "");
             }
-            catch
+            catch(Exception ex)
             {
             }
 
@@ -1164,6 +1169,7 @@ namespace AusNail
                     txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
                     txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
                     txtGenden.Text = dt.Rows[0]["Gender"].ToString();
+                    txtDesc.Text = dt.Rows[0]["Decriptions"].ToString();
                     if (tabHistory)
                     {
                         lblCard.Text = string.Format("{0:#,##0.00}", decimal.Parse(dt.Rows[0]["PaymentCard"].ToString()));
