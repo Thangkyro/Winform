@@ -35,6 +35,7 @@ namespace AusNail
         private DataTable _dtStaff = null;
         private decimal _totalAmount = 0;
         private ZenSqlNotification notificationNewBill;
+        private bool isload = false;
         //public frmMain()
         //{
         //    InitializeComponent();
@@ -525,41 +526,41 @@ namespace AusNail
         private void FrmMain_Load(object sender, EventArgs e)
         {
 
-                ////Load permisson
-                NailApp.lstPermission = new List<string>();
-                NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
-                InitCommandOld();
+            ////Load permisson
+            NailApp.lstPermission = new List<string>();
+            NailApp.lstPermission = NailApp.PermissionUser.Split(',').ToList();
+            InitCommandOld();
 
-                //Load colorList for combobox
-                if (cboColor.Items.Count == 0)
-                {
-                    //foreach (string item in ThemeColor.ColorList)
-                    //{
-                    //    cboColor.Items.Add()
-                    //}
-                    cboColor.DataSource = ThemeColor.ColorList;
-                }
-                splCMain.BackColor = NailApp.ColorUser;
-                splitContainer2.BackColor = NailApp.ColorUser;
+            //Load colorList for combobox
+            if (cboColor.Items.Count == 0)
+            {
+                //foreach (string item in ThemeColor.ColorList)
+                //{
+                //    cboColor.Items.Add()
+                //}
+                cboColor.DataSource = ThemeColor.ColorList;
+            }
+            splCMain.BackColor = NailApp.ColorUser;
+            splitContainer2.BackColor = NailApp.ColorUser;
 
-                //LoadHistory();
-                createTable();
-                loadService();
-                LoadGrid();
+            //LoadHistory();
+            createTable();
+            loadService();
+            LoadGrid();
 
-                //Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
-                //frm.TopMost = true;
-                //frm.Show();
+            //Process.frmCheckPhone frm = new Process.frmCheckPhone(int.Parse(NailApp.BranchID), NailApp.CurrentUserId);
+            //frm.TopMost = true;
+            //frm.Show();
 
-                //Check Phone
-                CheckService(true);
-                lb1.Visible = lb2.Visible = lb3.Visible = false;
-                lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+            //Check Phone
+            //CheckService(true);
+            isload = true;
+            lb1.Visible = lb2.Visible = lb3.Visible = false;
+            lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
 
-                string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
-                notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
-                notificationNewBill.LoadData();
-            
+            string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
+            notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
+            notificationNewBill.LoadData();
         }
 
         private void BtnSetColor_Click(object sender, EventArgs e)
@@ -1505,6 +1506,20 @@ namespace AusNail
         private void TimeKeeping_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmMain_MinimumSizeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            if (isload)
+            {
+                CheckService(true);
+                isload = false;
+            }
         }
     }
 }

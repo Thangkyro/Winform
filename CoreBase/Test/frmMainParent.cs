@@ -81,7 +81,7 @@ namespace AusNail
                 InitCommandOld();
 
                 frmMain f1 = new frmMain();
-                f1.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                f1.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
                 f1.MdiParent = this;
                 f1.Show();
 
