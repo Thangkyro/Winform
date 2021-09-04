@@ -129,6 +129,18 @@ namespace AusNail.Process
                     dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
                 }
 
+                for (int i = 0; i < dgvService.RowCount; i++)
+                {
+                    if ((bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
+                    {
+                        dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        dgvService.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+
             }
             catch
             {
