@@ -293,11 +293,12 @@ namespace AusNail.Process
                 //if (dialogResult == DialogResult.Yes)
                 //{
                 DateTime dtBook;
-                //DateTime.TryParse(dtpBookingDate.Text.Trim().ToString(), out dtBook);
-                DateTime.TryParseExact(dtpBookingDate.Text.Trim().ToString(), "dd/MM/yyyy HH:mm",
+
+                DateTime.TryParseExact((dtpBookingDate.Value.ToString("dd/MM/yyyy") + " " + dtBookingTime.Value.ToString("HH:mm")), "dd/MM/yyyy HH:mm",
                                CultureInfo.InvariantCulture,
                                DateTimeStyles.None,
                                out dtBook);
+
                 if (dtBook == null || dtBook <= DateTime.Now)
                 {
                     MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -402,7 +403,7 @@ namespace AusNail.Process
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }

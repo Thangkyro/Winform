@@ -136,6 +136,11 @@ namespace AusNail
             else
                 BusinessHour.Visible = false;
 
+            if (NailApp.lstPermission.Contains(Banner.Name) || NailApp.IsAdmin())
+                Banner.Click += (s, e) => { frmBanner(); };
+            else
+                Banner.Visible = false;
+
         }
 
         void InitCommandPS()
@@ -262,6 +267,16 @@ namespace AusNail
         void frmBusinessHour()
         {
             frmBusinessHour f = new frmBusinessHour();
+            if (!checkForm(f))
+            {
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        void frmBanner()
+        {
+            frmBanner f = new frmBanner();
             if (!checkForm(f))
             {
                 f.MdiParent = this;

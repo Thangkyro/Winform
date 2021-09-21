@@ -12,21 +12,21 @@ using System.Windows.Forms;
 
 namespace AusNail.Dictionary
 {
-    public partial class frmService : CoreBase.WinForm.Dictionary.Dictionary
+    public partial class frmBanner : CoreBase.WinForm.Dictionary.Dictionary
     {
-        const string SERVICE_CMDKEY = "Service";
-        const string SERVICE_ADD_CMDKEY = "Service_add";
-        const string SERVICE_DEL_CMDKEY = "Service_del";
-        const string SERVICE_EDIT_CMDKEY = "Service_edit";
-        const string SERVICE_LIST_CMDKEY = "Service_list";
+        const string BANNER_CMDKEY = "Banner";
+        const string BANNER_ADD_CMDKEY = "Banner_add";
+        const string BANNER_DEL_CMDKEY = "Banner_del";
+        const string BANNER_EDIT_CMDKEY = "Banner_edit";
+        const string BANNER_LIST_CMDKEY = "Banner_list";
         DataRow _dr;
-        DataTable _Service;
-        string _tableName = "zService";
+        DataTable _Banner;
+        string _tableName = "zBanner";
         string _Mode = "";
-        string _idName = "ServiceID";
+        string _idName = "BannerID";
         int _postion = 0;
         DataTable _branch = new DataTable();
-        public frmService()
+        public frmBanner()
         {
             InitializeComponent();
             Load += UserForm_Load;
@@ -54,7 +54,7 @@ namespace AusNail.Dictionary
 
         protected override void BeforeFillData()
         {
-            if (!NailApp.lstPermission.Contains(SERVICE_LIST_CMDKEY) && !NailApp.IsAdmin())
+            if (!NailApp.lstPermission.Contains(BANNER_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -65,16 +65,15 @@ namespace AusNail.Dictionary
 
         protected override void FillData()
         {
-            if (!NailApp.lstPermission.Contains(SERVICE_LIST_CMDKEY) && !NailApp.IsAdmin())
+            if (!NailApp.lstPermission.Contains(BANNER_LIST_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
             }
             base.FillData();
             CreateBinding(cbobranchId);
-            CreateBinding(txtTitle);
-            CreateBinding(txtEstimateTime);
-            CreateBinding(txtPrice);
+            CreateBinding(txtBannerText);
+            CreateBinding(txtNumberOrder);
             CreateBinding(txtDecriptions);
             CreateBinding(chkis_inactive, "is_inactive", "Checked");
         }
@@ -86,7 +85,7 @@ namespace AusNail.Dictionary
                 //LoadEditRow();
                 if (_Mode == "Add")
                 {
-                    if (!NailApp.lstPermission.Contains(SERVICE_ADD_CMDKEY) && !NailApp.IsAdmin())
+                    if (!NailApp.lstPermission.Contains(BANNER_ADD_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -95,7 +94,7 @@ namespace AusNail.Dictionary
                 }
                 else
                 {
-                    if (!NailApp.lstPermission.Contains(SERVICE_EDIT_CMDKEY) && !NailApp.IsAdmin())
+                    if (!NailApp.lstPermission.Contains(BANNER_EDIT_CMDKEY) && !NailApp.IsAdmin())
                     {
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
@@ -103,7 +102,7 @@ namespace AusNail.Dictionary
                     //isSuccess = base.UpdateData();
                 }
 
-                txtTitle.Focus();
+                txtBannerText.Focus();
 
                 string listError = "";
                 #region Đoạn này cho phép sửa hoặc add mới nhiều dòng cùng 1 lúc => Phải sửa lại
@@ -127,7 +126,7 @@ namespace AusNail.Dictionary
 
                         if (!isSuccess)
                         {
-                            listError += "Save error Title: " + dr["Title"].ToString() + ". \n";
+                            listError += "Save error BannerText: " + dr["BannerText"].ToString() + ". \n";
                         }
                     }
                 }
@@ -155,14 +154,14 @@ namespace AusNail.Dictionary
         {
             this.zEditTableName = _tableName;
             this.zViewTableName = _tableName;
-            this.Text += " Service"; 
+            this.Text += " Banner"; 
             base.InitForm();
         }
 
         private void LoadData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                Bds.DataSource = _Service = dal.GetData();
+                Bds.DataSource = _Banner = dal.GetData();
             LoadGrid();
             _postion = 0;
         }
@@ -170,7 +169,7 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
-            GridDetail.DataSource = _Service;
+            GridDetail.DataSource = _Banner;
             GridDetail.Columns.Remove("branchId");
 
             DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
@@ -183,11 +182,10 @@ namespace AusNail.Dictionary
             GridDetail.Columns.Add(dgvCmb);
             GridDetail.Columns["BranchId"].DisplayIndex = 0;
 
-            GridDetail.Columns["ServiceID"].Visible = false;
+            GridDetail.Columns["BannerID"].Visible = false;
             //GridDetail.Columns["branchId"].HeaderText = "Branch";
-            GridDetail.Columns["Title"].HeaderText = "Title";
-            GridDetail.Columns["EstimateTime"].HeaderText = "EstimateTime";
-            GridDetail.Columns["Price"].HeaderText = "Price";
+            GridDetail.Columns["BannerText"].HeaderText = "Banner Text";
+            GridDetail.Columns["NumberOrder"].HeaderText = "Number Order";
             //GridDetail.Columns["Decriptions"].Visible = false;
             //GridDetail.Columns["created_by"].HeaderText = "Create by";
             GridDetail.Columns["created_by"].Visible = false;
@@ -197,7 +195,7 @@ namespace AusNail.Dictionary
             GridDetail.Columns["modified_by"].Visible = false;
             //GridDetail.Columns["modified_at"].HeaderText = "Modified at";
             GridDetail.Columns["modified_at"].Visible = false;
-            if (_Service.Rows.Count > 0)
+            if (_Banner.Rows.Count > 0)
             {
                 GridDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -221,7 +219,7 @@ namespace AusNail.Dictionary
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!NailApp.lstPermission.Contains(SERVICE_DEL_CMDKEY) && !NailApp.IsAdmin())
+            if (!NailApp.lstPermission.Contains(BANNER_DEL_CMDKEY) && !NailApp.IsAdmin())
             {
                 lblMessInfomation.Text = "Unauthorized";
                 return;
@@ -231,16 +229,16 @@ namespace AusNail.Dictionary
             {
                 this.zDeleteRow = ((DataTable)Bds.DataSource).Rows[_postion];
                 // Check use for bill or booking.
-                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckServiceExists", int.Parse(zDeleteRow["ServiceID"].ToString()));
-                if (dataTable != null && dataTable.Rows.Count > 0)
-                {
-                    MessageBox.Show("Service is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
+                //DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckServiceExists", int.Parse(zDeleteRow["ServiceID"].ToString()));
+                //if (dataTable != null && dataTable.Rows.Count > 0)
+                //{
+                //    MessageBox.Show("Service is already in use, cannot be deleted.!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
+                //else
+                //{
                     bool flag = base.DeleteData();
-                }
+                //}
                 LoadData();
             }
             else
@@ -270,9 +268,8 @@ namespace AusNail.Dictionary
                     _postion = e.RowIndex;
                     DataGridViewRow row = this.GridDetail.Rows[e.RowIndex];
                     cbobranchId.SelectedValue = row.Cells["branchId"].Value.ToString();
-                    txtTitle.Text = row.Cells["Title"].Value.ToString();
-                    txtPrice.Text = row.Cells["Price"].Value.ToString();
-                    txtEstimateTime.Text = row.Cells["EstimateTime"].Value.ToString();
+                    txtBannerText.Text = row.Cells["BannerText"].Value.ToString();
+                    txtNumberOrder.Text = row.Cells["NumberOrder"].Value.ToString();
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
                 }

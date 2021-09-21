@@ -36,6 +36,10 @@
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtBookingTime = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDes = new System.Windows.Forms.TextBox();
+            this.lblHeader = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.dtpBookingDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,9 +47,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalAmont = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblHeader = new System.Windows.Forms.Label();
-            this.txtDes = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -93,7 +94,7 @@
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(314, 38);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(339, 38);
             this.txtPhoneNumber.TabIndex = 999;
             // 
             // btnCancel
@@ -114,7 +115,7 @@
             this.btnCancel.Size = new System.Drawing.Size(158, 50);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Transparency = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -137,7 +138,7 @@
             this.btnConfirm.Size = new System.Drawing.Size(158, 50);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
-            this.btnConfirm.TabIndex = 5;
+            this.btnConfirm.TabIndex = 9;
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -145,6 +146,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.dtBookingTime);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtDes);
             this.panel1.Controls.Add(this.lblHeader);
@@ -160,26 +162,70 @@
             this.panel1.Size = new System.Drawing.Size(1138, 690);
             this.panel1.TabIndex = 6;
             // 
+            // dtBookingTime
+            // 
+            this.dtBookingTime.CustomFormat = "HH:mm";
+            this.dtBookingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtBookingTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtBookingTime.Location = new System.Drawing.Point(432, 140);
+            this.dtBookingTime.Name = "dtBookingTime";
+            this.dtBookingTime.Size = new System.Drawing.Size(111, 45);
+            this.dtBookingTime.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(79, 203);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 24);
+            this.label3.TabIndex = 10001;
+            this.label3.Text = "Descriptions";
+            // 
+            // txtDes
+            // 
+            this.txtDes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDes.Location = new System.Drawing.Point(204, 192);
+            this.txtDes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDes.Name = "txtDes";
+            this.txtDes.Size = new System.Drawing.Size(917, 38);
+            this.txtDes.TabIndex = 3;
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Location = new System.Drawing.Point(499, 28);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(125, 41);
+            this.lblHeader.TabIndex = 20;
+            this.lblHeader.Text = "Booking";
+            // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(526, 94);
+            this.txtName.Location = new System.Drawing.Point(551, 94);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(595, 38);
+            this.txtName.Size = new System.Drawing.Size(570, 38);
             this.txtName.TabIndex = 9999;
             // 
             // dtpBookingDate
             // 
-            this.dtpBookingDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpBookingDate.CustomFormat = "dd/MM/yyyy";
             this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpBookingDate.Location = new System.Drawing.Point(204, 140);
             this.dtpBookingDate.Name = "dtpBookingDate";
-            this.dtpBookingDate.Size = new System.Drawing.Size(314, 45);
+            this.dtpBookingDate.Size = new System.Drawing.Size(222, 45);
             this.dtpBookingDate.TabIndex = 1;
             // 
             // label2
@@ -242,40 +288,6 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Total Amount:";
             // 
-            // lblHeader
-            // 
-            this.lblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
-            this.lblHeader.Location = new System.Drawing.Point(499, 28);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(125, 41);
-            this.lblHeader.TabIndex = 20;
-            this.lblHeader.Text = "Booking";
-            // 
-            // txtDes
-            // 
-            this.txtDes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDes.Location = new System.Drawing.Point(204, 192);
-            this.txtDes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDes.Name = "txtDes";
-            this.txtDes.Size = new System.Drawing.Size(917, 38);
-            this.txtDes.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(79, 203);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 24);
-            this.label3.TabIndex = 10001;
-            this.label3.Text = "Descriptions";
-            // 
             // frmBookingAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -315,5 +327,6 @@
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.TextBox txtDes;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dtBookingTime;
     }
 }
