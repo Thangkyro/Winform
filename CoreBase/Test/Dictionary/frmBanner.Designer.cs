@@ -56,13 +56,13 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(599, 292);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
             this.chkis_inactive.TabIndex = 11;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 366);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(893, 62);
             // 
             // imageList
@@ -87,18 +87,18 @@
             this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblTime.Size = new System.Drawing.Size(85, 20);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "20:09:58";
+            this.lblTime.Text = "17:02:03";
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(13, 10);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(147, 10);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.TabIndex = 4;
             // 
             // panel2
@@ -108,7 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
             this.panel2.Location = new System.Drawing.Point(13, 14);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(477, 332);
             this.panel2.TabIndex = 6;
@@ -120,7 +120,7 @@
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
             this.GridDetail.Size = new System.Drawing.Size(477, 332);
@@ -194,7 +194,7 @@
             // 
             this.txtBannerText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBannerText.Location = new System.Drawing.Point(599, 108);
-            this.txtBannerText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBannerText.Margin = new System.Windows.Forms.Padding(4);
             this.txtBannerText.Multiline = true;
             this.txtBannerText.Name = "txtBannerText";
             this.txtBannerText.Size = new System.Drawing.Size(281, 111);
@@ -206,7 +206,7 @@
             this.cbobranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobranchId.FormattingEnabled = true;
             this.cbobranchId.Location = new System.Drawing.Point(599, 76);
-            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4);
             this.cbobranchId.Name = "cbobranchId";
             this.cbobranchId.Size = new System.Drawing.Size(281, 24);
             this.cbobranchId.TabIndex = 6;
@@ -229,7 +229,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(660, 14);
+            this.label11.Location = new System.Drawing.Point(643, 14);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(117, 41);
             this.label11.TabIndex = 0;
@@ -239,7 +239,7 @@
             // 
             this.txtNumberOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumberOrder.Location = new System.Drawing.Point(599, 226);
-            this.txtNumberOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNumberOrder.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumberOrder.Name = "txtNumberOrder";
             this.txtNumberOrder.Size = new System.Drawing.Size(281, 22);
             this.txtNumberOrder.TabIndex = 8;
@@ -248,7 +248,7 @@
             // 
             this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecriptions.Location = new System.Drawing.Point(599, 256);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecriptions.Name = "txtDecriptions";
             this.txtDecriptions.Size = new System.Drawing.Size(281, 22);
             this.txtDecriptions.TabIndex = 10;
