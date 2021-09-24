@@ -226,6 +226,28 @@ namespace CoreBase
             }
         }
 
+        public static string Titlebranch
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return "";
+
+                return CurrentUserRow["Titlebranch"].zToString();
+            }
+        }
+
+        public static object Imagebranch
+        {
+            get
+            {
+                if (CurrentUserRow == null)
+                    return "";
+
+                return CurrentUserRow["Imagebranch"];
+            }
+        }
+
 
         //public string Password { get; set; }
 

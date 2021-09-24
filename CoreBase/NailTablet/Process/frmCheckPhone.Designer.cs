@@ -30,10 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCheckPhone));
             this.btnConfirm = new AltoControls.AltoButton();
-            this.altoSlidingLabel1 = new AltoControls.AltoSlidingLabel();
+            this.lbText1 = new AltoControls.AltoSlidingLabel();
             this.btnCancel = new AltoControls.AltoButton();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lbSize = new System.Windows.Forms.Label();
             this.pnSDT = new System.Windows.Forms.Panel();
             this.btn9 = new AltoControls.AltoButton();
             this.btn6 = new AltoControls.AltoButton();
@@ -47,21 +46,27 @@
             this.btn4 = new AltoControls.AltoButton();
             this.btn2 = new AltoControls.AltoButton();
             this.btn1 = new AltoControls.AltoButton();
+            this.lblText2 = new AltoControls.AltoSlidingLabel();
+            this.lblText3 = new AltoControls.AltoSlidingLabel();
+            this.lblText4 = new AltoControls.AltoSlidingLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSecond = new System.Windows.Forms.NumericUpDown();
             this.pnSDT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSecond)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConfirm
             // 
             this.btnConfirm.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
             this.btnConfirm.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
             this.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnConfirm.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(129, 422);
+            this.btnConfirm.Location = new System.Drawing.Point(689, 445);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(96, 30);
@@ -72,41 +77,43 @@
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // altoSlidingLabel1
+            // lbText1
             // 
-            this.altoSlidingLabel1.Location = new System.Drawing.Point(20, 11);
-            this.altoSlidingLabel1.Name = "altoSlidingLabel1";
-            this.altoSlidingLabel1.Size = new System.Drawing.Size(102, 23);
-            this.altoSlidingLabel1.Slide = false;
-            this.altoSlidingLabel1.TabIndex = 0;
-            this.altoSlidingLabel1.Text = "Customer Phone:";
+            this.lbText1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbText1.Location = new System.Drawing.Point(659, 22);
+            this.lbText1.Name = "lbText1";
+            this.lbText1.Size = new System.Drawing.Size(307, 23);
+            this.lbText1.Slide = false;
+            this.lbText1.TabIndex = 0;
+            this.lbText1.Text = "Customer Phone:";
             // 
             // btnCancel
             // 
             this.btnCancel.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
             this.btnCancel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancel.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(231, 422);
+            this.btnCancel.Location = new System.Drawing.Point(842, 445);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(96, 30);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
             this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "CLear";
             this.btnCancel.Transparency = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtPhone
             // 
+            this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(20, 36);
+            this.txtPhone.Location = new System.Drawing.Point(659, 51);
             this.txtPhone.Multiline = true;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(307, 36);
@@ -114,19 +121,9 @@
             this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
-            // lbSize
-            // 
-            this.lbSize.AutoSize = true;
-            this.lbSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.lbSize.Location = new System.Drawing.Point(2, 0);
-            this.lbSize.Name = "lbSize";
-            this.lbSize.Size = new System.Drawing.Size(19, 13);
-            this.lbSize.TabIndex = 4;
-            this.lbSize.Text = ">>";
-            this.lbSize.Click += new System.EventHandler(this.label1_Click);
-            // 
             // pnSDT
             // 
+            this.pnSDT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pnSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnSDT.Controls.Add(this.btn9);
             this.pnSDT.Controls.Add(this.btn6);
@@ -140,7 +137,7 @@
             this.pnSDT.Controls.Add(this.btn4);
             this.pnSDT.Controls.Add(this.btn2);
             this.pnSDT.Controls.Add(this.btn1);
-            this.pnSDT.Location = new System.Drawing.Point(20, 78);
+            this.pnSDT.Location = new System.Drawing.Point(659, 93);
             this.pnSDT.Name = "pnSDT";
             this.pnSDT.Size = new System.Drawing.Size(307, 338);
             this.pnSDT.TabIndex = 5;
@@ -409,24 +406,94 @@
             this.btn1.Transparency = false;
             this.btn1.Click += new System.EventHandler(this.btn1_Click);
             // 
+            // lblText2
+            // 
+            this.lblText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lblText2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText2.Location = new System.Drawing.Point(42, 22);
+            this.lblText2.Margin = new System.Windows.Forms.Padding(2);
+            this.lblText2.Name = "lblText2";
+            this.lblText2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblText2.Size = new System.Drawing.Size(577, 155);
+            this.lblText2.Slide = false;
+            this.lblText2.TabIndex = 12;
+            // 
+            // lblText3
+            // 
+            this.lblText3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblText3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.lblText3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText3.Location = new System.Drawing.Point(42, 181);
+            this.lblText3.Margin = new System.Windows.Forms.Padding(2);
+            this.lblText3.Name = "lblText3";
+            this.lblText3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblText3.Size = new System.Drawing.Size(577, 155);
+            this.lblText3.Slide = false;
+            this.lblText3.TabIndex = 12;
+            // 
+            // lblText4
+            // 
+            this.lblText4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblText4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lblText4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText4.Location = new System.Drawing.Point(42, 341);
+            this.lblText4.Margin = new System.Windows.Forms.Padding(2);
+            this.lblText4.Name = "lblText4";
+            this.lblText4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblText4.Size = new System.Drawing.Size(577, 155);
+            this.lblText4.Slide = false;
+            this.lblText4.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(44, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "(second)";
+            this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
+            // 
+            // txtSecond
+            // 
+            this.txtSecond.Enabled = false;
+            this.txtSecond.Location = new System.Drawing.Point(2, 1);
+            this.txtSecond.Name = "txtSecond";
+            this.txtSecond.Size = new System.Drawing.Size(39, 20);
+            this.txtSecond.TabIndex = 15;
+            this.txtSecond.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.txtSecond.ValueChanged += new System.EventHandler(this.txtSecond_ValueChanged);
+            this.txtSecond.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtSecond_MouseDoubleClick);
+            // 
             // frmCheckPhone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(354, 461);
+            this.ClientSize = new System.Drawing.Size(987, 511);
+            this.Controls.Add(this.txtSecond);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblText4);
+            this.Controls.Add(this.lblText3);
+            this.Controls.Add(this.lblText2);
             this.Controls.Add(this.pnSDT);
-            this.Controls.Add(this.lbSize);
             this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.altoSlidingLabel1);
+            this.Controls.Add(this.lbText1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCheckPhone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCheckPhone_Load);
             this.pnSDT.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSecond)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,10 +501,9 @@
 
         #endregion
         private AltoControls.AltoButton btnConfirm;
-        private AltoControls.AltoSlidingLabel altoSlidingLabel1;
+        private AltoControls.AltoSlidingLabel lbText1;
         private AltoControls.AltoButton btnCancel;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.Label lbSize;
         private System.Windows.Forms.Panel pnSDT;
         private AltoControls.AltoButton btn9;
         private AltoControls.AltoButton btn6;
@@ -451,5 +517,10 @@
         private AltoControls.AltoButton btn1;
         private AltoControls.AltoButton altoButton2;
         private AltoControls.AltoButton btnDel;
+        private AltoControls.AltoSlidingLabel lblText2;
+        private AltoControls.AltoSlidingLabel lblText3;
+        private AltoControls.AltoSlidingLabel lblText4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown txtSecond;
     }
 }
