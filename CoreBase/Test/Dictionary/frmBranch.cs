@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace AusNail.Dictionary
         string _idName = "branchId";
         string _tableName = "zBranch";
         int _postion = 0;
+        Dictionary<string, byte[]> dicImage = new Dictionary<string, byte[]>();
         public frmBranch()
         {
             InitializeComponent();
@@ -72,7 +74,7 @@ namespace AusNail.Dictionary
                         lblMessInfomation.Text = "Unauthorized";
                         return false;
                     }
-                   // isSuccess = base.InsertData();
+                    // isSuccess = base.InsertData();
                 }
                 else
                 {
@@ -159,6 +161,33 @@ namespace AusNail.Dictionary
         {
             GridDetail.DataSource = _Service;
             GridDetail.Columns["branchId"].Visible = false;
+
+            DataGridViewButtonColumn dgvC = new DataGridViewButtonColumn();
+            dgvC.DataPropertyName = "UploadImage";
+            dgvC.HeaderText = "Upload Image";
+            dgvC.Name = "UploadImage";
+            dgvC.Text = "Upload Image";
+            dgvC.UseColumnTextForButtonValue = true;
+            var DataGridViewButtonColumn = GridDetail.Columns["UploadImage"];
+            if (DataGridViewButtonColumn == null)
+            {
+                GridDetail.Columns.Add(dgvC);
+                GridDetail.Columns["UploadImage"].DisplayIndex = 1;
+            }
+
+            //DataGridViewButtonColumn dgvB = new DataGridViewButtonColumn();
+            //dgvB.DataPropertyName = "DeleteImage";
+            //dgvB.HeaderText = "Delete Image";
+            //dgvB.Name = "DeleteImage";
+            //dgvB.Text = "Delete Image";
+            //dgvB.UseColumnTextForButtonValue = true;
+            //var DataGridViewButtonColumn1 = GridDetail.Columns["DeleteImage"];
+            //if (DataGridViewButtonColumn1 == null)
+            //{
+            //    GridDetail.Columns.Add(dgvB);
+            //    GridDetail.Columns["DeleteImage"].DisplayIndex = 2;
+            //}
+
             GridDetail.Columns["BranchCode"].HeaderText = "Branch code";
             GridDetail.Columns["BranchName"].HeaderText = "Branch name";
             GridDetail.Columns["Located"].HeaderText = "Located";
@@ -201,12 +230,27 @@ namespace AusNail.Dictionary
                     txtNumberBill.Text = row.Cells["NumberBill"].Value.ToString();
                     txtNoontime.Text = row.Cells["Noontime"].Value.ToString();
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
+
+                    txtTitleBranch.Text = row.Cells["TitleBranch"].Value.ToString();
+                    txtBranchId.Text = row.Cells["BranchId"].Value.ToString();
+                    //Load image
+                    var img = row.Cells["ImageBranch"].Value;
+                    if (img != DBNull.Value)
+                    {
+                        var data = (Byte[])img;
+                        var stream = new MemoryStream(data);
+                        pbImage.Image = Image.FromStream(stream);
+
+                    }
+                    else
+                    {
+                        pbImage.Image = null;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
             }
         }
 
@@ -248,7 +292,7 @@ namespace AusNail.Dictionary
                     bool flag = base.DeleteData();
                     LoadData();
                 }
-                
+
 
                 //bool flag = base.DeleteData();
                 //LoadData();
@@ -276,6 +320,91 @@ namespace AusNail.Dictionary
             if (e.KeyData == (Keys.Enter))
             {
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void GridDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var senderGrid = (DataGridView)sender;
+
+                string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                    e.RowIndex >= 0 && headerText == "UploadImage")
+                {
+                    //TODO - Button Clicked - Execute Code Here
+                    OpenFileDialog opnfd = new OpenFileDialog();
+                    opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                    if (opnfd.ShowDialog() == DialogResult.OK)
+                    {
+                        string fileName = opnfd.FileName;
+                        byte[] bytes = File.ReadAllBytes(fileName);
+                        pbImage.Image = new Bitmap(opnfd.FileName);
+                        pbImage.ImageLocation = opnfd.FileName;
+                        System.Drawing.Image imm = pbImage.Image;
+                        //int checkImage = 1;
+                        int rIndex = e.RowIndex;
+                        if (bytes != null)
+                        {
+                            GridDetail["ImageBranch", rIndex].Value = bytes;
+                        }
+                    }
+                }
+                //else if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                //    e.RowIndex >= 0 && headerText == "DeleteImage")
+                //{
+                //    int rIndex = e.RowIndex;
+                //    DialogResult result = MessNotifications("Delete Image Branch", "Do you want delete image?");
+                //    if (result == DialogResult.Yes)
+                //    {
+                //        byte[] bytes = null;
+                //        GridDetail["ImageBranch", rIndex].Value = null;
+                //        pbImage.Image = null;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Clear Image", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string branchID = txtBranchId.Text;
+
+                    byte[] image = null;
+                    
+                    if (!string.IsNullOrEmpty(branchID) && branchID != "0")
+                    {
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBranchClearImage", branchID, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+                        if (ret > 0)
+                        {
+                            MessageBox.Show("Successfully", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please choose Branch!", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }
