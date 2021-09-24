@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,24 +21,21 @@ namespace AusNail.Process
         private DataTable _dtCustomer = null;
         private string sResult = "";
         private bool _firtRun = false;
+        private DataTable _dtBanner = null;
+        private int _bannerCount = 1;
+        private Timer _MyTimer;
         public frmCheckPhone()
         {
             InitializeComponent();
             txtPhone.Focus();
-            this.Width = 370;
-            this.Height = 500;
             this.pnSDT.Visible = true;
-            lbSize.Text = "<<";
         }
 
         public frmCheckPhone(bool firtRun)
         {
             InitializeComponent();
             txtPhone.Focus();
-            this.Width = 370;
-            this.Height = 500;
             this.pnSDT.Visible = true;
-            lbSize.Text = "<<";
             _firtRun = firtRun;
         }
 
@@ -112,7 +110,7 @@ namespace AusNail.Process
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            txtPhone.Clear();
         }
 
         private void txtPhone_KeyDown(object sender, KeyEventArgs e)
@@ -145,10 +143,7 @@ namespace AusNail.Process
                     //this.Height = 170;
                     //this.pnSDT.Visible = false;
                     //this.pnSDT.Visible = false;
-                    this.Width = 370;
-                    this.Height = 500;
                     this.pnSDT.Visible = true;
-                    lbSize.Text = "<<";
 
                     ////Load permisson
                     NailApp.lstPermission = new List<string>();
@@ -166,29 +161,22 @@ namespace AusNail.Process
                 //this.Height = 170;
                 //this.pnSDT.Visible = false;
                 //this.pnSDT.Visible = false;
-                this.Width = 370;
-                this.Height = 500;
                 this.pnSDT.Visible = true;
-                lbSize.Text = "<<";
             }
-        }
+            loadBanner();
+            lbText1.Text = NailApp.Titlebranch;
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            if (lbSize.Text == ">>")
-            {
-                this.Width = 370;
-                this.Height = 500;
-                this.pnSDT.Visible = true;
-                lbSize.Text = "<<";
-            }
-            else
-            {
-                this.Width = 370;
-                this.Height = 170;
-                this.pnSDT.Visible = false;
-                lbSize.Text = ">>";
-            }
+            // Load BackgroundImage
+            byte[] getImg = new byte[0];
+            getImg = (byte[])NailApp.Imagebranch;
+            byte[] imgData = getImg;
+            MemoryStream stream = new MemoryStream(imgData);
+            this.BackgroundImage = Image.FromStream(stream);
+
+            _MyTimer = new Timer();
+            _MyTimer.Interval = (int.Parse(txtSecond.Value.ToString()) * 1000); 
+            _MyTimer.Tick += new EventHandler(MyTimer_Tick);
+            _MyTimer.Start();
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -338,6 +326,77 @@ namespace AusNail.Process
             {
             }
             
+        }
+
+        private void loadBanner()
+        {
+            try
+            {
+                _dtBanner = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetBannerInfo", _branchId);
+                _bannerCount = _dtBanner.Rows.Count;
+            }
+            catch
+            { }
+        }
+
+        private void loadTextBanner()
+        {
+            // For banner
+            // Set text2 voi banner co stt = 1
+            // Set text3 voi banner co stt = 2
+            // Set text4 voi banner co stt = 3
+            // Kiem tra neu stt >  count(banner) thi reset stt = 1 nguoc lai se tang stt = stt + 1 
+            // End for
+            lbText1.Text = NailApp.Titlebranch;
+            foreach (DataRow dr in _dtBanner.Rows)
+            {
+                if (dr["STT"].ToString() == "1")
+                {
+                    lblText2.Text = dr["BannerText"].ToString();
+                }
+                if (dr["STT"].ToString() == "2")
+                {
+                    lblText3.Text = dr["BannerText"].ToString();
+                }
+                if (dr["STT"].ToString() == "3")
+                {
+                    lblText4.Text = dr["BannerText"].ToString();
+                }
+                if (int.Parse(dr["STT"].ToString()) < _bannerCount)
+                {
+                    dr["STT"] = int.Parse(dr["STT"].ToString()) + 1;
+                }
+                else
+                {
+                    dr["STT"] = 1;
+                }
+            }
+
+            //=>> dung ticker goi ham nay
+        }
+
+        private void MyTimer_Tick(object sender, EventArgs e)
+        {
+            loadTextBanner();
+        }
+
+        private void txtSecond_ValueChanged(object sender, EventArgs e)
+        {
+            if (txtSecond.Value < 1)
+            {
+                txtSecond.Value = 1;
+            }
+            _MyTimer.Interval = (int.Parse(txtSecond.Value.ToString()) * 1000);
+        }
+
+        private void txtSecond_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void label1_DoubleClick(object sender, EventArgs e)
+        {
+            txtSecond.Enabled = !txtSecond.Enabled;
         }
     }
 }
