@@ -824,6 +824,32 @@ namespace AusNail
             }
 
         }
+        private void SaveAuto(bool zmes)
+        {
+            try
+            {
+                int billID = -1;
+                if (tabHistory)
+                {
+                    billID = _billIDHistory;
+                    UpdateBill(_billIDHistory,zmes);
+                    btnPrint.Enabled = true;
+                }
+                else
+                {
+                    billID = _billIDTemp;
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
+                    SaveBill(_billIDTemp, "",zmes);
+                    btnPrint.Enabled = true;
+                }
+                // Update decscriptions header.
+                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID), txtDesc.Text, 0, "");
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
 
         private void deeteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -850,6 +876,7 @@ namespace AusNail
             {
                 if (btnPay.Text == "Pay")
                 {
+                    SaveAuto(false);
                     decimal totalAmount = 0;
                     for (int i = 0; i < dgvService.Rows.Count; i++)
                     {
@@ -1440,7 +1467,119 @@ namespace AusNail
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
-        
+
+        private void SaveBill(int billId, string voucherCode,bool zMes)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
+                    {
+                        int Num = i + 1;
+                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
+                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                        int StaffId = -1;
+                        try
+                        {
+                            StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        }
+                        catch
+                        {
+                        }
+
+                        decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
+                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    if (zMes)
+                    {
+                        MessageBox.Show("Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        private void UpdateBill(int billId, bool zMes)
+        {
+            try
+            {
+                int error = 0;
+                string errorMesg = "";
+                bool flag = true;
+
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != "")
+                    {
+                        int StaffId = -1;
+                        try
+                        {
+                            StaffId = int.Parse(dgvService.Rows[i].Cells["StaffId"].Value.ToString());
+                        }
+                        catch
+                        {
+                        }
+                        string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
+                        int billDetailID = int.Parse(dgvService.Rows[i].Cells["billDetailID"].Value.ToString());
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailUpdate_Ver1", billId, billDetailID, int.Parse(NailApp.BranchID), StaffId, Note, error, errorMesg);
+                        if (ret == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    if (zMes)
+                    {
+                        MessageBox.Show("Update Bill Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Update Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                // call store dell bii moiws tao
+                MessageBox.Show("Update Bill Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
 
         #endregion
 
