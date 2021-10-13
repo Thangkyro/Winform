@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\AltoControls.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -65,6 +68,12 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -94,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Print.cs" />
+    <Compile Include="Dictionary\frmBanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionary\frmBanner.Designer.cs">
+      <DependentUpon>frmBanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dictionary\frmBranch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +187,18 @@
     <Compile Include="Login\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frmBillList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBillList.Designer.cs">
+      <DependentUpon>frmBillList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frmBillDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBillDetail.Designer.cs">
+      <DependentUpon>frmBillDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmBookingFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,12 +256,15 @@
     </Compile>
     <Compile Include="Report\rpt_bill.cs">
       <DependentUpon>rpt_bill.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Dictionary\frmBanner.resx">
+      <DependentUpon>frmBanner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dictionary\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +303,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBillList.resx">
+      <DependentUpon>frmBillList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBillDetail.resx">
+      <DependentUpon>frmBillDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmBookingFilter.resx">
       <DependentUpon>frmBookingFilter.cs</DependentUpon>

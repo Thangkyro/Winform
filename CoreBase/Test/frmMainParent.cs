@@ -93,6 +93,7 @@ namespace AusNail
             InitCommandDm();
             InitCommandPS();
             InitCommandST();
+            InitCommandRPT();
         }
 
         void InitCommandDm()
@@ -158,6 +159,15 @@ namespace AusNail
                 User.Click += (s, e) => { frmUser(); };
             else
                 User.Visible = false;
+
+        }
+
+        void InitCommandRPT()
+        {
+            if (NailApp.IsAdmin())
+                BillList.Click += (s, e) => { frmBillList(); };
+            else
+                BillList.Visible = false;
 
         }
 
@@ -277,6 +287,16 @@ namespace AusNail
         void frmBanner()
         {
             frmBanner f = new frmBanner();
+            if (!checkForm(f))
+            {
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        void frmBillList()
+        {
+            frmBillList f = new frmBillList();
             if (!checkForm(f))
             {
                 f.MdiParent = this;

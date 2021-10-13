@@ -40,6 +40,7 @@
             this.Holiday = new System.Windows.Forms.ToolStripMenuItem();
             this.Voucher = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessHour = new System.Windows.Forms.ToolStripMenuItem();
+            this.Banner = new System.Windows.Forms.ToolStripMenuItem();
             this.zps = new System.Windows.Forms.ToolStripMenuItem();
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +51,7 @@
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabForms = new System.Windows.Forms.TabControl();
-            this.Banner = new System.Windows.Forms.ToolStripMenuItem();
+            this.BillList = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,22 +69,22 @@
             this.dBToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.mnsMenu.Size = new System.Drawing.Size(1360, 28);
+            this.mnsMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.mnsMenu.Size = new System.Drawing.Size(1020, 28);
             this.mnsMenu.TabIndex = 7;
             this.mnsMenu.Text = "Menu";
             // 
             // mainToolStripMenuItem
             // 
             this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
-            this.mainToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.mainToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.mainToolStripMenuItem.Text = "Main";
             this.mainToolStripMenuItem.Click += new System.EventHandler(this.mainToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(27, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(22, 24);
             this.toolStripMenuItem1.Text = "|";
             // 
             // zdm
@@ -98,50 +99,56 @@
             this.BusinessHour,
             this.Banner});
             this.zdm.Name = "zdm";
-            this.zdm.Size = new System.Drawing.Size(83, 24);
+            this.zdm.Size = new System.Drawing.Size(67, 24);
             this.zdm.Text = "Category";
             // 
             // Branch
             // 
             this.Branch.Name = "Branch";
-            this.Branch.Size = new System.Drawing.Size(224, 26);
+            this.Branch.Size = new System.Drawing.Size(180, 22);
             this.Branch.Text = "Branch";
             // 
             // Customer
             // 
             this.Customer.Name = "Customer";
-            this.Customer.Size = new System.Drawing.Size(224, 26);
+            this.Customer.Size = new System.Drawing.Size(180, 22);
             this.Customer.Text = "Customer";
             // 
             // Service
             // 
             this.Service.Name = "Service";
-            this.Service.Size = new System.Drawing.Size(224, 26);
+            this.Service.Size = new System.Drawing.Size(180, 22);
             this.Service.Text = "Service";
             // 
             // Staff
             // 
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(224, 26);
+            this.Staff.Size = new System.Drawing.Size(180, 22);
             this.Staff.Text = "Staff";
             // 
             // Holiday
             // 
             this.Holiday.Name = "Holiday";
-            this.Holiday.Size = new System.Drawing.Size(224, 26);
+            this.Holiday.Size = new System.Drawing.Size(180, 22);
             this.Holiday.Text = "Holiday";
             // 
             // Voucher
             // 
             this.Voucher.Name = "Voucher";
-            this.Voucher.Size = new System.Drawing.Size(224, 26);
+            this.Voucher.Size = new System.Drawing.Size(180, 22);
             this.Voucher.Text = "Voucher";
             // 
             // BusinessHour
             // 
             this.BusinessHour.Name = "BusinessHour";
-            this.BusinessHour.Size = new System.Drawing.Size(224, 26);
+            this.BusinessHour.Size = new System.Drawing.Size(180, 22);
             this.BusinessHour.Text = "BusinessHour";
+            // 
+            // Banner
+            // 
+            this.Banner.Name = "Banner";
+            this.Banner.Size = new System.Drawing.Size(180, 22);
+            this.Banner.Text = "Banner";
             // 
             // zps
             // 
@@ -149,26 +156,28 @@
             this.TimeKeeping,
             this.Booking});
             this.zps.Name = "zps";
-            this.zps.Size = new System.Drawing.Size(72, 24);
+            this.zps.Size = new System.Drawing.Size(59, 24);
             this.zps.Text = "Process";
             // 
             // TimeKeeping
             // 
             this.TimeKeeping.Enabled = false;
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(180, 26);
+            this.TimeKeeping.Size = new System.Drawing.Size(180, 22);
             this.TimeKeeping.Text = "TimeKeeping";
             // 
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(180, 26);
+            this.Booking.Size = new System.Drawing.Size(180, 22);
             this.Booking.Text = "Booking";
             // 
             // zbc
             // 
+            this.zbc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BillList});
             this.zbc.Name = "zbc";
-            this.zbc.Size = new System.Drawing.Size(74, 24);
+            this.zbc.Size = new System.Drawing.Size(59, 24);
             this.zbc.Text = "Reports";
             // 
             // zst
@@ -177,26 +186,26 @@
             this.ChangePassword,
             this.User});
             this.zst.Name = "zst";
-            this.zst.Size = new System.Drawing.Size(70, 24);
+            this.zst.Size = new System.Drawing.Size(56, 24);
             this.zst.Text = "Setting";
             // 
             // ChangePassword
             // 
             this.ChangePassword.Name = "ChangePassword";
-            this.ChangePassword.Size = new System.Drawing.Size(207, 26);
+            this.ChangePassword.Size = new System.Drawing.Size(168, 22);
             this.ChangePassword.Text = "Change Password";
             this.ChangePassword.Click += new System.EventHandler(this.ChangePassword_Click);
             // 
             // User
             // 
             this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(207, 26);
+            this.User.Size = new System.Drawing.Size(168, 22);
             this.User.Text = "User";
             // 
             // logoffToolStripMenuItem
             // 
             this.logoffToolStripMenuItem.Name = "logoffToolStripMenuItem";
-            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.logoffToolStripMenuItem.Text = "Logoff";
             this.logoffToolStripMenuItem.Click += new System.EventHandler(this.logoffToolStripMenuItem_Click);
             // 
@@ -205,38 +214,36 @@
             this.dBToolStripMenuItem.Image = global::AusNail.Properties.Resources.database_gear;
             this.dBToolStripMenuItem.Name = "dBToolStripMenuItem";
             this.dBToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dBToolStripMenuItem.Size = new System.Drawing.Size(34, 24);
+            this.dBToolStripMenuItem.Size = new System.Drawing.Size(32, 24);
             this.dBToolStripMenuItem.Click += new System.EventHandler(this.dBToolStripMenuItem_Click);
             // 
             // tabForms
             // 
             this.tabForms.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabForms.Location = new System.Drawing.Point(0, 28);
-            this.tabForms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabForms.Name = "tabForms";
             this.tabForms.SelectedIndex = 0;
-            this.tabForms.Size = new System.Drawing.Size(1360, 30);
+            this.tabForms.Size = new System.Drawing.Size(1020, 24);
             this.tabForms.TabIndex = 8;
             this.tabForms.Visible = false;
             this.tabForms.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
             // 
-            // Banner
+            // BillList
             // 
-            this.Banner.Name = "Banner";
-            this.Banner.Size = new System.Drawing.Size(224, 26);
-            this.Banner.Text = "Banner";
+            this.BillList.Name = "BillList";
+            this.BillList.Size = new System.Drawing.Size(180, 22);
+            this.BillList.Text = "Bill List";
             // 
             // frmMainParent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(1360, 618);
+            this.ClientSize = new System.Drawing.Size(1020, 502);
             this.Controls.Add(this.tabForms);
             this.Controls.Add(this.mnsMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMainParent";
             this.Text = "Nail";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -273,5 +280,6 @@
         private System.Windows.Forms.ToolStripMenuItem mainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Banner;
+        private System.Windows.Forms.ToolStripMenuItem BillList;
     }
 }
