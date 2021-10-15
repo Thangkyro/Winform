@@ -72,6 +72,8 @@ namespace AusNail
                 DataTable dtT = null;
                 // Load booking
                 dtH = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
+                
+
                 if (dtH != null && dtH.Rows.Count > 0)
                 {
 
@@ -802,18 +804,24 @@ namespace AusNail
         {
             try
             {
+                
                 int billID = -1;
+                if (txtBillCode.Text.Trim().Length > 0)
+                {
+                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetBillIDbyBillCode", txtBillCode.Text.Trim(), int.Parse(NailApp.BranchID));
+                    billID = int.Parse(dataTable.Rows[0][0].ToString());
+                }
                 if (tabHistory)
                 {
-                    billID = _billIDHistory;
-                    UpdateBill(_billIDHistory);
+                    //billID = _billIDHistory;
+                    UpdateBill(billID);
                     btnPrint.Enabled = true;
                 }
                 else
                 {
-                    billID = _billIDTemp;
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
-                    SaveBill(_billIDTemp, "");
+                    //billID = _billIDTemp;
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", billID, int.Parse(NailApp.BranchID), 0, "");
+                    SaveBill(billID, "");
                     btnPrint.Enabled = true;
                 }
                 // Update decscriptions header.
@@ -829,17 +837,22 @@ namespace AusNail
             try
             {
                 int billID = -1;
+                if (txtBillCode.Text.Trim().Length > 0)
+                {
+                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetBillIDbyBillCode", txtBillCode.Text.Trim(), int.Parse(NailApp.BranchID));
+                    billID = int.Parse(dataTable.Rows[0][0].ToString());
+                }
                 if (tabHistory)
                 {
-                    billID = _billIDHistory;
-                    UpdateBill(_billIDHistory,zmes);
+                    //billID = _billIDHistory;
+                    UpdateBill(billID, zmes);
                     btnPrint.Enabled = true;
                 }
                 else
                 {
-                    billID = _billIDTemp;
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), 0, "");
-                    SaveBill(_billIDTemp, "",zmes);
+                    //billID = _billIDTemp;
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailDelete_Ver1", billID, int.Parse(NailApp.BranchID), 0, "");
+                    SaveBill(billID, "",zmes);
                     btnPrint.Enabled = true;
                 }
                 // Update decscriptions header.
@@ -884,6 +897,11 @@ namespace AusNail
                         {
                             totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
                         }
+                    }
+                    if (txtBillCode.Text.Trim().Length > 0)
+                    {
+                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetBillIDbyBillCode", txtBillCode.Text.Trim(), int.Parse(NailApp.BranchID));
+                        _billIDTemp = int.Parse(dataTable.Rows[0][0].ToString());
                     }
                     Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billIDTemp, totalAmount, NailApp.CurrentUserId);
                     frm.Activate();
@@ -1495,7 +1513,7 @@ namespace AusNail
 
                         decimal discount = decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
                         string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", _billIDTemp, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillDetailInsert_Ver1", billId, int.Parse(NailApp.BranchID), Num, ServiceID, Quantity, Price, discount, StaffId, NailApp.CurrentUserId, Note, error, errorMesg);
                         if (ret == 0)
                         {
                             flag = false;
