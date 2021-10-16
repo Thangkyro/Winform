@@ -17,6 +17,7 @@ namespace AusNail.Process
         private int _billId;
         private int _bookingID = -1;
         private decimal _totalAmount = 0;
+        private decimal _totalDiscount = 0;
         private decimal _Receivable = 0;
         private int _branchId = 0;
         private int _userId = 0;
@@ -40,6 +41,27 @@ namespace AusNail.Process
             _userId = userId;
             _PercenPay = loadPercenPay(out _MinApprovePercen, out _MaxPercen);
             lblTotalAmount.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
+            createTable();
+            loadVoucher();
+            LoadGrid();
+            txtCard.Enabled = false;
+            txtCash.Enabled = false;
+            dgvVoucher.Enabled = false;
+        }
+
+        public frmPay(int branchId, int bookingID, int billId, decimal totalAmount, decimal totalDiscount, int userId)
+        {
+            InitializeComponent();
+            _branchId = branchId;
+            _bookingID = bookingID;
+            _billId = billId;
+            _totalDiscount = totalDiscount;
+            _totalAmount = _Receivable = totalAmount;
+            _userId = userId;
+            _PercenPay = loadPercenPay(out _MinApprovePercen, out _MaxPercen);
+            lblTotalAmount.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            lblTotalDiscount.Text = string.Format("{0:#,##0.00}", _totalDiscount);
             txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
             createTable();
             loadVoucher();
@@ -146,16 +168,16 @@ namespace AusNail.Process
                         {
                             if ((_Receivable - cardAmount) * (1 - _PercenPay) > _MaxPercen && _MaxPercen != 0)
                             {
-                                txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - cardAmount - _MaxPercen)));
+                                txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - cardAmount - _MaxPercen)));
                             }
                             else
                             {
-                                txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - cardAmount) * _PercenPay));
+                                txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - cardAmount) * _PercenPay));
                             }
                         }
                         else
                         {
-                            txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - cardAmount)));
+                            txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - cardAmount)));
                         }
                     }
                 }
@@ -323,16 +345,16 @@ namespace AusNail.Process
                     {
                         if (_Receivable * (1 - _PercenPay) > _MaxPercen && _MaxPercen != 0)
                         {
-                            txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - _MaxPercen)));
+                            txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - _MaxPercen)));
                         }
                         else
                         {
-                            txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable * _PercenPay));
+                            txtCash.Text = string.Format("{0:#,##0.00}", Lamtron(_Receivable * _PercenPay));
                         }
                     }
                     else
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable)));
+                        txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable)));
                     }
                     txtCard.Text = "0";
                 }
@@ -417,7 +439,7 @@ namespace AusNail.Process
                 {
                     if (cashAmount > _Receivable)
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable));
+                        txtCash.Text = string.Format("{0:#,##0.00}", Lamtron(_Receivable));
                     }
                     else
                     {
@@ -458,23 +480,23 @@ namespace AusNail.Process
 
         private void radCash_CheckedChanged(object sender, EventArgs e)
         {
-            if (radCash.Checked)
+            if (radCash.Checked && _totalDiscount == 0)
             {
                 txtCard.Text = "0";
-                if (_Receivable > _MinApprovePercen)
+                if (_Receivable >= _MinApprovePercen)
                 {
                     if (_Receivable * (1 - _PercenPay) > _MaxPercen && _MaxPercen != 0)
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable - _MaxPercen)));
+                        txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - _MaxPercen)));
                     }
                     else
                     {
-                        txtCash.Text = string.Format("{0:#,##0.00}", Math.Round(_Receivable * _PercenPay));
+                        txtCash.Text = string.Format("{0:#,##0.00}", Lamtron(_Receivable * _PercenPay));
                     }
                 }
                 else
                 {
-                    txtCash.Text = string.Format("{0:#,##0.00}", Math.Round((_Receivable)));
+                    txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable)));
                 }
                 chkCompire.Checked = false;
                 radCash.Checked = true;
@@ -516,6 +538,22 @@ namespace AusNail.Process
             {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private decimal Lamtron(decimal number)
+        {
+            decimal So = 0;
+            decimal numberFloor = Math.Floor(number);
+            decimal chenhlech = number - numberFloor;
+            if (double.Parse(chenhlech.ToString()) >= 0.5)
+            {
+                So = numberFloor + 1;
+            }
+            else
+            {
+                So = numberFloor;
+            }
+            return So;
         }
     }
 
