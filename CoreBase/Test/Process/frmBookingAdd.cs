@@ -99,6 +99,7 @@ namespace AusNail.Process
                 if (_dtService != null)
                 {
                     _Service = _dtService.Copy();
+                    _Service.DefaultView.Sort = "Title";
                     _Service.Columns.Remove("branchId");
                     _Service.Columns.Remove("Display");
                     _Service.Columns.Remove("Decriptions");
