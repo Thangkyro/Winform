@@ -34,6 +34,7 @@ namespace AusNail
         private DataTable _dtService = null;
         private DataTable _dtStaff = null;
         private decimal _totalAmount = 0;
+        private decimal _totalDiscount = 0;
         private ZenSqlNotification notificationNewBill;
         private bool isload = false;
         //public frmMain()
@@ -66,81 +67,90 @@ namespace AusNail
         {
             //try
             //{
-               
-            
+
+
             DataTable dtH = null;
-                DataTable dtT = null;
-                // Load booking
-                dtH = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
-                
+            DataTable dtT = null;
+            // Load booking
+            dtH = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
+            string filterDate = dtpFilterDate.Value.ToString("yyyy-MM-dd");
+            DataRow[] drFilter = dtH.Select("FilterDate = '" + filterDate + "'");
+            if (drFilter != null && drFilter.Count() > 0)
+            {
+                dtH = drFilter.CopyToDataTable();
+            }
+            else
+            {
+                dtH = dtH.Clone();
+            }
 
-                if (dtH != null && dtH.Rows.Count > 0)
+            if (dtH != null && dtH.Rows.Count > 0)
+            {
+
+                trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
                 {
-
-                    trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
+                    trHistoryBill.Nodes.Clear();
+                    foreach (DataRow dr in dtH.Rows)
                     {
-                        trHistoryBill.Nodes.Clear();
-                        foreach (DataRow dr in dtH.Rows)
-                        {
-                      
-                            trHistoryBill.ImageList = imageList1;
-                            string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
-                            TreeNode note = new TreeNode();
-                            note.Text = infor;
-                            note.Name = dr["BillID"].ToString();
-                            note.Tag = dr["BillID"].ToString();
-                            trHistoryBill.Nodes.Add(note);
-                        }
+
+                        trHistoryBill.ImageList = imageList1;
+                        string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
+                        note.Tag = dr["BillID"].ToString();
+                        trHistoryBill.Nodes.Add(note);
+                    }
 
 
                 });
-                }
-                else
+            }
+            else
+            {
+                trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
                 {
-                    trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        trHistoryBill.Nodes.Clear();
-                        TreeNode note = new TreeNode();
-                        note.Text = "No historical data.";
-                        note.Tag = "-1";
-                        trHistoryBill.Nodes.Add(note);
+                    trHistoryBill.Nodes.Clear();
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trHistoryBill.Nodes.Add(note);
 
-                    });
-                }
+                });
+            }
 
             // Load temporary bill
-           
-               // trTemporaryBill.Nodes.Clear();
-                dtT = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
-                if (dtT != null && dtT.Rows.Count > 0)
-                {
-                    trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        trTemporaryBill.Nodes.Clear();
-                        foreach (DataRow dr in dtT.Rows)
-                        {
-                            trTemporaryBill.ImageList = imageList1;
-                            string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
-                            TreeNode note = new TreeNode();
-                            note.Text = infor;
-                            note.Name = dr["BillID"].ToString();
-                            note.Tag = dr["BillID"].ToString();
-                            trTemporaryBill.Nodes.Add(note);
-                         }
-                    });
-                }
-                else
-                {
-                    trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        trTemporaryBill.Nodes.Clear();
-                        TreeNode note = new TreeNode();
-                        note.Text = "No historical data.";
-                        note.Tag = "-1";
-                        trTemporaryBill.Nodes.Add(note);
 
-                        });
-                }
+            // trTemporaryBill.Nodes.Clear();
+            dtT = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
+            if (dtT != null && dtT.Rows.Count > 0)
+            {
+                trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trTemporaryBill.Nodes.Clear();
+                    foreach (DataRow dr in dtT.Rows)
+                    {
+                        trTemporaryBill.ImageList = imageList1;
+                        string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
+                        note.Tag = dr["BillID"].ToString();
+                        trTemporaryBill.Nodes.Add(note);
+                    }
+                });
+            }
+            else
+            {
+                trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trTemporaryBill.Nodes.Clear();
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trTemporaryBill.Nodes.Add(note);
+
+                });
+            }
 
             //}
             //catch
@@ -559,10 +569,12 @@ namespace AusNail
             isload = true;
             lb1.Visible = lb2.Visible = lb3.Visible = false;
             lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+            dtpFilterDate.Value = DateTime.Now;
 
             string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
             notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
             notificationNewBill.LoadData();
+            lblFilterDate.Visible = dtpFilterDate.Visible = false;
         }
 
         private void BtnSetColor_Click(object sender, EventArgs e)
@@ -891,11 +903,13 @@ namespace AusNail
                 {
                     SaveAuto(false);
                     decimal totalAmount = 0;
+                    decimal totalDiscount = 0;
                     for (int i = 0; i < dgvService.Rows.Count; i++)
                     {
-                        if (dgvService.Rows[i].Cells["ServiceId"].Value != null)
+                        if (dgvService.Rows[i].Cells["ServiceId"].Value != null && dgvService.Rows[i].Cells["ServiceId"].Value.ToString() != string.Empty)
                         {
                             totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                            totalDiscount += decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
                         }
                     }
                     if (txtBillCode.Text.Trim().Length > 0)
@@ -903,7 +917,7 @@ namespace AusNail
                         DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGetBillIDbyBillCode", txtBillCode.Text.Trim(), int.Parse(NailApp.BranchID));
                         _billIDTemp = int.Parse(dataTable.Rows[0][0].ToString());
                     }
-                    Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billIDTemp, totalAmount, NailApp.CurrentUserId);
+                    Process.frmPay frm = new Process.frmPay(int.Parse(NailApp.BranchID), -1, _billIDTemp, totalAmount, totalDiscount, NailApp.CurrentUserId);
                     frm.Activate();
                     frm.ShowDialog();
 
@@ -917,6 +931,7 @@ namespace AusNail
                         txtGenden.Clear();
                         _totalAmount = 0;
                         lblTotalAmont.Text = "0";
+                        lblTotalDiscount.Text = "0";
                         dgvService.DataSource = null;
 
                         _billIDHistory = _billIDHistoryOld = _billIDTemp;
@@ -951,6 +966,7 @@ namespace AusNail
                             txtGenden.Clear();
                             _totalAmount = 0;
                             lblTotalAmont.Text = "0";
+                            lblTotalDiscount.Text = "0";
                             dgvService.DataSource = null;
 
                             _billIDTemp = _billIDTempOld = _billIDHistory;
@@ -1367,14 +1383,17 @@ namespace AusNail
             try
             {
                 _totalAmount = 0;
+                _totalDiscount = 0;
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
                     if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != "")
                     {
                         _totalAmount += decimal.Parse(dgvService.Rows[i].Cells["Amount"].Value.ToString());
+                        _totalDiscount += decimal.Parse(dgvService.Rows[i].Cells["Discount"].Value.ToString());
                     }
                 }
                 lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
+                lblTotalDiscount.Text = string.Format("{0:#,##0.00}", _totalDiscount);
             }
             catch
             {
@@ -1617,6 +1636,15 @@ namespace AusNail
                 btnPay.Text = "UnPaid";
                 lb1.Visible = lb2.Visible = lb3.Visible = true;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = true;
+                lblFilterDate.Visible = dtpFilterDate.Visible = true;
+                if (_billIDHistory == -1)
+                {
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+                }
             }
             if (tabControl1.SelectedIndex == 0)
             {
@@ -1627,6 +1655,15 @@ namespace AusNail
                 btnPay.Text = "Pay";
                 lb1.Visible = lb2.Visible = lb3.Visible = false;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+                lblFilterDate.Visible = dtpFilterDate.Visible = false;
+                if (_billIDTemp == -1)
+                {
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+                }
             }
         }
 
@@ -1676,6 +1713,57 @@ namespace AusNail
             {
                 CheckService(true);
                 isload = false;
+            }
+        }
+
+        private void dtpFilterDate_ValueChanged(object sender, EventArgs e)
+        {
+            DataTable dtH = null;
+            // Load booking
+            dtH = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllComplete", int.Parse(NailApp.BranchID));
+            string filterDate = dtpFilterDate.Value.ToString("yyyy-MM-dd");
+            DataRow[] drFilter = dtH.Select("FilterDate = '" + filterDate + "'");
+            if (drFilter != null && drFilter.Count() > 0)
+            {
+                dtH = drFilter.CopyToDataTable();
+            }
+            else
+            {
+                dtH = dtH.Clone();
+            }
+
+            if (dtH != null && dtH.Rows.Count > 0)
+            {
+
+                trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trHistoryBill.Nodes.Clear();
+                    foreach (DataRow dr in dtH.Rows)
+                    {
+
+                        trHistoryBill.ImageList = imageList1;
+                        string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
+                        note.Tag = dr["BillID"].ToString();
+                        trHistoryBill.Nodes.Add(note);
+                    }
+
+
+                });
+            }
+            else
+            {
+                trHistoryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trHistoryBill.Nodes.Clear();
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trHistoryBill.Nodes.Add(note);
+
+                });
             }
         }
     }
