@@ -180,6 +180,7 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
+            _Voucher.DefaultView.Sort = "zPrintname";
             GridDetail.DataSource = _Voucher;
             //GridDetail.Columns.Remove("IssueBy");
 

@@ -170,6 +170,7 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
+            _Service.DefaultView.Sort = "Title";
             GridDetail.DataSource = _Service;
             GridDetail.Columns.Remove("branchId");
 

@@ -170,6 +170,7 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
+            _Holidays.DefaultView.Sort = "Names";
             GridDetail.DataSource = _Holidays;
             GridDetail.Columns.Remove("branchId");
 

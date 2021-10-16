@@ -198,6 +198,8 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
+
+            _Service.DefaultView.Sort = "Name";
             GridDetail.DataSource = _Service;
             GridDetail.Columns.Remove("branchId");
 

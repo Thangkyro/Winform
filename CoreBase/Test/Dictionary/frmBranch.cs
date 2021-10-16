@@ -159,6 +159,7 @@ namespace AusNail.Dictionary
         }
         private void LoadGrid()
         {
+            _Service.DefaultView.Sort = "BranchName";
             GridDetail.DataSource = _Service;
             GridDetail.Columns["branchId"].Visible = false;
 
