@@ -169,6 +169,7 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
+            _Banner.DefaultView.Sort = "BannerText";
             GridDetail.DataSource = _Banner;
             GridDetail.Columns.Remove("branchId");
 

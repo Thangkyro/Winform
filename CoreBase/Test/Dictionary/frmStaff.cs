@@ -227,7 +227,8 @@ namespace AusNail.Dictionary
 
         private void LoadGrid()
         {
-            GridDetail.DataSource = Bds.DataSource;
+            _Staff.DefaultView.Sort = "Name";
+            GridDetail.DataSource = _Staff;
             GridDetail.Columns.Remove("branchId");
 
             DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
