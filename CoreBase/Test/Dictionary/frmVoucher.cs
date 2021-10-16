@@ -122,6 +122,9 @@ namespace AusNail.Dictionary
                         if (dr[_idName].ToString() == "0")
                         {
                             this.zEditRow = dr;
+                            this.zEditRow["VoucherCode"] = GenVoucherCode();
+                            this.zEditRow["IssueBy"] = NailApp.CurrentUserId;
+                            this.zEditRow["AvailableAmount"] = this.zEditRow["Amount"] != DBNull.Value ? this.zEditRow["Amount"] : 0;
                             isSuccess = base.InsertData();
                         }
                         else
@@ -149,7 +152,7 @@ namespace AusNail.Dictionary
                     lblMessInfomation.Text = listError;
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
             }
@@ -167,7 +170,9 @@ namespace AusNail.Dictionary
         private void LoadData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
+            {
                 Bds.DataSource = _Voucher = dal.GetData();
+            }
             LoadGrid();
             _postion = 0;
         }
