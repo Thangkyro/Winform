@@ -672,6 +672,10 @@ namespace AusNail
                 if (tns.Length > 0)
                 {
                     tns[0].BackColor = Color.LightSkyBlue;
+                    if (trTemporaryBill.SelectedNode.Index != 0)
+                    {
+                        trTemporaryBill.Nodes[0].BackColor = Color.White;
+                    }
                 }
                 if (_billIDTempOld != -1)
                 {

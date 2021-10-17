@@ -70,15 +70,23 @@ namespace AusNail.Process
             if (txtPhone.Text.Trim() == "")
             {
                 MessageBox.Show("Please input phone number.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             else
             {
 
-               // Kiểm tra tính hợp lệ của số điện thoại
+                // Check bill exist.
+                if (txtPhone.Text.Trim() != "000" && checkExiestBill(_branchId, txtPhone.Text.Trim()))
+                {
+                    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
                     frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
                     frm.Activate();
                     frm.ShowDialog();
@@ -86,8 +94,8 @@ namespace AusNail.Process
                 }
                 else
                 {
-                    this.Visible = false;
-                    this.ShowInTaskbar = false;
+                    //this.Visible = false;
+                    //this.ShowInTaskbar = false;
                     frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
                     frm.Activate();
                     frm.ShowDialog();
@@ -105,6 +113,17 @@ namespace AusNail.Process
             }
             catch
             {}
+            return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
+        }
+
+        private bool checkExiestBill(int branchId, string phoneNumber)
+        {
+            try
+            {
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber);
+            }
+            catch
+            { }
             return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
         }
 
