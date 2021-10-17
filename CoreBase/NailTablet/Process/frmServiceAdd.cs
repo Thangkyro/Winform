@@ -244,8 +244,8 @@ namespace AusNail.Process
                         }
                     }
 
-                    Process.frmCheckPhone frm = new Process.frmCheckPhone(false);
-                    frm.ShowDialog();
+                    //Process.frmCheckPhone frm = new Process.frmCheckPhone(false);
+                    //frm.ShowDialog();
                     
                 }
             }

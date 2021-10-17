@@ -61,8 +61,13 @@ namespace AusNail.Process
             }
             else
             {
-
-               // Kiểm tra tính hợp lệ của số điện thoại
+                // Check bill exist.
+                if (txtPhone.Text.Trim() != "000" && checkExiestBill(_branchId, txtPhone.Text.Trim()))
+                {
+                    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                // Kiểm tra tính hợp lệ của số điện thoại
                 if (checkExiestCustomer(txtPhone.Text.Trim()))
                 {
                     //this.Visible = false;
@@ -93,6 +98,17 @@ namespace AusNail.Process
             }
             catch
             {}
+            return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
+        }
+
+        private bool checkExiestBill(int branchId,string phoneNumber)
+        {
+            try
+            {
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber);
+            }
+            catch
+            { }
             return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
         }
 
