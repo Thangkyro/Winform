@@ -27,7 +27,7 @@ namespace AusNail.Process
             _dtPayment.Columns.Add("Code");
             _dtPayment.Columns.Add("Name");
             string[] strPayment;
-            strPayment = new string[4] { "All", "Card", "Cast", "Compare"};
+            strPayment = new string[4] { "All", "Card", "Cash", "Compare"};
             foreach (var item in strPayment)
             {
                 DataRow dr1 = _dtPayment.NewRow();
