@@ -50,9 +50,10 @@
             // radMale
             // 
             this.radMale.AutoSize = true;
-            this.radMale.Location = new System.Drawing.Point(139, 138);
+            this.radMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMale.Location = new System.Drawing.Point(663, 252);
             this.radMale.Name = "radMale";
-            this.radMale.Size = new System.Drawing.Size(48, 17);
+            this.radMale.Size = new System.Drawing.Size(124, 50);
             this.radMale.TabIndex = 9;
             this.radMale.Text = "Male";
             this.radMale.UseVisualStyleBackColor = true;
@@ -61,9 +62,10 @@
             // 
             this.radFemale.AutoSize = true;
             this.radFemale.Checked = true;
-            this.radFemale.Location = new System.Drawing.Point(139, 157);
+            this.radFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radFemale.Location = new System.Drawing.Point(663, 315);
             this.radFemale.Name = "radFemale";
-            this.radFemale.Size = new System.Drawing.Size(59, 17);
+            this.radFemale.Size = new System.Drawing.Size(170, 50);
             this.radFemale.TabIndex = 10;
             this.radFemale.TabStop = true;
             this.radFemale.Text = "Female";
@@ -72,9 +74,10 @@
             // radOrder
             // 
             this.radOrder.AutoSize = true;
-            this.radOrder.Location = new System.Drawing.Point(139, 177);
+            this.radOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radOrder.Location = new System.Drawing.Point(663, 380);
             this.radOrder.Name = "radOrder";
-            this.radOrder.Size = new System.Drawing.Size(51, 17);
+            this.radOrder.Size = new System.Drawing.Size(139, 50);
             this.radOrder.TabIndex = 11;
             this.radOrder.Text = "Order";
             this.radOrder.UseVisualStyleBackColor = true;
@@ -85,14 +88,14 @@
             this.btnCancel.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCancel.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Constantia", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(242, 208);
+            this.btnCancel.Location = new System.Drawing.Point(757, 463);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
-            this.btnCancel.Size = new System.Drawing.Size(120, 30);
+            this.btnCancel.Size = new System.Drawing.Size(143, 79);
             this.btnCancel.Stroke = false;
             this.btnCancel.StrokeColor = System.Drawing.Color.Gray;
             this.btnCancel.TabIndex = 13;
@@ -106,14 +109,14 @@
             this.btnConfirm.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
             this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
             this.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnConfirm.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.Font = new System.Drawing.Font("Constantia", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(112, 208);
+            this.btnConfirm.Location = new System.Drawing.Point(600, 463);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
-            this.btnConfirm.Size = new System.Drawing.Size(120, 30);
+            this.btnConfirm.Size = new System.Drawing.Size(143, 79);
             this.btnConfirm.Stroke = false;
             this.btnConfirm.StrokeColor = System.Drawing.Color.Gray;
             this.btnConfirm.TabIndex = 12;
@@ -123,25 +126,28 @@
             // 
             // altoSlidingLabel5
             // 
-            this.altoSlidingLabel5.Location = new System.Drawing.Point(12, 89);
+            this.altoSlidingLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoSlidingLabel5.Location = new System.Drawing.Point(6, 326);
             this.altoSlidingLabel5.Name = "altoSlidingLabel5";
-            this.altoSlidingLabel5.Size = new System.Drawing.Size(98, 20);
+            this.altoSlidingLabel5.Size = new System.Drawing.Size(143, 20);
             this.altoSlidingLabel5.Slide = false;
             this.altoSlidingLabel5.TabIndex = 3;
             this.altoSlidingLabel5.Text = "Postcode:";
             // 
             // altoSlidingLabel4
             // 
-            this.altoSlidingLabel4.Location = new System.Drawing.Point(12, 62);
+            this.altoSlidingLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoSlidingLabel4.Location = new System.Drawing.Point(4, 214);
             this.altoSlidingLabel4.Name = "altoSlidingLabel4";
-            this.altoSlidingLabel4.Size = new System.Drawing.Size(98, 20);
+            this.altoSlidingLabel4.Size = new System.Drawing.Size(156, 20);
             this.altoSlidingLabel4.Slide = false;
             this.altoSlidingLabel4.TabIndex = 2;
             this.altoSlidingLabel4.Text = "Date of birth:";
             // 
             // altoSlidingLabel3
             // 
-            this.altoSlidingLabel3.Location = new System.Drawing.Point(110, 113);
+            this.altoSlidingLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoSlidingLabel3.Location = new System.Drawing.Point(634, 217);
             this.altoSlidingLabel3.Name = "altoSlidingLabel3";
             this.altoSlidingLabel3.Size = new System.Drawing.Size(98, 20);
             this.altoSlidingLabel3.Slide = false;
@@ -150,7 +156,8 @@
             // 
             // altoSlidingLabel2
             // 
-            this.altoSlidingLabel2.Location = new System.Drawing.Point(12, 35);
+            this.altoSlidingLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoSlidingLabel2.Location = new System.Drawing.Point(5, 108);
             this.altoSlidingLabel2.Name = "altoSlidingLabel2";
             this.altoSlidingLabel2.Size = new System.Drawing.Size(98, 20);
             this.altoSlidingLabel2.Slide = false;
@@ -159,34 +166,41 @@
             // 
             // altoSlidingLabel1
             // 
-            this.altoSlidingLabel1.Location = new System.Drawing.Point(12, 10);
+            this.altoSlidingLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altoSlidingLabel1.Location = new System.Drawing.Point(7, 10);
             this.altoSlidingLabel1.Name = "altoSlidingLabel1";
-            this.altoSlidingLabel1.Size = new System.Drawing.Size(98, 20);
+            this.altoSlidingLabel1.Size = new System.Drawing.Size(174, 20);
             this.altoSlidingLabel1.Slide = false;
             this.altoSlidingLabel1.TabIndex = 0;
             this.altoSlidingLabel1.Text = "Phone number:";
             // 
             // txtPhoneNum
             // 
-            this.txtPhoneNum.Location = new System.Drawing.Point(110, 10);
+            this.txtPhoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNum.Location = new System.Drawing.Point(30, 34);
+            this.txtPhoneNum.Multiline = true;
             this.txtPhoneNum.Name = "txtPhoneNum";
-            this.txtPhoneNum.Size = new System.Drawing.Size(252, 20);
+            this.txtPhoneNum.Size = new System.Drawing.Size(870, 70);
             this.txtPhoneNum.TabIndex = 4;
             this.txtPhoneNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNum_KeyDown);
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(110, 35);
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(30, 136);
+            this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(252, 20);
+            this.txtName.Size = new System.Drawing.Size(870, 70);
             this.txtName.TabIndex = 5;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNum_KeyDown);
             // 
             // txtPostcode
             // 
-            this.txtPostcode.Location = new System.Drawing.Point(110, 89);
+            this.txtPostcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPostcode.Location = new System.Drawing.Point(30, 354);
+            this.txtPostcode.Multiline = true;
             this.txtPostcode.Name = "txtPostcode";
-            this.txtPostcode.Size = new System.Drawing.Size(252, 20);
+            this.txtPostcode.Size = new System.Drawing.Size(566, 70);
             this.txtPostcode.TabIndex = 7;
             this.txtPostcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNum_KeyDown);
             // 
@@ -195,7 +209,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(91, 13);
+            this.label1.Location = new System.Drawing.Point(187, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 16);
             this.label1.TabIndex = 14;
@@ -206,7 +220,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(48, 39);
+            this.label2.Location = new System.Drawing.Point(91, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 16);
             this.label2.TabIndex = 14;
@@ -214,10 +228,11 @@
             // 
             // txtDateofBirth
             // 
+            this.txtDateofBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateofBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDateofBirth.Location = new System.Drawing.Point(110, 62);
+            this.txtDateofBirth.Location = new System.Drawing.Point(30, 244);
             this.txtDateofBirth.Name = "txtDateofBirth";
-            this.txtDateofBirth.Size = new System.Drawing.Size(252, 20);
+            this.txtDateofBirth.Size = new System.Drawing.Size(566, 70);
             this.txtDateofBirth.TabIndex = 6;
             // 
             // frmCusstomerAdd
@@ -225,7 +240,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(374, 256);
+            this.ClientSize = new System.Drawing.Size(949, 572);
             this.Controls.Add(this.txtDateofBirth);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

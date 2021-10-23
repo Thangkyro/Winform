@@ -105,26 +105,26 @@ namespace AusNail.Process
             numericUpDown.Name = "Quantity";
             numericUpDown.DataPropertyName = "Quantity";
             numericUpDown.CellTemplate.Value = 1;
-            numericUpDown.Width = 75;
+            numericUpDown.Width = 150;
             dgvService.Columns.Add(numericUpDown);
             dgvService.Columns["Quantity"].DisplayIndex = 3;
 
             dgvService.Columns["Price"].HeaderText = "Price";
-            dgvService.Columns["Price"].Width = 100;
+            dgvService.Columns["Price"].Width = 200;
             dgvService.Columns["Price"].Visible = false;
             dgvService.Columns["Amount"].HeaderText = "Amount";
             dgvService.Columns["Amount"].ReadOnly = true;
-            dgvService.Columns["Amount"].Width = 120;
+            dgvService.Columns["Amount"].Width = 200;
             dgvService.Columns["Amount"].Visible = false;
 
             DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
             dataGridViewImange.Name = "Check";
             dataGridViewImange.HeaderText = "";
-            dataGridViewImange.Width = 50;
+            dataGridViewImange.Width = 100;
             dgvService.Columns.Add(dataGridViewImange);
 
-            
 
+            dgvService.RowTemplate.Height = 50;
             dgvService.AutoGenerateColumns = false;
             dgvService.AllowUserToAddRows = false;
             dgvService.AllowUserToDeleteRows = false;

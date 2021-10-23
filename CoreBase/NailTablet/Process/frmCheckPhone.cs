@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -191,6 +192,13 @@ namespace AusNail.Process
             byte[] imgData = getImg;
             MemoryStream stream = new MemoryStream(imgData);
             this.BackgroundImage = Image.FromStream(stream);
+
+            //Bitmap b = new Bitmap(stream);
+            //b.Save(@"..\..\Resources\Background.jpg");
+
+            //Image myimage = new Bitmap(@"..\..\Resources\Background.jpg");
+            //this.BackgroundImage = myimage;
+
 
             _MyTimer = new Timer();
             _MyTimer.Interval = (int.Parse(txtSecond.Value.ToString()) * 1000); 
