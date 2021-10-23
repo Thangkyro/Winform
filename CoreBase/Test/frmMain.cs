@@ -122,6 +122,16 @@ namespace AusNail
 
             // trTemporaryBill.Nodes.Clear();
             dtT = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
+            string filterDateTemp = dtpFiltDateTemp.Value.ToString("yyyy-MM-dd");
+            DataRow[] drFilterTemp = dtT.Select("FilterDate = '" + filterDateTemp + "'");
+            if (drFilterTemp != null && drFilterTemp.Count() > 0)
+            {
+                dtT = drFilterTemp.CopyToDataTable();
+            }
+            else
+            {
+                dtT = dtT.Clone();
+            }
             if (dtT != null && dtT.Rows.Count > 0)
             {
                 trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
@@ -570,11 +580,12 @@ namespace AusNail
             lb1.Visible = lb2.Visible = lb3.Visible = false;
             lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
             dtpFilterDate.Value = DateTime.Now;
+            dtpFiltDateTemp.Value = DateTime.Now;
 
             string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
             notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
             notificationNewBill.LoadData();
-            lblFilterDate.Visible = dtpFilterDate.Visible = false;
+            dtpFilterDate.Visible = false;
         }
 
         private void BtnSetColor_Click(object sender, EventArgs e)
@@ -1640,7 +1651,8 @@ namespace AusNail
                 btnPay.Text = "UnPaid";
                 lb1.Visible = lb2.Visible = lb3.Visible = true;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = true;
-                lblFilterDate.Visible = dtpFilterDate.Visible = true;
+                dtpFilterDate.Visible = true;
+                dtpFiltDateTemp.Visible = false;
                 if (_billIDHistory == -1)
                 {
                     txtBilDate.Clear();
@@ -1659,7 +1671,8 @@ namespace AusNail
                 btnPay.Text = "Pay";
                 lb1.Visible = lb2.Visible = lb3.Visible = false;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
-                lblFilterDate.Visible = dtpFilterDate.Visible = false;
+                dtpFilterDate.Visible = false;
+                dtpFiltDateTemp.Visible = true;
                 if (_billIDTemp == -1)
                 {
                     txtBilDate.Clear();
@@ -1766,6 +1779,52 @@ namespace AusNail
                     note.Text = "No historical data.";
                     note.Tag = "-1";
                     trHistoryBill.Nodes.Add(note);
+
+                });
+            }
+        }
+
+        private void dtpFiltDateTemp_ValueChanged(object sender, EventArgs e)
+        {
+            // Load temporary bill
+            DataTable dtT = null;
+            dtT = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillMasterGetList_AllTemporaty", int.Parse(NailApp.BranchID));
+            string filterDateTemp = dtpFiltDateTemp.Value.ToString("yyyy-MM-dd");
+            DataRow[] drFilterTemp = dtT.Select("FilterDate = '" + filterDateTemp + "'");
+            if (drFilterTemp != null && drFilterTemp.Count() > 0)
+            {
+                dtT = drFilterTemp.CopyToDataTable();
+            }
+            else
+            {
+                dtT = dtT.Clone();
+            }
+            if (dtT != null && dtT.Rows.Count > 0)
+            {
+                trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trTemporaryBill.Nodes.Clear();
+                    foreach (DataRow dr in dtT.Rows)
+                    {
+                        trTemporaryBill.ImageList = imageList1;
+                        string infor = dr["NumberBill"].ToString() + " - " + dr["CustomerPhone"].ToString();
+                        TreeNode note = new TreeNode();
+                        note.Text = infor;
+                        note.Name = dr["BillID"].ToString();
+                        note.Tag = dr["BillID"].ToString();
+                        trTemporaryBill.Nodes.Add(note);
+                    }
+                });
+            }
+            else
+            {
+                trTemporaryBill.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    trTemporaryBill.Nodes.Clear();
+                    TreeNode note = new TreeNode();
+                    note.Text = "No historical data.";
+                    note.Tag = "-1";
+                    trTemporaryBill.Nodes.Add(note);
 
                 });
             }
