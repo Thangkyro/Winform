@@ -1780,6 +1780,16 @@ namespace AusNail
                     note.Tag = "-1";
                     trHistoryBill.Nodes.Add(note);
 
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+
+                    if (dgvService.Rows.Count > 1)
+                    {
+                        dgvService.Rows.Clear();
+                    }
                 });
             }
         }
@@ -1826,6 +1836,17 @@ namespace AusNail
                     note.Tag = "-1";
                     trTemporaryBill.Nodes.Add(note);
 
+                    txtBilDate.Clear();
+                    txtBillCode.Clear();
+                    txtCustomerName.Clear();
+                    txtPhone.Clear();
+                    txtGenden.Clear();
+
+                    if (dgvService.Rows.Count > 1)
+                    {
+                        dgvService.Rows.Clear();
+                    }
+                    
                 });
             }
         }
