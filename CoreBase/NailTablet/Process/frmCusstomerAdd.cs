@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -80,7 +81,7 @@ namespace AusNail.Process
                     Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
                        .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 }
-               
+
                 string PostCode = this.txtPostcode.Text.Trim();
                 string CustomerCode = GenCustomerCode();
                 // kiem tra khong được đặt mã trùng
@@ -142,6 +143,8 @@ namespace AusNail.Process
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Thread thread = new Thread(new ThreadStart(ShowFormCheckPhone));
+            thread.Start();
             this.Close();
         }
 
@@ -157,6 +160,16 @@ namespace AusNail.Process
             {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void frmCusstomerAdd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        }
+
+        private void ShowFormCheckPhone()
+        {
+            frmCheckPhone frm = new frmCheckPhone(false);
+            frm.ShowDialog();
         }
     }
 }

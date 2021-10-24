@@ -1644,6 +1644,10 @@ namespace AusNail
         {
             if (tabControl1.SelectedIndex == 1)
             {
+                if (trHistoryBill.Nodes.Count == 1 && trHistoryBill.Nodes[0].Text == "No historical data.")
+                {
+                    _billIDHistory = -1;
+                }
                 tabHistory = true;
                 loadBillInfor(_billIDHistory);
                 loadGridDetail_Bill(_billIDHistory, false);
@@ -1664,6 +1668,10 @@ namespace AusNail
             }
             if (tabControl1.SelectedIndex == 0)
             {
+                if (trTemporaryBill.Nodes.Count == 1 && trTemporaryBill.Nodes[0].Text == "No historical data.")
+                {
+                    _billIDTemp = -1;
+                }
                 tabHistory = false;
                 loadBillInfor(_billIDTemp);
                 loadGridDetail_Bill(_billIDTemp, true);
@@ -1788,7 +1796,7 @@ namespace AusNail
 
                     if (dgvService.Rows.Count > 1)
                     {
-                        dgvService.Rows.Clear();
+                        dgvService.DataSource = null;
                     }
                 });
             }
@@ -1844,9 +1852,9 @@ namespace AusNail
 
                     if (dgvService.Rows.Count > 1)
                     {
-                        dgvService.Rows.Clear();
+                        dgvService.DataSource = null;
                     }
-                    
+
                 });
             }
         }

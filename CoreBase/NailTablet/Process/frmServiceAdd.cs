@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -152,6 +153,8 @@ namespace AusNail.Process
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Thread thread = new Thread(new ThreadStart(ShowFormCheckPhone));
+            thread.Start();
             this.Close();
         }
 
@@ -297,6 +300,12 @@ namespace AusNail.Process
             catch
             {
             }
+        }
+
+        private void ShowFormCheckPhone()
+        {
+            frmCheckPhone frm = new frmCheckPhone(false);
+            frm.ShowDialog();
         }
 
         #region Define Datagridview NumericUpDown

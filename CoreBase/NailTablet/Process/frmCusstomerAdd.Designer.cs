@@ -262,6 +262,7 @@
             this.Name = "frmCusstomerAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Customer";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCusstomerAdd_FormClosed);
             this.Load += new System.EventHandler(this.frmCusstomerAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
