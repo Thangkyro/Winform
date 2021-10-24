@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,7 +25,7 @@ namespace AusNail.Process
         private bool _firtRun = false;
         private DataTable _dtBanner = null;
         private int _bannerCount = 1;
-        private Timer _MyTimer;
+        private  System.Windows.Forms.Timer _MyTimer;
         public frmCheckPhone()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace AusNail.Process
             InitializeComponent();
             txtPhone.Focus();
             this.pnSDT.Visible = true;
-            _firtRun = firtRun;
+            _firtRun = firtRun;          
         }
 
         public frmCheckPhone(int branchId, int userId)
@@ -45,7 +46,7 @@ namespace AusNail.Process
             InitializeComponent();
             _branchId = branchId;
             _UserId = userId;
-            txtPhone.Focus();
+            txtPhone.Focus();          
         }
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -89,7 +90,6 @@ namespace AusNail.Process
                     //this.Visible = false;
                     //this.ShowInTaskbar = false;
                     frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
-                    frm.Activate();
                     frm.ShowDialog();
                     //sResult = txtPhone.Text.Trim() + "|" + _dtCustomer.Rows[0]["Name"].ToString();
                 }
@@ -98,7 +98,6 @@ namespace AusNail.Process
                     //this.Visible = false;
                     //this.ShowInTaskbar = false;
                     frmCusstomerAdd frm = new frmCusstomerAdd(_branchId, _UserId, txtPhone.Text.Trim());
-                    frm.Activate();
                     frm.ShowDialog();
                     //sResult = txtPhone.Text.Trim();
                 }
@@ -186,21 +185,10 @@ namespace AusNail.Process
             loadBanner();
             lbText1.Text = NailApp.Titlebranch;
 
-            // Load BackgroundImage
-            byte[] getImg = new byte[0];
-            getImg = (byte[])NailApp.Imagebranch;
-            byte[] imgData = getImg;
-            MemoryStream stream = new MemoryStream(imgData);
-            this.BackgroundImage = Image.FromStream(stream);
+            Thread thread = new Thread(new ThreadStart(LoadBackgorund));
+            thread.Start();
 
-            //Bitmap b = new Bitmap(stream);
-            //b.Save(@"..\..\Resources\Background.jpg");
-
-            //Image myimage = new Bitmap(@"..\..\Resources\Background.jpg");
-            //this.BackgroundImage = myimage;
-
-
-            _MyTimer = new Timer();
+            _MyTimer = new System.Windows.Forms.Timer();
             _MyTimer.Interval = (int.Parse(txtSecond.Value.ToString()) * 1000); 
             _MyTimer.Tick += new EventHandler(MyTimer_Tick);
             _MyTimer.Start();
@@ -424,6 +412,16 @@ namespace AusNail.Process
         private void label1_DoubleClick(object sender, EventArgs e)
         {
             txtSecond.Enabled = !txtSecond.Enabled;
+        }
+
+        private void LoadBackgorund()
+        {
+            // Load BackgroundImage
+            byte[] getImg = new byte[0];
+            getImg = (byte[])NailApp.Imagebranch;
+            byte[] imgData = getImg;
+            MemoryStream stream = new MemoryStream(imgData);
+            this.BackgroundImage = Image.FromStream(stream);
         }
     }
 }
