@@ -65,6 +65,7 @@ namespace AusNail.Process
                 if (txtPhone.Text.Trim() != "000" && checkExiestBill(_branchId, txtPhone.Text.Trim()))
                 {
                     MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtPhone.Clear();
                     return;
                 }
                 // Kiểm tra tính hợp lệ của số điện thoại
@@ -105,7 +106,7 @@ namespace AusNail.Process
         {
             try
             {
-                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber);
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber, DateTime.Now);
             }
             catch
             { }

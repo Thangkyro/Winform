@@ -492,6 +492,8 @@
             this.Text = "Customer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCheckPhone_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCheckPhone_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmCheckPhone_KeyPress);
             this.pnSDT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSecond)).EndInit();
             this.ResumeLayout(false);

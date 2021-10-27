@@ -440,7 +440,7 @@ namespace AusNail.Process
 
                     // Get bill number
                     int billnumber = 1;
-                    DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose);
+                    DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose, DateTime.Parse(DateTime.Now.ToShortDateString()));
                     if (dt1 != null)
                     {
                         billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
