@@ -35,6 +35,8 @@
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.altoSlidingLabel2 = new AltoControls.AltoSlidingLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,22 +130,48 @@
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // dtpDate
+            // 
+            this.dtpDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(56, 427);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(116, 21);
+            this.dtpDate.TabIndex = 10007;
+            this.dtpDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
+            // 
+            // altoSlidingLabel2
+            // 
+            this.altoSlidingLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.altoSlidingLabel2.Location = new System.Drawing.Point(14, 426);
+            this.altoSlidingLabel2.Name = "altoSlidingLabel2";
+            this.altoSlidingLabel2.Size = new System.Drawing.Size(54, 23);
+            this.altoSlidingLabel2.Slide = false;
+            this.altoSlidingLabel2.TabIndex = 1;
+            this.altoSlidingLabel2.Text = "Date:";
+            // 
             // frmServiceAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(832, 472);
+            this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.altoSlidingLabel2);
             this.Controls.Add(this.altoSlidingLabel1);
             this.Controls.Add(this.dgvService);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmServiceAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Service";
+            this.Load += new System.EventHandler(this.frmServiceAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,5 +186,7 @@
         private System.Windows.Forms.TextBox txtPhoneNumber;
         private AltoControls.AltoButton btnCancel;
         private AltoControls.AltoButton btnConfirm;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private AltoControls.AltoSlidingLabel altoSlidingLabel2;
     }
 }

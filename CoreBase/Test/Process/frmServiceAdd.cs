@@ -21,6 +21,7 @@ namespace AusNail.Process
         public delegate void DelSendMsg(string msg);
         private int iResult = 0;
         private int _num = 1;
+        private DataTable _dtCustomer = null;
 
         //khạ báo biến kiểu delegate
         public DelSendMsg SendMsg;
@@ -155,8 +156,26 @@ namespace AusNail.Process
             this.Close();
         }
 
+        private bool checkExiestBill(int branchId, string phoneNumber)
+        {
+            try
+            {
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber, dtpDate.Value);
+            }
+            catch
+            { }
+            return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
+        }
+
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+
+            // Check bill exist.
+            if (txtPhoneNumber.Text.Trim() != "000" && checkExiestBill(_branchID, txtPhoneNumber.Text.Trim()))
+            {
+                MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (dgvService.Rows.Count > 0)
             {
                 bool flag = true;
@@ -171,7 +190,7 @@ namespace AusNail.Process
 
                 // Get bill number
                 int billnumber = 1;
-                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID);
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, dtpDate.Value);
                 if (dt1 != null)
                 {
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -191,7 +210,7 @@ namespace AusNail.Process
                             int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                             decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                             string Note = "";
-                            DateTime billdate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                            DateTime billdate = dtpDate.Value;
                             int error = 0;
                             string errorMesg = "";
 
@@ -276,6 +295,11 @@ namespace AusNail.Process
             catch
             {
             }
+        }
+
+        private void frmServiceAdd_Load(object sender, EventArgs e)
+        {
+            dtpDate.Value = DateTime.Now;
         }
     }
 }

@@ -37,6 +37,7 @@ namespace AusNail
         private decimal _totalDiscount = 0;
         private ZenSqlNotification notificationNewBill;
         private bool isload = false;
+        private DataTable _dtCustomer = null;
         //public frmMain()
         //{
         //    InitializeComponent();
@@ -827,11 +828,29 @@ namespace AusNail
             }
         }
 
+        private bool checkExiestBill(int branchId, string phoneNumber)
+        {
+            try
+            {
+                _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCheckBillExists", branchId, phoneNumber, txtBilDate.Value);
+            }
+            catch
+            { }
+            return !(_dtCustomer == null || _dtCustomer.Rows.Count == 0);
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
+                // Check bill exist.
+                if (txtPhone.Text.Trim() != "000" && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
+                {
+                    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 int billID = -1;
                 if (txtBillCode.Text.Trim().Length > 0)
                 {
@@ -852,7 +871,7 @@ namespace AusNail
                     btnPrint.Enabled = true;
                 }
                 // Update decscriptions header.
-                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID),  txtDesc.Text, 0, "");
+                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID),  txtDesc.Text, txtBilDate.Value,  0, "");
             }
             catch(Exception ex)
             {
@@ -863,6 +882,13 @@ namespace AusNail
         {
             try
             {
+                // Check bill exist.
+                if (txtPhone.Text.Trim() != "000" && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
+                {
+                    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 int billID = -1;
                 if (txtBillCode.Text.Trim().Length > 0)
                 {
@@ -883,7 +909,7 @@ namespace AusNail
                     btnPrint.Enabled = true;
                 }
                 // Update decscriptions header.
-                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID), txtDesc.Text, 0, "");
+                int retH = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillMasterUpdate_Ver1", billID, int.Parse(NailApp.BranchID), txtDesc.Text, txtBilDate.Value, 0, "");
             }
             catch (Exception ex)
             {
@@ -900,7 +926,7 @@ namespace AusNail
                 if (ret > 0)
                 {
                     //LoadHistory();
-                    txtBilDate.Clear();
+                    txtBilDate.Value = DateTime.Now;
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -939,7 +965,7 @@ namespace AusNail
                     if (frm.DialogResult == DialogResult.OK)
                     {
                         //LoadHistory();
-                        txtBilDate.Clear();
+                        txtBilDate.Value = DateTime.Now;
                         txtBillCode.Clear();
                         txtCustomerName.Clear();
                         txtPhone.Clear();
@@ -948,6 +974,10 @@ namespace AusNail
                         lblTotalAmont.Text = "0";
                         lblTotalDiscount.Text = "0";
                         dgvService.DataSource = null;
+
+                        dtpFilterDate_ValueChanged(sender, e);
+                        dtpFiltDateTemp_ValueChanged(sender, e);
+
 
                         _billIDHistory = _billIDHistoryOld = _billIDTemp;
                         TreeNode[] tns = trHistoryBill.Nodes.Find(_billIDHistory.ToString(), true);
@@ -974,7 +1004,7 @@ namespace AusNail
                         if (ret > 0)
                         {
                             //LoadHistory();
-                            txtBilDate.Clear();
+                            txtBilDate.Value = DateTime.Now;
                             txtBillCode.Clear();
                             txtCustomerName.Clear();
                             txtPhone.Clear();
@@ -983,6 +1013,9 @@ namespace AusNail
                             lblTotalAmont.Text = "0";
                             lblTotalDiscount.Text = "0";
                             dgvService.DataSource = null;
+
+                            dtpFilterDate_ValueChanged(sender, e);
+                            dtpFiltDateTemp_ValueChanged(sender, e);
 
                             _billIDTemp = _billIDTempOld = _billIDHistory;
                             TreeNode[] tns = trTemporaryBill.Nodes.Find(_billIDTemp.ToString(), true);
@@ -1242,7 +1275,7 @@ namespace AusNail
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     txtBillCode.Text = dt.Rows[0]["BillCode"].ToString();
-                    txtBilDate.Text = DateTime.Parse(dt.Rows[0]["BillDate"].ToString()).ToString("dd/MM/yyyy");
+                    txtBilDate.Value = DateTime.Parse(dt.Rows[0]["BillDate"].ToString());
                     txtCustomerName.Text = dt.Rows[0]["Cusstomername"].ToString();
                     txtPhone.Text = dt.Rows[0]["CustomerPhone"].ToString();
                     txtGenden.Text = dt.Rows[0]["Gender"].ToString();
@@ -1659,7 +1692,7 @@ namespace AusNail
                 dtpFiltDateTemp.Visible = false;
                 if (_billIDHistory == -1)
                 {
-                    txtBilDate.Clear();
+                    txtBilDate.Value = DateTime.Now;
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1683,7 +1716,7 @@ namespace AusNail
                 dtpFiltDateTemp.Visible = true;
                 if (_billIDTemp == -1)
                 {
-                    txtBilDate.Clear();
+                    txtBilDate.Value = DateTime.Now;
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1788,7 +1821,7 @@ namespace AusNail
                     note.Tag = "-1";
                     trHistoryBill.Nodes.Add(note);
 
-                    txtBilDate.Clear();
+                    txtBilDate.Value = DateTime.Now;
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1844,7 +1877,7 @@ namespace AusNail
                     note.Tag = "-1";
                     trTemporaryBill.Nodes.Add(note);
 
-                    txtBilDate.Clear();
+                    txtBilDate.Value = DateTime.Now;
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();

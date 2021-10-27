@@ -41,7 +41,7 @@ namespace AusNail
             // Check database setting
             //try
             //{
-                Configuration conf = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration conf = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
                 ConnectionStringSettings css = conf.ConnectionStrings.ConnectionStrings["DefaultConnectionString"];
 
                 if (css != null)

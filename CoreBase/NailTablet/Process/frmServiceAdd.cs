@@ -153,8 +153,6 @@ namespace AusNail.Process
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(ShowFormCheckPhone));
-            thread.Start();
             this.Close();
         }
 
@@ -174,7 +172,7 @@ namespace AusNail.Process
 
                 // Get bill number
                 int billnumber = 1;
-                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID);
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, DateTime.Parse(DateTime.Now.ToShortDateString()));
                 if (dt1 != null)
                 {
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -300,12 +298,6 @@ namespace AusNail.Process
             catch
             {
             }
-        }
-
-        private void ShowFormCheckPhone()
-        {
-            frmCheckPhone frm = new frmCheckPhone(false);
-            frm.ShowDialog();
         }
 
         #region Define Datagridview NumericUpDown

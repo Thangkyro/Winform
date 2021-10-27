@@ -143,8 +143,6 @@ namespace AusNail.Process
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(ShowFormCheckPhone));
-            thread.Start();
             this.Close();
         }
 
@@ -164,12 +162,6 @@ namespace AusNail.Process
 
         private void frmCusstomerAdd_FormClosed(object sender, FormClosedEventArgs e)
         {
-        }
-
-        private void ShowFormCheckPhone()
-        {
-            frmCheckPhone frm = new frmCheckPhone(false);
-            frm.ShowDialog();
         }
     }
 }
