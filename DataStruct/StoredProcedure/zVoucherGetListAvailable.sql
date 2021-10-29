@@ -1,10 +1,3 @@
-USE [qidjefjs_ausNail]
-GO
-/****** Object:  StoredProcedure [dbo].[zVoucherGetList]    Script Date: 6/12/2021 10:56:39 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE PROC [dbo].[zVoucherGetListAvailable]
 AS
 
@@ -13,6 +6,8 @@ AS
 -- Function: select a zVoucher table record
 
 -- Modifications:
+	declare @DateZone Datetime 
+	set @DateZone = ISNULL((select top 1 DATEADD(HOUR, CAST(ISNULL(Value,'0') AS INT), GETDATE()) from dbo.[zConfig] where ConfigCode = 'TimeZoneUse' ), GETDATE())
 
 	Select 
 	VoucherID,
@@ -32,6 +27,6 @@ AS
 	modified_at
  FROM  [dbo].[zVoucher] with(nolock)
 	where AvailableAmount > 0
-			And (CAST(Getdate() as Date) between CAST(VoucherFrom as date) and CAST(VoucherTo as date))
+			And (CAST(@DateZone as Date) between CAST(VoucherFrom as date) and CAST(VoucherTo as date))
 
 
