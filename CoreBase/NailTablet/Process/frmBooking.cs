@@ -29,7 +29,7 @@ namespace AusNail.Process
             //lblBookingDate.Text = "Date Booking: " + _dateFilter.ToString("dd/MM/yyyy");
             dtpDate.Value = _dateFilter;
             //Update Status
-            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, 0, "");
+            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now.AddHours(NailApp.TimeConfig), "Cancel", NailApp.CurrentUserId, 0, "");
             //LoadGridHeader();
             //LoadGridDetail("", _dateFilter, -1);
         }
@@ -440,7 +440,7 @@ namespace AusNail.Process
 
                     // Get bill number
                     int billnumber = 1;
-                    DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose, DateTime.Parse(DateTime.Now.ToShortDateString()));
+                    DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchIDChoose, DateTime.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToShortDateString()));
                     if (dt1 != null)
                     {
                         billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -448,7 +448,7 @@ namespace AusNail.Process
 
 
                     //Insert Bill for getdate
-                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now, billCode, billnumber, error, errorMesg);
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_FromBooking", bookID, _branchIDChoose, NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig), billCode, billnumber, error, errorMesg);
                     if (ret > 0)
                     {
                         //Update Status = ToBill
@@ -555,7 +555,7 @@ namespace AusNail.Process
             string errorMesg = "";
             try
             {
-                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now, "Cancel", NailApp.CurrentUserId, error, errorMesg);
+                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingMaster_UpdateStatus", _branchIDChoose, DateTime.Now.AddHours(NailApp.TimeConfig), "Cancel", NailApp.CurrentUserId, error, errorMesg);
                 if (ret > 0)
                 {
                     //Load grid

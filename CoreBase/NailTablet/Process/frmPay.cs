@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoreBase;
 
 namespace AusNail.Process
 {
@@ -354,10 +355,10 @@ namespace AusNail.Process
                 if (e.RowIndex > -1 && (e.ColumnIndex == 0 || e.ColumnIndex == 1))
                 {
                     string VoucherCode = dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value.ToString();
-                    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", VoucherCode, DateTime.Now.ToString());
+                    DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zVoucherCheckAvailable", VoucherCode, DateTime.Now.AddHours(NailApp.TimeConfig).ToString());
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        if (int.Parse(DateTime.Parse(dt.Rows[0]["VoucherFrom"].ToString()).ToString("yyyyMMdd")) > int.Parse(DateTime.Now.ToString("yyyyMMdd")) || int.Parse(DateTime.Parse(dt.Rows[0]["VoucherTo"].ToString()).ToString("yyyyMMdd")) < int.Parse(DateTime.Now.ToString("yyyyMMdd")))
+                        if (int.Parse(DateTime.Parse(dt.Rows[0]["VoucherFrom"].ToString()).ToString("yyyyMMdd")) > int.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToString("yyyyMMdd")) || int.Parse(DateTime.Parse(dt.Rows[0]["VoucherTo"].ToString()).ToString("yyyyMMdd")) < int.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToString("yyyyMMdd")))
                         {
                             MessageBox.Show("Expired Voucher. ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvVoucher.Rows[e.RowIndex].Cells["VoucherCode"].Value = "";

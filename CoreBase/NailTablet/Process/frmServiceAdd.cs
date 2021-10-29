@@ -172,7 +172,7 @@ namespace AusNail.Process
 
                 // Get bill number
                 int billnumber = 1;
-                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, DateTime.Parse(DateTime.Now.ToShortDateString()));
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, DateTime.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToShortDateString()));
                 if (dt1 != null)
                 {
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -188,7 +188,7 @@ namespace AusNail.Process
                         decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
                         decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                         string Note = "";
-                        DateTime billdate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                        DateTime billdate = DateTime.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToShortDateString());
                         int error = 0;
                         string errorMesg = "";
 

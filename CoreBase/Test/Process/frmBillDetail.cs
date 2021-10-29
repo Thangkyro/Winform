@@ -61,13 +61,17 @@ namespace AusNail.Process
                         txtCustomerPhone.Text = _dtBookingMaster.Rows[0]["CustomerPhone"].ToString();
                         txtDes.Text = _dtBookingMaster.Rows[0]["Decriptions"].ToString();
 
-                        lblCash.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["PaymentCash"].ToString()));
+                        decimal _Cash = decimal.Parse(_dtBookingMaster.Rows[0]["PaymentCash"].ToString());
+                        lblCash.Text = string.Format("{0:#,##0.00}", _Cash);
                         lblCard.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["PaymentCard"].ToString()));
                         lblVoucher.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["PaymentVoucher"].ToString()));
-                        lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
-                        lblTotalDiscount.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalDiscount"].ToString()));
+                        //lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
+                        //lblTotalDiscount.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalDiscount"].ToString()));
                         //dtpBookingDate.Enabled = false;
                         _dtBookingDetail = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailGetList_History", _billID, _branchID);
+                        decimal _totalAmount = decimal.Parse(_dtBookingDetail.Compute("sum(Amout)", "").ToString());
+                        lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
+                        lblTotalDiscount.Text = string.Format("{0:#,##0.00}", _totalAmount - _Cash);
                     }
 
                 }

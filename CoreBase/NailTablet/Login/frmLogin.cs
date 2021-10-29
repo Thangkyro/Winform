@@ -88,6 +88,7 @@ namespace AusNail.Login
                 if (_userID != 0)
                 {
                     DataRow userRow = null;
+                    int TimeConfig = 0;
                     Cursor = Cursors.WaitCursor;
                     string branchID = cboBranch.SelectedValue.ToString();
 
@@ -99,6 +100,8 @@ namespace AusNail.Login
                             Encryptor.MD5Hash(_userID.ToString()) + 
                             Encryptor.MD5Hash(txtPassword.Text.Trim()));
                         //userRow = sDAO.GetUserRow(int.Parse(branchID), txtUsername.Text, txtPassword.Text);
+
+                        TimeConfig = sDAO.GetTimeConfig();
                     }
                     Cursor = Cursors.Default;
 
@@ -113,6 +116,7 @@ namespace AusNail.Login
 
                     NailApp.CurrentUserRow = userRow;
                     NailApp.BranchID = branchID;
+                    NailApp.TimeConfig = TimeConfig;
                     NailApp.ColorUser = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(userRow["ColorUser"].zToString()), 0);
 
                 }
@@ -122,10 +126,15 @@ namespace AusNail.Login
                 }
                 return bResult;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
 
         //private void btnCancel_Click(object sender, EventArgs e)
@@ -142,6 +151,6 @@ namespace AusNail.Login
         //    //    this.Close();
         //    //}
         //}
-        
+
     }
 }

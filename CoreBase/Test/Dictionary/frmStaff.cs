@@ -165,7 +165,7 @@ namespace AusNail.Dictionary
                         //    }
                         //    if (staffID != 0)
                         //    {
-                        //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+                        //        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), 0, "");
 
                         //    }
                         //}
@@ -564,7 +564,7 @@ namespace AusNail.Dictionary
                     }
                     if (!string.IsNullOrEmpty(staffID) && staffID != "0")
                     {
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zStaffImagesInsert", staffID, image, image, NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), 0, "");
 
                     }
                 }

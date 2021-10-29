@@ -580,8 +580,8 @@ namespace AusNail
             isload = true;
             lb1.Visible = lb2.Visible = lb3.Visible = false;
             lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
-            dtpFilterDate.Value = DateTime.Now;
-            dtpFiltDateTemp.Value = DateTime.Now;
+            dtpFilterDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
+            dtpFiltDateTemp.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
 
             string cmdNewBill = "select BillID,branchId,BillDate,BillCode from dbo.zBillMaster where branchid = " + NailApp.BranchID + "";// AND BillDate > DATEADD(DAY,-7,CAST( GETDATE() AS Date ))";
             notificationNewBill = new ZenSqlNotification(LoadHistory, cmdNewBill);
@@ -926,7 +926,7 @@ namespace AusNail
                 if (ret > 0)
                 {
                     //LoadHistory();
-                    txtBilDate.Value = DateTime.Now;
+                    txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -965,7 +965,7 @@ namespace AusNail
                     if (frm.DialogResult == DialogResult.OK)
                     {
                         //LoadHistory();
-                        txtBilDate.Value = DateTime.Now;
+                        txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                         txtBillCode.Clear();
                         txtCustomerName.Clear();
                         txtPhone.Clear();
@@ -1004,7 +1004,7 @@ namespace AusNail
                         if (ret > 0)
                         {
                             //LoadHistory();
-                            txtBilDate.Value = DateTime.Now;
+                            txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                             txtBillCode.Clear();
                             txtCustomerName.Clear();
                             txtPhone.Clear();
@@ -1692,7 +1692,7 @@ namespace AusNail
                 dtpFiltDateTemp.Visible = false;
                 if (_billIDHistory == -1)
                 {
-                    txtBilDate.Value = DateTime.Now;
+                    txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1716,7 +1716,7 @@ namespace AusNail
                 dtpFiltDateTemp.Visible = true;
                 if (_billIDTemp == -1)
                 {
-                    txtBilDate.Value = DateTime.Now;
+                    txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1821,7 +1821,7 @@ namespace AusNail
                     note.Tag = "-1";
                     trHistoryBill.Nodes.Add(note);
 
-                    txtBilDate.Value = DateTime.Now;
+                    txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();
@@ -1877,7 +1877,7 @@ namespace AusNail
                     note.Tag = "-1";
                     trTemporaryBill.Nodes.Add(note);
 
-                    txtBilDate.Value = DateTime.Now;
+                    txtBilDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
                     txtBillCode.Clear();
                     txtCustomerName.Clear();
                     txtPhone.Clear();

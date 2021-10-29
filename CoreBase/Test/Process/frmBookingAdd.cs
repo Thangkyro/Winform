@@ -52,7 +52,7 @@ namespace AusNail.Process
             if (dateChoose.HasValue)
             {
                 DateTime dt;
-                DateTime.TryParseExact(dateChoose.Value.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("HH:mm"), "dd/MM/yyyy HH:mm",
+                DateTime.TryParseExact(dateChoose.Value.ToString("dd/MM/yyyy") + " " + DateTime.Now.AddHours(NailApp.TimeConfig).ToString("HH:mm"), "dd/MM/yyyy HH:mm",
                                CultureInfo.InvariantCulture,
                                DateTimeStyles.None,
                                out dt);
@@ -300,7 +300,7 @@ namespace AusNail.Process
                                DateTimeStyles.None,
                                out dtBook);
 
-                if (dtBook == null || dtBook <= DateTime.Now)
+                if (dtBook == null || dtBook <= DateTime.Now.AddHours(NailApp.TimeConfig))
                 {
                     MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
