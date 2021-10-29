@@ -883,11 +883,11 @@ namespace AusNail
             try
             {
                 // Check bill exist.
-                if (txtPhone.Text.Trim() != "000" && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
-                {
-                    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                //if (txtPhone.Text.Trim() != "000" && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
+                //{
+                //    MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    return;
+                //}
 
                 int billID = -1;
                 if (txtBillCode.Text.Trim().Length > 0)
