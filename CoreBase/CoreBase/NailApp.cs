@@ -20,6 +20,7 @@ namespace CoreBase
 
         public static string BranchID = "0";
         public static DataRow CurrentUserRow = null;
+        public static int TimeConfig = 0;
         //public static DataRow CurrentDvcs
         //{
         //    get

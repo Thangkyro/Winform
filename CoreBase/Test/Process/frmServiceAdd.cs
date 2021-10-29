@@ -1,4 +1,5 @@
-﻿using CoreBase.DataAccessLayer;
+﻿using CoreBase;
+using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -299,7 +300,7 @@ namespace AusNail.Process
 
         private void frmServiceAdd_Load(object sender, EventArgs e)
         {
-            dtpDate.Value = DateTime.Now;
+            dtpDate.Value = DateTime.Now.AddHours(NailApp.TimeConfig);
         }
     }
 }

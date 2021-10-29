@@ -11,6 +11,15 @@ namespace CoreBase.DAL
 {
     public class SecurityDAO : IDisposable
     {
+        public int GetTimeConfig()
+        {
+            string sql = string.Format("select  Value from [dbo].[zConfig] Where ConfigCode  = 'TimeZoneUse' ");
+            DataTable t = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
+            if (t == null || t.Rows.Count == 0)
+                return 0;
+
+            return int.Parse(t.Rows[0][0].ToString());
+        }
         public DataRow GetUserRow(string userName, string password)
         {
             string sql = string.Format("select top 1 * from zUser WHERE user_name = '{0}' and password = '{1}' and is_inactive =0;", userName, password);
@@ -20,6 +29,7 @@ namespace CoreBase.DAL
 
             return t.Rows[0];
         }
+
         public DataRow GetUserRow(int branchID, string userName, string password)
         {
             DataTable t = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zusp_user_by_branch", new object[] { branchID, userName, password });

@@ -386,7 +386,7 @@ namespace AusNail.Dictionary
                     
                     if (!string.IsNullOrEmpty(branchID) && branchID != "0")
                     {
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBranchClearImage", branchID, image, NailApp.CurrentUserId, DateTime.Now.ToString(), NailApp.CurrentUserId, DateTime.Now.ToString(), 0, "");
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBranchClearImage", branchID, image, NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), 0, "");
                         if (ret > 0)
                         {
                             MessageBox.Show("Successfully", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Information);
