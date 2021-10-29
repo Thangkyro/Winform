@@ -26,6 +26,7 @@ namespace AusNail.Process
         private decimal _PercenPay = 0;
         private decimal _MinApprovePercen = 0;
         private decimal _MaxPercen = 0;
+        private bool _haveDiscount = false;
         public frmPay()
         {
             InitializeComponent();
@@ -57,6 +58,7 @@ namespace AusNail.Process
             _bookingID = bookingID;
             _billId = billId;
             _totalDiscount = totalDiscount;
+            _haveDiscount = _totalDiscount > 0;
             _totalAmount = _Receivable = totalAmount;
             _userId = userId;
             _PercenPay = loadPercenPay(out _MinApprovePercen, out _MaxPercen);
@@ -362,7 +364,7 @@ namespace AusNail.Process
                 {
                     txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
                     txtCash.Text = "0";
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -483,20 +485,28 @@ namespace AusNail.Process
             if (radCash.Checked && _totalDiscount == 0)
             {
                 txtCard.Text = "0";
+                decimal del = 0;
                 if (_Receivable >= _MinApprovePercen)
                 {
                     if (_Receivable * (1 - _PercenPay) > _MaxPercen && _MaxPercen != 0)
                     {
+                        del = Lamtron((_Receivable - _MaxPercen));
                         txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable - _MaxPercen)));
                     }
                     else
                     {
+                        del = Lamtron(_Receivable * _PercenPay);
                         txtCash.Text = string.Format("{0:#,##0.00}", Lamtron(_Receivable * _PercenPay));
                     }
                 }
                 else
                 {
+                    del = Lamtron((_Receivable));
                     txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable)));
+                }
+                if (!_haveDiscount)
+                {
+                    lblTotalDiscount.Text = string.Format("{0:#,##0.00}", Lamtron(_totalAmount - del));
                 }
                 chkCompire.Checked = false;
                 radCash.Checked = true;
