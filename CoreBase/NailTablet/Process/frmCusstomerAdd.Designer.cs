@@ -44,7 +44,7 @@
             this.txtPostcode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDateofBirth = new System.Windows.Forms.DateTimePicker();
+            this.txtDateofBirth = new AusNail.Process.MyDateTimePicker();
             this.SuspendLayout();
             // 
             // radMale
@@ -77,9 +77,9 @@
             this.radOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radOrder.Location = new System.Drawing.Point(663, 380);
             this.radOrder.Name = "radOrder";
-            this.radOrder.Size = new System.Drawing.Size(139, 50);
+            this.radOrder.Size = new System.Drawing.Size(137, 50);
             this.radOrder.TabIndex = 11;
-            this.radOrder.Text = "Order";
+            this.radOrder.Text = "Other";
             this.radOrder.UseVisualStyleBackColor = true;
             // 
             // btnCancel
@@ -207,30 +207,32 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(187, 13);
+            this.label1.Location = new System.Drawing.Point(159, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 16);
+            this.label1.Size = new System.Drawing.Size(26, 31);
             this.label1.TabIndex = 14;
             this.label1.Text = "*";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(91, 112);
+            this.label2.Location = new System.Drawing.Point(77, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 16);
+            this.label2.Size = new System.Drawing.Size(26, 31);
             this.label2.TabIndex = 14;
             this.label2.Text = "*";
             // 
             // txtDateofBirth
             // 
+            this.txtDateofBirth.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateofBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateofBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDateofBirth.Location = new System.Drawing.Point(30, 244);
+            this.txtDateofBirth.Location = new System.Drawing.Point(30, 250);
             this.txtDateofBirth.Name = "txtDateofBirth";
             this.txtDateofBirth.Size = new System.Drawing.Size(566, 70);
             this.txtDateofBirth.TabIndex = 6;
@@ -286,6 +288,6 @@
         private System.Windows.Forms.TextBox txtPostcode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker txtDateofBirth;
+        private MyDateTimePicker txtDateofBirth;
     }
 }

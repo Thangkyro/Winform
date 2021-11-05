@@ -13,7 +13,7 @@ namespace CoreBase.DAL
     {
         public int GetTimeConfig()
         {
-            string sql = string.Format("select  Value from [dbo].[zConfig] Where ConfigCode  = 'TimeZoneUse' ");
+            string sql = string.Format("select ValuesForm from [dbo].[zConfig] Where ConfigCode  = 'TimeZoneUse' ");
             DataTable t = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sql);
             if (t == null || t.Rows.Count == 0)
                 return 0;
