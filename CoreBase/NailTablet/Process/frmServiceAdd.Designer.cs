@@ -73,6 +73,8 @@
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
             this.dgvService.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvService_CellFormatting);
+            this.dgvService.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvService_CellPainting);
+            this.dgvService.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellValueChanged);
             // 
             // altoSlidingLabel1
             // 

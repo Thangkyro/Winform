@@ -512,6 +512,11 @@ namespace AusNail.Process
                 chkCompire.Checked = false;
                 radCash.Checked = true;
             }
+            else
+            {
+                txtCash.Text = string.Format("{0:#,##0.00}", Lamtron((_Receivable)));
+                txtCard.Text = "0";
+            }
         }
 
         private void radCard_CheckedChanged(object sender, EventArgs e)

@@ -77,7 +77,7 @@ namespace AusNail.Process
         {
             try
             {
-
+                
             }
             catch (Exception ex)
             {
@@ -262,19 +262,19 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.ColumnIndex == 6) // Check
-                {
-                    if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
-                    {
-                        dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
-                        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                    }
-                    else
-                    {
-                        dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
-                        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-                    }
-                }
+                //if (e.ColumnIndex == 6) // Check
+                //{
+                //    if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                //    {
+                //        dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                //        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                //    }
+                //    else
+                //    {
+                //        dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                //        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -449,5 +449,34 @@ namespace AusNail.Process
             }
         }
         #endregion
+
+        private void dgvService_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == 6 && e.RowIndex >= 0)
+            {
+                e.PaintBackground(e.CellBounds, true);
+                ControlPaint.DrawCheckBox(e.Graphics, e.CellBounds.X + 1, e.CellBounds.Y + 1,
+                    e.CellBounds.Width - 1, e.CellBounds.Height - 1,
+                    (bool)e.FormattedValue ? ButtonState.Checked : ButtonState.Normal);
+                e.Handled = true;
+            }
+        }
+
+        private void dgvService_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6) // Check
+            {
+                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+        }
     }
 }

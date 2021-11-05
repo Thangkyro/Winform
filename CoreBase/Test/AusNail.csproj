@@ -43,31 +43,31 @@
     <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.95.4\lib\net40\ClosedXML.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=12.0.1100.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.Enterprise.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Enterprise.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=12.0.1100.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.Enterprise.InfoStore.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Enterprise.InfoStore.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.ReportSource.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.Shared.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\ZenOne1\ZenOne\_crystal10\_crystal10\CrystalDecisions.Windows.Forms.dll</HintPath>
+      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
