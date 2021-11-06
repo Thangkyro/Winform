@@ -72,6 +72,7 @@ namespace AusNail.Process
             if (txtPhone.Text.Trim() == "")
             {
                 MessageBox.Show("Please input phone number.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPhone.Clear();
                 return;
             }
             else
@@ -199,7 +200,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -212,7 +217,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -225,7 +234,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -238,7 +251,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -251,7 +268,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -264,7 +285,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -277,7 +302,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -290,7 +319,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -303,7 +336,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
@@ -316,7 +353,11 @@ namespace AusNail.Process
         {
             string strleft = "";
             string strright = "";
-            int lastControl = txtPhone.SelectionStart;
+            int lastControl = 0;
+            if (txtPhone.Text.Trim() != "")
+            {
+                lastControl = txtPhone.SelectionStart;
+            }
             string strPhone = txtPhone.Text.Trim();
             strleft = strPhone.Substring(0, lastControl);
             strright = strPhone.Substring(lastControl, strPhone.Length - lastControl);
