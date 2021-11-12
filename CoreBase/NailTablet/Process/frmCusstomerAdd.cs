@@ -195,8 +195,29 @@ namespace AusNail.Process
             SendMessage(hwndCalendar, MCM_GETMINREQRECT, 0, ref r);
             var hwndDropDown = GetParent(hwndCalendar);
             SetWindowPos(hwndDropDown, IntPtr.Zero, 0, 0,
-                r.R - r.L , r.B - r.T , SWP_NOMOVE);
+                r.R - r.L + 36, r.B - r.T, SWP_NOMOVE);
             base.OnDropDown(eventargs);
+        }
+    }
+
+    class MyRadioButton : RadioButton
+    {
+        public MyRadioButton()
+        {
+            this.TextAlign = ContentAlignment.MiddleRight;
+        }
+        public override bool AutoSize
+        {
+            get { return base.AutoSize; }
+            set { base.AutoSize = false; }
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            int h = this.ClientSize.Height;
+            Rectangle rc = new Rectangle(new Point(-5, 0), new Size(h, h));
+            ControlPaint.DrawRadioButton(e.Graphics, rc,
+                this.Checked ? ButtonState.Checked : ButtonState.Normal);
         }
     }
 }
