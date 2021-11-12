@@ -22,6 +22,8 @@ namespace AusNail.Process
         private DataTable _Service = null;
         public delegate void DelSendMsg(string msg);
         private int iResult = 0;
+        DataTable _dtSo = new DataTable();
+        private int iChange = 0;
 
         //khạ báo biến kiểu delegate
         public DelSendMsg SendMsg;
@@ -38,8 +40,30 @@ namespace AusNail.Process
             _userID = userId;
             txtName.Text = customerName;
             txtPhoneNumber.Text = phoneNumber;
+            loadDTSO();
             loadService();
             LoadGrid();
+        }
+
+        private void loadDTSO()
+        {
+            _dtSo.Columns.Add("key", typeof(int));
+            _dtSo.Columns.Add("value", typeof(int));
+            _dtSo.Rows.Add(new object[] { 1, 1 });
+            _dtSo.Rows.Add(new object[] { 2, 2 });
+            _dtSo.Rows.Add(new object[] { 3, 3 });
+            _dtSo.Rows.Add(new object[] { 4, 4 });
+            _dtSo.Rows.Add(new object[] { 5, 5 });
+            _dtSo.Rows.Add(new object[] { 6, 6 });
+            _dtSo.Rows.Add(new object[] { 7, 7 });
+            _dtSo.Rows.Add(new object[] { 8, 8 });
+            _dtSo.Rows.Add(new object[] { 9, 9 });
+            _dtSo.Rows.Add(new object[] { 10, 10 });
+            _dtSo.Rows.Add(new object[] { 11, 11 });
+            _dtSo.Rows.Add(new object[] { 12, 12 });
+            _dtSo.Rows.Add(new object[] { 13, 13 });
+            _dtSo.Rows.Add(new object[] { 14, 14 });
+            _dtSo.Rows.Add(new object[] { 15, 15 });
         }
 
         private void loadService()
@@ -59,7 +83,7 @@ namespace AusNail.Process
                     _Service.Columns.Remove("created_at");
                     _Service.Columns.Remove("modified_by");
                     _Service.Columns.Remove("modified_at");
-                    _Service.Columns.Add("Quantity", typeof(decimal));
+                    _Service.Columns.Add("Quantity", typeof(int));
                     _Service.Columns.Add("Amount", typeof(decimal));
                     foreach (DataRow dr in _Service.Rows)
                     {
@@ -71,19 +95,6 @@ namespace AusNail.Process
             catch
             {
             }
-        }
-
-        private void dgvService_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void LoadGrid()
@@ -102,13 +113,22 @@ namespace AusNail.Process
             //dgvService.Columns["Quantity"].HeaderText = "Quantity";
             //dgvService.Columns["Quantity"].Width = 75;
             dgvService.Columns.Remove("Quantity");
-            NumericUpDownColumn numericUpDown = new NumericUpDownColumn();
-            numericUpDown.Name = "Quantity";
-            numericUpDown.DataPropertyName = "Quantity";
-            numericUpDown.CellTemplate.Value = 1;
-            numericUpDown.Width = 150;
-            dgvService.Columns.Add(numericUpDown);
-            dgvService.Columns["Quantity"].DisplayIndex = 3;
+            //NumericUpDownColumn numericUpDown = new NumericUpDownColumn();
+            //numericUpDown.Name = "Quantity";
+            //numericUpDown.DataPropertyName = "Quantity";
+            //numericUpDown.CellTemplate.Value = 1;
+            //numericUpDown.Width = 150;
+            //dgvService.Columns.Add(numericUpDown);
+            DataGridViewComboBoxColumn quantity = new DataGridViewComboBoxColumn();
+            quantity.Name = "Quantity";
+            quantity.HeaderText = "Quantity";
+            quantity.DataPropertyName = "Quantity";
+            quantity.ValueMember = "key";
+            quantity.DisplayMember = "value";
+            quantity.DataSource = _dtSo;
+            quantity.Width = 150;
+            quantity.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
+            dgvService.Columns.Add(quantity);
 
             dgvService.Columns["Price"].HeaderText = "Price";
             dgvService.Columns["Price"].Width = 200;
@@ -118,14 +138,14 @@ namespace AusNail.Process
             dgvService.Columns["Amount"].Width = 200;
             dgvService.Columns["Amount"].Visible = false;
 
-            DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
-            dataGridViewImange.Name = "Check";
-            dataGridViewImange.HeaderText = "";
-            dataGridViewImange.Width = 100;
-            dgvService.Columns.Add(dataGridViewImange);
+            DataGridViewCheckBoxColumn dataGridCheckbox = new DataGridViewCheckBoxColumn();
+            dataGridCheckbox.Name = "Check";
+            dataGridCheckbox.HeaderText = "";
+            dataGridCheckbox.Width = 40;
+            dgvService.Columns.Add(dataGridCheckbox);
 
 
-            dgvService.RowTemplate.Height = 50;
+            dgvService.RowTemplate.Height = 40;
             dgvService.AutoGenerateColumns = false;
             dgvService.AllowUserToAddRows = false;
             dgvService.AllowUserToDeleteRows = false;
@@ -135,7 +155,7 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.RowIndex > -1 && (e.ColumnIndex == 2 || e.ColumnIndex == 4))
+                if (e.RowIndex > -1 && (e.ColumnIndex == 2 || e.ColumnIndex == 5))
                 {
                     decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
                     decimal Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
@@ -144,7 +164,7 @@ namespace AusNail.Process
                 }
 
             }
-            catch
+            catch (Exception  ex)
             {
                 dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
             }
@@ -258,30 +278,6 @@ namespace AusNail.Process
             return iResult;
         }
 
-        private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 6) // Check
-                //{
-                //    if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
-                //    {
-                //        dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
-                //        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
-                //        dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
         private void dgvService_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
@@ -290,7 +286,7 @@ namespace AusNail.Process
                 {
                     e.CellStyle.Format = "N0";
                 }
-                if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
                 {
                     e.CellStyle.Format = "N2";
                 }
@@ -476,6 +472,23 @@ namespace AusNail.Process
                     //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
                     dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                 }
+            }
+        }
+
+        private void dgvService_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
+        }
+
+        private void dgvService_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex == 6) // Check
+            {
+                //Reference the GridView Row.
+                DataGridViewRow row = dgvService.Rows[e.RowIndex];
+
+                //Set the CheckBox selection.
+                row.Cells["Check"].Value = !Convert.ToBoolean(row.Cells["Check"].EditedFormattedValue);
             }
         }
     }
