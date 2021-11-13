@@ -30,8 +30,8 @@ namespace AusNail
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.splCMain = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -50,6 +50,7 @@ namespace AusNail
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.txtColor = new AltoControls.AltoTextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.txtBilDate = new System.Windows.Forms.DateTimePicker();
             this.dtpFiltDateTemp = new System.Windows.Forms.DateTimePicker();
             this.dtpFilterDate = new System.Windows.Forms.DateTimePicker();
             this.txtDesc = new System.Windows.Forms.TextBox();
@@ -101,7 +102,6 @@ namespace AusNail
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtBilDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.splCMain)).BeginInit();
             this.splCMain.Panel1.SuspendLayout();
             this.splCMain.Panel2.SuspendLayout();
@@ -378,6 +378,19 @@ namespace AusNail
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Size = new System.Drawing.Size(1344, 598);
             this.pnlForm.TabIndex = 0;
+            // 
+            // txtBilDate
+            // 
+            this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBilDate.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.txtBilDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBilDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtBilDate.Location = new System.Drawing.Point(1053, 44);
+            this.txtBilDate.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBilDate.Name = "txtBilDate";
+            this.txtBilDate.Size = new System.Drawing.Size(273, 21);
+            this.txtBilDate.TabIndex = 10007;
+            this.txtBilDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
             // 
             // dtpFiltDateTemp
             // 
@@ -663,23 +676,23 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvService.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvService.Location = new System.Drawing.Point(19, 118);
             this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
@@ -937,19 +950,6 @@ namespace AusNail
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.bmp");
-            // 
-            // txtBilDate
-            // 
-            this.txtBilDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBilDate.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.txtBilDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBilDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtBilDate.Location = new System.Drawing.Point(1053, 44);
-            this.txtBilDate.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBilDate.Name = "txtBilDate";
-            this.txtBilDate.Size = new System.Drawing.Size(273, 21);
-            this.txtBilDate.TabIndex = 10007;
-            this.txtBilDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
             // 
             // frmMain
             // 

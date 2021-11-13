@@ -845,7 +845,7 @@ namespace AusNail
             {
 
                 // Check bill exist.
-                if (txtPhone.Text.Trim() != "000" && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
+                if (txtPhone.Text.Trim() != "000"  && txtBilDate.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy") && checkExiestBill(int.Parse(NailApp.BranchID), txtPhone.Text.Trim()))
                 {
                     MessageBox.Show("Sorry, Bill existed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -1891,5 +1891,6 @@ namespace AusNail
                 });
             }
         }
+
     }
 }
