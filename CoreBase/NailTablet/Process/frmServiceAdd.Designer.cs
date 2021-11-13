@@ -66,10 +66,11 @@
             this.dgvService.Location = new System.Drawing.Point(12, 106);
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
-            this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvService.Size = new System.Drawing.Size(1184, 439);
             this.dgvService.TabIndex = 0;
             this.dgvService.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvService_CellBeginEdit);
+            this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
             this.dgvService.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvService_CellFormatting);
             this.dgvService.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvService_CellPainting);

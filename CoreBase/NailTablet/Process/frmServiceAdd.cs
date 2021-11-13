@@ -100,6 +100,12 @@ namespace AusNail.Process
         private void LoadGrid()
         {
 
+            DataGridViewCheckBoxColumn dataGridCheckbox = new DataGridViewCheckBoxColumn();
+            dataGridCheckbox.Name = "Check";
+            dataGridCheckbox.HeaderText = "";
+            dataGridCheckbox.Width = 40;
+            dataGridCheckbox.ReadOnly = true;
+            dgvService.Columns.Add(dataGridCheckbox);
 
             dgvService.DataSource = _Service;
             dgvService.Columns["ServiceID"].Visible = false;
@@ -137,13 +143,6 @@ namespace AusNail.Process
             dgvService.Columns["Amount"].ReadOnly = true;
             dgvService.Columns["Amount"].Width = 200;
             dgvService.Columns["Amount"].Visible = false;
-
-            DataGridViewCheckBoxColumn dataGridCheckbox = new DataGridViewCheckBoxColumn();
-            dataGridCheckbox.Name = "Check";
-            dataGridCheckbox.HeaderText = "";
-            dataGridCheckbox.Width = 40;
-            dgvService.Columns.Add(dataGridCheckbox);
-
 
             dgvService.RowTemplate.Height = 40;
             dgvService.AutoGenerateColumns = false;
@@ -192,7 +191,7 @@ namespace AusNail.Process
 
                 // Get bill number
                 int billnumber = 1;
-                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, DateTime.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToShortDateString()));
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, DateTime.Now.AddHours(NailApp.TimeConfig));
                 if (dt1 != null)
                 {
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -208,7 +207,7 @@ namespace AusNail.Process
                         decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
                         decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                         string Note = "";
-                        DateTime billdate = DateTime.Parse(DateTime.Now.AddHours(NailApp.TimeConfig).ToShortDateString());
+                        DateTime billdate = DateTime.Now.AddHours(NailApp.TimeConfig);
                         int error = 0;
                         string errorMesg = "";
 
@@ -282,14 +281,14 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.ColumnIndex == 2)
-                {
-                    e.CellStyle.Format = "N0";
-                }
-                if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
-                {
-                    e.CellStyle.Format = "N2";
-                }
+                //if (e.ColumnIndex == 2)
+                //{
+                //    e.CellStyle.Format = "N0";
+                //}
+                //if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
+                //{
+                //    e.CellStyle.Format = "N2";
+                //}
             }
             catch
             {
@@ -448,7 +447,7 @@ namespace AusNail.Process
 
         private void dgvService_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex == 6 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
                 e.PaintBackground(e.CellBounds, true);
                 ControlPaint.DrawCheckBox(e.Graphics, e.CellBounds.X + 1, e.CellBounds.Y + 1,
@@ -460,7 +459,7 @@ namespace AusNail.Process
 
         private void dgvService_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6) // Check
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0) // Check
             {
                 if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
                 {
@@ -482,7 +481,24 @@ namespace AusNail.Process
 
         private void dgvService_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.ColumnIndex == 6) // Check
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0) // Check
+            {
+                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.RowIndex >= 0) // Name
             {
                 //Reference the GridView Row.
                 DataGridViewRow row = dgvService.Rows[e.RowIndex];
