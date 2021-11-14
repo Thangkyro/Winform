@@ -1110,6 +1110,10 @@ namespace AusNail
                 DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                 DataSet dsData = new DataSet();
                 dsData.Tables.Add(dataTable);
+                if (dsData == null  || dsData.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
                 frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
                 f.ShowDialog();
             }
@@ -1121,6 +1125,10 @@ namespace AusNail
                     DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                     DataSet dsData = new DataSet();
                     dsData.Tables.Add(dataTable);
+                    if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                    {
+                        return;
+                    }
                     //string xmlData = dsData.GetXml();
                     //string filePath = "..//..//Report//" + "bill.xml";
                     //dsData.WriteXml(filePath);
@@ -1134,6 +1142,10 @@ namespace AusNail
                     DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                     DataSet dsData = new DataSet();
                     dsData.Tables.Add(dataTable);
+                    if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                    {
+                        return;
+                    }
                     //frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false);
                     //f.ShowDialog();
                     frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);

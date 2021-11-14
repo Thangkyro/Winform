@@ -239,6 +239,10 @@ namespace AusNail.Process
                         DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                         DataSet dsData = new DataSet();
                         dsData.Tables.Add(dataTable);
+                        if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                        {
+                            return;
+                        }
                         frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
                         f.ShowDialog();
                     }
@@ -250,7 +254,10 @@ namespace AusNail.Process
                             DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                             DataSet dsData = new DataSet();
                             dsData.Tables.Add(dataTable);
-
+                            if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                            {
+                                return;
+                            }
                             frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), billID);
                             f.ShowDialog();
                         }
@@ -259,6 +266,10 @@ namespace AusNail.Process
                             DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
                             DataSet dsData = new DataSet();
                             dsData.Tables.Add(dataTable);
+                            if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                            {
+                                return;
+                            }
                             frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
                             f.ShowDialog();
                         }
