@@ -76,7 +76,7 @@ namespace AusNail.Process
                     Gender = "Order";
                 }
                 string sysUIFormat = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern;
-                string DateOfBirth = this.txtDateofBirth.Text.Trim();
+                string DateOfBirth = this.txtDateofBirth.Value.ToShortDateString();
                 string Date = DateOfBirth;
                 if (sysUIFormat == "dd/MM/yyyy")
                 {

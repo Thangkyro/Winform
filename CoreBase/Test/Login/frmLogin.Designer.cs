@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtbillDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +47,7 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 414);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Size = new System.Drawing.Size(419, 44);
             // 
             // imageList
@@ -68,21 +70,22 @@
             this.lblTime.Location = new System.Drawing.Point(346, 14);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 24);
-            this.lblTime.Text = "17:46:00";
+            this.lblTime.Text = "19:21:41";
             // 
             // btnCancel
             // 
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 1;
             // 
             // btnOK
             // 
-            this.btnOK.TabIndex = 3;
+            this.btnOK.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.txtbillDate);
             this.panel2.Controls.Add(this.cboBranch);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label4);
@@ -90,6 +93,7 @@
             this.panel2.Controls.Add(this.txtUsername);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -101,7 +105,7 @@
             this.cboBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cboBranch.FormattingEnabled = true;
             this.cboBranch.Location = new System.Drawing.Point(76, 145);
-            this.cboBranch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBranch.Margin = new System.Windows.Forms.Padding(2);
             this.cboBranch.Name = "cboBranch";
             this.cboBranch.Size = new System.Drawing.Size(301, 21);
             this.cboBranch.TabIndex = 3;
@@ -174,6 +178,29 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "User name";
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Bill Date";
+            // 
+            // txtbillDate
+            // 
+            this.txtbillDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtbillDate.CustomFormat = "dd/MM/yyyy";
+            this.txtbillDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtbillDate.Location = new System.Drawing.Point(76, 6);
+            this.txtbillDate.Margin = new System.Windows.Forms.Padding(2);
+            this.txtbillDate.Name = "txtbillDate";
+            this.txtbillDate.Size = new System.Drawing.Size(301, 21);
+            this.txtbillDate.TabIndex = 0;
+            this.txtbillDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,7 +208,7 @@
             this.ClientSize = new System.Drawing.Size(419, 462);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -207,5 +234,7 @@
         private System.Windows.Forms.ComboBox cboBranch;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker txtbillDate;
     }
 }

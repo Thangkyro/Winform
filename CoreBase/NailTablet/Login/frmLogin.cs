@@ -114,6 +114,7 @@ namespace AusNail.Login
                         bResult = true;
                     }
 
+
                     NailApp.CurrentUserRow = userRow;
                     NailApp.BranchID = branchID;
                     NailApp.TimeConfig = TimeConfig;
@@ -134,7 +135,10 @@ namespace AusNail.Login
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+        }
 
+        private void chkDefault_CheckedChanged(object sender, EventArgs e)
+        {
         }
 
         //private void btnCancel_Click(object sender, EventArgs e)
