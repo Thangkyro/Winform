@@ -24,6 +24,7 @@ namespace AusNail.Process
         private int iResult = 0;
         DataTable _dtSo = new DataTable();
         private int iChange = 0;
+        private int _num = 1;
 
         //khạ báo biến kiểu delegate
         public DelSendMsg SendMsg;
@@ -197,25 +198,34 @@ namespace AusNail.Process
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
                 }
 
+                _num = 1;
+
                 for (int i = 0; i < dgvService.Rows.Count; i++)
                 {
                     if ((bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
                     {
-                        string CustomerPhone = txtPhoneNumber.Text.Trim();
-                        int Num = i + 1;
-                        int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                         decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
-                        decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                        string Note = "";
-                        DateTime billdate = DateTime.Now.AddHours(NailApp.TimeConfig);
-                        int error = 0;
-                        string errorMesg = "";
-
-                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, Num, ServiceID, Quantity, Price, StaffId, Note, _userID, billnumber, error, errorMesg);
-
-                        if (ret == 0)
+                        int intQty = int.Parse(Quantity.ToString());
+                        for (int j = 1; j < intQty + 1; j++)
                         {
-                            flag = false;
+                            string CustomerPhone = txtPhoneNumber.Text.Trim();
+                            int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
+                            decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
+                            string Note = "";
+                            DateTime billdate = DateTime.Now.AddHours(NailApp.TimeConfig);
+                            int error = 0;
+                            string errorMesg = "";
+
+                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, _num, ServiceID, 1, Price, StaffId, Note, _userID, billnumber, error, errorMesg);
+
+                            if (ret == 0)
+                            {
+                                flag = false;
+                            }
+                            else
+                            {
+                                _num++;
+                            }
                         }
                     }
                 }
@@ -516,6 +526,17 @@ namespace AusNail.Process
 
                 //Set the CheckBox selection.
                 row.Cells["Check"].Value = !Convert.ToBoolean(row.Cells["Check"].EditedFormattedValue);
+            }
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                {
+                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                }
+                else
+                {
+                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                }
             }
         }
     }
