@@ -1700,6 +1700,7 @@ namespace AusNail
                 btnPay.Text = "UnPaid";
                 lb1.Visible = lb2.Visible = lb3.Visible = true;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = true;
+                butCheckphone.Visible = false;
                 dtpFilterDate.Visible = true;
                 dtpFiltDateTemp.Visible = false;
                 if (_billIDHistory == -1)
@@ -1724,6 +1725,7 @@ namespace AusNail
                 btnPay.Text = "Pay";
                 lb1.Visible = lb2.Visible = lb3.Visible = false;
                 lblCard.Visible = lblCash.Visible = lblVoucher.Visible = false;
+                butCheckphone.Visible = true;
                 dtpFilterDate.Visible = false;
                 dtpFiltDateTemp.Visible = true;
                 if (_billIDTemp == -1)

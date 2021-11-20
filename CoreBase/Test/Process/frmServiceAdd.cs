@@ -211,7 +211,12 @@ namespace AusNail.Process
                             int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                             decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                             string Note = "";
-                            DateTime billdate = dtpDate.Value;
+                            TimeSpan tm = DateTime.Now.TimeOfDay;
+                            DateTime billdate = NailApp.BillDate.Add(tm);
+                            if (dtpDate.Value.ToString("dd/MM/yyyy") != NailApp.BillDate.ToString("dd/MM/yyyy") && dtpDate.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
+                            {
+                                billdate = dtpDate.Value;
+                            }
                             int error = 0;
                             string errorMesg = "";
 

@@ -50,7 +50,7 @@
             // radMale
             // 
             this.radMale.AutoSize = true;
-            this.radMale.Location = new System.Drawing.Point(139, 138);
+            this.radMale.Location = new System.Drawing.Point(139, 110);
             this.radMale.Name = "radMale";
             this.radMale.Size = new System.Drawing.Size(48, 17);
             this.radMale.TabIndex = 9;
@@ -61,7 +61,7 @@
             // 
             this.radFemale.AutoSize = true;
             this.radFemale.Checked = true;
-            this.radFemale.Location = new System.Drawing.Point(139, 157);
+            this.radFemale.Location = new System.Drawing.Point(139, 129);
             this.radFemale.Name = "radFemale";
             this.radFemale.Size = new System.Drawing.Size(59, 17);
             this.radFemale.TabIndex = 10;
@@ -72,7 +72,7 @@
             // radOrder
             // 
             this.radOrder.AutoSize = true;
-            this.radOrder.Location = new System.Drawing.Point(139, 177);
+            this.radOrder.Location = new System.Drawing.Point(139, 149);
             this.radOrder.Name = "radOrder";
             this.radOrder.Size = new System.Drawing.Size(51, 17);
             this.radOrder.TabIndex = 11;
@@ -89,7 +89,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(242, 208);
+            this.btnCancel.Location = new System.Drawing.Point(242, 180);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(120, 30);
@@ -110,7 +110,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(112, 208);
+            this.btnConfirm.Location = new System.Drawing.Point(112, 180);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(120, 30);
@@ -123,7 +123,7 @@
             // 
             // altoSlidingLabel5
             // 
-            this.altoSlidingLabel5.Location = new System.Drawing.Point(12, 89);
+            this.altoSlidingLabel5.Location = new System.Drawing.Point(12, 61);
             this.altoSlidingLabel5.Name = "altoSlidingLabel5";
             this.altoSlidingLabel5.Size = new System.Drawing.Size(98, 20);
             this.altoSlidingLabel5.Slide = false;
@@ -132,16 +132,17 @@
             // 
             // altoSlidingLabel4
             // 
-            this.altoSlidingLabel4.Location = new System.Drawing.Point(12, 62);
+            this.altoSlidingLabel4.Location = new System.Drawing.Point(12, 244);
             this.altoSlidingLabel4.Name = "altoSlidingLabel4";
             this.altoSlidingLabel4.Size = new System.Drawing.Size(98, 20);
             this.altoSlidingLabel4.Slide = false;
             this.altoSlidingLabel4.TabIndex = 2;
             this.altoSlidingLabel4.Text = "Date of birth:";
+            this.altoSlidingLabel4.Visible = false;
             // 
             // altoSlidingLabel3
             // 
-            this.altoSlidingLabel3.Location = new System.Drawing.Point(110, 113);
+            this.altoSlidingLabel3.Location = new System.Drawing.Point(110, 85);
             this.altoSlidingLabel3.Name = "altoSlidingLabel3";
             this.altoSlidingLabel3.Size = new System.Drawing.Size(98, 20);
             this.altoSlidingLabel3.Slide = false;
@@ -184,7 +185,7 @@
             // 
             // txtPostcode
             // 
-            this.txtPostcode.Location = new System.Drawing.Point(110, 89);
+            this.txtPostcode.Location = new System.Drawing.Point(110, 61);
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.Size = new System.Drawing.Size(252, 20);
             this.txtPostcode.TabIndex = 7;
@@ -215,7 +216,7 @@
             // txtDateofBirth
             // 
             this.txtDateofBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDateofBirth.Location = new System.Drawing.Point(110, 62);
+            this.txtDateofBirth.Location = new System.Drawing.Point(110, 244);
             this.txtDateofBirth.Name = "txtDateofBirth";
             this.txtDateofBirth.Size = new System.Drawing.Size(252, 20);
             this.txtDateofBirth.TabIndex = 6;
@@ -225,7 +226,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(374, 256);
+            this.ClientSize = new System.Drawing.Size(374, 228);
             this.Controls.Add(this.txtDateofBirth);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

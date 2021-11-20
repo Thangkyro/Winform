@@ -57,7 +57,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(798, 483);
+            this.btnCancel.Location = new System.Drawing.Point(186, 353);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(143, 79);
@@ -78,7 +78,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(641, 483);
+            this.btnConfirm.Location = new System.Drawing.Point(29, 353);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(143, 79);
@@ -92,7 +92,7 @@
             // altoSlidingLabel5
             // 
             this.altoSlidingLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.altoSlidingLabel5.Location = new System.Drawing.Point(6, 326);
+            this.altoSlidingLabel5.Location = new System.Drawing.Point(6, 325);
             this.altoSlidingLabel5.Name = "altoSlidingLabel5";
             this.altoSlidingLabel5.Size = new System.Drawing.Size(143, 20);
             this.altoSlidingLabel5.Slide = false;
@@ -103,12 +103,13 @@
             // altoSlidingLabel4
             // 
             this.altoSlidingLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.altoSlidingLabel4.Location = new System.Drawing.Point(4, 214);
+            this.altoSlidingLabel4.Location = new System.Drawing.Point(4, 213);
             this.altoSlidingLabel4.Name = "altoSlidingLabel4";
             this.altoSlidingLabel4.Size = new System.Drawing.Size(156, 20);
             this.altoSlidingLabel4.Slide = false;
             this.altoSlidingLabel4.TabIndex = 2;
             this.altoSlidingLabel4.Text = "Date of birth:";
+            this.altoSlidingLabel4.Visible = false;
             // 
             // altoSlidingLabel3
             // 
@@ -164,7 +165,7 @@
             // 
             this.txtPostcode.Enabled = false;
             this.txtPostcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPostcode.Location = new System.Drawing.Point(30, 354);
+            this.txtPostcode.Location = new System.Drawing.Point(30, 353);
             this.txtPostcode.Multiline = true;
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.ReadOnly = true;
@@ -202,10 +203,11 @@
             this.txtDateofBirth.CustomFormat = "dd/MM/yyyy";
             this.txtDateofBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateofBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDateofBirth.Location = new System.Drawing.Point(30, 250);
+            this.txtDateofBirth.Location = new System.Drawing.Point(30, 249);
             this.txtDateofBirth.Name = "txtDateofBirth";
             this.txtDateofBirth.Size = new System.Drawing.Size(532, 70);
             this.txtDateofBirth.TabIndex = 6;
+            this.txtDateofBirth.Visible = false;
             // 
             // radOrder
             // 
@@ -247,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(971, 629);
+            this.ClientSize = new System.Drawing.Size(971, 495);
             this.Controls.Add(this.txtDateofBirth);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

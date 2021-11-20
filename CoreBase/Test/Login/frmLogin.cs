@@ -118,6 +118,7 @@ namespace AusNail.Login
                     NailApp.BranchID = branchID;
                     NailApp.TimeConfig = TimeConfig;
                     NailApp.ColorUser = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml(userRow["ColorUser"].zToString()), 0);
+                    NailApp.BillDate = txtbillDate.Value.Date;
 
                 }
                 else
@@ -134,7 +135,7 @@ namespace AusNail.Login
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            txtbillDate.Value = DateTime.Now;
         }
 
         //private void btnCancel_Click(object sender, EventArgs e)
