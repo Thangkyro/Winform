@@ -63,7 +63,7 @@ namespace AusNail.Process
                     return;
                 }
                 oRpt = new ReportDocument();
-                oRpt.Load(curFile, OpenReportMethod.OpenReportByTempCopy);
+                oRpt.Load(curFile, OpenReportMethod.OpenReportByDefault);
                 oRpt.SetParameterValue("@BillId", _billId.ToString());
                 oRpt.SetParameterValue("@BranchId", _branchId.ToString());
                 oRpt.SetDataSource(_dsReport.Tables[0]);
@@ -73,8 +73,8 @@ namespace AusNail.Process
                     this.Cursor = Cursors.WaitCursor;
                     oRpt.PrintToPrinter(1, false, 0, 0);
                     this.Cursor = Cursors.Default;
-                    this.Visible = false;
-                    this.Close();
+                    //this.Visible = false;
+                    //this.Close();
                 }
                 else
                 {
@@ -82,6 +82,15 @@ namespace AusNail.Process
                     //oRpt.PrintToPrinter(1, false, 0, 0);
                     this.Cursor = Cursors.Default;
                 }
+
+                if (oRpt != null)
+                {
+                    oRpt.Close();
+                    oRpt.Dispose();
+                }
+
+                this.Visible = false;
+                this.Close();
 
             }
             catch (Exception ex)
