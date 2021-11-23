@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtbillDate = new System.Windows.Forms.DateTimePicker();
             this.cboBranch = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -37,9 +38,8 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtbillDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             this.lblTime.Location = new System.Drawing.Point(346, 14);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 24);
-            this.lblTime.Text = "19:21:41";
+            this.lblTime.Text = "10:31:33";
             // 
             // btnCancel
             // 
@@ -100,6 +100,19 @@
             this.panel2.Size = new System.Drawing.Size(419, 409);
             this.panel2.TabIndex = 0;
             // 
+            // txtbillDate
+            // 
+            this.txtbillDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtbillDate.CustomFormat = "dd/MM/yyyy";
+            this.txtbillDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtbillDate.Location = new System.Drawing.Point(76, 6);
+            this.txtbillDate.Margin = new System.Windows.Forms.Padding(2);
+            this.txtbillDate.Name = "txtbillDate";
+            this.txtbillDate.Size = new System.Drawing.Size(301, 21);
+            this.txtbillDate.TabIndex = 4;
+            this.txtbillDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
+            // 
             // cboBranch
             // 
             this.cboBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -108,7 +121,7 @@
             this.cboBranch.Margin = new System.Windows.Forms.Padding(2);
             this.cboBranch.Name = "cboBranch";
             this.cboBranch.Size = new System.Drawing.Size(301, 21);
-            this.cboBranch.TabIndex = 3;
+            this.cboBranch.TabIndex = 2;
             // 
             // panel3
             // 
@@ -138,7 +151,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(301, 20);
-            this.txtPassword.TabIndex = 2;
+            this.txtPassword.TabIndex = 1;
             // 
             // txtUsername
             // 
@@ -146,7 +159,7 @@
             this.txtUsername.Location = new System.Drawing.Point(76, 97);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(301, 20);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 0;
             // 
             // label3
             // 
@@ -168,16 +181,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 98);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "User name";
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -188,18 +191,15 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Bill Date";
             // 
-            // txtbillDate
+            // label5
             // 
-            this.txtbillDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtbillDate.CustomFormat = "dd/MM/yyyy";
-            this.txtbillDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtbillDate.Location = new System.Drawing.Point(76, 6);
-            this.txtbillDate.Margin = new System.Windows.Forms.Padding(2);
-            this.txtbillDate.Name = "txtbillDate";
-            this.txtbillDate.Size = new System.Drawing.Size(301, 21);
-            this.txtbillDate.TabIndex = 0;
-            this.txtbillDate.Value = new System.DateTime(2021, 7, 7, 21, 34, 29, 0);
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 98);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "User name";
             // 
             // frmLogin
             // 
