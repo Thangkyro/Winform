@@ -269,7 +269,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmCusstomerAdd";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Add Customer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCusstomerAdd_FormClosed);
             this.Load += new System.EventHandler(this.frmCusstomerAdd_Load);
