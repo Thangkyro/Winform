@@ -47,16 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=12.0.1100.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Enterprise.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=12.0.1100.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.Enterprise.InfoStore.dll</HintPath>
-    </Reference>
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\software\_crystal10\CrystalDecisions.ReportSource.dll</HintPath>
@@ -187,6 +177,18 @@
     <Compile Include="Login\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frmBillDetailListDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBillDetailListDetail.Designer.cs">
+      <DependentUpon>frmBillDetailListDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frmBillDetailList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBillDetailList.Designer.cs">
+      <DependentUpon>frmBillDetailList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmBillList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBillDetailListDetail.resx">
+      <DependentUpon>frmBillDetailListDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBillDetailList.resx">
+      <DependentUpon>frmBillDetailList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmBillList.resx">
       <DependentUpon>frmBillList.cs</DependentUpon>

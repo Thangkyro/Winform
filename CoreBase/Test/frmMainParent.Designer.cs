@@ -45,13 +45,14 @@
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
             this.zbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.BillList = new System.Windows.Forms.ToolStripMenuItem();
             this.zst = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.User = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabForms = new System.Windows.Forms.TabControl();
-            this.BillList = new System.Windows.Forms.ToolStripMenuItem();
+            this.BillDetailList = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,22 +164,29 @@
             // 
             this.TimeKeeping.Enabled = false;
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(180, 22);
+            this.TimeKeeping.Size = new System.Drawing.Size(143, 22);
             this.TimeKeeping.Text = "TimeKeeping";
             // 
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(180, 22);
+            this.Booking.Size = new System.Drawing.Size(143, 22);
             this.Booking.Text = "Booking";
             // 
             // zbc
             // 
             this.zbc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BillList});
+            this.BillList,
+            this.BillDetailList});
             this.zbc.Name = "zbc";
             this.zbc.Size = new System.Drawing.Size(59, 24);
             this.zbc.Text = "Reports";
+            // 
+            // BillList
+            // 
+            this.BillList.Name = "BillList";
+            this.BillList.Size = new System.Drawing.Size(180, 22);
+            this.BillList.Text = "Bill List";
             // 
             // zst
             // 
@@ -228,11 +236,11 @@
             this.tabForms.Visible = false;
             this.tabForms.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
             // 
-            // BillList
+            // BillDetailList
             // 
-            this.BillList.Name = "BillList";
-            this.BillList.Size = new System.Drawing.Size(180, 22);
-            this.BillList.Text = "Bill List";
+            this.BillDetailList.Name = "BillDetailList";
+            this.BillDetailList.Size = new System.Drawing.Size(180, 22);
+            this.BillDetailList.Text = "Bill Detail List";
             // 
             // frmMainParent
             // 
@@ -281,5 +289,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Banner;
         private System.Windows.Forms.ToolStripMenuItem BillList;
+        private System.Windows.Forms.ToolStripMenuItem BillDetailList;
     }
 }

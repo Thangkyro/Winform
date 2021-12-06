@@ -169,6 +169,11 @@ namespace AusNail
             else
                 BillList.Visible = false;
 
+            if (NailApp.IsAdmin())
+                BillDetailList.Click += (s, e) => { frmBillDetailList(); };
+            else
+                BillDetailList.Visible = false;
+
         }
 
         void frmUser()
@@ -297,6 +302,16 @@ namespace AusNail
         void frmBillList()
         {
             frmBillList f = new frmBillList();
+            if (!checkForm(f))
+            {
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        void frmBillDetailList()
+        {
+            frmBillDetailList f = new frmBillDetailList();
             if (!checkForm(f))
             {
                 f.MdiParent = this;
