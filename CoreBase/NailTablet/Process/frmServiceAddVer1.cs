@@ -1,4 +1,5 @@
-﻿using CoreBase;
+﻿using AltoControls;
+using CoreBase;
 using CoreBase.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -13,29 +14,29 @@ using System.Windows.Forms;
 
 namespace AusNail.Process
 {
-    public partial class frmServiceAdd : Form
+    public partial class frmServiceAddVer1 : Form
     {
         private int _branchID = 0;
         private int _userID = 0;
+        private DataTable _dtGroupService = null;
         private DataTable _dtService = null;
         private DataTable _dtStaff = null;
-        private DataTable _Service = null;
         public delegate void DelSendMsg(string msg);
         private int iResult = 0;
-        DataTable _dtSo = new DataTable();
-        private int iChange = 0;
+        private DataTable _dtSo = new DataTable();
+        private DataTable _dtBillTemp = new DataTable();
         private int _num = 1;
         private string _sBillCode = "";
 
         //khạ báo biến kiểu delegate
         public DelSendMsg SendMsg;
 
-        public frmServiceAdd()
+        public frmServiceAddVer1()
         {
             InitializeComponent();
         }
 
-        public frmServiceAdd(int branchId, int userId, string customerName, string phoneNumber)
+        public frmServiceAddVer1(int branchId, int userId, string customerName, string phoneNumber)
         {
             InitializeComponent();
             _branchID = branchId;
@@ -43,8 +44,10 @@ namespace AusNail.Process
             txtName.Text = customerName;
             txtPhoneNumber.Text = phoneNumber;
             loadDTSO();
+            loadDTBillTemp();
             loadService();
-            LoadGrid();
+            LoadGrid(_dtService);
+            LoadGridBillTemp(_dtBillTemp);
         }
 
         private void loadDTSO()
@@ -68,108 +71,82 @@ namespace AusNail.Process
             _dtSo.Rows.Add(new object[] { 15, 15 });
         }
 
+        private void loadDTBillTemp()
+        {
+            _dtBillTemp.Columns.Add("Price", typeof(decimal));
+            _dtBillTemp.Columns.Add("STT", typeof(int));
+            _dtBillTemp.Columns.Add("ServiceID", typeof(int));
+            _dtBillTemp.Columns.Add("ServiceName", typeof(string));
+            _dtBillTemp.Columns.Add("Quantity", typeof(int));
+        }
+
         private void loadService()
         {
             try
             {
+                _dtGroupService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGroupServiceGetList_byBranch", _branchID);
                 _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchID);
                 _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", _branchID);
-                if (_dtService != null)
-                {
-                    _Service = _dtService.Copy();
-                    _Service.Columns.Remove("branchId");
-                    _Service.Columns.Remove("Display");
-                    _Service.Columns.Remove("Decriptions");
-                    _Service.Columns.Remove("is_inactive");
-                    _Service.Columns.Remove("created_by");
-                    _Service.Columns.Remove("created_at");
-                    _Service.Columns.Remove("modified_by");
-                    _Service.Columns.Remove("modified_at");
-                    _Service.Columns.Add("Quantity", typeof(int));
-                    _Service.Columns.Add("Amount", typeof(decimal));
-                    foreach (DataRow dr in _Service.Rows)
-                    {
-                        dr["Quantity"] = 1;
-                        dr["Amount"] = decimal.Parse(dr["Quantity"].ToString()) * decimal.Parse(dr["Price"].ToString());
-                    }
-                }
             }
             catch
             {
             }
         }
 
-        private void LoadGrid()
+        private void LoadGrid( DataTable dataTable)
         {
-
-            DataGridViewCheckBoxColumn dataGridCheckbox = new DataGridViewCheckBoxColumn();
-            dataGridCheckbox.Name = "Check";
-            dataGridCheckbox.HeaderText = "";
-            dataGridCheckbox.Width = 40;
-            dataGridCheckbox.ReadOnly = true;
-            dgvService.Columns.Add(dataGridCheckbox);
-
-            dgvService.DataSource = _Service;
+            dgvService.DataSource = dataTable;
             dgvService.Columns["ServiceID"].Visible = false;
+            dgvService.Columns["branchId"].Visible = false;
             dgvService.Columns["Title"].HeaderText = "Service Name";
             dgvService.Columns["Title"].ReadOnly = true;
             dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
-            dgvService.Columns["EstimateTime"].Width = 75;
-            dgvService.Columns["EstimateTime"].ReadOnly = true;
+            dgvService.Columns["Display"].Visible = false;
             dgvService.Columns["EstimateTime"].Visible = false;
-            //dgvService.Columns["Quantity"].HeaderText = "Quantity";
-            //dgvService.Columns["Quantity"].Width = 75;
-            dgvService.Columns.Remove("Quantity");
-            //NumericUpDownColumn numericUpDown = new NumericUpDownColumn();
-            //numericUpDown.Name = "Quantity";
-            //numericUpDown.DataPropertyName = "Quantity";
-            //numericUpDown.CellTemplate.Value = 1;
-            //numericUpDown.Width = 150;
-            //dgvService.Columns.Add(numericUpDown);
-            DataGridViewComboBoxColumn quantity = new DataGridViewComboBoxColumn();
-            quantity.Name = "Quantity";
-            quantity.HeaderText = "Quantity";
-            quantity.DataPropertyName = "Quantity";
-            quantity.ValueMember = "key";
-            quantity.DisplayMember = "value";
-            quantity.DataSource = _dtSo;
-            quantity.Width = 150;
-            quantity.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
-            dgvService.Columns.Add(quantity);
-
-            dgvService.Columns["Price"].HeaderText = "Price";
-            dgvService.Columns["Price"].Width = 200;
+            dgvService.Columns["GroupStt"].Visible = false;
             dgvService.Columns["Price"].Visible = false;
-            dgvService.Columns["Amount"].HeaderText = "Amount";
-            dgvService.Columns["Amount"].ReadOnly = true;
-            dgvService.Columns["Amount"].Width = 200;
-            dgvService.Columns["Amount"].Visible = false;
+            dgvService.Columns["Decriptions"].Visible = false;
+            dgvService.Columns["is_inactive"].Visible = false;
+            dgvService.Columns["created_by"].Visible = false;
+            dgvService.Columns["created_at"].Visible = false;
+            dgvService.Columns["modified_by"].Visible = false;
+            dgvService.Columns["modified_at"].Visible = false;
+            
 
-            dgvService.RowTemplate.Height = 40;
+
+            dgvService.RowTemplate.Height = 60;
             dgvService.AutoGenerateColumns = false;
             dgvService.AllowUserToAddRows = false;
             dgvService.AllowUserToDeleteRows = false;
         }
 
-        private void dgvService_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void LoadGridBillTemp(DataTable dataTable)
         {
-            try
+            dgvBillTem.DataSource = dataTable;
+            dgvBillTem.Columns["Price"].Visible = false;
+            dgvBillTem.Columns["STT"].Visible = false;
+            dgvBillTem.Columns["ServiceID"].Visible = false;
+            dgvBillTem.Columns["ServiceName"].HeaderText = "Service Name";
+            dgvBillTem.Columns["ServiceName"].ReadOnly = true;
+            dgvBillTem.Columns["ServiceName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvBillTem.Columns["Quantity"].HeaderText = "Quantity";
+            dgvBillTem.Columns["Quantity"].Width = 140;
+            DataGridViewButtonColumn delButton = new DataGridViewButtonColumn();
+            delButton.Name = "delButton";
+            //delButton.Text = "Delete";
+            //delButton.UseColumnTextForButtonValue = true;
+            delButton.HeaderText = "";
+            int columnIndex = 5;
+            if (dgvBillTem.Columns["delButton"] == null)
             {
-                if (e.RowIndex > -1 && (e.ColumnIndex == 2 || e.ColumnIndex == 5))
-                {
-                    decimal Quantity = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
-                    decimal Price = decimal.Parse(dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString());
-                    // Update row num
-                    dgvService.Rows[e.RowIndex].Cells["Amount"].Value = Quantity * Price;
-                }
-
-            }
-            catch (Exception  ex)
-            {
-                dgvService.Rows[e.RowIndex].Cells["Amount"].Value = 0;
+                dgvBillTem.Columns.Insert(columnIndex, delButton);
             }
 
+
+            dgvBillTem.RowTemplate.Height = 60;
+            dgvBillTem.AutoGenerateColumns = false;
+            dgvBillTem.AllowUserToAddRows = false;
+            dgvBillTem.AllowUserToDeleteRows = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -179,7 +156,7 @@ namespace AusNail.Process
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (dgvService.Rows.Count > 0)
+            if (_dtBillTemp.Rows.Count > 0)
             {
                 bool flag = true;
                 // Get billCode
@@ -199,35 +176,21 @@ namespace AusNail.Process
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
                 }
 
-                _num = 1;
-
-                for (int i = 0; i < dgvService.Rows.Count; i++)
+                for (int i = 0; i < _dtBillTemp.Rows.Count; i++)
                 {
-                    if ((bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
+                    string CustomerPhone = txtPhoneNumber.Text.Trim();
+                    int ServiceID = int.Parse(_dtBillTemp.Rows[i]["ServiceId"].ToString());
+                    decimal Price = decimal.Parse(_dtBillTemp.Rows[i]["Price"].ToString());
+                    string Note = "";
+                    DateTime billdate = DateTime.Now.AddHours(NailApp.TimeConfig);
+                    int error = 0;
+                    string errorMesg = "";
+
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, i + 1, ServiceID, 1, Price, StaffId, Note, _userID, billnumber, error, errorMesg);
+
+                    if (ret == 0)
                     {
-                        decimal Quantity = decimal.Parse(dgvService.Rows[i].Cells["Quantity"].Value.ToString());
-                        int intQty = int.Parse(Quantity.ToString());
-                        for (int j = 1; j < intQty + 1; j++)
-                        {
-                            string CustomerPhone = txtPhoneNumber.Text.Trim();
-                            int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
-                            decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
-                            string Note = "";
-                            DateTime billdate = DateTime.Now.AddHours(NailApp.TimeConfig);
-                            int error = 0;
-                            string errorMesg = "";
-
-                            int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillInsert_Ver1", billdate, _branchID, billCode, CustomerPhone, _num, ServiceID, 1, Price, StaffId, Note, _userID, billnumber, error, errorMesg);
-
-                            if (ret == 0)
-                            {
-                                flag = false;
-                            }
-                            else
-                            {
-                                _num++;
-                            }
-                        }
+                        flag = false;
                     }
                 }
                 if (flag)
@@ -292,6 +255,11 @@ namespace AusNail.Process
                     
                 }
             }
+            else
+            {
+                MessageBox.Show("Please choose service for your ticket.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             this.Close();
         }
 
@@ -303,24 +271,6 @@ namespace AusNail.Process
         public string SendBillCode()
         {
             return _sBillCode;
-        }
-
-        private void dgvService_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            try
-            {
-                //if (e.ColumnIndex == 2)
-                //{
-                //    e.CellStyle.Format = "N0";
-                //}
-                //if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
-                //{
-                //    e.CellStyle.Format = "N2";
-                //}
-            }
-            catch
-            {
-            }
         }
 
         #region Define Datagridview NumericUpDown
@@ -473,77 +423,112 @@ namespace AusNail.Process
         }
         #endregion
 
-        private void dgvService_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
-            {
-                e.PaintBackground(e.CellBounds, true);
-                ControlPaint.DrawCheckBox(e.Graphics, e.CellBounds.X + 1, e.CellBounds.Y + 1,
-                    e.CellBounds.Width - 1, e.CellBounds.Height - 1,
-                    (bool)e.FormattedValue ? ButtonState.Checked : ButtonState.Normal);
-                e.Handled = true;
-            }
-        }
-
-        private void dgvService_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0) // Check
-            {
-                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
-                {
-                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
-                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-                }
-                else
-                {
-                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
-                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                }
-            }
-        }
-
         private void dgvService_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
-        }
-
-        private void dgvService_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0) // Check
-            {
-                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
-                {
-                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
-                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-                }
-                else
-                {
-                    //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
-                    dgvService.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                }
-            }
         }
 
         private void dgvService_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 2 && e.RowIndex >= 0) // Name
             {
-                //Reference the GridView Row.
-                DataGridViewRow row = dgvService.Rows[e.RowIndex];
-
-                //Set the CheckBox selection.
-                row.Cells["Check"].Value = !Convert.ToBoolean(row.Cells["Check"].EditedFormattedValue);
+                DataRow dr = _dtBillTemp.NewRow();
+                dr["STT"] = _dtBillTemp.Rows.Count + 1;
+                dr["ServiceID"] = dgvService.Rows[e.RowIndex].Cells["ServiceID"].Value.ToString();
+                dr["ServiceName"] = dgvService.Rows[e.RowIndex].Cells["Title"].Value.ToString();
+                dr["Quantity"] = 1;
+                dr["Price"] = dgvService.Rows[e.RowIndex].Cells["Price"].Value.ToString();
+                _dtBillTemp.Rows.Add(dr);
+                LoadGridBillTemp(_dtBillTemp);
             }
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+        }
+
+        private void loadGroupService()
+        {
+            // Load list group service
+
+            // Add group in Pannel
+            if (_dtGroupService != null && _dtGroupService.Rows.Count > 0)
             {
-                if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)
+                for (int i = 0; i < _dtGroupService.Rows.Count; i++)
                 {
-                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = false;
+                    AltoButton bt = new AltoButton();
+                    bt.Name = _dtGroupService.Rows[i]["GroupStt"].ToString();
+                    bt.Text = _dtGroupService.Rows[i]["ServiceGroupName"].ToString();
+                    bt.Width = 250;
+                    bt.Height = 85;
+                    bt.Active1 = Color.Cyan;
+                    bt.Font = new Font("Constantia", 18, FontStyle.Bold);
+                    bt.Location = new Point(3, i * 85);
+                    bt.Click += new EventHandler(this.btnServiceGroup_Click);
+                    flowLayoutPanel2.Controls.Add(bt);
                 }
-                else
+            }
+            else
+            {
+                AltoButton bt = new AltoButton();
+                bt.Name = "AllService";
+                bt.Text = "All Service";
+                bt.Width = 250;
+                bt.Height = 85;
+                bt.Active1 = Color.Cyan;
+                bt.Font = new Font("Constantia", 18, FontStyle.Bold);
+                bt.Location = new Point(3, 0);
+                bt.Click += new EventHandler(this.btnServiceGroup_Click);
+                flowLayoutPanel2.Controls.Add(bt);
+            }
+        }
+
+        private void btnServiceGroup_Click(object sender, EventArgs e)
+        {
+            var button = (AltoButton)sender;
+            if (button.Name == "AllService" )
+            {
+                LoadGrid(_dtService);
+            }
+            else
+            {
+                if (_dtService != null && _dtService.Rows.Count > 0)
                 {
-                    dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                    DataTable dataTable = _dtService.Select("GroupStt = '" + button.Name.ToString() + "'", "").CopyToDataTable();
+                    LoadGrid(dataTable);
                 }
+            }
+        }
+
+        private void frmServiceAddVer1_Load(object sender, EventArgs e)
+        {
+            loadGroupService();
+        }
+
+        private void dgvBillTem_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0) // Delete
+            {
+                string stt = dgvBillTem.Rows[e.RowIndex].Cells["STT"].Value.ToString();
+                DataRow dr = _dtBillTemp.Select("STT = '" + stt + "'")[0];
+                _dtBillTemp.Rows.Remove(dr);
+                LoadGridBillTemp(_dtBillTemp);
+            }
+        }
+
+        private void dgvBillTem_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            //I supposed your button column is at index 0
+            if (e.ColumnIndex == 5)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.icons8_delete_50.Width;
+                var h = Properties.Resources.icons8_delete_50.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.icons8_delete_50, new Rectangle(x, y, w, h));
+                e.Handled = true;
             }
         }
     }

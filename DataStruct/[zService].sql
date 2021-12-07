@@ -1,5 +1,3 @@
-USE [THANH]
-GO
 
 SET QUOTED_IDENTIFIER ON
 GO
@@ -21,3 +19,5 @@ GO
 ALTER TABLE [dbo].[zService] ADD  CONSTRAINT [DF_zService_Price]  DEFAULT ((0)) FOR [Price]
 GO
 
+ALTER TABLE dbo.[zService] ADD GroupStt INT NOT NULL DEFAULT 0
+GO

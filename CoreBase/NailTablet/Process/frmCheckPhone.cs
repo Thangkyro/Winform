@@ -26,6 +26,9 @@ namespace AusNail.Process
         private DataTable _dtBanner = null;
         private int _bannerCount = 1;
         private  System.Windows.Forms.Timer _MyTimer;
+        private int _rePrintID = -1;
+        private string sBillCode = "";
+
         public frmCheckPhone()
         {
             InitializeComponent();
@@ -91,9 +94,9 @@ namespace AusNail.Process
                 {
                     //this.Visible = false;
                     //this.ShowInTaskbar = false;
-                    frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
+                    frmServiceAddVer1 frm = new frmServiceAddVer1(_branchId, _UserId, _dtCustomer.Rows[0]["Name"].ToString(), txtPhone.Text.Trim());
                     frm.ShowDialog();
-                    //sResult = txtPhone.Text.Trim() + "|" + _dtCustomer.Rows[0]["Name"].ToString();
+                    sBillCode = frm.SendBillCode();
                 }
                 else
                 {
@@ -473,6 +476,56 @@ namespace AusNail.Process
 
         private void frmCheckPhone_KeyDown(object sender, KeyEventArgs e)
         {
+        }
+
+        private void btnReprint_Click(object sender, EventArgs e)
+        {
+            int billID = 0;
+            DataTable dtBill = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, "Select TOP 1 BillID From zBillMaster WITH(NOLOCK) Where BillCode = '" + sBillCode + "'");
+            if (dtBill != null && dtBill.Rows.Count > 0)
+            {
+                billID = int.Parse(dtBill.Rows[0][0].ToString());
+            }
+            if (NailApp.IsAutoPrint())
+            {
+                DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
+                DataSet dsData = new DataSet();
+                dsData.Tables.Add(dataTable);
+                if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+                frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
+                f.ShowDialog();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want print review ?", "View Bill", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
+                    DataSet dsData = new DataSet();
+                    dsData.Tables.Add(dataTable);
+                    if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                    {
+                        return;
+                    }
+                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), billID);
+                    f.ShowDialog();
+                }
+                else
+                {
+                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
+                    DataSet dsData = new DataSet();
+                    dsData.Tables.Add(dataTable);
+                    if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                    {
+                        return;
+                    }
+                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
+                    f.ShowDialog();
+                }
+            }
         }
     }
 }
