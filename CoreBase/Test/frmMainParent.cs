@@ -142,6 +142,11 @@ namespace AusNail
             else
                 Banner.Visible = false;
 
+            if (NailApp.lstPermission.Contains(ServiceGroup.Name) || NailApp.IsAdmin())
+                ServiceGroup.Click += (s, e) => { frmServiceGroup(); };
+            else
+                ServiceGroup.Visible = false;
+
         }
 
         void InitCommandPS()
@@ -292,6 +297,16 @@ namespace AusNail
         void frmBanner()
         {
             frmBanner f = new frmBanner();
+            if (!checkForm(f))
+            {
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        void frmServiceGroup()
+        {
+            frmServiceGroup f = new frmServiceGroup();
             if (!checkForm(f))
             {
                 f.MdiParent = this;
