@@ -51,6 +51,7 @@
             this.lbText1 = new AltoControls.AltoSlidingLabel();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
+            this.btnReprint = new AltoControls.AltoButton();
             this.pnSDT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecond)).BeginInit();
             this.SuspendLayout();
@@ -437,7 +438,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(478, 649);
+            this.btnCancel.Location = new System.Drawing.Point(392, 649);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(150, 83);
@@ -459,7 +460,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(293, 649);
+            this.btnConfirm.Location = new System.Drawing.Point(207, 649);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(150, 83);
@@ -470,12 +471,35 @@
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // btnReprint
+            // 
+            this.btnReprint.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnReprint.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnReprint.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnReprint.BackColor = System.Drawing.Color.Transparent;
+            this.btnReprint.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnReprint.Font = new System.Drawing.Font("Constantia", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReprint.ForeColor = System.Drawing.Color.Black;
+            this.btnReprint.Inactive1 = System.Drawing.Color.Cyan;
+            this.btnReprint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnReprint.Location = new System.Drawing.Point(578, 649);
+            this.btnReprint.Name = "btnReprint";
+            this.btnReprint.Radius = 10;
+            this.btnReprint.Size = new System.Drawing.Size(150, 83);
+            this.btnReprint.Stroke = false;
+            this.btnReprint.StrokeColor = System.Drawing.Color.Gray;
+            this.btnReprint.TabIndex = 16;
+            this.btnReprint.Text = "RePrint";
+            this.btnReprint.Transparency = false;
+            this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
+            // 
             // frmCheckPhone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1237, 759);
+            this.Controls.Add(this.btnReprint);
             this.Controls.Add(this.txtSecond);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblText4);
@@ -524,5 +548,6 @@
         private AltoControls.AltoSlidingLabel lblText4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown txtSecond;
+        private AltoControls.AltoButton btnReprint;
     }
 }
