@@ -46,13 +46,14 @@
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
             this.zbc = new System.Windows.Forms.ToolStripMenuItem();
             this.BillList = new System.Windows.Forms.ToolStripMenuItem();
+            this.BillDetailList = new System.Windows.Forms.ToolStripMenuItem();
             this.zst = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.User = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabForms = new System.Windows.Forms.TabControl();
-            this.BillDetailList = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServiceGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +99,8 @@
             this.Holiday,
             this.Voucher,
             this.BusinessHour,
-            this.Banner});
+            this.Banner,
+            this.ServiceGroup});
             this.zdm.Name = "zdm";
             this.zdm.Size = new System.Drawing.Size(67, 24);
             this.zdm.Text = "Category";
@@ -185,8 +187,14 @@
             // BillList
             // 
             this.BillList.Name = "BillList";
-            this.BillList.Size = new System.Drawing.Size(180, 22);
+            this.BillList.Size = new System.Drawing.Size(144, 22);
             this.BillList.Text = "Bill List";
+            // 
+            // BillDetailList
+            // 
+            this.BillDetailList.Name = "BillDetailList";
+            this.BillDetailList.Size = new System.Drawing.Size(144, 22);
+            this.BillDetailList.Text = "Bill Detail List";
             // 
             // zst
             // 
@@ -236,11 +244,11 @@
             this.tabForms.Visible = false;
             this.tabForms.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
             // 
-            // BillDetailList
+            // ServiceGroup
             // 
-            this.BillDetailList.Name = "BillDetailList";
-            this.BillDetailList.Size = new System.Drawing.Size(180, 22);
-            this.BillDetailList.Text = "Bill Detail List";
+            this.ServiceGroup.Name = "ServiceGroup";
+            this.ServiceGroup.Size = new System.Drawing.Size(180, 22);
+            this.ServiceGroup.Text = "Service Group";
             // 
             // frmMainParent
             // 
@@ -290,5 +298,6 @@
         private System.Windows.Forms.ToolStripMenuItem Banner;
         private System.Windows.Forms.ToolStripMenuItem BillList;
         private System.Windows.Forms.ToolStripMenuItem BillDetailList;
+        private System.Windows.Forms.ToolStripMenuItem ServiceGroup;
     }
 }
