@@ -44,21 +44,21 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvReport = new System.Windows.Forms.DataGridView();
+            this.dgvReportDetail = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dgvReportDetail = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -263,6 +263,23 @@
             this.panel2.Size = new System.Drawing.Size(826, 631);
             this.panel2.TabIndex = 1;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 40);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvReport);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvReportDetail);
+            this.splitContainer1.Size = new System.Drawing.Size(826, 591);
+            this.splitContainer1.SplitterDistance = 319;
+            this.splitContainer1.TabIndex = 3;
+            // 
             // dgvReport
             // 
             this.dgvReport.AllowUserToAddRows = false;
@@ -277,6 +294,22 @@
             this.dgvReport.Size = new System.Drawing.Size(319, 591);
             this.dgvReport.TabIndex = 2;
             this.dgvReport.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReport_CellClick);
+            this.dgvReport.SelectionChanged += new System.EventHandler(this.dgvReport_SelectionChanged);
+            // 
+            // dgvReportDetail
+            // 
+            this.dgvReportDetail.AllowUserToAddRows = false;
+            this.dgvReportDetail.AllowUserToDeleteRows = false;
+            this.dgvReportDetail.BackgroundColor = System.Drawing.Color.White;
+            this.dgvReportDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReportDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvReportDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgvReportDetail.Name = "dgvReportDetail";
+            this.dgvReportDetail.ReadOnly = true;
+            this.dgvReportDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReportDetail.Size = new System.Drawing.Size(503, 591);
+            this.dgvReportDetail.TabIndex = 3;
+            this.dgvReportDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportDetail_CellClick);
             // 
             // panel4
             // 
@@ -298,38 +331,6 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Result";
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 40);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgvReport);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvReportDetail);
-            this.splitContainer1.Size = new System.Drawing.Size(826, 591);
-            this.splitContainer1.SplitterDistance = 319;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // dgvReportDetail
-            // 
-            this.dgvReportDetail.AllowUserToAddRows = false;
-            this.dgvReportDetail.AllowUserToDeleteRows = false;
-            this.dgvReportDetail.BackgroundColor = System.Drawing.Color.White;
-            this.dgvReportDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReportDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvReportDetail.Location = new System.Drawing.Point(0, 0);
-            this.dgvReportDetail.Name = "dgvReportDetail";
-            this.dgvReportDetail.ReadOnly = true;
-            this.dgvReportDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReportDetail.Size = new System.Drawing.Size(503, 591);
-            this.dgvReportDetail.TabIndex = 3;
-            this.dgvReportDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportDetail_CellClick);
-            // 
             // frmBillDetailList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,14 +348,14 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

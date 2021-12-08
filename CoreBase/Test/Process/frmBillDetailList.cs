@@ -23,6 +23,7 @@ namespace AusNail.Process
         string _paramQuery1 = string.Empty;
         DataTable _dtResult = new DataTable();
         DataTable _dtResultDetail = new DataTable();
+        private bool _isAutoLoad = false;
         public frmBillDetailList()
         {
             InitializeComponent();
@@ -90,10 +91,6 @@ namespace AusNail.Process
             try
             {
                 LoadData();
-                if (true)
-                {
-
-                }
             }
             catch (Exception ex)
             {
@@ -285,6 +282,7 @@ namespace AusNail.Process
                 _Group1 = cboGroup1.SelectedValue.ToString();
                 _Group2 = cboGroup2.SelectedValue.ToString();
 
+                _isAutoLoad = true;
                 _dtResult = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillDetailList_GetAll", _dtF, _dtT, _Group1, int.Parse(NailApp.BranchID));
                 dgvReport.DataSource = _dtResult;
 
@@ -311,6 +309,7 @@ namespace AusNail.Process
                     dgvReportDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
 
+                _isAutoLoad = true;
             }
             catch (Exception ex)
             {
@@ -318,7 +317,7 @@ namespace AusNail.Process
             }
         }
 
-        private void LoadDataDetail(string pGroup1)
+        private void LoadDataDetail(string pGroup1, bool isClick)
         {
             try
             {
@@ -336,7 +335,7 @@ namespace AusNail.Process
                 }
                 else // Show form list detail
                 {
-                    if (!string.IsNullOrEmpty(pGroup1))
+                    if (!string.IsNullOrEmpty(pGroup1) && isClick)
                     {
                         frmBillDetailListDetail frmBilldt = new frmBillDetailListDetail(int.Parse(NailApp.BranchID), _Group1, _Group2, pGroup1, "", _dtF, _dtT);
                         frmBilldt.ShowDialog();
@@ -366,7 +365,7 @@ namespace AusNail.Process
                     if (dgvReport["IDHead", e.RowIndex].Value != DBNull.Value)
                     {
                         _paramQuery1 = dgvReport["IDHead", e.RowIndex].Value.ToString();
-                        LoadDataDetail(dgvReport["IDHead", e.RowIndex].Value.ToString());
+                        LoadDataDetail(dgvReport["IDHead", e.RowIndex].Value.ToString(), true);
                     }
 
                 }
@@ -439,6 +438,38 @@ namespace AusNail.Process
                 }
             }
             catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        private void dgvReport_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_isAutoLoad)
+                {
+                    _isAutoLoad = false;
+                }
+                else
+                {
+                    int curRow = dgvReport.CurrentRow.Index;
+                    //if (e.StateChanged != DataGridViewElementStates.Selected) return;
+                    if (_dtResult != null && _dtResult.Rows.Count > 0)
+                    {
+                        _paramQuery1 = string.Empty;
+                        if (dgvReport["IDHead", curRow].Value != DBNull.Value)
+                        {
+                            _paramQuery1 = dgvReport["IDHead", curRow].Value.ToString();
+                            LoadDataDetail(dgvReport["IDHead", curRow].Value.ToString(), false);
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception)
             {
 
             }
