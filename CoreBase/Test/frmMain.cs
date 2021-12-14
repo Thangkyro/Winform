@@ -1906,5 +1906,19 @@ namespace AusNail
             }
         }
 
+        private void dgvService_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 6)
+                {
+                    dgvService.CurrentCell = dgvService.CurrentRow.Cells[e.ColumnIndex + 1];
+                }
+            }
+            catch 
+            {
+
+            }
+        }
     }
 }
