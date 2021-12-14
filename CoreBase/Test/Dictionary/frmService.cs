@@ -26,6 +26,7 @@ namespace AusNail.Dictionary
         string _idName = "ServiceID";
         int _postion = 0;
         DataTable _branch = new DataTable();
+        DataTable _GroupSV = new DataTable();
         public frmService()
         {
             InitializeComponent();
@@ -48,6 +49,22 @@ namespace AusNail.Dictionary
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
             cbobranchId.DataSource = _branch.DefaultView;
+
+
+            using (ReadOnlyDAL dal = new ReadOnlyDAL("zServicegroup"))
+            {
+                _GroupSV = dal.Read("is_inactive = 0");
+            }
+
+            _GroupSV.DefaultView.Sort = "ServiceGroupName";
+            DataRow dr2 = _GroupSV.NewRow();
+            dr2["ServiceGroupID"] = 0;
+            dr2["ServiceGroupName"] = "";
+            _GroupSV.Rows.Add(dr2);
+
+            cboGroupSTT.DisplayMember = "ServiceGroupName";
+            cboGroupSTT.ValueMember = "ServiceGroupID";
+            cboGroupSTT.DataSource = _GroupSV.DefaultView;
 
         }
 
@@ -72,6 +89,7 @@ namespace AusNail.Dictionary
             }
             base.FillData();
             CreateBinding(cbobranchId);
+            CreateBinding(cboGroupSTT);
             CreateBinding(txtTitle);
             CreateBinding(txtEstimateTime);
             CreateBinding(txtPrice);
@@ -173,6 +191,7 @@ namespace AusNail.Dictionary
             _Service.DefaultView.Sort = "Title";
             GridDetail.DataSource = _Service;
             GridDetail.Columns.Remove("branchId");
+            GridDetail.Columns.Remove("GroupStt");
 
             DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
             dgvCmb.DataPropertyName = "BranchId";
@@ -183,6 +202,16 @@ namespace AusNail.Dictionary
             dgvCmb.DataSource = _branch;
             GridDetail.Columns.Add(dgvCmb);
             GridDetail.Columns["BranchId"].DisplayIndex = 0;
+
+            DataGridViewComboBoxColumn dgvCmb1 = new DataGridViewComboBoxColumn();
+            dgvCmb1.DataPropertyName = "GroupStt";
+            dgvCmb1.HeaderText = "ServiceGroupName";
+            dgvCmb1.Name = "GroupStt";
+            dgvCmb1.DisplayMember = "ServiceGroupName";
+            dgvCmb1.ValueMember = "ServiceGroupID";
+            dgvCmb1.DataSource = _GroupSV;
+            GridDetail.Columns.Add(dgvCmb1);
+            GridDetail.Columns["GroupStt"].DisplayIndex = 1;
 
             GridDetail.Columns["ServiceID"].Visible = false;
             //GridDetail.Columns["branchId"].HeaderText = "Branch";
