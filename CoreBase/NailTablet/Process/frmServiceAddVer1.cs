@@ -209,50 +209,17 @@ namespace AusNail.Process
                     {
                         billID = int.Parse(dtBill.Rows[0][0].ToString());
                     }
-                    if (NailApp.IsAutoPrint())
-                    {
-                        DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
-                        DataSet dsData = new DataSet();
-                        dsData.Tables.Add(dataTable);
-                        if (dsData == null || dsData.Tables[0].Rows.Count == 0)
-                        {
-                            return;
-                        }
-                        frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
-                        f.ShowDialog();
-                    }
-                    else
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Do you want print review ?", "View Bill", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
-                            DataSet dsData = new DataSet();
-                            dsData.Tables.Add(dataTable);
-                            if (dsData == null || dsData.Tables[0].Rows.Count == 0)
-                            {
-                                return;
-                            }
-                            frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", true, int.Parse(NailApp.BranchID), billID);
-                            f.ShowDialog();
-                        }
-                        else
-                        {
-                            DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
-                            DataSet dsData = new DataSet();
-                            dsData.Tables.Add(dataTable);
-                            if (dsData == null || dsData.Tables[0].Rows.Count == 0)
-                            {
-                                return;
-                            }
-                            frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
-                            f.ShowDialog();
-                        }
-                    }
 
-                    //Process.frmCheckPhone frm = new Process.frmCheckPhone(false);
-                    //frm.ShowDialog();
-                    
+                    DataTable dataTable = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillPrint", billID, int.Parse(NailApp.BranchID));
+                    DataSet dsData = new DataSet();
+                    dsData.Tables.Add(dataTable);
+                    if (dsData == null || dsData.Tables[0].Rows.Count == 0)
+                    {
+                        return;
+                    }
+                    frmPrintNew f = new frmPrintNew(dsData, "rpt_bill.rpt", false, int.Parse(NailApp.BranchID), billID);
+                    f.ShowDialog();
+
                 }
             }
             else
@@ -453,7 +420,7 @@ namespace AusNail.Process
                 for (int i = 0; i < _dtGroupService.Rows.Count; i++)
                 {
                     AltoButton bt = new AltoButton();
-                    bt.Name = _dtGroupService.Rows[i]["GroupStt"].ToString();
+                    bt.Name = _dtGroupService.Rows[i]["ServiceGroupID"].ToString();
                     bt.Text = _dtGroupService.Rows[i]["ServiceGroupName"].ToString();
                     bt.Width = 250;
                     bt.Height = 85;

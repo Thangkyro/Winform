@@ -95,7 +95,7 @@ namespace AusNail.Process
                     string phoneNumber = txtPhoneNum.Text.Trim();
                     this.Visible = false;
                     this.ShowInTaskbar = false;
-                    Process.frmServiceAdd frm = new frmServiceAdd(_branchId, _UserId, customerName, phoneNumber);
+                    Process.frmServiceAddVer1 frm = new frmServiceAddVer1(_branchId, _UserId, customerName, phoneNumber);
                     frm.Activate();
                     frm.ShowDialog();
 
