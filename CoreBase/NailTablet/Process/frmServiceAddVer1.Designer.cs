@@ -64,17 +64,17 @@
             this.dgvService.ColumnHeadersHeight = 40;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvService.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvService.Location = new System.Drawing.Point(276, 145);
+            this.dgvService.Location = new System.Drawing.Point(218, 145);
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
             this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvService.Size = new System.Drawing.Size(531, 425);
+            this.dgvService.Size = new System.Drawing.Size(409, 425);
             this.dgvService.TabIndex = 0;
             this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
             this.dgvService.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvService_DataError);
@@ -140,7 +140,7 @@
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 145);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(258, 425);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(202, 425);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // altoSlidingLabel2
@@ -182,18 +182,18 @@
             this.dgvBillTem.ColumnHeadersHeight = 40;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBillTem.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvBillTem.Location = new System.Drawing.Point(813, 145);
+            this.dgvBillTem.Location = new System.Drawing.Point(633, 145);
             this.dgvBillTem.Name = "dgvBillTem";
             this.dgvBillTem.RowHeadersWidth = 51;
             this.dgvBillTem.RowTemplate.Height = 50;
             this.dgvBillTem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvBillTem.Size = new System.Drawing.Size(525, 425);
+            this.dgvBillTem.Size = new System.Drawing.Size(705, 425);
             this.dgvBillTem.TabIndex = 0;
             this.dgvBillTem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellClick);
             this.dgvBillTem.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvBillTem_CellPainting);

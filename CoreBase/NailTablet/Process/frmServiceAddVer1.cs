@@ -129,8 +129,8 @@ namespace AusNail.Process
             dgvBillTem.Columns["ServiceName"].HeaderText = "Service Name";
             dgvBillTem.Columns["ServiceName"].ReadOnly = true;
             dgvBillTem.Columns["ServiceName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvBillTem.Columns["Quantity"].HeaderText = "Quantity";
-            dgvBillTem.Columns["Quantity"].Width = 140;
+            dgvBillTem.Columns["Quantity"].HeaderText = "QTy";
+            dgvBillTem.Columns["Quantity"].Width = 70;
             DataGridViewButtonColumn delButton = new DataGridViewButtonColumn();
             delButton.Name = "delButton";
             //delButton.Text = "Delete";
@@ -227,7 +227,7 @@ namespace AusNail.Process
                 MessageBox.Show("Please choose service for your ticket.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            this.Close();
+            //this.Close();
         }
 
         public int SendData()
@@ -422,11 +422,11 @@ namespace AusNail.Process
                     AltoButton bt = new AltoButton();
                     bt.Name = _dtGroupService.Rows[i]["ServiceGroupID"].ToString();
                     bt.Text = _dtGroupService.Rows[i]["ServiceGroupName"].ToString();
-                    bt.Width = 250;
-                    bt.Height = 85;
+                    bt.Width = 195;
+                    bt.Height = 80;
                     bt.Active1 = Color.Cyan;
-                    bt.Font = new Font("Constantia", 18, FontStyle.Bold);
-                    bt.Location = new Point(3, i * 85);
+                    bt.Font = new Font("Constantia", 14, FontStyle.Bold);
+                    bt.Location = new Point(3, i * 80);
                     bt.Click += new EventHandler(this.btnServiceGroup_Click);
                     flowLayoutPanel2.Controls.Add(bt);
                 }
@@ -436,10 +436,10 @@ namespace AusNail.Process
                 AltoButton bt = new AltoButton();
                 bt.Name = "AllService";
                 bt.Text = "All Service";
-                bt.Width = 250;
-                bt.Height = 85;
+                bt.Width = 195;
+                bt.Height = 80;
                 bt.Active1 = Color.Cyan;
-                bt.Font = new Font("Constantia", 18, FontStyle.Bold);
+                bt.Font = new Font("Constantia", 14, FontStyle.Bold);
                 bt.Location = new Point(3, 0);
                 bt.Click += new EventHandler(this.btnServiceGroup_Click);
                 flowLayoutPanel2.Controls.Add(bt);
