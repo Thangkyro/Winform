@@ -189,9 +189,16 @@ namespace AusNail.Process
                     billCode = dt.Rows[0][0].ToString();
                 }
 
+                TimeSpan tm = DateTime.Now.TimeOfDay;
+                DateTime billdate = NailApp.BillDate.Add(tm);
+                if (dtpDate.Value.ToString("dd/MM/yyyy") != NailApp.BillDate.ToString("dd/MM/yyyy") && dtpDate.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
+                {
+                    billdate = dtpDate.Value;
+                }
+
                 // Get bill number
                 int billnumber = 1;
-                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, dtpDate.Value);
+                DataTable dt1 = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBillNumber", _branchID, billdate);
                 if (dt1 != null)
                 {
                     billnumber = int.Parse(dt1.Rows[0][0].ToString().Substring(0, dt1.Rows[0][0].ToString().IndexOf('.')));
@@ -211,12 +218,7 @@ namespace AusNail.Process
                             int ServiceID = int.Parse(dgvService.Rows[i].Cells["ServiceId"].Value.ToString());
                             decimal Price = decimal.Parse(dgvService.Rows[i].Cells["Price"].Value.ToString());
                             string Note = "";
-                            TimeSpan tm = DateTime.Now.TimeOfDay;
-                            DateTime billdate = NailApp.BillDate.Add(tm);
-                            if (dtpDate.Value.ToString("dd/MM/yyyy") != NailApp.BillDate.ToString("dd/MM/yyyy") && dtpDate.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
-                            {
-                                billdate = dtpDate.Value;
-                            }
+                            
                             int error = 0;
                             string errorMesg = "";
 
