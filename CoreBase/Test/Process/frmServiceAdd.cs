@@ -267,6 +267,14 @@ namespace AusNail.Process
         {
             try
             {
+                if (e.ColumnIndex == 6 && e.RowIndex >= 0) 
+                {
+                    //Reference the GridView Row.
+                    DataGridViewRow row = dgvService.Rows[e.RowIndex];
+
+                    //Set the CheckBox selection.
+                    row.Cells["Check"].Value = !Convert.ToBoolean(row.Cells["Check"].EditedFormattedValue);
+                }
                 if (e.ColumnIndex == 6) // Check
                 {
                     if ((bool)(dgvService.Rows[e.RowIndex].Cells["Check"].Value == null ? false : dgvService.Rows[e.RowIndex].Cells["Check"].Value) == true)

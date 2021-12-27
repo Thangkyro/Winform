@@ -293,6 +293,8 @@ namespace AusNail.Process
             }
             txtCard.Text = _Receivable.ToString();
             txtCash.Text = "0";
+            _totalDiscount = 0;
+            lblTotalDiscount.Text = _totalDiscount.ToString();
         }
 
         private void dgvVoucher_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -525,6 +527,8 @@ namespace AusNail.Process
             {
                 txtCard.Text = string.Format("{0:#,##0.00}", _Receivable);
                 txtCash.Text = "0";
+                _totalDiscount = 0;
+                lblTotalDiscount.Text = _totalDiscount.ToString();
                 //chkCompire_CheckedChanged(sender, e);
                 chkCompire.Checked = false;
             }
