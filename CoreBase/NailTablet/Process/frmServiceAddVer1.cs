@@ -429,6 +429,11 @@ namespace AusNail.Process
                     bt.Location = new Point(3, i * 80);
                     bt.Click += new EventHandler(this.btnServiceGroup_Click);
                     flowLayoutPanel2.Controls.Add(bt);
+                    if (_dtService != null && _dtService.Rows.Count > 0)
+                    {
+                        DataTable dataTable = _dtService.Select("GroupStt = '" + _dtGroupService.Rows[0]["ServiceGroupID"].ToString() + "'", "").CopyToDataTable();
+                        LoadGrid(dataTable);
+                    }
                 }
             }
             else
