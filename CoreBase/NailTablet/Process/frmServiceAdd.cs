@@ -233,7 +233,7 @@ namespace AusNail.Process
                 if (flag)
                 {
                     _sBillCode = billCode;
-                    MessageBox.Show("Please press OK and wait for your ticket.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Please press OK and wait for your ticket.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Visible = false;
                     this.ShowInTaskbar = false;
