@@ -267,7 +267,7 @@ namespace AusNail.Process
         {
             try
             {
-                if (e.ColumnIndex == 6 && e.RowIndex >= 0) 
+                if (e.ColumnIndex == 7 && e.RowIndex >= 0) 
                 {
                     //Reference the GridView Row.
                     DataGridViewRow row = dgvService.Rows[e.RowIndex];
