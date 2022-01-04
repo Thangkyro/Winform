@@ -95,6 +95,7 @@ namespace AusNail.Dictionary
             CreateBinding(txtPrice);
             CreateBinding(txtDecriptions);
             CreateBinding(chkis_inactive, "is_inactive", "Checked");
+            CreateBinding(chkis_discount, "is_discount", "Checked");
         }
         protected override bool InsertData()
         {
@@ -305,6 +306,7 @@ namespace AusNail.Dictionary
                     txtEstimateTime.Text = row.Cells["EstimateTime"].Value.ToString();
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
                     chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
+                    chkis_discount.Checked = bool.Parse(row.Cells["is_discount"].Value.ToString());
                 }
             }
             catch (Exception)
