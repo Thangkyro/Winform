@@ -48,6 +48,7 @@
             this.txtDecriptions = new System.Windows.Forms.TextBox();
             this.cboGroupSTT = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.chkis_discount = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,7 +60,7 @@
             // 
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkis_inactive.Location = new System.Drawing.Point(634, 291);
+            this.chkis_inactive.Location = new System.Drawing.Point(634, 316);
             this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 11;
             // 
@@ -91,7 +92,7 @@
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 16);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "09:19:02";
+            this.lblTime.Text = "09:27:01";
             // 
             // btnSave
             // 
@@ -287,11 +288,23 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Service Group";
             // 
+            // chkis_discount
+            // 
+            this.chkis_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkis_discount.AutoSize = true;
+            this.chkis_discount.Location = new System.Drawing.Point(634, 292);
+            this.chkis_discount.Name = "chkis_discount";
+            this.chkis_discount.Size = new System.Drawing.Size(68, 17);
+            this.chkis_discount.TabIndex = 14;
+            this.chkis_discount.Text = "Discount";
+            this.chkis_discount.UseVisualStyleBackColor = true;
+            // 
             // frmService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 478);
+            this.Controls.Add(this.chkis_discount);
             this.Controls.Add(this.cboGroupSTT);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDecriptions);
@@ -325,6 +338,7 @@
             this.Controls.SetChildIndex(this.txtDecriptions, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.cboGroupSTT, 0);
+            this.Controls.SetChildIndex(this.chkis_discount, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Bds)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -355,5 +369,6 @@
         private System.Windows.Forms.TextBox txtDecriptions;
         private System.Windows.Forms.ComboBox cboGroupSTT;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkis_discount;
     }
 }

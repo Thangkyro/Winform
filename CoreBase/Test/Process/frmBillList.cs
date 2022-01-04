@@ -100,11 +100,13 @@ namespace AusNail.Process
                     decimal PaymentCash = decimal.Parse(_dtResult.Compute("Sum(PaymentCash)", string.Empty).ToString());
                     decimal PaymentCard = decimal.Parse(_dtResult.Compute("Sum(PaymentCard)", string.Empty).ToString());
                     decimal PaymentVoucher = decimal.Parse(_dtResult.Compute("Sum(PaymentVoucher)", string.Empty).ToString());
+                    string Total = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(PaymentCash)", string.Empty).ToString()) + decimal.Parse(_dtResult.Compute("Sum(PaymentCard)", string.Empty).ToString()));
                     decimal TotalAmount = decimal.Parse(_dtResult.Compute("Sum(TotalAmount)", string.Empty).ToString());
                     decimal TotalDiscount = decimal.Parse(_dtResult.Compute("Sum(TotalDiscount)", string.Empty).ToString());
 
                     dt.Rows.Add();
-                    dt.Rows[dt.Rows.Count - 1][5] = "Total";
+                    dt.Rows[dt.Rows.Count - 1][4] = "Total";
+                    dt.Rows[dt.Rows.Count - 1][5] = Total.ToString();
                     dt.Rows[dt.Rows.Count - 1][6] = TotalAmount.ToString();
                     dt.Rows[dt.Rows.Count - 1][7] = TotalDiscount.ToString();
                     dt.Rows[dt.Rows.Count - 1][8] = PaymentCash.ToString();
@@ -299,6 +301,7 @@ namespace AusNail.Process
                     lblCash.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(PaymentCash)", string.Empty).ToString()));
                     lblCard.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(PaymentCard)", string.Empty).ToString()));
                     lblVoucher.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(PaymentVoucher)", string.Empty).ToString()));
+                    lblTotal.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(PaymentCash)", string.Empty).ToString()) + decimal.Parse(_dtResult.Compute("Sum(PaymentCard)", string.Empty).ToString()));
                     lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(TotalAmount)", string.Empty).ToString()));
                     lblTotalDiscount.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtResult.Compute("Sum(TotalDiscount)", string.Empty).ToString()));
                 }

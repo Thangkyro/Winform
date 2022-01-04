@@ -58,6 +58,8 @@
             this.dgvReport = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -83,7 +85,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(351, 640);
+            this.panel1.Size = new System.Drawing.Size(351, 732);
             this.panel1.TabIndex = 0;
             // 
             // btnClose
@@ -260,11 +262,13 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(351, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(892, 640);
+            this.panel2.Size = new System.Drawing.Size(1064, 732);
             this.panel2.TabIndex = 1;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblTotal);
+            this.panel5.Controls.Add(this.label9);
             this.panel5.Controls.Add(this.lblTotalDiscount);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.lblTotalAmont);
@@ -276,9 +280,9 @@
             this.panel5.Controls.Add(this.lb1);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 562);
+            this.panel5.Location = new System.Drawing.Point(0, 654);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(892, 78);
+            this.panel5.Size = new System.Drawing.Size(1064, 78);
             this.panel5.TabIndex = 3;
             // 
             // lblTotalDiscount
@@ -286,9 +290,9 @@
             this.lblTotalDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalDiscount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTotalDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDiscount.Location = new System.Drawing.Point(665, 15);
+            this.lblTotalDiscount.Location = new System.Drawing.Point(830, 15);
             this.lblTotalDiscount.Name = "lblTotalDiscount";
-            this.lblTotalDiscount.Size = new System.Drawing.Size(202, 44);
+            this.lblTotalDiscount.Size = new System.Drawing.Size(209, 44);
             this.lblTotalDiscount.TabIndex = 25;
             this.lblTotalDiscount.Text = "0";
             this.lblTotalDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -297,7 +301,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(580, 32);
+            this.label8.Location = new System.Drawing.Point(745, 32);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 13);
             this.label8.TabIndex = 26;
@@ -308,9 +312,9 @@
             this.lblTotalAmont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalAmont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTotalAmont.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmont.Location = new System.Drawing.Point(344, 15);
+            this.lblTotalAmont.Location = new System.Drawing.Point(534, 15);
             this.lblTotalAmont.Name = "lblTotalAmont";
-            this.lblTotalAmont.Size = new System.Drawing.Size(217, 44);
+            this.lblTotalAmont.Size = new System.Drawing.Size(194, 44);
             this.lblTotalAmont.TabIndex = 17;
             this.lblTotalAmont.Text = "0";
             this.lblTotalAmont.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -319,7 +323,7 @@
             // 
             this.lblVoucher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVoucher.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblVoucher.Location = new System.Drawing.Point(154, 49);
+            this.lblVoucher.Location = new System.Drawing.Point(79, 49);
             this.lblVoucher.Name = "lblVoucher";
             this.lblVoucher.Size = new System.Drawing.Size(105, 20);
             this.lblVoucher.TabIndex = 18;
@@ -330,7 +334,7 @@
             // 
             this.lb3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb3.AutoSize = true;
-            this.lb3.Location = new System.Drawing.Point(101, 50);
+            this.lb3.Location = new System.Drawing.Point(26, 50);
             this.lb3.Name = "lb3";
             this.lb3.Size = new System.Drawing.Size(50, 13);
             this.lb3.TabIndex = 19;
@@ -340,7 +344,7 @@
             // 
             this.lblCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCard.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCard.Location = new System.Drawing.Point(154, 28);
+            this.lblCard.Location = new System.Drawing.Point(79, 28);
             this.lblCard.Name = "lblCard";
             this.lblCard.Size = new System.Drawing.Size(105, 20);
             this.lblCard.TabIndex = 20;
@@ -351,7 +355,7 @@
             // 
             this.lblCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCash.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCash.Location = new System.Drawing.Point(154, 7);
+            this.lblCash.Location = new System.Drawing.Point(79, 7);
             this.lblCash.Name = "lblCash";
             this.lblCash.Size = new System.Drawing.Size(105, 20);
             this.lblCash.TabIndex = 21;
@@ -362,7 +366,7 @@
             // 
             this.lb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(101, 29);
+            this.lb2.Location = new System.Drawing.Point(26, 29);
             this.lb2.Name = "lb2";
             this.lb2.Size = new System.Drawing.Size(32, 13);
             this.lb2.TabIndex = 22;
@@ -372,7 +376,7 @@
             // 
             this.lb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb1.AutoSize = true;
-            this.lb1.Location = new System.Drawing.Point(101, 9);
+            this.lb1.Location = new System.Drawing.Point(26, 9);
             this.lb1.Name = "lb1";
             this.lb1.Size = new System.Drawing.Size(34, 13);
             this.lb1.TabIndex = 23;
@@ -382,7 +386,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(265, 32);
+            this.label6.Location = new System.Drawing.Point(455, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 24;
@@ -401,7 +405,7 @@
             this.dgvReport.Name = "dgvReport";
             this.dgvReport.ReadOnly = true;
             this.dgvReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReport.Size = new System.Drawing.Size(886, 519);
+            this.dgvReport.Size = new System.Drawing.Size(1058, 611);
             this.dgvReport.TabIndex = 2;
             this.dgvReport.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReport_CellClick);
             this.dgvReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReport_CellContentClick);
@@ -412,7 +416,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(892, 40);
+            this.panel4.Size = new System.Drawing.Size(1064, 40);
             this.panel4.TabIndex = 1;
             // 
             // label1
@@ -426,12 +430,34 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Result";
             // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(239, 15);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(198, 44);
+            this.lblTotal.TabIndex = 27;
+            this.lblTotal.Text = "0";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(200, 32);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Total:";
+            // 
             // frmBillList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1243, 640);
+            this.ClientSize = new System.Drawing.Size(1415, 732);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -482,5 +508,7 @@
         private AltoControls.AltoButton btnExecute;
         private AltoControls.AltoButton btnExcel;
         private AltoControls.AltoButton btnClose;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label label9;
     }
 }
