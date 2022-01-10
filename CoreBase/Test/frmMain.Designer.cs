@@ -137,8 +137,8 @@ namespace AusNail
             this.splCMain.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splCMain.Panel2.Controls.Add(this.pnlForm);
             this.splCMain.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splCMain.Size = new System.Drawing.Size(1440, 598);
-            this.splCMain.SplitterDistance = 358;
+            this.splCMain.Size = new System.Drawing.Size(1366, 598);
+            this.splCMain.SplitterDistance = 339;
             this.splCMain.TabIndex = 5;
             // 
             // splitContainer2
@@ -168,7 +168,7 @@ namespace AusNail
             this.splitContainer2.Panel2.Controls.Add(this.cboColor);
             this.splitContainer2.Panel2.Controls.Add(this.txtColor);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(358, 598);
+            this.splitContainer2.Size = new System.Drawing.Size(339, 598);
             this.splitContainer2.SplitterDistance = 433;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -181,7 +181,7 @@ namespace AusNail
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(354, 429);
+            this.tabControl1.Size = new System.Drawing.Size(335, 429);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -192,7 +192,7 @@ namespace AusNail
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(346, 403);
+            this.tabPage1.Size = new System.Drawing.Size(327, 403);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Temporary bill";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -203,7 +203,7 @@ namespace AusNail
             this.trTemporaryBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trTemporaryBill.Location = new System.Drawing.Point(2, 2);
             this.trTemporaryBill.Name = "trTemporaryBill";
-            this.trTemporaryBill.Size = new System.Drawing.Size(342, 399);
+            this.trTemporaryBill.Size = new System.Drawing.Size(323, 399);
             this.trTemporaryBill.TabIndex = 0;
             this.trTemporaryBill.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trTemporaryBill_AfterSelect);
             this.trTemporaryBill.Click += new System.EventHandler(this.trTemporaryBill_Click);
@@ -376,7 +376,7 @@ namespace AusNail
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(1078, 598);
+            this.pnlForm.Size = new System.Drawing.Size(1023, 598);
             this.pnlForm.TabIndex = 0;
             // 
             // txtBilDate
@@ -385,7 +385,7 @@ namespace AusNail
             this.txtBilDate.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.txtBilDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBilDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtBilDate.Location = new System.Drawing.Point(787, 44);
+            this.txtBilDate.Location = new System.Drawing.Point(732, 44);
             this.txtBilDate.Margin = new System.Windows.Forms.Padding(2);
             this.txtBilDate.Name = "txtBilDate";
             this.txtBilDate.Size = new System.Drawing.Size(273, 21);
@@ -398,7 +398,7 @@ namespace AusNail
             this.dtpFiltDateTemp.CustomFormat = "dd/MM/yyyy";
             this.dtpFiltDateTemp.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFiltDateTemp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFiltDateTemp.Location = new System.Drawing.Point(909, 90);
+            this.dtpFiltDateTemp.Location = new System.Drawing.Point(854, 90);
             this.dtpFiltDateTemp.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFiltDateTemp.Name = "dtpFiltDateTemp";
             this.dtpFiltDateTemp.Size = new System.Drawing.Size(153, 22);
@@ -412,7 +412,7 @@ namespace AusNail
             this.dtpFilterDate.CustomFormat = "dd/MM/yyyy";
             this.dtpFilterDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFilterDate.Location = new System.Drawing.Point(909, 90);
+            this.dtpFilterDate.Location = new System.Drawing.Point(854, 90);
             this.dtpFilterDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFilterDate.Name = "dtpFilterDate";
             this.dtpFilterDate.Size = new System.Drawing.Size(153, 22);
@@ -426,14 +426,14 @@ namespace AusNail
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDesc.Location = new System.Drawing.Point(87, 92);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(697, 20);
+            this.txtDesc.Size = new System.Drawing.Size(642, 20);
             this.txtDesc.TabIndex = 10004;
             // 
             // lblFilterDate
             // 
             this.lblFilterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFilterDate.AutoSize = true;
-            this.lblFilterDate.Location = new System.Drawing.Point(846, 95);
+            this.lblFilterDate.Location = new System.Drawing.Point(791, 95);
             this.lblFilterDate.Name = "lblFilterDate";
             this.lblFilterDate.Size = new System.Drawing.Size(58, 13);
             this.lblFilterDate.TabIndex = 10003;
@@ -459,7 +459,7 @@ namespace AusNail
             this.btnDel.ForeColor = System.Drawing.Color.Black;
             this.btnDel.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnDel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnDel.Location = new System.Drawing.Point(975, 67);
+            this.btnDel.Location = new System.Drawing.Point(920, 67);
             this.btnDel.Margin = new System.Windows.Forms.Padding(2);
             this.btnDel.Name = "btnDel";
             this.btnDel.Radius = 10;
@@ -476,7 +476,7 @@ namespace AusNail
             this.lblTotalDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalDiscount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTotalDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDiscount.Location = new System.Drawing.Point(597, 539);
+            this.lblTotalDiscount.Location = new System.Drawing.Point(542, 539);
             this.lblTotalDiscount.Name = "lblTotalDiscount";
             this.lblTotalDiscount.Size = new System.Drawing.Size(188, 44);
             this.lblTotalDiscount.TabIndex = 16;
@@ -488,7 +488,7 @@ namespace AusNail
             this.lblTotalAmont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalAmont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTotalAmont.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmont.Location = new System.Drawing.Point(321, 539);
+            this.lblTotalAmont.Location = new System.Drawing.Point(266, 539);
             this.lblTotalAmont.Name = "lblTotalAmont";
             this.lblTotalAmont.Size = new System.Drawing.Size(188, 44);
             this.lblTotalAmont.TabIndex = 16;
@@ -499,7 +499,7 @@ namespace AusNail
             // 
             this.lblVoucher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVoucher.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblVoucher.Location = new System.Drawing.Point(132, 573);
+            this.lblVoucher.Location = new System.Drawing.Point(77, 573);
             this.lblVoucher.Name = "lblVoucher";
             this.lblVoucher.Size = new System.Drawing.Size(105, 20);
             this.lblVoucher.TabIndex = 16;
@@ -510,7 +510,7 @@ namespace AusNail
             // 
             this.lb3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb3.AutoSize = true;
-            this.lb3.Location = new System.Drawing.Point(79, 573);
+            this.lb3.Location = new System.Drawing.Point(24, 573);
             this.lb3.Name = "lb3";
             this.lb3.Size = new System.Drawing.Size(50, 13);
             this.lb3.TabIndex = 16;
@@ -520,7 +520,7 @@ namespace AusNail
             // 
             this.lblCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCard.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCard.Location = new System.Drawing.Point(132, 551);
+            this.lblCard.Location = new System.Drawing.Point(77, 551);
             this.lblCard.Name = "lblCard";
             this.lblCard.Size = new System.Drawing.Size(105, 20);
             this.lblCard.TabIndex = 16;
@@ -531,7 +531,7 @@ namespace AusNail
             // 
             this.lblCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCash.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCash.Location = new System.Drawing.Point(132, 531);
+            this.lblCash.Location = new System.Drawing.Point(77, 531);
             this.lblCash.Name = "lblCash";
             this.lblCash.Size = new System.Drawing.Size(105, 20);
             this.lblCash.TabIndex = 16;
@@ -542,7 +542,7 @@ namespace AusNail
             // 
             this.lb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(79, 553);
+            this.lb2.Location = new System.Drawing.Point(24, 553);
             this.lb2.Name = "lb2";
             this.lb2.Size = new System.Drawing.Size(32, 13);
             this.lb2.TabIndex = 16;
@@ -552,7 +552,7 @@ namespace AusNail
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(513, 556);
+            this.label7.Location = new System.Drawing.Point(458, 556);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 16;
@@ -562,7 +562,7 @@ namespace AusNail
             // 
             this.lb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb1.AutoSize = true;
-            this.lb1.Location = new System.Drawing.Point(79, 533);
+            this.lb1.Location = new System.Drawing.Point(24, 533);
             this.lb1.Name = "lb1";
             this.lb1.Size = new System.Drawing.Size(34, 13);
             this.lb1.TabIndex = 16;
@@ -572,7 +572,7 @@ namespace AusNail
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(243, 556);
+            this.label6.Location = new System.Drawing.Point(188, 556);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 16;
@@ -589,7 +589,7 @@ namespace AusNail
             this.btnPrint.ForeColor = System.Drawing.Color.Black;
             this.btnPrint.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnPrint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPrint.Location = new System.Drawing.Point(897, 539);
+            this.btnPrint.Location = new System.Drawing.Point(842, 539);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Radius = 10;
@@ -635,7 +635,7 @@ namespace AusNail
             this.btnPay.ForeColor = System.Drawing.Color.Black;
             this.btnPay.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnPay.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnPay.Location = new System.Drawing.Point(987, 539);
+            this.btnPay.Location = new System.Drawing.Point(932, 539);
             this.btnPay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay.Name = "btnPay";
             this.btnPay.Radius = 10;
@@ -658,7 +658,7 @@ namespace AusNail
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnSave.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnSave.Location = new System.Drawing.Point(807, 539);
+            this.btnSave.Location = new System.Drawing.Point(752, 539);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Radius = 10;
@@ -697,7 +697,7 @@ namespace AusNail
             this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
-            this.dgvService.Size = new System.Drawing.Size(1047, 409);
+            this.dgvService.Size = new System.Drawing.Size(992, 409);
             this.dgvService.TabIndex = 10;
             this.dgvService.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellContentClick);
             this.dgvService.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellEndEdit);
@@ -708,7 +708,7 @@ namespace AusNail
             // txtGenden
             // 
             this.txtGenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGenden.Location = new System.Drawing.Point(909, 67);
+            this.txtGenden.Location = new System.Drawing.Point(854, 67);
             this.txtGenden.Name = "txtGenden";
             this.txtGenden.ReadOnly = true;
             this.txtGenden.Size = new System.Drawing.Size(64, 20);
@@ -717,7 +717,7 @@ namespace AusNail
             // txtPhone
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(787, 67);
+            this.txtPhone.Location = new System.Drawing.Point(732, 67);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(120, 20);
@@ -730,7 +730,7 @@ namespace AusNail
             this.txtCustomerName.Location = new System.Drawing.Point(87, 67);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(697, 20);
+            this.txtCustomerName.Size = new System.Drawing.Size(642, 20);
             this.txtCustomerName.TabIndex = 6;
             // 
             // txtBillCode
@@ -740,7 +740,7 @@ namespace AusNail
             this.txtBillCode.Location = new System.Drawing.Point(87, 45);
             this.txtBillCode.Name = "txtBillCode";
             this.txtBillCode.ReadOnly = true;
-            this.txtBillCode.Size = new System.Drawing.Size(697, 20);
+            this.txtBillCode.Size = new System.Drawing.Size(642, 20);
             this.txtBillCode.TabIndex = 4;
             // 
             // label5
@@ -770,7 +770,7 @@ namespace AusNail
             this.label3.ForeColor = System.Drawing.Color.DarkGray;
             this.label3.Location = new System.Drawing.Point(1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1075, 36);
+            this.label3.Size = new System.Drawing.Size(1020, 36);
             this.label3.TabIndex = 0;
             this.label3.Text = "BILL INFORMATION";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -957,7 +957,7 @@ namespace AusNail
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1440, 598);
+            this.ClientSize = new System.Drawing.Size(1366, 598);
             this.Controls.Add(this.splCMain);
             this.Controls.Add(this.mnsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

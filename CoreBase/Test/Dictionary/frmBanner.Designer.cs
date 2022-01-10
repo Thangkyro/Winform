@@ -55,15 +55,15 @@
             // 
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkis_inactive.Location = new System.Drawing.Point(599, 292);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(5);
+            this.chkis_inactive.Location = new System.Drawing.Point(449, 237);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 11;
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 366);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(893, 62);
+            this.panel1.Location = new System.Drawing.Point(0, 297);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Size = new System.Drawing.Size(670, 50);
             // 
             // imageList
             // 
@@ -76,29 +76,29 @@
             // 
             // lblMessInfomation
             // 
-            this.lblMessInfomation.Location = new System.Drawing.Point(325, 21);
-            this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblMessInfomation.Size = new System.Drawing.Size(435, 25);
+            this.lblMessInfomation.Location = new System.Drawing.Point(244, 17);
+            this.lblMessInfomation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMessInfomation.Size = new System.Drawing.Size(326, 20);
             this.lblMessInfomation.TabIndex = 0;
             // 
             // lblTime
             // 
-            this.lblTime.Location = new System.Drawing.Point(765, 21);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lblTime.Size = new System.Drawing.Size(85, 20);
+            this.lblTime.Location = new System.Drawing.Point(574, 17);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTime.Size = new System.Drawing.Size(64, 16);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "17:02:03";
+            this.lblTime.Text = "22:29:16";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(13, 10);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(10, 8);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3);
             this.btnSave.TabIndex = 0;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(147, 10);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Location = new System.Drawing.Point(110, 8);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             this.btnCancel.TabIndex = 4;
             // 
             // panel2
@@ -107,10 +107,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.GridDetail);
-            this.panel2.Location = new System.Drawing.Point(13, 14);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(10, 11);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(477, 332);
+            this.panel2.Size = new System.Drawing.Size(358, 270);
             this.panel2.TabIndex = 6;
             // 
             // GridDetail
@@ -120,13 +119,13 @@
             this.GridDetail.ContextMenuStrip = this.ctmGridView;
             this.GridDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridDetail.Location = new System.Drawing.Point(0, 0);
-            this.GridDetail.Margin = new System.Windows.Forms.Padding(4);
             this.GridDetail.Name = "GridDetail";
             this.GridDetail.RowHeadersWidth = 51;
-            this.GridDetail.Size = new System.Drawing.Size(477, 332);
+            this.GridDetail.Size = new System.Drawing.Size(358, 270);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             this.GridDetail.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridDetail_DefaultValuesNeeded);
             // 
             // ctmGridView
@@ -136,13 +135,13 @@
             this.deleteToolStripMenuItem,
             this.refeshListToolStripMenuItem});
             this.ctmGridView.Name = "ctmGridView";
-            this.ctmGridView.Size = new System.Drawing.Size(153, 56);
+            this.ctmGridView.Size = new System.Drawing.Size(135, 56);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::AusNail.Properties.Resources.DeleteRow1;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
@@ -150,7 +149,7 @@
             // 
             this.refeshListToolStripMenuItem.Image = global::AusNail.Properties.Resources.Refresh;
             this.refeshListToolStripMenuItem.Name = "refeshListToolStripMenuItem";
-            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.refeshListToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.refeshListToolStripMenuItem.Text = "Refesh List";
             this.refeshListToolStripMenuItem.Click += new System.EventHandler(this.RefeshListToolStripMenuItem_Click);
             // 
@@ -159,10 +158,9 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(507, 130);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(380, 106);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Banner Text";
             // 
@@ -171,10 +169,9 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(539, 78);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(404, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Branch";
             // 
@@ -183,21 +180,19 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(493, 228);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(370, 185);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 17);
+            this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Number Order";
             // 
             // txtBannerText
             // 
             this.txtBannerText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBannerText.Location = new System.Drawing.Point(599, 108);
-            this.txtBannerText.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBannerText.Location = new System.Drawing.Point(449, 88);
             this.txtBannerText.Multiline = true;
             this.txtBannerText.Name = "txtBannerText";
-            this.txtBannerText.Size = new System.Drawing.Size(281, 111);
+            this.txtBannerText.Size = new System.Drawing.Size(212, 91);
             this.txtBannerText.TabIndex = 7;
             this.txtBannerText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
@@ -205,10 +200,9 @@
             // 
             this.cbobranchId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobranchId.FormattingEnabled = true;
-            this.cbobranchId.Location = new System.Drawing.Point(599, 76);
-            this.cbobranchId.Margin = new System.Windows.Forms.Padding(4);
+            this.cbobranchId.Location = new System.Drawing.Point(449, 62);
             this.cbobranchId.Name = "cbobranchId";
-            this.cbobranchId.Size = new System.Drawing.Size(281, 24);
+            this.cbobranchId.Size = new System.Drawing.Size(212, 21);
             this.cbobranchId.TabIndex = 6;
             this.cbobranchId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbobranchId_KeyDown);
             // 
@@ -217,10 +211,9 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(511, 260);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(383, 211);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 17);
+            this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 5;
             this.label14.Text = "Decriptions";
             // 
@@ -229,35 +222,34 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(643, 14);
+            this.label11.Location = new System.Drawing.Point(482, 11);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 41);
+            this.label11.Size = new System.Drawing.Size(94, 35);
             this.label11.TabIndex = 0;
             this.label11.Text = "Banner";
             // 
             // txtNumberOrder
             // 
             this.txtNumberOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNumberOrder.Location = new System.Drawing.Point(599, 226);
-            this.txtNumberOrder.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNumberOrder.Location = new System.Drawing.Point(449, 184);
             this.txtNumberOrder.Name = "txtNumberOrder";
-            this.txtNumberOrder.Size = new System.Drawing.Size(281, 22);
+            this.txtNumberOrder.Size = new System.Drawing.Size(212, 20);
             this.txtNumberOrder.TabIndex = 8;
             // 
             // txtDecriptions
             // 
             this.txtDecriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDecriptions.Location = new System.Drawing.Point(599, 256);
-            this.txtDecriptions.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDecriptions.Location = new System.Drawing.Point(449, 208);
             this.txtDecriptions.Name = "txtDecriptions";
-            this.txtDecriptions.Size = new System.Drawing.Size(281, 22);
+            this.txtDecriptions.Size = new System.Drawing.Size(212, 20);
             this.txtDecriptions.TabIndex = 10;
             // 
             // frmBanner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 428);
+            this.ClientSize = new System.Drawing.Size(670, 348);
             this.Controls.Add(this.txtDecriptions);
             this.Controls.Add(this.txtNumberOrder);
             this.Controls.Add(this.label11);
@@ -268,9 +260,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmBanner";
             this.Text = "Banner";
+            this.Load += new System.EventHandler(this.frmBanner_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.chkis_inactive, 0);
             this.Controls.SetChildIndex(this.panel2, 0);

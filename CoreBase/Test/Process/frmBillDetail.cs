@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace AusNail.Process
         public frmBillDetail(int billID, int branchID)
         {
             InitializeComponent();
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
             try
             {
                 panel1.BackColor = NailApp.ColorUser;

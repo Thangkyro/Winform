@@ -22,13 +22,35 @@ namespace AusNail.Login
         {
             InitializeComponent();
             Load += LoginForm_Load;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void loadCbBranch(string user)
+        {
+            bool admin = true;
+            string branch = "";
+            string sqlGetInfo = "Select is_admin, branchId From zUser with(nolock) Where user_name = '" + user + "'";
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sqlGetInfo);
+            if (dt != null)
+            {
+                admin = bool.Parse(dt.Rows[0][0].ToString());
+                branch = dt.Rows[0][1].ToString();
+            }
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
             {
-                _dmdvcs = dal.Read("is_inactive = 0");
+                if (admin)
+                {
+                    _dmdvcs = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _dmdvcs = dal.Read("is_inactive = 0 and branchId = " + branch);
+                }
             }
 
             _dmdvcs.DefaultView.Sort = "BranchCode";
@@ -137,6 +159,11 @@ namespace AusNail.Login
         {
             txtbillDate.Value = DateTime.Now;
             txtUsername.Focus();
+        }
+
+        private void txtUsername_Validated(object sender, EventArgs e)
+        {
+            loadCbBranch(txtUsername.Text.Trim());
         }
 
         //private void btnCancel_Click(object sender, EventArgs e)

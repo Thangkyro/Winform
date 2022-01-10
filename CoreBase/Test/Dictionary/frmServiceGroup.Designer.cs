@@ -56,13 +56,13 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(705, 237);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 11;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 510);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(926, 50);
             // 
             // imageList
@@ -87,18 +87,18 @@
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 16);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "22:07:30";
+            this.lblTime.Text = "21:34:24";
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(10, 8);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3);
             this.btnSave.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(110, 8);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             this.btnCancel.TabIndex = 4;
             // 
             // panel2
@@ -125,6 +125,7 @@
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             this.GridDetail.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridDetail_DefaultValuesNeeded);
             // 
             // ctmGridView
@@ -259,7 +260,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmServiceGroup";
             this.Text = "Service Group";
             this.Controls.SetChildIndex(this.panel1, 0);

@@ -4,6 +4,7 @@ using CoreBase.DataAccessLayer;
 using CoreBase.Helpers;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,6 +29,7 @@ namespace AusNail.Dictionary
         {
             InitializeComponent();
             Load += UserForm_Load;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void UserForm_Load(object sender, EventArgs e)

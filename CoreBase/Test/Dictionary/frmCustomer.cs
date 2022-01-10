@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,20 +32,28 @@ namespace AusNail.Dictionary
         {
             InitializeComponent();
             Load += UserForm_Load;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
             {
-                _branch = dal.Read("is_inactive = 0");
+                if (NailApp.IsAdmin())
+                {
+                    _branch = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _branch = dal.Read("is_inactive = 0 and branchId = " + NailApp.BranchID);
+                }
             }
 
             _branch.DefaultView.Sort = "BranchCode";
-            DataRow dr1 = _branch.NewRow();
-            dr1["branchId"] = 0;
-            dr1["BranchName"] = "";
-            _branch.Rows.Add(dr1);
+            //DataRow dr1 = _branch.NewRow();
+            //dr1["branchId"] = 0;
+            //dr1["BranchName"] = "";
+            //_branch.Rows.Add(dr1);
 
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
@@ -191,7 +200,17 @@ namespace AusNail.Dictionary
         private void LoadData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                Bds.DataSource = _Service = dal.GetData();
+            {
+                if (NailApp.IsAdmin())
+                {
+                    Bds.DataSource = _Service = dal.GetData();
+                }
+                else
+                {
+                    _Service = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
+                    Bds.DataSource = _Service;
+                }
+            }
             LoadGrid();
             _postion = 0;
         }
@@ -398,6 +417,11 @@ namespace AusNail.Dictionary
             {
 
             }
+        }
+
+        private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
         }
     }
 }

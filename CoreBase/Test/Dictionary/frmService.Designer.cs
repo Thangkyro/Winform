@@ -92,7 +92,7 @@
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 16);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "09:27:01";
+            this.lblTime.Text = "21:05:30";
             // 
             // btnSave
             // 
@@ -130,6 +130,7 @@
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             this.GridDetail.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridDetail_DefaultValuesNeeded);
             // 
             // ctmGridView

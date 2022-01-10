@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,8 @@ namespace AusNail.Process
             _phoneNumber = phonemuber;
             txtPhoneNum.Text = _phoneNumber;
             txtPhoneNum.Focus();
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -80,8 +83,15 @@ namespace AusNail.Process
                 string Date = DateOfBirth;
                 if (sysUIFormat == "dd/MM/yyyy")
                 {
-                    Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                    try
+                    {
+                        Date = DateTime.ParseExact(DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture)
                        .ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    catch 
+                    {
+                        Date = "01/01/1900";
+                    }
                 }
 
                 string PostCode = this.txtPostcode.Text.Trim();

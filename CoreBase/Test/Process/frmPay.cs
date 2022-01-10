@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,10 +73,13 @@ namespace AusNail.Process
             txtCard.Enabled = false;
             txtCash.Enabled = false;
             dgvVoucher.Enabled = false;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void frmPay_Load(object sender, EventArgs e)
         {
+            //this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            groupBox1.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
 
         }
    

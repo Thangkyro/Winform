@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,13 +31,21 @@ namespace AusNail.Dictionary
         {
             InitializeComponent();
             Load += UserForm_Load;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zUser"))
             {
-                _user = dal.Read("is_inactive = 0");
+                if (NailApp.IsAdmin())
+                {
+                    _user = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _user = dal.Read("is_inactive = 0 and branchId = " + NailApp.BranchID);
+                }
             }
 
             _user.DefaultView.Sort = "user_name";
@@ -171,7 +180,15 @@ namespace AusNail.Dictionary
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
             {
-                Bds.DataSource = _Voucher = dal.GetData();
+                if (NailApp.IsAdmin())
+                {
+                    Bds.DataSource = _Voucher = dal.GetData();
+                }
+                else
+                {
+                    _Voucher = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
+                    Bds.DataSource = _Voucher;
+                }
             }
             LoadGrid();
             _postion = 0;
@@ -357,6 +374,11 @@ namespace AusNail.Dictionary
         }
 
         private void GridDetail_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+
+        }
+
+        private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
         }

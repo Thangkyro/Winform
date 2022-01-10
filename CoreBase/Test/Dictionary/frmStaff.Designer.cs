@@ -82,13 +82,13 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(621, 347);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 477);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(980, 48);
             // 
             // imageList
@@ -111,17 +111,17 @@
             this.lblTime.Location = new System.Drawing.Point(882, 15);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(86, 19);
-            this.lblTime.Text = "22:11:07";
+            this.lblTime.Text = "21:35:06";
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(10, 6);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3);
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(110, 6);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             // 
             // panel2
             // 
@@ -146,6 +146,7 @@
             this.GridDetail.Size = new System.Drawing.Size(513, 458);
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             this.GridDetail.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridDetail_DefaultValuesNeeded);
             // 
             // ctmGridView
@@ -380,7 +381,7 @@
             this.btnUpload.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnUpload.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnUpload.Location = new System.Drawing.Point(838, 191);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Radius = 10;
             this.btnUpload.Size = new System.Drawing.Size(58, 29);
@@ -413,7 +414,7 @@
             this.btnSaveImage.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.btnSaveImage.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.btnSaveImage.Location = new System.Drawing.Point(912, 191);
-            this.btnSaveImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Radius = 10;
             this.btnSaveImage.Size = new System.Drawing.Size(58, 29);
@@ -558,7 +559,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmStaff";
             this.Text = "Staff";
             this.Controls.SetChildIndex(this.panel2, 0);
