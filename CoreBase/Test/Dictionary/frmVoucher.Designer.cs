@@ -66,13 +66,13 @@
             this.chkis_inactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkis_inactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkis_inactive.Location = new System.Drawing.Point(513, 298);
-            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkis_inactive.Margin = new System.Windows.Forms.Padding(4);
             this.chkis_inactive.TabIndex = 9;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 371);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(749, 50);
             // 
             // imageList
@@ -95,17 +95,17 @@
             this.lblTime.Location = new System.Drawing.Point(653, 17);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 16);
-            this.lblTime.Text = "22:18:51";
+            this.lblTime.Text = "21:35:49";
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(10, 8);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3);
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(110, 8);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             // 
             // panel2
             // 
@@ -131,6 +131,7 @@
             this.GridDetail.TabIndex = 0;
             this.GridDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDetail_CellClick);
             this.GridDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GridDetail_CellValidating);
+            this.GridDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridDetail_DataError);
             // 
             // ctmGridView
             // 
@@ -367,7 +368,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmVoucher";
             this.Text = "Voucher";
             this.Controls.SetChildIndex(this.panel2, 0);

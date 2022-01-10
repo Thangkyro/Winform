@@ -60,7 +60,7 @@
             // 
             this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(30, 63);
+            this.txtPhone.Location = new System.Drawing.Point(30, 58);
             this.txtPhone.Multiline = true;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(895, 62);
@@ -84,7 +84,7 @@
             this.pnSDT.Controls.Add(this.btn4);
             this.pnSDT.Controls.Add(this.btn2);
             this.pnSDT.Controls.Add(this.btn1);
-            this.pnSDT.Location = new System.Drawing.Point(30, 138);
+            this.pnSDT.Location = new System.Drawing.Point(30, 133);
             this.pnSDT.Name = "pnSDT";
             this.pnSDT.Size = new System.Drawing.Size(895, 494);
             this.pnSDT.TabIndex = 5;
@@ -383,7 +383,7 @@
             this.lblText4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lblText4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText4.Location = new System.Drawing.Point(967, 491);
+            this.lblText4.Location = new System.Drawing.Point(967, 486);
             this.lblText4.Margin = new System.Windows.Forms.Padding(2);
             this.lblText4.Name = "lblText4";
             this.lblText4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -396,7 +396,7 @@
             this.lblText3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lblText3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText3.Location = new System.Drawing.Point(967, 262);
+            this.lblText3.Location = new System.Drawing.Point(967, 257);
             this.lblText3.Margin = new System.Windows.Forms.Padding(2);
             this.lblText3.Name = "lblText3";
             this.lblText3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -409,7 +409,7 @@
             this.lblText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblText2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText2.Location = new System.Drawing.Point(967, 34);
+            this.lblText2.Location = new System.Drawing.Point(967, 29);
             this.lblText2.Margin = new System.Windows.Forms.Padding(2);
             this.lblText2.Name = "lblText2";
             this.lblText2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -420,7 +420,7 @@
             // lbText1
             // 
             this.lbText1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbText1.Location = new System.Drawing.Point(30, 34);
+            this.lbText1.Location = new System.Drawing.Point(30, 29);
             this.lbText1.Name = "lbText1";
             this.lbText1.Size = new System.Drawing.Size(895, 23);
             this.lbText1.Slide = false;
@@ -438,7 +438,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(392, 649);
+            this.btnCancel.Location = new System.Drawing.Point(392, 644);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(150, 83);
@@ -460,7 +460,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(207, 649);
+            this.btnConfirm.Location = new System.Drawing.Point(207, 644);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(150, 83);
@@ -482,7 +482,7 @@
             this.btnReprint.ForeColor = System.Drawing.Color.Black;
             this.btnReprint.Inactive1 = System.Drawing.Color.Cyan;
             this.btnReprint.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnReprint.Location = new System.Drawing.Point(578, 649);
+            this.btnReprint.Location = new System.Drawing.Point(578, 644);
             this.btnReprint.Name = "btnReprint";
             this.btnReprint.Radius = 10;
             this.btnReprint.Size = new System.Drawing.Size(150, 83);
@@ -498,7 +498,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1237, 759);
+            this.ClientSize = new System.Drawing.Size(1237, 749);
             this.Controls.Add(this.btnReprint);
             this.Controls.Add(this.txtSecond);
             this.Controls.Add(this.label1);

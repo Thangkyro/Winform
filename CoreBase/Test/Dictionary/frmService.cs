@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,20 +32,28 @@ namespace AusNail.Dictionary
         {
             InitializeComponent();
             Load += UserForm_Load;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
         {
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
             {
-                _branch = dal.Read("is_inactive = 0");
+                if (NailApp.IsAdmin())
+                {
+                    _branch = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _branch = dal.Read("is_inactive = 0 and branchId = " + NailApp.BranchID);
+                }
             }
 
             _branch.DefaultView.Sort = "BranchCode";
-            DataRow dr1 = _branch.NewRow();
-            dr1["branchId"] = 0;
-            dr1["BranchName"] = "";
-            _branch.Rows.Add(dr1);
+            //DataRow dr1 = _branch.NewRow();
+            //dr1["branchId"] = 0;
+            //dr1["BranchName"] = "";
+            //_branch.Rows.Add(dr1);
 
             cbobranchId.DisplayMember = "BranchName";
             cbobranchId.ValueMember = "branchId";
@@ -53,14 +62,21 @@ namespace AusNail.Dictionary
 
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zServicegroup"))
             {
-                _GroupSV = dal.Read("is_inactive = 0");
+                if (NailApp.IsAdmin())
+                {
+                    _GroupSV = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _GroupSV = dal.Read("is_inactive = 0 and BranchId = " + NailApp.BranchID);
+                }
             }
 
             _GroupSV.DefaultView.Sort = "ServiceGroupName";
-            DataRow dr2 = _GroupSV.NewRow();
-            dr2["ServiceGroupID"] = 0;
-            dr2["ServiceGroupName"] = "";
-            _GroupSV.Rows.Add(dr2);
+            //DataRow dr2 = _GroupSV.NewRow();
+            //dr2["ServiceGroupID"] = 0;
+            //dr2["ServiceGroupName"] = "";
+            //_GroupSV.Rows.Add(dr2);
 
             cboGroupSTT.DisplayMember = "ServiceGroupName";
             cboGroupSTT.ValueMember = "ServiceGroupID";
@@ -181,7 +197,18 @@ namespace AusNail.Dictionary
         private void LoadData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                Bds.DataSource = _Service = dal.GetData();
+            {
+                if (NailApp.IsAdmin())
+                {
+                    Bds.DataSource = _Service = dal.GetData();
+                }
+                else
+                {
+                    _Service = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
+                    Bds.DataSource = _Service;
+                }
+            }
+                
             LoadGrid();
             _postion = 0;
         }
@@ -301,12 +328,19 @@ namespace AusNail.Dictionary
                     _postion = e.RowIndex;
                     DataGridViewRow row = this.GridDetail.Rows[e.RowIndex];
                     cbobranchId.SelectedValue = row.Cells["branchId"].Value.ToString();
+                    if (NailApp.IsAdmin())
+                    {
+                        DataTable dt = _GroupSV.Select("BranchId = " + row.Cells["branchId"].Value.ToString(), "").CopyToDataTable();
+                        var comboCell = (DataGridViewComboBoxCell)GridDetail.Rows[e.RowIndex].Cells["GroupStt"];
+                        comboCell.DataSource = dt;
+                    }
+
                     txtTitle.Text = row.Cells["Title"].Value.ToString();
                     txtPrice.Text = row.Cells["Price"].Value.ToString();
                     txtEstimateTime.Text = row.Cells["EstimateTime"].Value.ToString();
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
-                    chkis_inactive.Checked = bool.Parse(row.Cells["is_inactive"].Value.ToString());
-                    chkis_discount.Checked = bool.Parse(row.Cells["is_discount"].Value.ToString());
+                    chkis_inactive.Checked = row.Cells["is_inactive"].Value.ToString() == "" ? false : bool.Parse(row.Cells["is_inactive"].Value.ToString());
+                    chkis_discount.Checked = row.Cells["is_discount"].Value.ToString() ==""? false : bool.Parse(row.Cells["is_discount"].Value.ToString());
                 }
             }
             catch (Exception)
@@ -340,6 +374,11 @@ namespace AusNail.Dictionary
             {
 
             }
+        }
+
+        private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
         }
     }
 }

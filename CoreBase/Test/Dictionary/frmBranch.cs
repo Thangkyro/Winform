@@ -1,5 +1,6 @@
 ﻿using CoreBase;
 using CoreBase.DataAccessLayer;
+using CoreBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,7 @@ namespace AusNail.Dictionary
         public frmBranch()
         {
             InitializeComponent();
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
         protected override void BeforeFillData()
         {
@@ -153,7 +155,17 @@ namespace AusNail.Dictionary
         private void LoadData()
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
-                Bds.DataSource = _Service = dal.GetData();
+            {
+                if (NailApp.IsAdmin())
+                {
+                    Bds.DataSource = _Service = dal.GetData();
+                }
+                else
+                {
+                    _Service = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
+                    Bds.DataSource = _Service;
+                }
+            }
             LoadGrid();
             _postion = 0;
         }
@@ -407,6 +419,11 @@ namespace AusNail.Dictionary
             {
 
             }
+        }
+
+        private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
         }
     }
 }

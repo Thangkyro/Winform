@@ -19,6 +19,7 @@ namespace AusNail.Login
         public frmChangePassword()
         {
             InitializeComponent();
+            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private bool ValidData()
