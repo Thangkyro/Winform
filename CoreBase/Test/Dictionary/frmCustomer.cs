@@ -32,7 +32,7 @@ namespace AusNail.Dictionary
         {
             InitializeComponent();
             Load += UserForm_Load;
-            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace AusNail.Dictionary
                         this.zEditRow = null;
                         dr["created_by"] = NailApp.CurrentUserId;
                         dr["modified_by"] = NailApp.CurrentUserId;
-                        if (dr[_idName].ToString() == "0")
+                        if (dr[_idName].ToString() == "0" || dr[_idName].ToString() == "")
                         {
                             this.zEditRow = dr;
                             this.zEditRow["CustomerCode"] = GenCustomerCode();
@@ -201,15 +201,16 @@ namespace AusNail.Dictionary
         {
             using (DictionaryDAL dal = new DictionaryDAL(_tableName))
             {
-                if (NailApp.IsAdmin())
-                {
-                    Bds.DataSource = _Service = dal.GetData();
-                }
-                else
-                {
-                    _Service = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
-                    Bds.DataSource = _Service;
-                }
+                Bds.DataSource = _Service = dal.GetData();
+                //if (NailApp.IsAdmin())
+                //{
+                //    Bds.DataSource = _Service = dal.GetData();
+                //}
+                //else
+                //{
+                //    _Service = dal.GetData().Select("branchId = " + NailApp.BranchID, "").CopyToDataTable();
+                //    Bds.DataSource = _Service;
+                //}
             }
             LoadGrid();
             _postion = 0;

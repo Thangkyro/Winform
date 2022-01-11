@@ -26,9 +26,40 @@ namespace AusNail.Login
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            //using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
+            //{
+            //    _dmdvcs = dal.Read("is_inactive = 0");
+            //}
+
+            //_dmdvcs.DefaultView.Sort = "BranchCode";
+
+            //cboBranch.DisplayMember = "BranchName";
+            //cboBranch.ValueMember = "branchId";
+            //cboBranch.DataSource = _dmdvcs.DefaultView;
+            //cboBranch.SelectedValue = "A02";
+        }
+
+        private void loadCbBranch(string user)
+        {
+            bool admin = true;
+            string branch = "";
+            string sqlGetInfo = "Select is_admin, branchId From zUser with(nolock) Where user_name = '" + user + "'";
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, CommandType.Text, sqlGetInfo);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                admin = bool.Parse(dt.Rows[0][0].ToString());
+                branch = dt.Rows[0][1].ToString();
+            }
             using (ReadOnlyDAL dal = new ReadOnlyDAL("zBranch"))
             {
-                _dmdvcs = dal.Read("is_inactive = 0");
+                if (admin)
+                {
+                    _dmdvcs = dal.Read("is_inactive = 0");
+                }
+                else
+                {
+                    _dmdvcs = dal.Read("is_inactive = 0 and branchId = " + branch);
+                }
             }
 
             _dmdvcs.DefaultView.Sort = "BranchCode";
@@ -139,6 +170,11 @@ namespace AusNail.Login
 
         private void chkDefault_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void txtUsername_Validated(object sender, EventArgs e)
+        {
+            loadCbBranch(txtUsername.Text.Trim());
         }
 
         //private void btnCancel_Click(object sender, EventArgs e)

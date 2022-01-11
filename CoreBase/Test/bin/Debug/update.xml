@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Manifest version="1.1.2110.2902">
-  <ReleaseAt>29/10/2021 09:30</ReleaseAt>
+<Manifest version="1.1.2112.2901">
+  <ReleaseAt>29/12/2021 22:30</ReleaseAt>
   <CheckInterval>900</CheckInterval>
   <RemoteConfigUri>https://lapdongwinfred.com/winfred/update.xml</RemoteConfigUri>
   <SecurityToken>db45f47f-4ddc-42e9-8596-f51bc4e95164</SecurityToken>
   <MainAppExecute>AusNail.exe</MainAppExecute>
   <BaseUri>https://lapdongwinfred.com/winfred/ausnail/</BaseUri>
-  <Payload filename="AUS20211029_09.30.zip">https://lapdongwinfred.com/winfred/ausnail/AUS20211029_09.30.zip</Payload>
+  <Payload filename="AUS20211229_22.30.zip">https://lapdongwinfred.com/winfred/ausnail/AUS20211229_22.30.zip</Payload>
 </Manifest>

@@ -44,7 +44,7 @@ namespace AusNail.Process
             _phoneNumber = phonemuber;
             txtPhoneNum.Text = _phoneNumber;
             txtPhoneNum.Focus();
-            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace AusNail.Process
 
         private void frmCusstomerAdd_Load(object sender, EventArgs e)
         {
-            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
             txtName.Focus();
             txtName.Select();
         }

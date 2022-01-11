@@ -1,11 +1,9 @@
-USE [qidjefjs_ausNail]
-GO
 /****** Object:  StoredProcedure [dbo].[zBillMasterGetList]    Script Date: 6/12/2021 6:17:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[zBillMasterGetInfor]
+ALTER PROC [dbo].[zBillMasterGetInfor]
 (
 @BillID as int,
 @branchId as int
@@ -44,5 +42,5 @@ AS
 	t0.modified_by,
 	t0.modified_at
  FROM  [dbo].[zBillMaster] t0 with(nolock)
-	join [dbo].[zCustomer] t1 with(nolock) on t0.branchId = t1.branchId and t0.CustId = t1.CustId
+	join [dbo].[zCustomer] t1 with(nolock) on t0.CustId = t1.CustId
  where (t0.BillID  = @BillID  AND  t0.branchId  = @branchId)

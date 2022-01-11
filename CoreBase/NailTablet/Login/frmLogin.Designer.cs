@@ -68,7 +68,7 @@
             this.lblTime.Location = new System.Drawing.Point(346, 14);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Size = new System.Drawing.Size(64, 24);
-            this.lblTime.Text = "19:07:06";
+            this.lblTime.Text = "10:12:44";
             // 
             // btnCancel
             // 
@@ -143,6 +143,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(301, 20);
             this.txtUsername.TabIndex = 1;
+            this.txtUsername.Validated += new System.EventHandler(this.txtUsername_Validated);
             // 
             // label3
             // 

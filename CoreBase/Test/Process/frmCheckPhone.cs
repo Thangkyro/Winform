@@ -35,7 +35,7 @@ namespace AusNail.Process
             _branchId = branchId;
             _UserId = userId;
             txtPhone.Focus();
-            this.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -99,10 +99,10 @@ namespace AusNail.Process
             try
             {
                 _dtCustomer = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zCustomerGetbyPhoneNum", phoneNumber);
-                if (_dtCustomer.Select("branchId = " + NailApp.BranchID,"").Length == 0)
-                {
-                    _dtCustomer.Rows.RemoveAt(0);
-                }
+                //if (_dtCustomer.Select("branchId = " + NailApp.BranchID,"").Length == 0)
+                //{
+                //    _dtCustomer.Rows.RemoveAt(0);
+                //}
             }
             catch
             {}
@@ -146,7 +146,7 @@ namespace AusNail.Process
             this.Height = 400;
             this.pnSDT.Visible = true;
             lbSize.Text = "<<";
-            pnSDT.BackColor = NailApp.ColorUser.IsEmpty == true ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            pnSDT.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
 
         private void label1_Click(object sender, EventArgs e)
