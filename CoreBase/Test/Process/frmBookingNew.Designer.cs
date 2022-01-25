@@ -366,6 +366,7 @@
             this.dgvHeader.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvHeader.Size = new System.Drawing.Size(62, 50);
             this.dgvHeader.TabIndex = 1;
+            this.dgvHeader.Visible = false;
             this.dgvHeader.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHeader_CellClick);
             // 
             // panel1
