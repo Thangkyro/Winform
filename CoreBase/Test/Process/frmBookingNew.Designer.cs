@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookingNew));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
@@ -40,7 +38,6 @@
             this.btnCancel = new AltoControls.AltoButton();
             this.btnNewCustomer = new AltoControls.AltoButton();
             this.btnNewBooking = new AltoControls.AltoButton();
-            this.dgvHeader = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -191,7 +188,6 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHeader)).BeginInit();
             this.panel1.SuspendLayout();
             this.ctmGridView.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -212,7 +208,6 @@
             this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnNewCustomer);
             this.panel3.Controls.Add(this.btnNewBooking);
-            this.panel3.Controls.Add(this.dgvHeader);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 617);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -335,39 +330,6 @@
             this.btnNewBooking.Text = "New Booking";
             this.btnNewBooking.Transparency = false;
             this.btnNewBooking.Click += new System.EventHandler(this.btnNewBooking_Click);
-            // 
-            // dgvHeader
-            // 
-            this.dgvHeader.AllowUserToAddRows = false;
-            this.dgvHeader.AllowUserToDeleteRows = false;
-            this.dgvHeader.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHeader.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvHeader.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHeader.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvHeader.Location = new System.Drawing.Point(613, 4);
-            this.dgvHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvHeader.Name = "dgvHeader";
-            this.dgvHeader.ReadOnly = true;
-            this.dgvHeader.RowHeadersWidth = 51;
-            this.dgvHeader.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvHeader.Size = new System.Drawing.Size(62, 50);
-            this.dgvHeader.TabIndex = 1;
-            this.dgvHeader.Visible = false;
-            this.dgvHeader.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHeader_CellClick);
             // 
             // panel1
             // 
@@ -2578,7 +2540,6 @@
             this.Load += new System.EventHandler(this.frmBooking_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHeader)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ctmGridView.ResumeLayout(false);
@@ -2597,7 +2558,6 @@
         private AltoControls.AltoButton btnNewCustomer;
         private AltoControls.AltoButton btnNewBooking;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgvHeader;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txt91;
         private System.Windows.Forms.Label label10;
