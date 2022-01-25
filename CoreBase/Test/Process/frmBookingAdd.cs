@@ -27,6 +27,7 @@ namespace AusNail.Process
         private int iResult = 0;
         private string _action = "";
         private DateTime _dateChoose;
+        private string _shortDes = "";
 
         public frmBookingAdd()
         {
@@ -86,6 +87,8 @@ namespace AusNail.Process
                     lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
                     dtpBookingDate.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
                     txtDes.Text = _dtBookingMaster.Rows[0]["Decriptions"].ToString();
+                    txtShortDes.Text = _dtBookingMaster.Rows[0]["ShortDecriptions"].ToString();
+                    _shortDes = txtShortDes.Text;
                     //dtpBookingDate.Enabled = false;
                     _dtBookingDetail = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingDetail_byBookID", _bookID);
                 }
@@ -97,11 +100,11 @@ namespace AusNail.Process
         {
             try
             {
-                _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchID);
+                _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch_Booking", _branchID);
                 if (_dtService != null)
                 {
                     _Service = _dtService.Copy();
-                    _Service.DefaultView.Sort = "Title";
+                    //_Service.DefaultView.Sort = "Title";
                     _Service.Columns.Remove("branchId");
                     _Service.Columns.Remove("Display");
                     _Service.Columns.Remove("Decriptions");
@@ -110,6 +113,7 @@ namespace AusNail.Process
                     _Service.Columns.Remove("created_at");
                     _Service.Columns.Remove("modified_by");
                     _Service.Columns.Remove("modified_at");
+                    _Service.Columns.Remove("GroupStt");
                     _Service.Columns.Add("Quantity", typeof(decimal));
                     _Service.Columns.Add("Amount", typeof(decimal));
                     _Service.Columns.Add("OrderNumber", typeof(int));
@@ -157,14 +161,20 @@ namespace AusNail.Process
                 dgvService.DataSource = _Service;
                 dgvService.Columns["ServiceID"].Visible = false;
                 dgvService.Columns["OrderNumber"].Visible = false;
+                dgvService.Columns["ServiceGroupName"].HeaderText = "Service Group";
+                dgvService.Columns["ServiceGroupName"].ReadOnly = true;
+                dgvService.Columns["ServiceGroupName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 dgvService.Columns["Title"].HeaderText = "Service Name";
                 dgvService.Columns["Title"].ReadOnly = true;
                 dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvService.Columns["ShortDecriptions"].HeaderText = "Short Des";
+                dgvService.Columns["ShortDecriptions"].ReadOnly = true;
+                dgvService.Columns["ShortDecriptions"].Width = 80;
                 dgvService.Columns["EstimateTime"].HeaderText = "Estimate Time";
                 dgvService.Columns["EstimateTime"].Width = 75;
                 dgvService.Columns["EstimateTime"].ReadOnly = true;
-                dgvService.Columns["Quantity"].HeaderText = "Quantity";
-                dgvService.Columns["Quantity"].Width = 75;
+                dgvService.Columns["Quantity"].HeaderText = "Qty";
+                dgvService.Columns["Quantity"].Width = 50;
                 dgvService.Columns["Quantity"].ReadOnly = false;
                 dgvService.Columns["Price"].HeaderText = "Price";
                 dgvService.Columns["Price"].Width = 70;
@@ -173,7 +183,7 @@ namespace AusNail.Process
                 dgvService.Columns["Amount"].Visible = false;
                 dgvService.Columns["Amount"].Width = 120;
                 dgvService.Columns["Note"].HeaderText = "Note";
-                dgvService.Columns["Note"].Width = 120;
+                dgvService.Columns["Note"].Width = 50;
 
                 DataGridViewCheckBoxColumn dataGridViewImange = new DataGridViewCheckBoxColumn();
                 dataGridViewImange.Name = "Check";
@@ -233,6 +243,31 @@ namespace AusNail.Process
                     }
                 }
                 lblTotalAmont.Text = string.Format("{0:#,##0.00}", _totalAmount);
+            }
+            catch
+            {
+            }
+        }
+
+        private void ShortDes()
+        {
+            try
+            {
+                string _shortD = string.Empty;
+                for (int i = 0; i < dgvService.Rows.Count; i++)
+                {
+                    if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != ""
+                        && (bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
+                    {
+                        _shortD = string.Concat(_shortD, " - ", string.Concat(dgvService.Rows[i].Cells["Quantity"].Value.ToString(), "x",dgvService.Rows[i].Cells["ShortDecriptions"].Value.ToString()));
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(_shortD))
+                {
+                    _shortDes = _shortD.Remove(0, 3);
+                }
+                txtShortDes.Text = _shortDes;
             }
             catch
             {
@@ -338,7 +373,7 @@ namespace AusNail.Process
                                     string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
 
 
-                                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, 1, descriptions, error, errorMesg);
+                                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, 1, descriptions, _shortDes, error, errorMesg);
 
                                     if (ret == 0)
                                     {
@@ -377,7 +412,7 @@ namespace AusNail.Process
                                 string Note = dgvService.Rows[i].Cells["Note"].Value.ToString();
 
 
-                                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, isCheck, descriptions, error, errorMesg);
+                                int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBookingInsert_Ver1", _bookID, dtBook, _branchID, CustomerPhone, Num, ServiceID, Quantity, Price, Note, _userID, isCheck, descriptions, _shortDes, error, errorMesg);
 
                                 if (ret == 0)
                                 {
@@ -500,19 +535,23 @@ namespace AusNail.Process
         {
             try
             {
+                var senderGrid = (DataGridView)sender;
+                string headerText = senderGrid.Columns[e.ColumnIndex].Name;
                 //We make DataGridCheckBoxColumn commit changes with single click
                 //use index of logout column
-                if (e.ColumnIndex == 8 && e.RowIndex >= 0)
+                if (senderGrid.Columns["Check"] is DataGridViewCheckBoxColumn && headerText == "Check")
+                    //if (e.ColumnIndex == 10 && e.RowIndex >= 0)
                     this.dgvService.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 caculateAmount();
+                ShortDes();
                 ////Check the value of cell
                 //if ((bool)this.dgvService.CurrentCell.Value == true)
                 //{
-                   
+
                 //}
                 //else
                 //{
-                    
+
                 //}
             }
             catch (Exception)
