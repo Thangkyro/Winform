@@ -218,6 +218,12 @@
     <Compile Include="Process\frmBillDetail.Designer.cs">
       <DependentUpon>frmBillDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frmBookingNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmBookingNew.Designer.cs">
+      <DependentUpon>frmBookingNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmBookingFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmBillDetail.resx">
       <DependentUpon>frmBillDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmBookingNew.resx">
+      <DependentUpon>frmBookingNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmBookingFilter.resx">
       <DependentUpon>frmBookingFilter.cs</DependentUpon>
@@ -461,6 +470,9 @@
     <Content Include="nailsoft.ico" />
     <Content Include="Report\bill.xml" />
     <Content Include="Resources\nailsoft.ico" />
+    <Content Include="Resources\tab_add.png" />
+    <Content Include="Resources\tab_delete.png" />
+    <Content Include="Resources\tab_edit.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -475,7 +487,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DataGridViewColumns\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
