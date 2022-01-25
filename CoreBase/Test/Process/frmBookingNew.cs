@@ -3051,32 +3051,6 @@ namespace AusNail.Process
             this.Close();
         }
 
-        private void dgvHeader_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //string columnName = dgvHeader.Columns[e.ColumnIndex].Name;
-                int colIndex = e.ColumnIndex;
-                int rowIndex = e.RowIndex; // 0-Temporary, 1-Tobill, 2-Cancel
-                int time = colIndex == 24 ? 0 : colIndex;
-                string status = dgvHeader["Status", e.RowIndex].Value.ToString();
-                string value = dgvHeader[e.ColumnIndex, e.RowIndex].Value != DBNull.Value ? dgvHeader[e.ColumnIndex, e.RowIndex].Value.ToString() : null;
-                if (colIndex != 0 && value != null) // col Status
-                {
-                    //LoadGridDetail(status, _dateFilter, time);
-                }
-                else if (colIndex != 0)
-                {
-                    //LoadGridDetail("", _dateFilter, 0);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
         private void btnNewCustomer_Click(object sender, EventArgs e)
         {
             if (!NailApp.lstPermission.Contains(BOOKING_ADD_CMDKEY) && !NailApp.IsAdmin())
