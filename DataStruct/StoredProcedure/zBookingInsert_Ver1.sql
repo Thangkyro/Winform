@@ -1,4 +1,4 @@
-CREATE PROC [dbo].[zBookingInsert_Ver1]
+ALTER PROC [dbo].[zBookingInsert_Ver1]
 (
 @bookID as int,
 @BillDate as datetime,
@@ -12,6 +12,7 @@ CREATE PROC [dbo].[zBookingInsert_Ver1]
 @UserId as int,
 @IsCheck as int,
 @Description as nvarchar(2000),
+@ShortDescription as nvarchar(500),
 @ErrCode INT = 0 OUTPUT,
 @ErrMsg NVARCHAR(200) = '' OUTPUT
 )
@@ -53,6 +54,7 @@ begin try
            ,[modified_by]
            ,[modified_at]
 		   ,[Decriptions] 
+		   ,[ShortDecriptions]
 		   )
 		 VALUES
            (@branchId
@@ -68,6 +70,7 @@ begin try
            ,@UserId
            ,@DateZone
 		   ,@Description
+		   ,@ShortDescription
 		   );
 	end
 	else if (@bookID <> 0 )
@@ -75,6 +78,7 @@ begin try
 		 update  [dbo].[zBookingMaster]
 		  set BookingDate = @BillDate
 				, Decriptions = @Description
+				, ShortDecriptions = @ShortDescription
 		  where BookID = @bookID
 	end
 
