@@ -57,6 +57,7 @@ namespace AusNail.Process
 
         private void LoadGridHeader()
         {
+            ClearTextBox();
             _dtHeader = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMasterGetList_GroupByDate_New", _dateFilter, _branchIDChoose);
 
             if (_dtHeader != null && _dtHeader.Rows.Count > 0)
@@ -2503,6 +2504,131 @@ namespace AusNail.Process
             {
 
             }
+        }
+
+        private void ClearTextBox()
+        {
+            txt91.Clear();
+            txt92.Clear();
+            txt93.Clear();
+            txt94.Clear();
+            txt95.Clear();
+            txt96.Clear();
+            txt97.Clear();
+            txt98.Clear();
+            txt99.Clear();
+            txt910.Clear();
+
+            txt101.Clear();
+            txt102.Clear();
+            txt103.Clear();
+            txt104.Clear();
+            txt105.Clear();
+            txt106.Clear();
+            txt107.Clear();
+            txt108.Clear();
+            txt109.Clear();
+            txt1010.Clear();
+
+            txt111.Clear();
+            txt112.Clear();
+            txt113.Clear();
+            txt114.Clear();
+            txt115.Clear();
+            txt116.Clear();
+            txt117.Clear();
+            txt118.Clear();
+            txt119.Clear();
+            txt1110.Clear();
+
+            txt121.Clear();
+            txt122.Clear();
+            txt123.Clear();
+            txt124.Clear();
+            txt125.Clear();
+            txt126.Clear();
+            txt127.Clear();
+            txt128.Clear();
+            txt129.Clear();
+            txt1210.Clear();
+
+            txt131.Clear();
+            txt132.Clear();
+            txt133.Clear();
+            txt134.Clear();
+            txt135.Clear();
+            txt136.Clear();
+            txt137.Clear();
+            txt138.Clear();
+            txt139.Clear();
+            txt1310.Clear();
+
+            txt141.Clear();
+            txt142.Clear();
+            txt143.Clear();
+            txt144.Clear();
+            txt145.Clear();
+            txt146.Clear();
+            txt147.Clear();
+            txt148.Clear();
+            txt149.Clear();
+            txt1410.Clear();
+
+            txt151.Clear();
+            txt152.Clear();
+            txt153.Clear();
+            txt154.Clear();
+            txt155.Clear();
+            txt156.Clear();
+            txt157.Clear();
+            txt158.Clear();
+            txt159.Clear();
+            txt1510.Clear();
+
+            txt161.Clear();
+            txt162.Clear();
+            txt163.Clear();
+            txt164.Clear();
+            txt165.Clear();
+            txt166.Clear();
+            txt167.Clear();
+            txt168.Clear();
+            txt169.Clear();
+            txt1610.Clear();
+
+            txt171.Clear();
+            txt172.Clear();
+            txt173.Clear();
+            txt174.Clear();
+            txt175.Clear();
+            txt176.Clear();
+            txt177.Clear();
+            txt178.Clear();
+            txt179.Clear();
+            txt1710.Clear();
+
+            txt181.Clear();
+            txt182.Clear();
+            txt183.Clear();
+            txt184.Clear();
+            txt185.Clear();
+            txt186.Clear();
+            txt187.Clear();
+            txt188.Clear();
+            txt189.Clear();
+            txt1810.Clear();
+
+            txt191.Clear();
+            txt192.Clear();
+            txt193.Clear();
+            txt194.Clear();
+            txt195.Clear();
+            txt196.Clear();
+            txt197.Clear();
+            txt198.Clear();
+            txt199.Clear();
+            txt1910.Clear();
+
         }
 
 
