@@ -2519,6 +2519,17 @@ namespace AusNail.Process
             txt99.Clear();
             txt910.Clear();
 
+            txt91.BackColor = Color.White;;
+            txt92.BackColor = Color.White;;
+            txt93.BackColor = Color.White;;
+            txt94.BackColor = Color.White;;
+            txt95.BackColor = Color.White;;
+            txt96.BackColor = Color.White;;
+            txt97.BackColor = Color.White;;
+            txt98.BackColor = Color.White;;
+            txt99.BackColor = Color.White;
+            txt910.BackColor = Color.White;
+
             txt101.Clear();
             txt102.Clear();
             txt103.Clear();
@@ -2529,6 +2540,17 @@ namespace AusNail.Process
             txt108.Clear();
             txt109.Clear();
             txt1010.Clear();
+
+            txt101.BackColor = Color.White;
+            txt102.BackColor = Color.White;
+            txt103.BackColor = Color.White;
+            txt104.BackColor = Color.White;
+            txt105.BackColor = Color.White;
+            txt106.BackColor = Color.White;
+            txt107.BackColor = Color.White;
+            txt108.BackColor = Color.White;
+            txt109.BackColor = Color.White;
+            txt1010.BackColor = Color.White;
 
             txt111.Clear();
             txt112.Clear();
@@ -2541,6 +2563,17 @@ namespace AusNail.Process
             txt119.Clear();
             txt1110.Clear();
 
+            txt111.BackColor = Color.White;
+            txt112.BackColor = Color.White;
+            txt113.BackColor = Color.White;
+            txt114.BackColor = Color.White;
+            txt115.BackColor = Color.White;
+            txt116.BackColor = Color.White;
+            txt117.BackColor = Color.White;
+            txt118.BackColor = Color.White;
+            txt119.BackColor = Color.White;
+            txt1110.BackColor = Color.White;
+
             txt121.Clear();
             txt122.Clear();
             txt123.Clear();
@@ -2551,6 +2584,17 @@ namespace AusNail.Process
             txt128.Clear();
             txt129.Clear();
             txt1210.Clear();
+
+            txt121.BackColor = Color.White;
+            txt122.BackColor = Color.White;
+            txt123.BackColor = Color.White;
+            txt124.BackColor = Color.White;
+            txt125.BackColor = Color.White;
+            txt126.BackColor = Color.White;
+            txt127.BackColor = Color.White;
+            txt128.BackColor = Color.White;
+            txt129.BackColor = Color.White;
+            txt1210.BackColor = Color.White;
 
             txt131.Clear();
             txt132.Clear();
@@ -2563,6 +2607,17 @@ namespace AusNail.Process
             txt139.Clear();
             txt1310.Clear();
 
+            txt131.BackColor = Color.White;
+            txt132.BackColor = Color.White;
+            txt133.BackColor = Color.White;
+            txt134.BackColor = Color.White;
+            txt135.BackColor = Color.White;
+            txt136.BackColor = Color.White;
+            txt137.BackColor = Color.White;
+            txt138.BackColor = Color.White;
+            txt139.BackColor = Color.White;
+            txt1310.BackColor = Color.White;
+
             txt141.Clear();
             txt142.Clear();
             txt143.Clear();
@@ -2573,6 +2628,17 @@ namespace AusNail.Process
             txt148.Clear();
             txt149.Clear();
             txt1410.Clear();
+
+            txt141.BackColor = Color.White;
+            txt142.BackColor = Color.White;
+            txt143.BackColor = Color.White;
+            txt144.BackColor = Color.White;
+            txt145.BackColor = Color.White;
+            txt146.BackColor = Color.White;
+            txt147.BackColor = Color.White;
+            txt148.BackColor = Color.White;
+            txt149.BackColor = Color.White;
+            txt1410.BackColor = Color.White;
 
             txt151.Clear();
             txt152.Clear();
@@ -2585,6 +2651,17 @@ namespace AusNail.Process
             txt159.Clear();
             txt1510.Clear();
 
+            txt151.BackColor = Color.White;
+            txt152.BackColor = Color.White;
+            txt153.BackColor = Color.White;
+            txt154.BackColor = Color.White;
+            txt155.BackColor = Color.White;
+            txt156.BackColor = Color.White;
+            txt157.BackColor = Color.White;
+            txt158.BackColor = Color.White;
+            txt159.BackColor = Color.White;
+            txt1510.BackColor = Color.White;
+
             txt161.Clear();
             txt162.Clear();
             txt163.Clear();
@@ -2595,6 +2672,17 @@ namespace AusNail.Process
             txt168.Clear();
             txt169.Clear();
             txt1610.Clear();
+
+            txt161.BackColor = Color.White;
+            txt162.BackColor = Color.White;
+            txt163.BackColor = Color.White;
+            txt164.BackColor = Color.White;
+            txt165.BackColor = Color.White;
+            txt166.BackColor = Color.White;
+            txt167.BackColor = Color.White;
+            txt168.BackColor = Color.White;
+            txt169.BackColor = Color.White;
+            txt1610.BackColor = Color.White;
 
             txt171.Clear();
             txt172.Clear();
@@ -2607,6 +2695,17 @@ namespace AusNail.Process
             txt179.Clear();
             txt1710.Clear();
 
+            txt171.BackColor = Color.White;
+            txt172.BackColor = Color.White;
+            txt173.BackColor = Color.White;
+            txt174.BackColor = Color.White;
+            txt175.BackColor = Color.White;
+            txt176.BackColor = Color.White;
+            txt177.BackColor = Color.White;
+            txt178.BackColor = Color.White;
+            txt179.BackColor = Color.White;
+            txt1710.BackColor = Color.White;
+
             txt181.Clear();
             txt182.Clear();
             txt183.Clear();
@@ -2618,6 +2717,17 @@ namespace AusNail.Process
             txt189.Clear();
             txt1810.Clear();
 
+            txt181.BackColor = Color.White;
+            txt182.BackColor = Color.White;
+            txt183.BackColor = Color.White;
+            txt184.BackColor = Color.White;
+            txt185.BackColor = Color.White;
+            txt186.BackColor = Color.White;
+            txt187.BackColor = Color.White;
+            txt188.BackColor = Color.White;
+            txt189.BackColor = Color.White;
+            txt1810.BackColor = Color.White;
+
             txt191.Clear();
             txt192.Clear();
             txt193.Clear();
@@ -2628,6 +2738,17 @@ namespace AusNail.Process
             txt198.Clear();
             txt199.Clear();
             txt1910.Clear();
+
+            txt191.BackColor = Color.White;
+            txt192.BackColor = Color.White;
+            txt193.BackColor = Color.White;
+            txt194.BackColor = Color.White;
+            txt195.BackColor = Color.White;
+            txt196.BackColor = Color.White;
+            txt197.BackColor = Color.White;
+            txt198.BackColor = Color.White;
+            txt199.BackColor = Color.White;
+            txt1910.BackColor = Color.White;
 
         }
 
