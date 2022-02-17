@@ -86,6 +86,7 @@ namespace AusNail.Process
                     txtPhoneNumber.Text = _dtBookingMaster.Rows[0]["CustomerPhone"].ToString();
                     lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
                     dtpBookingDate.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
+                    dtBookingTime.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
                     txtDes.Text = _dtBookingMaster.Rows[0]["Decriptions"].ToString();
                     txtShortDes.Text = _dtBookingMaster.Rows[0]["ShortDecriptions"].ToString();
                     _shortDes = txtShortDes.Text;
@@ -259,7 +260,7 @@ namespace AusNail.Process
                     if (dgvService.Rows[i].Cells["serviceId"].Value != null && dgvService.Rows[i].Cells["serviceId"].Value.ToString() != ""
                         && (bool)(dgvService.Rows[i].Cells["Check"].Value == null ? false : dgvService.Rows[i].Cells["Check"].Value) == true)
                     {
-                        _shortD = string.Concat(_shortD, " - ", string.Concat(dgvService.Rows[i].Cells["Quantity"].Value.ToString(), "x",dgvService.Rows[i].Cells["ShortDecriptions"].Value.ToString()));
+                        _shortD = string.Concat(_shortD, " - ", string.Concat(dgvService.Rows[i].Cells["Quantity"].Value.zToInt().ToString(), "x",dgvService.Rows[i].Cells["ShortDecriptions"].Value.ToString()));
                     }
                 }
 

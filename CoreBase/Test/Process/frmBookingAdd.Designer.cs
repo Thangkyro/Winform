@@ -41,7 +41,7 @@
             this.txtDes = new System.Windows.Forms.TextBox();
             this.lblHeader = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.dtpBookingDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpBookingDate = new MyDateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -345,7 +345,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpBookingDate;
+        private MyDateTimePicker dtpBookingDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblTotalAmont;
