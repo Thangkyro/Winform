@@ -213,7 +213,7 @@ namespace AusNail
                            out dt);
                 if (dt != null)
                 {
-                    frmBooking frmBook = new frmBooking(dt, int.Parse(lstResult[1].ToString().Trim()));
+                    frmBookingNew frmBook = new frmBookingNew(dt, int.Parse(lstResult[1].ToString().Trim()));
                     if (!checkForm(frmBook))
                     {
                         frmBook.MdiParent = this;
