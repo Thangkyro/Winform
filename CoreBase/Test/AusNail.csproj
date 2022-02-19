@@ -194,6 +194,9 @@
     <Compile Include="Login\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Process\frmBillDetailListDetail.cs">
       <SubType>Form</SubType>
     </Compile>
