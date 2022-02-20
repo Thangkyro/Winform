@@ -270,7 +270,7 @@ namespace AusNail.Process
                 }
                 txtShortDes.Text = _shortDes;
             }
-            catch
+            catch (Exception ex)
             {
             }
         }
@@ -354,6 +354,17 @@ namespace AusNail.Process
                     int error = 0;
                     string errorMesg = "";
                     bool flag = true;
+
+                    //Check exists 10 booking on this hour with phone number
+                    //Check exists
+                    DataTable dtCheckExists10Book = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingMaster_CheckExistsBooking", _branchID, dtBook, error, errorMesg);
+                    if (dtCheckExists10Book != null && dtCheckExists10Book.Rows.Count > 0)
+                    {
+                        MessageBox.Show("10 bookings exist for this hour: " + dtBook.ToString("HH"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+
                     if (_bookID != 0) //Edit
                     {
                         //Delete detail
@@ -498,6 +509,11 @@ namespace AusNail.Process
                         {
                             //dgvService.Rows[i].Cells["Check"].Value = true;
                             dgvService.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            //dgvService.Rows[e.RowIndex].Cells["Check"].Value = true;
+                            dgvService.Rows[i].DefaultCellStyle.BackColor = Color.White;
                         }
                     }
                 }
