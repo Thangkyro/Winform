@@ -23,7 +23,7 @@ AS
       ,[OrderNumber]
       ,[branchId]
       ,[ServiceID]
-      ,[Quantity]
+      ,CAST([Quantity] AS INT) AS Quantity
       ,[EstimatePrice]
       ,[EstimateTime]
       ,[Note]

@@ -3003,9 +3003,9 @@ namespace AusNail.Process
                             //}
                         }
                     }
-                    else if (!string.IsNullOrEmpty(errorMesg))
+                    else //if (!string.IsNullOrEmpty(errorMesg))
                     {
-                        MessageBox.Show(errorMesg, "Error");
+                        MessageBox.Show("Exists bill of customer unpaid.", "Error");
                     }
                     //}
                 }

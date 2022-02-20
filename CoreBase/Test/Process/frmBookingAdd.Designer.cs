@@ -36,19 +36,19 @@
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtShortDes = new System.Windows.Forms.TextBox();
             this.dtBookingTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
             this.lblHeader = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.dtpBookingDate = new MyDateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalAmont = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtShortDes = new System.Windows.Forms.TextBox();
+            this.dtpBookingDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -148,6 +148,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.dtpBookingDate);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtShortDes);
             this.panel1.Controls.Add(this.dtBookingTime);
@@ -155,7 +156,6 @@
             this.panel1.Controls.Add(this.txtDes);
             this.panel1.Controls.Add(this.lblHeader);
             this.panel1.Controls.Add(this.txtName);
-            this.panel1.Controls.Add(this.dtpBookingDate);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtPhoneNumber);
@@ -165,6 +165,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1129, 722);
             this.panel1.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(30, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(162, 24);
+            this.label4.TabIndex = 10003;
+            this.label4.Text = "Short Descriptions";
+            // 
+            // txtShortDes
+            // 
+            this.txtShortDes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtShortDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShortDes.Location = new System.Drawing.Point(204, 238);
+            this.txtShortDes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtShortDes.Name = "txtShortDes";
+            this.txtShortDes.ReadOnly = true;
+            this.txtShortDes.Size = new System.Drawing.Size(908, 38);
+            this.txtShortDes.TabIndex = 10002;
             // 
             // dtBookingTime
             // 
@@ -221,16 +243,6 @@
             this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(561, 38);
             this.txtName.TabIndex = 9999;
-            // 
-            // dtpBookingDate
-            // 
-            this.dtpBookingDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBookingDate.Location = new System.Drawing.Point(204, 140);
-            this.dtpBookingDate.Name = "dtpBookingDate";
-            this.dtpBookingDate.Size = new System.Drawing.Size(222, 45);
-            this.dtpBookingDate.TabIndex = 1;
             // 
             // label2
             // 
@@ -292,27 +304,15 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Total Amount:";
             // 
-            // label4
+            // dtpBookingDate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 249);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 24);
-            this.label4.TabIndex = 10003;
-            this.label4.Text = "Short Descriptions";
-            // 
-            // txtShortDes
-            // 
-            this.txtShortDes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtShortDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShortDes.Location = new System.Drawing.Point(204, 238);
-            this.txtShortDes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtShortDes.Name = "txtShortDes";
-            this.txtShortDes.ReadOnly = true;
-            this.txtShortDes.Size = new System.Drawing.Size(908, 38);
-            this.txtShortDes.TabIndex = 10002;
+            this.dtpBookingDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpBookingDate.Location = new System.Drawing.Point(204, 140);
+            this.dtpBookingDate.Name = "dtpBookingDate";
+            this.dtpBookingDate.Size = new System.Drawing.Size(222, 45);
+            this.dtpBookingDate.TabIndex = 1;
             // 
             // frmBookingAdd
             // 
@@ -345,7 +345,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private MyDateTimePicker dtpBookingDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblTotalAmont;
@@ -356,5 +355,6 @@
         private System.Windows.Forms.DateTimePicker dtBookingTime;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtShortDes;
+        private System.Windows.Forms.DateTimePicker dtpBookingDate;
     }
 }
