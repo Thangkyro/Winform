@@ -41,6 +41,7 @@
             this.Voucher = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessHour = new System.Windows.Forms.ToolStripMenuItem();
             this.Banner = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServiceGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.zps = new System.Windows.Forms.ToolStripMenuItem();
             this.TimeKeeping = new System.Windows.Forms.ToolStripMenuItem();
             this.Booking = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,7 @@
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabForms = new System.Windows.Forms.TabControl();
-            this.ServiceGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.LedgerBook = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,56 +109,63 @@
             // Branch
             // 
             this.Branch.Name = "Branch";
-            this.Branch.Size = new System.Drawing.Size(180, 22);
+            this.Branch.Size = new System.Drawing.Size(147, 22);
             this.Branch.Text = "Branch";
             // 
             // Customer
             // 
             this.Customer.Name = "Customer";
-            this.Customer.Size = new System.Drawing.Size(180, 22);
+            this.Customer.Size = new System.Drawing.Size(147, 22);
             this.Customer.Text = "Customer";
             // 
             // Service
             // 
             this.Service.Name = "Service";
-            this.Service.Size = new System.Drawing.Size(180, 22);
+            this.Service.Size = new System.Drawing.Size(147, 22);
             this.Service.Text = "Service";
             // 
             // Staff
             // 
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(180, 22);
+            this.Staff.Size = new System.Drawing.Size(147, 22);
             this.Staff.Text = "Staff";
             // 
             // Holiday
             // 
             this.Holiday.Name = "Holiday";
-            this.Holiday.Size = new System.Drawing.Size(180, 22);
+            this.Holiday.Size = new System.Drawing.Size(147, 22);
             this.Holiday.Text = "Holiday";
             // 
             // Voucher
             // 
             this.Voucher.Name = "Voucher";
-            this.Voucher.Size = new System.Drawing.Size(180, 22);
+            this.Voucher.Size = new System.Drawing.Size(147, 22);
             this.Voucher.Text = "Voucher";
             // 
             // BusinessHour
             // 
             this.BusinessHour.Name = "BusinessHour";
-            this.BusinessHour.Size = new System.Drawing.Size(180, 22);
+            this.BusinessHour.Size = new System.Drawing.Size(147, 22);
             this.BusinessHour.Text = "BusinessHour";
             // 
             // Banner
             // 
             this.Banner.Name = "Banner";
-            this.Banner.Size = new System.Drawing.Size(180, 22);
+            this.Banner.Size = new System.Drawing.Size(147, 22);
             this.Banner.Text = "Banner";
+            // 
+            // ServiceGroup
+            // 
+            this.ServiceGroup.Name = "ServiceGroup";
+            this.ServiceGroup.Size = new System.Drawing.Size(147, 22);
+            this.ServiceGroup.Text = "Service Group";
             // 
             // zps
             // 
             this.zps.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TimeKeeping,
-            this.Booking});
+            this.Booking,
+            this.LedgerBook});
             this.zps.Name = "zps";
             this.zps.Size = new System.Drawing.Size(59, 24);
             this.zps.Text = "Process";
@@ -166,13 +174,13 @@
             // 
             this.TimeKeeping.Enabled = false;
             this.TimeKeeping.Name = "TimeKeeping";
-            this.TimeKeeping.Size = new System.Drawing.Size(143, 22);
+            this.TimeKeeping.Size = new System.Drawing.Size(152, 22);
             this.TimeKeeping.Text = "TimeKeeping";
             // 
             // Booking
             // 
             this.Booking.Name = "Booking";
-            this.Booking.Size = new System.Drawing.Size(143, 22);
+            this.Booking.Size = new System.Drawing.Size(152, 22);
             this.Booking.Text = "Booking";
             // 
             // zbc
@@ -187,13 +195,13 @@
             // BillList
             // 
             this.BillList.Name = "BillList";
-            this.BillList.Size = new System.Drawing.Size(144, 22);
+            this.BillList.Size = new System.Drawing.Size(152, 22);
             this.BillList.Text = "Bill List";
             // 
             // BillDetailList
             // 
             this.BillDetailList.Name = "BillDetailList";
-            this.BillDetailList.Size = new System.Drawing.Size(144, 22);
+            this.BillDetailList.Size = new System.Drawing.Size(152, 22);
             this.BillDetailList.Text = "Bill Detail List";
             // 
             // zst
@@ -244,11 +252,11 @@
             this.tabForms.Visible = false;
             this.tabForms.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
             // 
-            // ServiceGroup
+            // LedgerBook
             // 
-            this.ServiceGroup.Name = "ServiceGroup";
-            this.ServiceGroup.Size = new System.Drawing.Size(180, 22);
-            this.ServiceGroup.Text = "Service Group";
+            this.LedgerBook.Name = "LedgerBook";
+            this.LedgerBook.Size = new System.Drawing.Size(152, 22);
+            this.LedgerBook.Text = "LedgerBook";
             // 
             // frmMainParent
             // 
@@ -299,5 +307,6 @@
         private System.Windows.Forms.ToolStripMenuItem BillList;
         private System.Windows.Forms.ToolStripMenuItem BillDetailList;
         private System.Windows.Forms.ToolStripMenuItem ServiceGroup;
+        private System.Windows.Forms.ToolStripMenuItem LedgerBook;
     }
 }

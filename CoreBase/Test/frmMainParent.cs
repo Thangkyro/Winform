@@ -93,6 +93,7 @@ namespace AusNail
             InitCommandDm();
             InitCommandPS();
             InitCommandST();
+            InitCommandLB();
             InitCommandRPT();
         }
 
@@ -158,6 +159,15 @@ namespace AusNail
                 Booking.Visible = false;
         }
 
+        void InitCommandLB()
+        {
+
+            if (NailApp.lstPermission.Contains(LedgerBook.Name) || NailApp.IsAdmin())
+                LedgerBook.Click += (s, e) => { frmLedgerBook(); };
+            else
+                LedgerBook.Visible = false;
+        }
+
         void InitCommandST()
         {
             if (NailApp.IsAdmin())
@@ -221,6 +231,16 @@ namespace AusNail
                     }
                 }
 
+            }
+        }
+
+        void frmLedgerBook()
+        {
+            frmLedgerBook frmLBook = new frmLedgerBook();
+            if (!checkForm(frmLBook))
+            {
+                frmLBook.MdiParent = this;
+                frmLBook.Show();
             }
         }
 

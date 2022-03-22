@@ -197,6 +197,12 @@
     <Compile Include="MyDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Process\frmLedgerBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frmLedgerBook.Designer.cs">
+      <DependentUpon>frmLedgerBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frmBillDetailListDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frmLedgerBook.resx">
+      <DependentUpon>frmLedgerBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frmBillDetailListDetail.resx">
       <DependentUpon>frmBillDetailListDetail.cs</DependentUpon>
