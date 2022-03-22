@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLedgerBook));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -46,12 +47,16 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmsMenuRight = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.delteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).BeginInit();
             this.panel4.SuspendLayout();
+            this.cmsMenuRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -229,6 +234,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReportDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReportDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReportDetail.ContextMenuStrip = this.cmsMenuRight;
             this.dgvReportDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvReportDetail.Location = new System.Drawing.Point(0, 0);
             this.dgvReportDetail.Name = "dgvReportDetail";
@@ -272,6 +278,30 @@
             this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.Validated += new System.EventHandler(this.dateTimePicker1_Validated);
             // 
+            // cmsMenuRight
+            // 
+            this.cmsMenuRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.delteToolStripMenuItem});
+            this.cmsMenuRight.Name = "cmsMenuRight";
+            this.cmsMenuRight.Size = new System.Drawing.Size(127, 48);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // delteToolStripMenuItem
+            // 
+            this.delteToolStripMenuItem.Name = "delteToolStripMenuItem";
+            this.delteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.delteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.delteToolStripMenuItem.Text = "Delete";
+            this.delteToolStripMenuItem.Click += new System.EventHandler(this.delteToolStripMenuItem_Click);
+            // 
             // frmLedgerBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.cmsMenuRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -314,5 +345,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataGridView dgvReportDetail;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ContextMenuStrip cmsMenuRight;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem delteToolStripMenuItem;
     }
 }

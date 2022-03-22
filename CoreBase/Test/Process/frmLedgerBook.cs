@@ -294,5 +294,46 @@ namespace AusNail.Process
 
             dgvReportDetail.AutoGenerateColumns = true;
         }
+
+        private void delteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+           
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Khai báo dữ liệu add grid.
+            double cashin = 0;
+            double revenueCash = 0;
+            double revenueBank = 0;
+            double revenueVoucher = 0;
+            double ExpenseCash = 0;
+            double CashOut = 0;
+            double CheckedCash = 0;
+            bool Lock = false;
+            if (dgvReportDetail.SelectedCells.Count > 0)
+            {
+                //string id = gridview.SelectedCells[0].Value.ToString();
+
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CashIn"].Value.ToString(), out cashin);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["RevenueCash"].Value.ToString(), out revenueCash);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["RevenueBank"].Value.ToString(), out revenueBank);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["RenenueVoucher"].Value.ToString(), out revenueVoucher);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["ExpenseCash"].Value.ToString(), out ExpenseCash);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CashOut"].Value.ToString(), out CashOut);
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CheckedCash"].Value.ToString(), out CheckedCash);
+                //if (dgvReportDetail.SelectedRows[0].Cells["IsLock"].ToString() == "1")
+                //{
+                //    Lock = true;
+                //}
+                frmLedgerAdd frm = new frmLedgerAdd();
+                frm.Cashin = cashin;
+                frm.RevenueCash = revenueCash;
+                frm.RevenueBank = revenueBank;
+                frm.RevenueVoucher = revenueVoucher;
+                frm.ShowDialog();
+            }
+        }
     }
 }
