@@ -65,39 +65,39 @@ namespace AusNail.Process
         {
             try
             {
-                if (_isAdd)
+                frmLedgerAdd frm = new frmLedgerAdd();
+                double cashin = 0;
+                double revenueCash = 0;
+                double revenueBank = 0;
+                double revenueVoucher = 0;
+                double ExpenseCash = 0;
+                double CashOut = 0;
+                double CheckedCash = 0;
+                bool Lock = false;
+                DateTime LedgerDate;
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    DateTime ledgerDate;
-                    bool Locked = false;
-                    decimal CheckedCash = 0, CashIn = 0, RevenueCash = 0, ExpenseCash = 0, CashOut = 0, RevenueBank = 0, RenenueVoucher = 0;
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["RevenueBank"].Value.ToString(), out RevenueBank);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["RenenueVoucher"].Value.ToString(), out RenenueVoucher);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["CheckedCash"].Value.ToString(), out CheckedCash);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["CashIn"].Value.ToString(), out CashIn);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["RevenueCash"].Value.ToString(), out RevenueCash);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["ExpenseCash"].Value.ToString(), out ExpenseCash);
-                    decimal.TryParse(dgvReportDetail.Rows[0].Cells["CashOut"].Value.ToString(), out CashOut);
+                    cashin = frm.Cashin;
+                    revenueCash = frm.RevenueCash;
+                    revenueBank = frm.RevenueBank;
+                    revenueVoucher = frm.RevenueVoucher;
+                    ExpenseCash = frm.ExpenseCash;
+                    CashOut = frm.CashOut;
+                    CheckedCash = frm.zCheckedCash;
+                    Lock = frm.Lock;
+                    LedgerDate = frm.LedgerDate;
 
-                    DateTime.TryParse(dgvReportDetail.Rows[0].Cells["LedgerDate"].Value.ToString(), out ledgerDate);
-                    bool.TryParse(dgvReportDetail.Rows[0].Cells["Locked"].Value.ToString(), out Locked);
-
-                    if (!Locked)
+                    int retIns = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zLedgerBook_InsertValue", int.Parse(NailApp.BranchID), LedgerDate.Date, cashin, revenueCash, revenueBank, revenueVoucher, ExpenseCash, CashOut, CheckedCash, Lock, NailApp.CurrentUserId);
+                    if (retIns > 0)
                     {
-                        int retIns = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zLedgerBook_InsertValue", int.Parse(NailApp.BranchID), ledgerDate, CashIn, RevenueCash, RevenueBank, RenenueVoucher, ExpenseCash, CashOut, CheckedCash, true, NailApp.CurrentUserId);
-                            if (retIns > 0)
-                            {
-                                dgvReportDetail.ReadOnly = true;
-                                MessageBox.Show("Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                dgvReportDetail.ReadOnly = false;
-                            }
+                        LoadData();
+                        MessageBox.Show("Sucessfull.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Ledger is locked.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Add Error.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
                 }
             }
             catch (Exception ex)
@@ -181,64 +181,64 @@ namespace AusNail.Process
 
         private void dateTimePicker1_Validated(object sender, EventArgs e)
         {
-            // Load dữ liệu theo ngày.
-            DateTime dtF;
-            DateTime.TryParseExact(dateTimePicker1.Text.Trim().ToString(), "dd/MM/yyyy",
-                              CultureInfo.InvariantCulture,
-                              DateTimeStyles.None,
-                              out dtF);
-            if (dtF == null)
-            {
-                MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else if (dtF.Year == 0001)
-            {
-                MessageBox.Show("Date from invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_GetBill", dtF, int.Parse(NailApp.BranchID));
+            //// Load dữ liệu theo ngày.
+            //DateTime dtF;
+            //DateTime.TryParseExact(dateTimePicker1.Text.Trim().ToString(), "dd/MM/yyyy",
+            //                  CultureInfo.InvariantCulture,
+            //                  DateTimeStyles.None,
+            //                  out dtF);
+            //if (dtF == null)
+            //{
+            //    MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
+            //else if (dtF.Year == 0001)
+            //{
+            //    MessageBox.Show("Date from invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
+            //DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_GetBill", dtF, int.Parse(NailApp.BranchID));
 
-            // Khai báo dữ liệu add grid.
-            double cashin = 0;
-            double revenueCash = 0;
-            double revenueBank = 0;
-            double revenueVoucher = 0;
-            double totalAmount = 0;
-            double totalDiscount = 0;
+            //// Khai báo dữ liệu add grid.
+            //double cashin = 0;
+            //double revenueCash = 0;
+            //double revenueBank = 0;
+            //double revenueVoucher = 0;
+            //double totalAmount = 0;
+            //double totalDiscount = 0;
 
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                if (dt.Rows[0]["IsLock"].ToString() == "1")
-                {
-                    MessageBox.Show("Ledger book is lock for date: " + dtF.Date, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+            //if (dt != null && dt.Rows.Count > 0)
+            //{
+            //    if (dt.Rows[0]["IsLock"].ToString() == "1")
+            //    {
+            //        MessageBox.Show("Ledger book is lock for date: " + dtF.Date, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        return;
+            //    }
 
-                double.TryParse(dt.Rows[0]["CashOut"].ToString(), out cashin);
-                double.TryParse(dt.Rows[0]["PaymentCash"].ToString(), out revenueCash);
-                double.TryParse(dt.Rows[0]["PaymentCard"].ToString(), out revenueBank);
-                double.TryParse(dt.Rows[0]["PaymentVoucher"].ToString(), out revenueVoucher);
-                double.TryParse(dt.Rows[0]["TotalAmount"].ToString(), out totalAmount);
-                double.TryParse(dt.Rows[0]["TotalDiscount"].ToString(), out totalDiscount);
-            }
-            _dtGroup1.Rows.Clear();
-            DataRow dr = _dtGroup1.NewRow();
-            dr["LedgerDate"] = dtF;
-            dr["CashIn"] = cashin;
-            dr["RevenueCash"] = revenueCash;
-            dr["RevenueBank"] = revenueBank;
-            dr["RenenueVoucher"] = revenueVoucher;
-            dr["ExpenseCash"] = 0;
-            dr["CashOut"] = 0;
-            dr["CheckedCash"] = 0;
-            dr["Locked"] = false;
-            _dtGroup1.Rows.Add(dr);
-            LoadGrid(_dtGroup1, false);
-            dgvReportDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //    double.TryParse(dt.Rows[0]["CashOut"].ToString(), out cashin);
+            //    double.TryParse(dt.Rows[0]["PaymentCash"].ToString(), out revenueCash);
+            //    double.TryParse(dt.Rows[0]["PaymentCard"].ToString(), out revenueBank);
+            //    double.TryParse(dt.Rows[0]["PaymentVoucher"].ToString(), out revenueVoucher);
+            //    double.TryParse(dt.Rows[0]["TotalAmount"].ToString(), out totalAmount);
+            //    double.TryParse(dt.Rows[0]["TotalDiscount"].ToString(), out totalDiscount);
+            //}
+            //_dtGroup1.Rows.Clear();
+            //DataRow dr = _dtGroup1.NewRow();
+            //dr["LedgerDate"] = dtF;
+            //dr["CashIn"] = cashin;
+            //dr["RevenueCash"] = revenueCash;
+            //dr["RevenueBank"] = revenueBank;
+            //dr["RenenueVoucher"] = revenueVoucher;
+            //dr["ExpenseCash"] = 0;
+            //dr["CashOut"] = 0;
+            //dr["CheckedCash"] = 0;
+            //dr["Locked"] = false;
+            //_dtGroup1.Rows.Add(dr);
+            //LoadGrid(_dtGroup1, false);
+            //dgvReportDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            _isView = false;
-            _isAdd = true;
+            //_isView = false;
+            //_isAdd = true;
         }
 
         private void dgvReportDetail_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -289,6 +289,8 @@ namespace AusNail.Process
             dgvReportDetail.Columns["CheckedCash"].HeaderText = "Checked Cash";
             dgvReportDetail.Columns["CheckedCash"].ReadOnly = true;
             dgvReportDetail.Columns["CheckedCash"].Width = 100;
+
+            dgvReportDetail.Columns["Locked"].ReadOnly = true;
 
             dgvReportDetail.AutoGenerateColumns = true;
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,6 +105,13 @@ namespace AusNail.Process
         public frmLedgerAdd()
         {
             InitializeComponent();
+            
+        }
+
+        private void frmPay_Load(object sender, EventArgs e)
+        {
+            //this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
+            groupBox1.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
             if (ModeEdit)
             {
                 btnRefresh.Visible = true;
@@ -111,15 +119,9 @@ namespace AusNail.Process
             else
             {
                 btnRefresh.Visible = false;
+                dtpDate.Enabled = true;
             }
             txtExpenseCash.Focus();
-        }
-
-        private void frmPay_Load(object sender, EventArgs e)
-        {
-            //this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
-            groupBox1.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
-
         }
    
 
@@ -206,7 +208,8 @@ namespace AusNail.Process
                 }
                 else
                 {
-                    //lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((CashIn + RevenueCash - ExpenseCash - CashOut)));
+                    double CashIn = double.Parse(lblCashIn.Text.Trim());
+                    lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((CashIn + RevenueCash - ExpenseCash - CashOut)));
                 }
             }
             catch 
@@ -222,31 +225,25 @@ namespace AusNail.Process
 
         private void txtCash_Validated(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    decimal cashAmount = 0;
-            //    cashAmount = decimal.Parse(txtCashOut.Text.Trim());
-            //    if (cashAmount < 0)
-            //    {
-            //        MessageBox.Show("Cash amount must be greater than or equal to 0.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        txtCashOut.Text = "0";
-            //        txtCashOut.Focus();
-            //    }
-            //    else
-            //    {
-            //        if (cashAmount > _Receivable)
-            //        {
-            //            txtCashOut.Text = string.Format("{0:#,##0.00}", Lamtron(_Receivable));
-            //        }
-            //        else
-            //        {
-            //            txtExpenseCash.Text = string.Format("{0:#,##0.00}", _Receivable - cashAmount);
-            //        }
-            //    }
-            //}
-            //catch
-            //{
-            //}
+            try
+            {
+                decimal cashAmount = 0;
+                cashAmount = decimal.Parse(txtCashOut.Text.Trim());
+                if (cashAmount < 0)
+                {
+                    MessageBox.Show("Cash amount must be greater than or equal to 0.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCashOut.Text = "0";
+                    txtCashOut.Focus();
+                }
+                else
+                {
+                    double CashIn = double.Parse(lblCashIn.Text.Trim());
+                    lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((CashIn + RevenueCash - ExpenseCash - CashOut)));
+                }
+            }
+            catch
+            {
+            }
         }
 
         private void txtCard_KeyPress(object sender, KeyPressEventArgs e)
@@ -283,11 +280,11 @@ namespace AusNail.Process
             }
         }
 
-        private decimal Lamtron(decimal number)
+        private double Lamtron(double number)
         {
-            decimal So = 0;
-            decimal numberFloor = Math.Floor(number);
-            decimal chenhlech = number - numberFloor;
+            double So = 0;
+            double numberFloor = Math.Floor(number);
+            double chenhlech = number - numberFloor;
             if (double.Parse(chenhlech.ToString()) >= 0.5)
             {
                 So = numberFloor + 1;
@@ -297,6 +294,86 @@ namespace AusNail.Process
                 So = numberFloor;
             }
             return So;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            // Load dữ liệu theo ngày.
+            DateTime dtF;
+            DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                              CultureInfo.InvariantCulture,
+                              DateTimeStyles.None,
+                              out dtF);
+            if (dtF == null)
+            {
+                MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (dtF.Year == 0001)
+            {
+                MessageBox.Show("Date from invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_GetBill", dtF, int.Parse(NailApp.BranchID));           
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                //if (dt.Rows[0]["IsLock"].ToString() == "1")
+                //{
+                //    MessageBox.Show("Ledger book is lock for date: " + dtF.Date, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    return;
+                //}
+               
+                txtCashOut.Text = "0";
+                txtExpenseCash.Text = "0";
+                lblCashIn.Text = dt.Rows[0]["CashOut"].ToString();
+                lblCheckedCash.Text = "0";
+                lblRenenueVoucher.Text = dt.Rows[0]["PaymentVoucher"].ToString();
+                lblRevenueBank.Text = dt.Rows[0]["PaymentCard"].ToString();
+                lblRevenueCash.Text = dt.Rows[0]["PaymentCash"].ToString();
+                chkLocked.Checked = false;
+            }
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            // Load dữ liệu theo ngày.
+            DateTime dtF;
+            DateTime.TryParseExact(dtpDate.Text.Trim().ToString(), "dd/MM/yyyy",
+                              CultureInfo.InvariantCulture,
+                              DateTimeStyles.None,
+                              out dtF);
+            if (dtF == null)
+            {
+                MessageBox.Show("Please choose date filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (dtF.Year == 0001)
+            {
+                //MessageBox.Show("Date from invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            _LedgerDate = dtF.Date;
+            DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_GetBill", dtF, int.Parse(NailApp.BranchID));
+
+            
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["IsLock"].ToString() == "1")
+                {
+                    MessageBox.Show("Ledger book is lock for date: " + dtF.Date, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                txtCashOut.Text = "0";
+                txtExpenseCash.Text = "0";
+                lblCashIn.Text = dt.Rows[0]["CashOut"].ToString();
+                lblCheckedCash.Text = "0";
+                lblRenenueVoucher.Text = dt.Rows[0]["PaymentVoucher"].ToString();
+                lblRevenueBank.Text = dt.Rows[0]["PaymentCard"].ToString();
+                lblRevenueCash.Text = dt.Rows[0]["PaymentCash"].ToString();
+                chkLocked.Checked = false;
+            }
         }
     }
 
