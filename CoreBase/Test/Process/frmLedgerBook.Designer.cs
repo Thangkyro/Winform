@@ -44,19 +44,18 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvReportDetail = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cmsMenuRight = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).BeginInit();
-            this.panel4.SuspendLayout();
             this.cmsMenuRight.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -190,10 +189,10 @@
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
             this.btnAdd.Inactive1 = System.Drawing.Color.Cyan;
             this.btnAdd.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnAdd.Location = new System.Drawing.Point(806, 4);
+            this.btnAdd.Location = new System.Drawing.Point(763, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(87, 31);
+            this.btnAdd.Size = new System.Drawing.Size(130, 31);
             this.btnAdd.Stroke = false;
             this.btnAdd.StrokeColor = System.Drawing.Color.Gray;
             this.btnAdd.TabIndex = 10029;
@@ -243,41 +242,6 @@
             this.dgvReportDetail.TabIndex = 4;
             this.dgvReportDetail.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportDetail_CellValueChanged);
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.btnAdd);
-            this.panel4.Controls.Add(this.dateTimePicker1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(899, 40);
-            this.panel4.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 23);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "View";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(600, 4);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(201, 31);
-            this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.Validated += new System.EventHandler(this.dateTimePicker1_Validated);
-            // 
             // cmsMenuRight
             // 
             this.cmsMenuRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -302,6 +266,27 @@
             this.delteToolStripMenuItem.Text = "Delete";
             this.delteToolStripMenuItem.Click += new System.EventHandler(this.delteToolStripMenuItem_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.btnAdd);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(899, 40);
+            this.panel4.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 23);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "View";
+            // 
             // frmLedgerBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,9 +306,9 @@
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportDetail)).EndInit();
+            this.cmsMenuRight.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.cmsMenuRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -344,7 +329,6 @@
         private AltoControls.AltoButton btnClose;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataGridView dgvReportDetail;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ContextMenuStrip cmsMenuRight;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem delteToolStripMenuItem;
