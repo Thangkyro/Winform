@@ -259,6 +259,7 @@ namespace AusNail.Process
         private void LoadGrid(DataTable dt, bool viewer)
         {
             dgvReportDetail.DataSource = dt;
+            dgvReportDetail.Columns["LedgerID"].Visible = false;
             dgvReportDetail.Columns["LedgerDate"].HeaderText = "Ledger Date";
             dgvReportDetail.Columns["LedgerDate"].ReadOnly = true;
             dgvReportDetail.Columns["LedgerDate"].Width = 100;
@@ -289,21 +290,28 @@ namespace AusNail.Process
             dgvReportDetail.Columns["CheckedCash"].ReadOnly = true;
             dgvReportDetail.Columns["CheckedCash"].Width = 100;
 
-
-           
-
             dgvReportDetail.AutoGenerateColumns = true;
         }
 
         private void delteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-           
+            Delete();
         }
-
+        private DialogResult MessNotifications(string title, string message)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            return result;
+        }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Khai báo dữ liệu add grid.
+            Edit();
+        }
+
+        private void Edit()
+        {
+            // Khai báo dữ liệu Edit grid.
+            double LedgerID = 0;
             double cashin = 0;
             double revenueCash = 0;
             double revenueBank = 0;
@@ -312,10 +320,11 @@ namespace AusNail.Process
             double CashOut = 0;
             double CheckedCash = 0;
             bool Lock = false;
+            DateTime LedgerDate;
             if (dgvReportDetail.SelectedCells.Count > 0)
             {
                 //string id = gridview.SelectedCells[0].Value.ToString();
-
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["LedgerID"].Value.ToString(), out LedgerID);
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CashIn"].Value.ToString(), out cashin);
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["RevenueCash"].Value.ToString(), out revenueCash);
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["RevenueBank"].Value.ToString(), out revenueBank);
@@ -323,16 +332,72 @@ namespace AusNail.Process
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["ExpenseCash"].Value.ToString(), out ExpenseCash);
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CashOut"].Value.ToString(), out CashOut);
                 double.TryParse(dgvReportDetail.SelectedRows[0].Cells["CheckedCash"].Value.ToString(), out CheckedCash);
-                //if (dgvReportDetail.SelectedRows[0].Cells["IsLock"].ToString() == "1")
-                //{
-                //    Lock = true;
-                //}
+                DateTime.TryParse(dgvReportDetail.SelectedRows[0].Cells["LedgerDate"].Value.ToString(), out LedgerDate);
+                if (dgvReportDetail.SelectedRows[0].Cells["Locked"].Value.ToString() == "True")
+                {
+                    Lock = true;
+                }
                 frmLedgerAdd frm = new frmLedgerAdd();
                 frm.Cashin = cashin;
                 frm.RevenueCash = revenueCash;
                 frm.RevenueBank = revenueBank;
                 frm.RevenueVoucher = revenueVoucher;
-                frm.ShowDialog();
+                frm.ExpenseCash = ExpenseCash;
+                frm.CashOut = CashOut;
+                frm.zCheckedCash = CheckedCash;
+                frm.Lock = Lock;
+                frm.LedgerDate = LedgerDate;
+                frm.ModeEdit = true;
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    cashin = frm.Cashin;
+                    revenueCash = frm.RevenueCash;
+                    revenueBank = frm.RevenueBank;
+                    revenueVoucher = frm.RevenueVoucher;
+                    ExpenseCash = frm.ExpenseCash;
+                    CashOut = frm.CashOut;
+                    CheckedCash = frm.zCheckedCash;
+                    Lock = frm.Lock;
+                    int error = 0;
+                    string errorMesg = "";
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zUpd_LedgerBook", LedgerID, int.Parse(NailApp.BranchID), cashin,
+                        revenueCash, revenueBank, revenueVoucher, ExpenseCash, CashOut, CheckedCash, Lock, NailApp.CurrentUserId, error, errorMesg);
+                    if (ret > 0)
+                    {
+                        LoadData();
+                    }
+                    else if (!string.IsNullOrEmpty(errorMesg))
+                    {
+                        MessageBox.Show(errorMesg, "Error");
+                    }
+                }
+            }
+        }
+        private void Delete()
+        {
+            double LedgerID = 0;
+            if (dgvReportDetail.SelectedCells.Count > 0)
+            {
+                double.TryParse(dgvReportDetail.SelectedRows[0].Cells["LedgerID"].Value.ToString(), out LedgerID);
+            }
+            if (LedgerID != 0)
+            {
+                DialogResult result = MessNotifications("Notifications", "Do you want delete line?");
+                if (result == DialogResult.Yes)
+                {
+                    int error = 0;
+                    string errorMesg = "";
+                    //Delete LedgerBook
+                    int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zDel_LedgerBook", LedgerID, int.Parse(NailApp.BranchID), error, errorMesg);
+                    if (ret > 0)
+                    {
+                        LoadData();
+                    }
+                    else if (!string.IsNullOrEmpty(errorMesg))
+                    {
+                        MessageBox.Show(errorMesg, "Error");
+                    }
+                }
             }
         }
     }

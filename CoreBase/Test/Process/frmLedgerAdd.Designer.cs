@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLedgerAdd));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new AltoControls.AltoButton();
             this.label12 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.lblCheckedCash = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
-            this.btnRefresh = new AltoControls.AltoButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +94,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ledger information";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnRefresh.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.btnRefresh.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnRefresh.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.Inactive1 = System.Drawing.Color.Cyan;
+            this.btnRefresh.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnRefresh.Location = new System.Drawing.Point(312, 19);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Radius = 10;
+            this.btnRefresh.Size = new System.Drawing.Size(94, 30);
+            this.btnRefresh.Stroke = false;
+            this.btnRefresh.StrokeColor = System.Drawing.Color.Gray;
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Transparency = false;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -108,6 +129,7 @@
             this.dtpDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpDate.CalendarMonthBackground = System.Drawing.Color.Gray;
             this.dtpDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpDate.Enabled = false;
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDate.Location = new System.Drawing.Point(106, 20);
@@ -188,9 +210,8 @@
             this.chkLocked.Location = new System.Drawing.Point(106, 281);
             this.chkLocked.Name = "chkLocked";
             this.chkLocked.Size = new System.Drawing.Size(15, 14);
-            this.chkLocked.TabIndex = 3;
+            this.chkLocked.TabIndex = 4;
             this.chkLocked.UseVisualStyleBackColor = true;
-            this.chkLocked.CheckedChanged += new System.EventHandler(this.chkCompire_CheckedChanged);
             // 
             // lblRenenueVoucher
             // 
@@ -244,7 +265,7 @@
             this.txtCashOut.Location = new System.Drawing.Point(106, 216);
             this.txtCashOut.Name = "txtCashOut";
             this.txtCashOut.Size = new System.Drawing.Size(315, 29);
-            this.txtCashOut.TabIndex = 2;
+            this.txtCashOut.TabIndex = 3;
             this.txtCashOut.Text = "0";
             this.txtCashOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCashOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
@@ -259,12 +280,12 @@
             this.txtExpenseCash.Location = new System.Drawing.Point(106, 182);
             this.txtExpenseCash.Name = "txtExpenseCash";
             this.txtExpenseCash.Size = new System.Drawing.Size(315, 29);
-            this.txtExpenseCash.TabIndex = 1;
+            this.txtExpenseCash.TabIndex = 2;
             this.txtExpenseCash.Text = "0";
             this.txtExpenseCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtExpenseCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
             this.txtExpenseCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCard_KeyPress);
-            this.txtExpenseCash.Validated += new System.EventHandler(this.txtCard_Validated);
+            this.txtExpenseCash.Validated += new System.EventHandler(this.txtExpenseCash_Validated);
             // 
             // label3
             // 
@@ -327,27 +348,6 @@
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnCreateBill_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnRefresh.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnRefresh.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
-            this.btnRefresh.Inactive1 = System.Drawing.Color.Cyan;
-            this.btnRefresh.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnRefresh.Location = new System.Drawing.Point(312, 19);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Radius = 10;
-            this.btnRefresh.Size = new System.Drawing.Size(94, 30);
-            this.btnRefresh.Stroke = false;
-            this.btnRefresh.StrokeColor = System.Drawing.Color.Gray;
-            this.btnRefresh.TabIndex = 18;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Transparency = false;
             // 
             // frmLedgerAdd
             // 
