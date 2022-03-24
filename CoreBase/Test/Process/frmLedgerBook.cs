@@ -87,6 +87,15 @@ namespace AusNail.Process
                     Lock = frm.Lock;
                     LedgerDate = frm.LedgerDate;
 
+                    DataTable dtCheck = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_CheckDate", LedgerDate, int.Parse(NailApp.BranchID));
+                    if (dtCheck != null && dtCheck.Rows.Count > 0)
+                    {
+                        if (dtCheck.Rows[0]["IsExist"].ToString() == "1")
+                        {
+                            MessageBox.Show("Ledger book exsist for date : " + LedgerDate.Date, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                     int retIns = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zLedgerBook_InsertValue", int.Parse(NailApp.BranchID), LedgerDate.Date, cashin, revenueCash, revenueBank, revenueVoucher, ExpenseCash, CashOut, CheckedCash, Lock, NailApp.CurrentUserId);
                     if (retIns > 0)
                     {

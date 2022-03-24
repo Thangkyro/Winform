@@ -999,7 +999,22 @@ namespace AusNail
                     DialogResult dialogResult = MessageBox.Show("Do you want unpaid Bill " + _billIDHistory.ToString(), "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        try
+                        {
+                            DataTable dtCheck = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zLedgerBook_CheckDate", txtBilDate.Value, int.Parse(NailApp.BranchID));
+                            if (dtCheck != null && dtCheck.Rows.Count > 0)
+                            {
+                                if (dtCheck.Rows[0]["Islock"].ToString() == "1")
+                                {
+                                    MessageBox.Show("Ledger book lock for date : " + txtBilDate.Value.ToString("dd/MM/yyyy"), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
 
+                        }
                         int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zBillUnPaidUpdate", _billIDHistory, int.Parse(NailApp.BranchID), NailApp.CurrentUserId, 0, "");
                         if (ret > 0)
                         {
