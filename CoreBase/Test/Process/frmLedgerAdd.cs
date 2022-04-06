@@ -20,9 +20,9 @@ namespace AusNail.Process
         private double _cashin = 0;
         public double Cashin
         {
-            get { return double.Parse(lblCashIn.Text.Trim()) ; }
+            get { return double.Parse(txtCashIn.Text.Trim()) ; }
             set { _cashin = value;
-                lblCashIn.Text = string.Format("{0:#,##0.00}", _cashin);
+                txtCashIn.Text = string.Format("{0:#,##0.00}", _cashin);
             }
         }
         private double _revenueCash = 0;
@@ -325,7 +325,7 @@ namespace AusNail.Process
                
                 //txtCashOut.Text = "0";
                 //txtExpenseCash.Text = "0";
-                lblCashIn.Text = dt.Rows[0]["CashOut"].ToString();
+                txtCashIn.Text = dt.Rows[0]["CashOut"].ToString();
                 //lblCheckedCash.Text = "0";
                 lblRenenueVoucher.Text = dt.Rows[0]["PaymentVoucher"].ToString();
                 lblRevenueBank.Text = dt.Rows[0]["PaymentCard"].ToString();
@@ -381,7 +381,7 @@ namespace AusNail.Process
 
                 txtCashOut.Text = "0";
                 txtExpenseCash.Text = "0";
-                lblCashIn.Text = dt.Rows[0]["CashOut"].ToString();
+                txtCashIn.Text = dt.Rows[0]["CashOut"].ToString();
                 //lblCheckedCash.Text = "0";
                 lblRenenueVoucher.Text = dt.Rows[0]["PaymentVoucher"].ToString();
                 lblRevenueBank.Text = dt.Rows[0]["PaymentCard"].ToString();
@@ -392,9 +392,52 @@ namespace AusNail.Process
         }
         private void CallMoney()
         {
-            double CashIn = double.Parse(lblCashIn.Text.Trim());
-            lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((CashIn + RevenueCash + RevenueBank + RevenueVoucher - ExpenseCash - CashOut)));
+            //double CashIn = double.Parse(txtCashIn.Text.Trim());
+            lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((Cashin + RevenueCash + RevenueBank + RevenueVoucher - ExpenseCash - CashOut)));
         }
+
+        private void txtCashIn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
+
+        private void txtCashIn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Chỉ cho phép nhập số và các thao tác xóa, tiến lùi... Không nhập text.
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            // Sự kiện bấm Enter
+            if (e.KeyChar == 13)
+            {
+                //txtCard_Validated(sender, e);
+            }
+        }
+
+        private void txtCashIn_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal cashIn = 0;
+                cashIn = decimal.Parse(txtCashIn.Text.Trim());
+                if (cashIn < 0)
+                {
+                    MessageBox.Show("Cash In must be greater than or equal to 0.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCashIn.Text = "0";
+                    txtCashIn.Focus();
+                }
+                else
+                {
+                    CallMoney();
+                }
+            }
+            catch
+            {
+            }
+        }
+    }
 
 }

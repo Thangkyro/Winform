@@ -37,7 +37,6 @@
             this.lblCheckedCash = new System.Windows.Forms.Label();
             this.CheckedCash = new System.Windows.Forms.Label();
             this.lblRevenueCash = new System.Windows.Forms.Label();
-            this.lblCashIn = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.chkLocked = new System.Windows.Forms.CheckBox();
@@ -51,6 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
+            this.txtCashIn = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,13 +68,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtCashIn);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.dtpDate);
             this.groupBox1.Controls.Add(this.lblCheckedCash);
             this.groupBox1.Controls.Add(this.CheckedCash);
             this.groupBox1.Controls.Add(this.lblRevenueCash);
-            this.groupBox1.Controls.Add(this.lblCashIn);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.chkLocked);
@@ -174,19 +174,6 @@
             this.lblRevenueCash.TabIndex = 12;
             this.lblRevenueCash.Text = "0";
             this.lblRevenueCash.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblCashIn
-            // 
-            this.lblCashIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCashIn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCashIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCashIn.Location = new System.Drawing.Point(106, 58);
-            this.lblCashIn.Name = "lblCashIn";
-            this.lblCashIn.Size = new System.Drawing.Size(315, 26);
-            this.lblCashIn.TabIndex = 13;
-            this.lblCashIn.Text = "0";
-            this.lblCashIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
@@ -351,6 +338,21 @@
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnCreateBill_Click);
             // 
+            // txtCashIn
+            // 
+            this.txtCashIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCashIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashIn.Location = new System.Drawing.Point(106, 55);
+            this.txtCashIn.Name = "txtCashIn";
+            this.txtCashIn.Size = new System.Drawing.Size(315, 29);
+            this.txtCashIn.TabIndex = 1;
+            this.txtCashIn.Text = "0";
+            this.txtCashIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCashIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCashIn_KeyDown);
+            this.txtCashIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashIn_KeyPress);
+            this.txtCashIn.Validated += new System.EventHandler(this.txtCashIn_Validated);
+            // 
             // frmLedgerAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,11 +393,11 @@
         private System.Windows.Forms.Label lblCheckedCash;
         private System.Windows.Forms.Label CheckedCash;
         private System.Windows.Forms.Label lblRevenueCash;
-        private System.Windows.Forms.Label lblCashIn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private AltoControls.AltoButton btnRefresh;
+        private System.Windows.Forms.TextBox txtCashIn;
     }
 }
