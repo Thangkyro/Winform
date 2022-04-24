@@ -26,7 +26,7 @@ namespace AusNail.Process
         private int iResult = 0;
         private DataTable _dtSo = new DataTable();
         private DataTable _dtBillTemp = new DataTable();
-        private int _num = 1;
+        private int _bookingNumber = -1;
         private string _sBillCode = "";
 
         //khạ báo biến kiểu delegate
@@ -48,6 +48,7 @@ namespace AusNail.Process
             loadDTBillTemp();
             loadService();
             LoadGrid(_dtService);
+            loadBookingTemp(phoneNumber);
             LoadGridBillTemp(_dtBillTemp);
             this.BackColor = NailApp.ColorUser.IsEmpty == true || NailApp.ColorUser.Name == "0" ? ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#c0ffff"), 0) : NailApp.ColorUser;
         }
@@ -89,6 +90,31 @@ namespace AusNail.Process
                 _dtGroupService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zGroupServiceGetList_byBranch", _branchID);
                 _dtService = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zServiceGetList_byBranch", _branchID);
                 _dtStaff = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zStaffGetList_byBrabch", _branchID);
+            }
+            catch
+            {
+            }
+        }
+
+        private void loadBookingTemp(string phoneNumber)
+        {
+            try
+            {
+                DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingTop1", _branchID, phoneNumber);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    _bookingNumber = dt.Rows[0]["BookId"].zToInt();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        DataRow dataRow = _dtBillTemp.NewRow();
+                        dataRow["Price"] = dr["Price"].zToDecimal();
+                        dataRow["STT"] = dr["STT"].zToInt();
+                        dataRow["ServiceID"] = dr["ServiceID"].zToInt();
+                        dataRow["ServiceName"] = dr["ServiceName"].zToString();
+                        dataRow["Quantity"] = dr["Quantity"].zToDecimal();
+                        _dtBillTemp.Rows.Add(dataRow);
+                    }
+                }
             }
             catch
             {
@@ -202,6 +228,17 @@ namespace AusNail.Process
                     this.DialogResult = DialogResult.OK;
                     this.Visible = false;
                     this.ShowInTaskbar = false;
+
+                    // Update status booking
+                    if (_bookingNumber != -1)
+                    {
+                        int ret =  MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, CommandType.Text, "Update [dbo].[zBookingMaster] set [Status] = 'ToBill' Where branchId = " + _branchID + " and BookID = " + _bookingNumber);
+                        if (ret > 0)
+                        {
+                            _bookingNumber = -1;
+                        }
+                    }
+
 
                     //In bill temp
                     //Get billID
