@@ -19,8 +19,11 @@ AS
 		select  
 				t1.[BookID]
 			   ,t1.[Status]
-			   , CONCAT((CONVERT(VARCHAR(5),t1.BookingDate,108)),' - ', t1.CustomerPhone, ' - ', t2.Name) AS Short 
-			   ,t1.ShortDecriptions
+			   --, CONCAT((CONVERT(VARCHAR(5),t1.BookingDate,108)),' - ', t1.CustomerPhone, ' - ', t2.Name) AS Short 
+			   ,(CONVERT(VARCHAR(5),t1.BookingDate,108)) AS TimeBook
+			   , CONCAT(' - ', t1.CustomerPhone, ' - ', t2.Name) AS Short 
+			   ,ISNULL(t1.ShortDecriptions,'') AS ShortDecriptions
+			   ,ISNULL(t1.Decriptions, '') AS Decriptions
 			   --,case when datepart(hour, t1.BookingDate) = 9  then 1 else 0 end as '9'
 			   --,case when datepart(hour, t1.BookingDate) = 10 then 1 else 0 end	as '10'
 			   --,case when datepart(hour, t1.BookingDate) = 11 then 1 else 0 end	as '11'
