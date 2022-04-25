@@ -74,7 +74,7 @@
             this.dgvService.Name = "dgvService";
             this.dgvService.RowHeadersWidth = 51;
             this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvService.Size = new System.Drawing.Size(409, 425);
+            this.dgvService.Size = new System.Drawing.Size(409, 312);
             this.dgvService.TabIndex = 0;
             this.dgvService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService_CellClick);
             this.dgvService.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvService_DataError);
@@ -97,7 +97,7 @@
             this.txtName.Location = new System.Drawing.Point(12, 30);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(890, 70);
+            this.txtName.Size = new System.Drawing.Size(568, 70);
             this.txtName.TabIndex = 2;
             // 
             // txtPhoneNumber
@@ -105,7 +105,7 @@
             this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneNumber.Enabled = false;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNumber.Location = new System.Drawing.Point(908, 30);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(586, 30);
             this.txtPhoneNumber.Multiline = true;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(430, 70);
@@ -122,7 +122,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.Inactive1 = System.Drawing.Color.Cyan;
             this.btnCancel.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCancel.Location = new System.Drawing.Point(1188, 587);
+            this.btnCancel.Location = new System.Drawing.Point(866, 474);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Radius = 10;
             this.btnCancel.Size = new System.Drawing.Size(148, 84);
@@ -140,13 +140,13 @@
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 145);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(202, 425);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(202, 312);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // altoSlidingLabel2
             // 
             this.altoSlidingLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.altoSlidingLabel2.Location = new System.Drawing.Point(908, 6);
+            this.altoSlidingLabel2.Location = new System.Drawing.Point(586, 6);
             this.altoSlidingLabel2.Name = "altoSlidingLabel2";
             this.altoSlidingLabel2.Size = new System.Drawing.Size(126, 23);
             this.altoSlidingLabel2.Slide = false;
@@ -193,7 +193,7 @@
             this.dgvBillTem.RowHeadersWidth = 51;
             this.dgvBillTem.RowTemplate.Height = 50;
             this.dgvBillTem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvBillTem.Size = new System.Drawing.Size(705, 425);
+            this.dgvBillTem.Size = new System.Drawing.Size(383, 312);
             this.dgvBillTem.TabIndex = 0;
             this.dgvBillTem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellClick);
             this.dgvBillTem.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvBillTem_CellPainting);
@@ -204,7 +204,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(1099, 106);
+            this.label2.Location = new System.Drawing.Point(777, 106);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(237, 37);
             this.label2.TabIndex = 6;
@@ -221,7 +221,7 @@
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
             this.btnConfirm.Inactive1 = System.Drawing.Color.Cyan;
             this.btnConfirm.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnConfirm.Location = new System.Drawing.Point(1036, 587);
+            this.btnConfirm.Location = new System.Drawing.Point(714, 474);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 10;
             this.btnConfirm.Size = new System.Drawing.Size(148, 84);
@@ -238,7 +238,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1350, 694);
+            this.ClientSize = new System.Drawing.Size(1028, 581);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
