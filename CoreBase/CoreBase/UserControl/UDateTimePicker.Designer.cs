@@ -35,7 +35,7 @@
             // 
             // dtPicker
             // 
-            this.dtPicker.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtPicker.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPicker.Location = new System.Drawing.Point(2, 1);
             this.dtPicker.Name = "dtPicker";
@@ -79,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dtPicker;
-        private System.Windows.Forms.TextBox txtDate;
-        private System.Windows.Forms.TextBox txtTime;
+        public System.Windows.Forms.DateTimePicker dtPicker;
+        public System.Windows.Forms.TextBox txtDate;
+        public System.Windows.Forms.TextBox txtTime;
     }
 }

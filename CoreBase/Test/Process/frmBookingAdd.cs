@@ -65,7 +65,7 @@ namespace AusNail.Process
                                DateTimeStyles.None,
                                out dt);
 
-                dtpBookingDate.Value = dt;
+                udtBookingDate.dtPicker.Value = dt;
                 _dateChoose = dt;
 
             }
@@ -81,21 +81,19 @@ namespace AusNail.Process
             if (action == "ReBook") // Nếu là ReBook thì sau khi load lại data theo ID cũ thì set lại = 0 đẻ Add New
             {
                 _bookID = 0;
-                //dtpBookingDate.Value = DateTime.MinValue;
-                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 00, 00, 00);
-                dtpBookingDate.Value = dt;
-                dtBookingTime.Value = dt;
-                dtpBookingDate.Select();
+                DateTime dt = new DateTime(2000, 01, 01, 00, 00, 00);
+                udtBookingDate.dtPicker.Value = dt;
+                udtBookingDate.txtDate.Select();
             }
             else if (action == "Edit")
             {
-                dtBookingTime.Select();
+                udtBookingDate.Select();
             }
             else if (action == "Add")
             {
-                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 00,00,00);
-                dtBookingTime.Value = dt;
-                dtBookingTime.Select();
+                DateTime dt = new DateTime(udtBookingDate.dtPicker.Value.Year, udtBookingDate.dtPicker.Value.Month, udtBookingDate.dtPicker.Value.Day, 00,00,00);
+                udtBookingDate.dtPicker.Value = dt;
+                udtBookingDate.txtTime.Select();
             }
             //dtpBookingDate.Select();
 
@@ -149,8 +147,9 @@ namespace AusNail.Process
                     txtName.Text = _dtBookingMaster.Rows[0]["Name"].ToString();
                     txtPhoneNumber.Text = _dtBookingMaster.Rows[0]["CustomerPhone"].ToString();
                     lblTotalAmont.Text = string.Format("{0:#,##0.00}", decimal.Parse(_dtBookingMaster.Rows[0]["TotalEstimatePrice"].ToString()));
-                    dtpBookingDate.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
-                    dtBookingTime.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
+                    //dtpBookingDate.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
+                    //dtBookingTime.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
+                    udtBookingDate.dtPicker.Value = DateTime.Parse(_dtBookingMaster.Rows[0]["BookingDate"].ToString());
                     txtDes.Text = _dtBookingMaster.Rows[0]["Decriptions"].ToString();
                     txtShortDes.Text = _dtBookingMaster.Rows[0]["ShortDecriptions"].ToString();
                     _shortDes = txtShortDes.Text;
@@ -396,35 +395,46 @@ namespace AusNail.Process
             {
                 DateTime dtBook;
 
-                DateTime.TryParseExact((dtpBookingDate.Value.ToString("dd/MM/yyyy") + " " + dtBookingTime.Value.ToString("HH:mm")), "dd/MM/yyyy HH:mm",
+                //DateTime.TryParseExact((dtpBookingDate.Value.ToString("dd/MM/yyyy") + " " + dtBookingTime.Value.ToString("HH:mm")), "dd/MM/yyyy HH:mm",
+                //               CultureInfo.InvariantCulture,
+                //               DateTimeStyles.None,
+                //               out dtBook);
+                DateTime.TryParseExact(udtBookingDate.dtPicker.Value.ToString("dd/MM/yyyy HH:mm") , "dd/MM/yyyy HH:mm",
                                CultureInfo.InvariantCulture,
                                DateTimeStyles.None,
                                out dtBook);
 
-                if (dtBookingTime.Value.ToString("HH:mm") == "00:00")
+                if (dtBook.ToString("HH:mm") == "00:00")
                 {
                     MessageBox.Show("Time booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtBookingTime.Focus();
+                    udtBookingDate.Select();
                     return;
                 }
 
                 if (dtBook == DateTime.MinValue)
                 {
                     MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtpBookingDate.Focus();
+                    udtBookingDate.Select();
+                    return;
+                }
+
+                if (dtBook.Year == 2000)
+                {
+                    MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udtBookingDate.Select();
                     return;
                 }
 
                 if (dtBook == null || dtBook <= DateTime.Now.AddHours(NailApp.TimeConfig))
                 {
                     MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtpBookingDate.Focus();
+                    udtBookingDate.Select();
                     return;
                 }
                 else if (dtBook.Year == 0001)
                 {
                     MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtpBookingDate.Focus();
+                    udtBookingDate.Select();
                     return;
                 }
                 if (dgvBillTem.Rows.Count > 0)
@@ -860,8 +870,8 @@ namespace AusNail.Process
             try
             {
                 DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 00, 00, 00);
-                dtBookingTime.Value = dt;
-                dtBookingTime.Select();
+                //dtBookingTime.Value = dt;
+                //dtBookingTime.Select();
             }
             catch (Exception ex)
             {

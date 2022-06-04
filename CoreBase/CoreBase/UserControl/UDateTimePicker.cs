@@ -21,14 +21,14 @@ namespace Nail.Core
             this.txtDate.Enter += new System.EventHandler(this.txtDate_Enter);
 
             txtTime.ForeColor = Color.LightGray;
-            txtTime.Text = "HH:mm:ss";
+            txtTime.Text = "HH:mm";
             this.txtTime.Leave += new System.EventHandler(this.txtTime_Leave);
             this.txtTime.Enter += new System.EventHandler(this.txtTime_Enter);
         }
 
         private void UDateTimePicker_Load(object sender, EventArgs e)
         {
-            dtPicker.Value = DateTime.UtcNow;
+            //dtPicker.Value = DateTime.UtcNow;
         }
 
         private void loadpickerbytext()
@@ -64,21 +64,21 @@ namespace Nail.Core
                     year = dtPicker.Value.Year.ToString().PadLeft(4, '0');
                 }
                 // extra data time
-                if (strtime != "HH:mm:ss" && strtime.Length > 1 && strtime.Length < 9)
+                if (strtime != "HH:mm" && strtime.Length > 1 && strtime.Length < 6)
                 {
-                    if (strtime.Length == 8)
+                    if (strtime.Length == 5)
                     {
                         hours = strtime.Substring(0, 2);
                         minute = strtime.Substring(3, 2);
-                        second = strtime.Substring(6, 2);
+                        //second = strtime.Substring(6, 2);
                     }
-                    else if (strtime.Length == 6)
+                    else if (strtime.Length == 4)
                     {
                         if (strtime.IndexOf(":") == -1)
                         {
                             hours = strtime.Substring(0, 2);
                             minute = strtime.Substring(2, 2);
-                            second = strtime.Substring(4, 2);
+                            //second = strtime.Substring(4, 2);
                         }
                     }
                 }
@@ -86,12 +86,12 @@ namespace Nail.Core
                 {
                     hours = dtPicker.Value.Hour.ToString().PadLeft(2, '0');
                     minute = dtPicker.Value.Minute.ToString().PadLeft(2, '0');
-                    second = dtPicker.Value.Second.ToString().PadLeft(2, '0');
+                    //second = dtPicker.Value.Second.ToString().PadLeft(2, '0');
                 }
-                string srtDateTime = month.PadLeft(2, '0') + "/" + day.PadLeft(2, '0') + "/" + year.PadLeft(4, '0') + " " + hours.PadLeft(2, '0') + ":" + minute.PadLeft(2, '0') + ":" + second.PadLeft(2, '0');
+                string srtDateTime = month.PadLeft(2, '0') + "/" + day.PadLeft(2, '0') + "/" + year.PadLeft(4, '0') + " " + hours.PadLeft(2, '0') + ":" + minute.PadLeft(2, '0');
 
 
-                DateTime dDateTime = DateTime.ParseExact(srtDateTime, "MM/dd/yyyy HH:mm:ss",
+                DateTime dDateTime = DateTime.ParseExact(srtDateTime, "MM/dd/yyyy HH:mm",
                                        System.Globalization.CultureInfo.InvariantCulture);
                 if (dDateTime != null)
                 {
@@ -133,7 +133,7 @@ namespace Nail.Core
 
         private void txtTime_Enter(object sender, EventArgs e)
         {
-            if (txtTime.Text == "HH:mm:ss")
+            if (txtTime.Text == "HH:mm")
             {
                 txtTime.Text = "";
                 txtTime.ForeColor = Color.Black;
@@ -144,7 +144,7 @@ namespace Nail.Core
         {
             if (txtTime.Text == "")
             {
-                txtTime.Text = "HH:mm:ss";
+                txtTime.Text = "HH:mm";
                 txtTime.ForeColor = Color.Gray;
             }
         }
@@ -154,7 +154,7 @@ namespace Nail.Core
             loadpickerbytext();           
             txtDate.Text = "dd/MM/yyyy";
             txtDate.ForeColor = Color.Gray;
-            txtTime.Text = "HH:mm:ss";
+            txtTime.Text = "HH:mm";
             txtTime.ForeColor = Color.Gray;
         }
 
