@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookingAdd));
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dtpBookingDate = new System.Windows.Forms.DateTimePicker();
+            this.dgvBillTem = new System.Windows.Forms.DataGridView();
+            this.dgvService1 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtShortDes = new System.Windows.Forms.TextBox();
-            this.dtBookingTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -50,15 +53,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalAmont = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dgvService1 = new System.Windows.Forms.DataGridView();
-            this.dgvBillTem = new System.Windows.Forms.DataGridView();
+            this.udtBookingDate = new Nail.Core.UDateTimePicker();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvService1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBillTem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvService1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPhoneNumber
@@ -122,10 +121,8 @@
             this.panel1.Controls.Add(this.flowLayoutPanel2);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.dtpBookingDate);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtShortDes);
-            this.panel1.Controls.Add(this.dtBookingTime);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtDes);
             this.panel1.Controls.Add(this.lblHeader);
@@ -133,24 +130,112 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtPhoneNumber);
+            this.panel1.Controls.Add(this.udtBookingDate);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1292, 668);
             this.panel1.TabIndex = 6;
             // 
-            // dtpBookingDate
+            // dgvBillTem
             // 
-            this.dtpBookingDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBookingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBookingDate.Location = new System.Drawing.Point(153, 114);
-            this.dtpBookingDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dtpBookingDate.Name = "dtpBookingDate";
-            this.dtpBookingDate.Size = new System.Drawing.Size(168, 37);
-            this.dtpBookingDate.TabIndex = 1;
-            this.dtpBookingDate.Leave += new System.EventHandler(this.dtpBookingDate_Leave);
+            this.dgvBillTem.AllowUserToAddRows = false;
+            this.dgvBillTem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBillTem.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBillTem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBillTem.ColumnHeadersHeight = 40;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBillTem.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvBillTem.Location = new System.Drawing.Point(737, 277);
+            this.dgvBillTem.Name = "dgvBillTem";
+            this.dgvBillTem.RowHeadersWidth = 51;
+            this.dgvBillTem.RowTemplate.Height = 30;
+            this.dgvBillTem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvBillTem.Size = new System.Drawing.Size(543, 322);
+            this.dgvBillTem.TabIndex = 10008;
+            this.dgvBillTem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellClick);
+            this.dgvBillTem.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvBillTem_CellPainting);
+            this.dgvBillTem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellValueChanged);
+            // 
+            // dgvService1
+            // 
+            this.dgvService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvService1.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvService1.ColumnHeadersHeight = 40;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvService1.Location = new System.Drawing.Point(183, 277);
+            this.dgvService1.Name = "dgvService1";
+            this.dgvService1.RowHeadersWidth = 51;
+            this.dgvService1.RowTemplate.Height = 30;
+            this.dgvService1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvService1.Size = new System.Drawing.Size(548, 322);
+            this.dgvService1.TabIndex = 10007;
+            this.dgvService1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService1_CellClick);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(7, 277);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(170, 322);
+            this.flowLayoutPanel2.TabIndex = 10006;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(1042, 241);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(202, 31);
+            this.label5.TabIndex = 10004;
+            this.label5.Text = "Temporary Bill";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(183, 243);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(529, 31);
+            this.label7.TabIndex = 10005;
+            this.label7.Text = "** Please click on the name of services.";
             // 
             // label4
             // 
@@ -173,17 +258,6 @@
             this.txtShortDes.ReadOnly = true;
             this.txtShortDes.Size = new System.Drawing.Size(1127, 32);
             this.txtShortDes.TabIndex = 10002;
-            // 
-            // dtBookingTime
-            // 
-            this.dtBookingTime.CustomFormat = "HH:mm";
-            this.dtBookingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtBookingTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtBookingTime.Location = new System.Drawing.Point(324, 114);
-            this.dtBookingTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dtBookingTime.Name = "dtBookingTime";
-            this.dtBookingTime.Size = new System.Drawing.Size(84, 37);
-            this.dtBookingTime.TabIndex = 2;
             // 
             // label3
             // 
@@ -263,7 +337,7 @@
             this.panel2.Controls.Add(this.btnConfirm);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 604);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1292, 64);
             this.panel2.TabIndex = 7;
@@ -292,104 +366,14 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Total Amount:";
             // 
-            // label5
+            // udtBookingDate
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(1042, 241);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(202, 31);
-            this.label5.TabIndex = 10004;
-            this.label5.Text = "Temporary Bill";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(183, 243);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(529, 31);
-            this.label7.TabIndex = 10005;
-            this.label7.Text = "** Please click on the name of services.";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(7, 277);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(170, 322);
-            this.flowLayoutPanel2.TabIndex = 10006;
-            // 
-            // dgvService1
-            // 
-            this.dgvService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dgvService1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvService1.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvService1.Location = new System.Drawing.Point(183, 277);
-            this.dgvService1.Name = "dgvService1";
-            this.dgvService1.RowHeadersWidth = 51;
-            this.dgvService1.RowTemplate.Height = 30;
-            this.dgvService1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvService1.Size = new System.Drawing.Size(548, 322);
-            this.dgvService1.TabIndex = 10007;
-            this.dgvService1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvService1_CellClick);
-            // 
-            // dgvBillTem
-            // 
-            this.dgvBillTem.AllowUserToAddRows = false;
-            this.dgvBillTem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBillTem.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBillTem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvBillTem.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBillTem.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvBillTem.Location = new System.Drawing.Point(737, 277);
-            this.dgvBillTem.Name = "dgvBillTem";
-            this.dgvBillTem.RowHeadersWidth = 51;
-            this.dgvBillTem.RowTemplate.Height = 30;
-            this.dgvBillTem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvBillTem.Size = new System.Drawing.Size(543, 322);
-            this.dgvBillTem.TabIndex = 10008;
-            this.dgvBillTem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellClick);
-            this.dgvBillTem.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvBillTem_CellPainting);
-            this.dgvBillTem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillTem_CellValueChanged);
+            this.udtBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.udtBookingDate.Location = new System.Drawing.Point(148, 112);
+            this.udtBookingDate.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.udtBookingDate.Name = "udtBookingDate";
+            this.udtBookingDate.Size = new System.Drawing.Size(752, 55);
+            this.udtBookingDate.TabIndex = 1;
             // 
             // frmBookingAdd
             // 
@@ -405,10 +389,10 @@
             this.Text = "Booking";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBillTem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvService1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvService1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBillTem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -427,14 +411,13 @@
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.TextBox txtDes;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtBookingTime;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtShortDes;
-        private System.Windows.Forms.DateTimePicker dtpBookingDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.DataGridView dgvService1;
         private System.Windows.Forms.DataGridView dgvBillTem;
+        private Nail.Core.UDateTimePicker udtBookingDate;
     }
 }
