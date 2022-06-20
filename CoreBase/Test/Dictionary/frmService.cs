@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -221,6 +222,20 @@ namespace AusNail.Dictionary
             GridDetail.Columns.Remove("branchId");
             GridDetail.Columns.Remove("GroupStt");
 
+
+            DataGridViewButtonColumn dgvC = new DataGridViewButtonColumn();
+            dgvC.DataPropertyName = "UploadImage";
+            dgvC.HeaderText = "Upload Image";
+            dgvC.Name = "UploadImage";
+            dgvC.Text = "Upload Image";
+            dgvC.UseColumnTextForButtonValue = true;
+            var DataGridViewButtonColumn = GridDetail.Columns["UploadImage"];
+            if (DataGridViewButtonColumn == null)
+            {
+                GridDetail.Columns.Add(dgvC);
+                GridDetail.Columns["UploadImage"].DisplayIndex = 1;
+            }
+
             DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
             dgvCmb.DataPropertyName = "BranchId";
             dgvCmb.HeaderText = "Branch";
@@ -341,6 +356,20 @@ namespace AusNail.Dictionary
                     txtDecriptions.Text = row.Cells["Decriptions"].Value.ToString();
                     chkis_inactive.Checked = row.Cells["is_inactive"].Value.ToString() == "" ? false : bool.Parse(row.Cells["is_inactive"].Value.ToString());
                     chkis_discount.Checked = row.Cells["is_discount"].Value.ToString() ==""? false : bool.Parse(row.Cells["is_discount"].Value.ToString());
+                    txtServiceID.Text = row.Cells["ServiceID"].Value.ToString();
+                    //Load image
+                    var img = row.Cells["zImage"].Value;
+                    if (img != DBNull.Value)
+                    {
+                        var data = (Byte[])img;
+                        var stream = new MemoryStream(data);
+                        pbImage.Image = Image.FromStream(stream);
+
+                    }
+                    else
+                    {
+                        pbImage.Image = null;
+                    }
                 }
             }
             catch (Exception)
@@ -379,6 +408,78 @@ namespace AusNail.Dictionary
         private void GridDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you confirm ?", "Clear Image", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string branchID = txtServiceID.Text;
+
+                    byte[] image = null;
+
+                    if (!string.IsNullOrEmpty(branchID) && branchID != "0")
+                    {
+                        int ret = MsSqlHelper.ExecuteNonQuery(ZenDatabase.ConnectionString, "zServiceClearImage", branchID, image, NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), NailApp.CurrentUserId, DateTime.Now.AddHours(NailApp.TimeConfig).ToString(), 0, "");
+                        if (ret > 0)
+                        {
+                            MessageBox.Show("Successfully", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please choose Service!", "Clear Image", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void GridDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var senderGrid = (DataGridView)sender;
+
+                string headerText = GridDetail.Columns[e.ColumnIndex].Name;
+
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                    e.RowIndex >= 0 && headerText == "UploadImage")
+                {
+                    //TODO - Button Clicked - Execute Code Here
+                    OpenFileDialog opnfd = new OpenFileDialog();
+                    opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                    if (opnfd.ShowDialog() == DialogResult.OK)
+                    {
+                        string fileName = opnfd.FileName;
+                        byte[] bytes = File.ReadAllBytes(fileName);
+                        pbImage.Image = new Bitmap(opnfd.FileName);
+                        pbImage.ImageLocation = opnfd.FileName;
+                        System.Drawing.Image imm = pbImage.Image;
+                        //int checkImage = 1;
+                        int rIndex = e.RowIndex;
+                        if (bytes != null)
+                        {
+                            GridDetail["zImage", rIndex].Value = bytes;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
