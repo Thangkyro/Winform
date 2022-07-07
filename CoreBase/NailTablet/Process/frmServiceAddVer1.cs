@@ -100,6 +100,10 @@ namespace AusNail.Process
         {
             try
             {
+                if (phoneNumber=="000")
+                {
+                    return;
+                }
                 DataTable dt = MsSqlHelper.ExecuteDataTable(ZenDatabase.ConnectionString, "zBookingTop1", _branchID, phoneNumber);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -124,23 +128,39 @@ namespace AusNail.Process
         private void LoadGrid( DataTable dataTable)
         {
             dgvService.DataSource = dataTable;
-            dgvService.Columns["ServiceID"].Visible = false;
-            dgvService.Columns["branchId"].Visible = false;
-            dgvService.Columns["Title"].HeaderText = "Service Name";
-            dgvService.Columns["Title"].ReadOnly = true;
-            dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvService.Columns["Display"].Visible = false;
-            dgvService.Columns["EstimateTime"].Visible = false;
-            dgvService.Columns["GroupStt"].Visible = false;
-            dgvService.Columns["Price"].Visible = false;
-            dgvService.Columns["Decriptions"].Visible = false;
-            dgvService.Columns["is_inactive"].Visible = false;
-            dgvService.Columns["created_by"].Visible = false;
-            dgvService.Columns["created_at"].Visible = false;
-            dgvService.Columns["modified_by"].Visible = false;
-            dgvService.Columns["modified_at"].Visible = false;
-            
+            //dgvService.Columns["ServiceID"].Visible = false;
+            //dgvService.Columns["branchId"].Visible = false;
+            //dgvService.Columns["Title"].HeaderText = "Service Name";
+            //dgvService.Columns["Title"].ReadOnly = true;
+            //dgvService.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dgvService.Columns["ShortDecriptions"].Visible = false;
+            //dgvService.Columns["Display"].Visible = false;
+            //dgvService.Columns["EstimateTime"].Visible = false;
+            //dgvService.Columns["GroupStt"].Visible = false;
+            //dgvService.Columns["Price"].Visible = false;
+            //dgvService.Columns["Decriptions"].Visible = false;
+            //dgvService.Columns["is_inactive"].Visible = false;
+            //dgvService.Columns["created_by"].Visible = false;
+            //dgvService.Columns["created_at"].Visible = false;
+            //dgvService.Columns["modified_by"].Visible = false;
+            //dgvService.Columns["modified_at"].Visible = false;
 
+
+            for (int i = 0; i < dgvService.Columns.Count; i++)
+            {
+               
+                if (dgvService.Columns[i].Name == "Title")
+                 {
+                    dgvService.Columns[i].HeaderText = "Service Name";
+                    dgvService.Columns[i].ReadOnly = true;
+                    dgvService.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvService.Columns[i].Visible = true;
+                }
+                else
+                {
+                    dgvService.Columns[i].Visible = false;
+                }
+            }
 
             dgvService.RowTemplate.Height = 60;
             dgvService.AutoGenerateColumns = false;

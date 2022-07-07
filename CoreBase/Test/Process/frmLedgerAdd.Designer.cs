@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLedgerAdd));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCashIn = new System.Windows.Forms.TextBox();
             this.btnRefresh = new AltoControls.AltoButton();
             this.label12 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -50,7 +51,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new AltoControls.AltoButton();
             this.btnConfirm = new AltoControls.AltoButton();
-            this.txtCashIn = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +93,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ledger information";
+            // 
+            // txtCashIn
+            // 
+            this.txtCashIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCashIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashIn.Location = new System.Drawing.Point(106, 55);
+            this.txtCashIn.Name = "txtCashIn";
+            this.txtCashIn.Size = new System.Drawing.Size(315, 29);
+            this.txtCashIn.TabIndex = 2;
+            this.txtCashIn.Text = "0";
+            this.txtCashIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCashIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCashIn_KeyDown);
+            this.txtCashIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashIn_KeyPress);
+            this.txtCashIn.Validated += new System.EventHandler(this.txtCashIn_Validated);
             // 
             // btnRefresh
             // 
@@ -254,7 +269,7 @@
             this.txtCashOut.Location = new System.Drawing.Point(106, 216);
             this.txtCashOut.Name = "txtCashOut";
             this.txtCashOut.Size = new System.Drawing.Size(315, 29);
-            this.txtCashOut.TabIndex = 3;
+            this.txtCashOut.TabIndex = 4;
             this.txtCashOut.Text = "0";
             this.txtCashOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCashOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
@@ -269,7 +284,7 @@
             this.txtExpenseCash.Location = new System.Drawing.Point(106, 182);
             this.txtExpenseCash.Name = "txtExpenseCash";
             this.txtExpenseCash.Size = new System.Drawing.Size(315, 29);
-            this.txtExpenseCash.TabIndex = 2;
+            this.txtExpenseCash.TabIndex = 3;
             this.txtExpenseCash.Text = "0";
             this.txtExpenseCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtExpenseCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCard_KeyDown);
@@ -337,21 +352,6 @@
             this.btnConfirm.Text = "Confirm ";
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnCreateBill_Click);
-            // 
-            // txtCashIn
-            // 
-            this.txtCashIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCashIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashIn.Location = new System.Drawing.Point(106, 55);
-            this.txtCashIn.Name = "txtCashIn";
-            this.txtCashIn.Size = new System.Drawing.Size(315, 29);
-            this.txtCashIn.TabIndex = 1;
-            this.txtCashIn.Text = "0";
-            this.txtCashIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtCashIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCashIn_KeyDown);
-            this.txtCashIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashIn_KeyPress);
-            this.txtCashIn.Validated += new System.EventHandler(this.txtCashIn_Validated);
             // 
             // frmLedgerAdd
             // 

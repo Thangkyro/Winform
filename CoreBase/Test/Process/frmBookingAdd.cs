@@ -182,9 +182,9 @@ namespace AusNail.Process
                 dgvService1.Columns["ServiceID"].Visible = false;
                 dgvService1.Columns["branchId"].Visible = false;
                 dgvService1.Columns["Display"].Visible = false;
-                dgvService1.Columns["EstimateTime"].Visible = false;
+                dgvService1.Columns["EstimateTime"].Visible = true;
                 dgvService1.Columns["GroupStt"].Visible = false;
-                dgvService1.Columns["Price"].Visible = false;
+                dgvService1.Columns["Price"].Visible = true;
 
 
                 dgvService1.Columns["Title"].HeaderText = "Service Name";
@@ -407,34 +407,34 @@ namespace AusNail.Process
                 if (dtBook.ToString("HH:mm") == "00:00")
                 {
                     MessageBox.Show("Time booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udtBookingDate.Select();
+                    udtBookingDate.txtTime.Select();
                     return;
                 }
 
                 if (dtBook == DateTime.MinValue)
                 {
                     MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udtBookingDate.Select();
+                    udtBookingDate.txtDate.Select();
                     return;
                 }
 
                 if (dtBook.Year == 2000)
                 {
                     MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udtBookingDate.Select();
+                    udtBookingDate.txtDate.Select();
                     return;
                 }
 
                 if (dtBook == null || dtBook <= DateTime.Now.AddHours(NailApp.TimeConfig))
                 {
                     MessageBox.Show("Date booking cannot empty or less than current date !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udtBookingDate.Select();
+                    udtBookingDate.txtDate.Select();
                     return;
                 }
                 else if (dtBook.Year == 0001)
                 {
                     MessageBox.Show("Date booking invaild !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udtBookingDate.Select();
+                    udtBookingDate.txtDate.Select();
                     return;
                 }
                 if (dgvBillTem.Rows.Count > 0)

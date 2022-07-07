@@ -393,7 +393,8 @@ namespace AusNail.Process
         private void CallMoney()
         {
             //double CashIn = double.Parse(txtCashIn.Text.Trim());
-            lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((Cashin + RevenueCash + RevenueBank + RevenueVoucher - ExpenseCash - CashOut)));
+            //+RevenueBank + RevenueVoucher
+            lblCheckedCash.Text = string.Format("{0:#,##0.00}", Lamtron((Cashin + RevenueCash - ExpenseCash - CashOut)));
         }
 
         private void txtCashIn_KeyDown(object sender, KeyEventArgs e)

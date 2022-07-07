@@ -1,5 +1,4 @@
-USE [qidjefjs_ausNail]
-GO
+
 /****** Object:  StoredProcedure [dbo].[zBookingMasterGetList_byCustomer]    Script Date: 6/17/2021 9:13:56 PM ******/
 SET ANSI_NULLS ON
 GO

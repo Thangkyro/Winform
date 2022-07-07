@@ -44,6 +44,7 @@
             this.dgvBillTem = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfirm = new AltoControls.AltoButton();
+            this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvService)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBillTem)).BeginInit();
             this.SuspendLayout();
@@ -232,6 +233,16 @@
             this.btnConfirm.Transparency = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.Color.Red;
+            this.lblDescription.Location = new System.Drawing.Point(12, 460);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(0, 39);
+            this.lblDescription.TabIndex = 9;
+            // 
             // frmServiceAddVer1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +250,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1028, 581);
+            this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -276,5 +288,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvBillTem;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDescription;
     }
 }

@@ -97,7 +97,7 @@ namespace AusNail.Login
 
             _cmdRows = _cmdForPermission.AsEnumerable();
             InitTreePermission(tvwDm, "zdm");
-            InitTreePermission(tvwPs, "zps");
+            InitTreePermission(tvwPs, "zPs");
             InitTreePermission(tvwBc, "zbc");
             InitTreePermission(tvwSys, "zsys");
         }
